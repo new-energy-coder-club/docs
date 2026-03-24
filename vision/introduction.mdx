@@ -1,0 +1,75 @@
+---
+title: '视觉识别'
+description: '计算机视觉与图像处理技术文档'
+---
+
+## 概述
+
+视觉识别是机器人感知环境的重要手段，涉及图像采集、处理、分析等内容。本板块介绍 NEC 社区在各类竞赛中积累的视觉技术方案。
+
+## 技术路线
+
+<CardGroup cols={2}>
+  <Card title="传统图像处理" icon="image">
+    颜色阈值、边缘检测、形态学操作
+  </Card>
+  <Card title="深度学习" icon="brain">
+    目标检测、语义分割、实例分割
+  </Card>
+</CardGroup>
+
+## 核心模块
+
+<CardGroup cols={2}>
+  <Card title="目标检测" icon="bullseye" href="/vision/detection">
+    YOLO、SSD、R-CNN 等检测算法
+  </Card>
+  <Card title="定位导航" icon="location-dot" href="/vision/localization">
+    AprilTag、ORB-SLAM、视觉里程计
+  </Card>
+  <Card title="图像预处理" icon="wand-magic-sparkles" href="/vision/preprocessing">
+    去噪、增强、校正
+  </Card>
+  <Card title="相机标定" icon="ruler" href="/vision/calibration">
+    内参外参标定、畸变校正
+  </Card>
+</CardGroup>
+
+## 硬件平台
+
+| 平台 | 算力 | 功耗 | 适用场景 |
+|------|------|------|---------|
+| OpenMV | 低 | 低 | 简单任务 |
+| Jetson Nano | 中 | 中 | 边缘推理 |
+| Jetson Orin | 高 | 高 | 复杂算法 |
+| Intel NUC | 高 | 高 | 上位机处理 |
+
+## 开发框架
+
+```python
+# OpenCV 示例
+import cv2
+import numpy as np
+
+# 读取图像
+img = cv2.imread('image.jpg')
+
+# 颜色阈值分割
+hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+lower = np.array([35, 100, 100])
+upper = np.array([85, 255, 255])
+mask = cv2.inRange(hsv, lower, upper)
+
+# 轮廓检测
+contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+```
+
+## 快速链接
+
+<Card
+  title="AIC 视觉方案"
+  icon="camera"
+  href="/competition/aic"
+>
+  查看智能车竞赛中的视觉识别方案
+</Card>

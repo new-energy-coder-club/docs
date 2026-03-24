@@ -1,0 +1,214 @@
+---
+title: '控制算法'
+description: '嵌入式控制算法实现'
+---
+
+## PID 控制器
+
+### 位置式 PID
+
+```cpp
+class PID {
+public:
+    struct Config {
+        float Kp, Ki, Kd;
+        float outputMin, outputMax;
+        float integralMin, integralMax;
+    };
+    
+    PID(const Config& cfg) : config_(cfg) {}
+    
+    float update(float setpoint, float measurement) {
+        float error = setpoint - measurement;
+        
+        // 积分
+        integral_ += error;
+        integral_ = constrain(integral_, config_.integralMin, config_.integralMax);
+        
+        // 微分
+        float derivative = error - lastError_;
+        lastError_ = error;
+        
+        // 计算输出
+        float output = config_.Kp * error 
+                     + config_.Ki * integral_ 
+                     + config_.Kd * derivative;
+        
+        return constrain(output, config_.outputMin, config_.outputMax);
+    }
+    
+    void reset() {
+        integral_ = 0;
+        lastError_ = 0;
+    }
+    
+private:
+    Config config_;
+    float integral_ = 0;
+    float lastError_ = 0;
+};
+```
+
+### 积分分离
+
+```cpp
+float update_with_integral_separation(float error) {
+    float output;
+    
+    if (fabs(error) > INTEGRAL_SEPARATION_THRESHOLD) {
+        // 大误差时不积分
+        output = Kp * error + Kd * (error - lastError);
+    } else {
+        // 小误差时正常PID
+        integral += error;
+        output = Kp * error + Ki * integral + Kd * (error - lastError);
+    }
+    
+    lastError = error;
+    return output;
+}
+```
+
+## 数字滤波
+
+### 一阶低通滤波
+
+```cpp
+class LowPassFilter {
+public:
+    LowPassFilter(float alpha) : alpha_(alpha), output_(0) {}
+    
+    float filter(float input) {
+        output_ = alpha_ * input + (1 - alpha_) * output_;
+        return output_;
+    }
+    
+    void reset() { output_ = 0; }
+    
+private:
+    float alpha_;
+    float output_;
+};
+
+// 使用示例
+LowPassFilter lpf(0.1f);  // alpha = 0.1
+float filtered = lpf.filter(raw_value);
+```
+
+### 卡尔曼滤波
+
+```cpp
+class KalmanFilter {
+public:
+    KalmanFilter(float q, float r, float p, float x) 
+        : q_(q), r_(r), p_(p), x_(x) {}
+    
+    float update(float measurement) {
+        // 预测
+        p_ = p_ + q_;
+        
+        // 更新
+        float k = p_ / (p_ + r_);
+        x_ = x_ + k * (measurement - x_);
+        p_ = (1 - k) * p_;
+        
+        return x_;
+    }
+    
+private:
+    float q_;  // 过程噪声
+    float r_;  // 测量噪声
+    float p_;  // 估计误差协方差
+    float x_;  // 状态估计
+};
+```
+
+## 运动控制
+
+### 电机控制
+
+```cpp
+class MotorController {
+public:
+    MotorController(PID::Config pid_cfg) 
+        : pid_(pid_cfg) {}
+    
+    void setSpeed(float targetSpeed) {
+        targetSpeed_ = targetSpeed;
+    }
+    
+    void update(float currentSpeed) {
+        // PID计算
+        float output = pid_.update(targetSpeed_, currentSpeed);
+        
+        // 设置PWM
+        setPWM(output);
+    }
+    
+private:
+    PID pid_;
+    float targetSpeed_ = 0;
+};
+```
+
+### 底盘控制
+
+```cpp
+class ChassisController {
+public:
+    void setTargetVelocity(float vx, float vy, float omega) {
+        // 逆运动学解算
+        float w1, w2, w3, w4;
+        mecanumIK(vx, vy, omega, w1, w2, w3, w4);
+        
+        // 设置各轮速度
+        motorFL_.setSpeed(w1);
+        motorFR_.setSpeed(w2);
+        motorBL_.setSpeed(w3);
+        motorBR_.setSpeed(w4);
+    }
+    
+    void update() {
+        // 更新所有电机
+        motorFL_.update(encoderFL_.getSpeed());
+        motorFR_.update(encoderFR_.getSpeed());
+        motorBL_.update(encoderBL_.getSpeed());
+        motorBR_.update(encoderBR_.getSpeed());
+    }
+    
+private:
+    MotorController motorFL_, motorFR_, motorBL_, motorBR_;
+    Encoder encoderFL_, encoderFR_, encoderBL_, encoderBR_;
+};
+```
+
+## 参数整定
+
+### 试凑法步骤
+
+1. **先调 P**：从小到大，直到系统开始振荡
+2. **加入 I**：消除稳态误差，I 不宜过大
+3. **加入 D**：抑制超调，改善动态性能
+
+### Ziegler-Nichols 法
+
+```
+步骤：
+1. 先只用 P 控制，从小到大调 Kp
+2. 找到临界增益 Ku（系统持续振荡）
+3. 记录振荡周期 Tu
+4. 根据表格计算 PID 参数：
+
+   P: Kp = 0.6 * Ku
+   PI: Kp = 0.45 * Ku, Ki = 1.2 * Kp / Tu
+   PID: Kp = 0.6 * Ku, Ki = 2 * Kp / Tu, Kd = Kp * Tu / 8
+```
+
+## 调试工具
+
+<Card
+  title="串口调试助手"
+  icon="terminal"
+>
+  实时查看控制参数和曲线
+</Card>

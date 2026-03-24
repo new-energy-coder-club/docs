@@ -1,0 +1,58 @@
+---
+title: '嵌软开发'
+description: '嵌入式软件开发技术文档'
+---
+
+## 概述
+
+嵌入式软件是机器人系统的"大脑"，负责控制算法实现、任务调度、通信管理等。本板块介绍 NEC 社区在嵌入式开发中的技术积累。
+
+## 技术栈
+
+<CardGroup cols={3}>
+  <Card title="裸机开发" icon="microchip">
+    直接操作寄存器，最高效率
+  </Card>
+  <Card title="RTOS" icon="clock">
+    FreeRTOS、RT-Thread 实时系统
+  </Card>
+  <Card title="Linux" icon="linux">
+    嵌入式 Linux 应用开发
+  </Card>
+</CardGroup>
+
+## 核心模块
+
+<CardGroup cols={2}>
+  <Card title="底层驱动" icon="plug" href="/embedded-software/drivers">
+    GPIO、UART、SPI、I2C、CAN、PWM
+  </Card>
+  <Card title="控制算法" icon="sliders" href="/embedded-software/control">
+    PID、滤波、运动控制
+  </Card>
+  <Card title="通信协议" icon="network-wired" href="/embedded-software/protocol">
+    CAN、Modbus、自定义协议
+  </Card>
+  <Card title="任务调度" icon="list-check" href="/embedded-software/scheduler">
+    状态机、任务管理、中断处理
+  </Card>
+</CardGroup>
+
+## 开发平台
+
+| 平台 | 主频 | 优势 | 适用场景 |
+|------|------|------|---------|
+| STM32F1 | 72MHz | 成本低 | 简单控制 |
+| STM32F4 | 168MHz | 性能均衡 | 通用应用 |
+| STM32H7 | 480MHz | 高性能 | 复杂算法 |
+| ESP32 | 240MHz | 自带WiFi | 物联网 |
+
+## 快速链接
+
+<Card
+  title="嵌入式模块详情"
+  icon="microchip"
+  href="/modules/embedded"
+>
+  查看更详细的嵌入式开发文档
+</Card>

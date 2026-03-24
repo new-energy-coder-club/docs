@@ -1,0 +1,179 @@
+---
+title: '定位导航'
+description: '视觉定位与导航技术'
+---
+
+## AprilTag 定位
+
+### 原理
+
+AprilTag 是一种视觉基准标记系统，通过检测标记的角点计算位姿。
+
+```
+AprilTag 36h11 示例：
+
+┌──────────────┐
+│ ▓▓░░▓▓▓▓░░▓▓ │
+│ ▓▓░░░░▓▓░░▓▓ │
+│ ▓▓▓▓░░░░░░▓▓ │
+│ ▓▓░░▓▓▓▓░░▓▓ │
+│ ▓▓░░▓▓░░░░▓▓ │
+│ ▓▓▓▓░░▓▓▓▓▓▓ │
+│ ▓▓░░▓▓░░░░▓▓ │
+│ ▓▓░░▓▓▓▓░░▓▓ │
+└──────────────┘
+
+黑色=1, 白色=0, 编码ID信息
+```
+
+### 代码实现
+
+```python
+import pupil_apriltags as apriltag
+import cv2
+import numpy as np
+
+class AprilTagDetector:
+    def __init__(self, camera_params):
+        self.detector = apriltag.Detector(
+            families='tag36h11',
+            nthreads=4,
+            quad_decimate=2.0,
+            quad_sigma=0.0
+        )
+        self.camera_params = camera_params  # [fx, fy, cx, cy]
+        self.tag_size = 0.165  # 标签边长(m)
+        
+    def detect(self, frame):
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        detections = self.detector.detect(gray)
+        
+        results = []
+        for det in detections:
+            # 解算位姿
+            pose, e0, e1 = self.detector.detection_pose(
+                det, self.camera_params, self.tag_size
+            )
+            
+            # 提取位置和旋转
+            tvec = pose[:3, 3]
+            rvec = cv2.Rodrigues(pose[:3, :3])[0]
+            
+            results.append({
+                'id': det.tag_id,
+                'center': det.center,
+                'corners': det.corners,
+                'tvec': tvec,
+                'rvec': rvec
+            })
+        return results
+```
+
+### 精度测试
+
+| 距离 | 位置误差 | 角度误差 |
+|------|---------|---------|
+| 0.5m | ±2mm | ±0.5° |
+| 1.0m | ±5mm | ±1.0° |
+| 2.0m | ±15mm | ±2.5° |
+
+## 视觉里程计
+
+### 光流法
+
+```python
+import cv2
+import numpy as np
+
+class OpticalFlowVO:
+    def __init__(self):
+        self.lk_params = dict(
+            winSize=(21, 21),
+            maxLevel=3,
+            criteria=(cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 30, 0.01)
+        )
+        self.feature_params = dict(
+            maxCorners=100,
+            qualityLevel=0.3,
+            minDistance=7,
+            blockSize=7
+        )
+        self.prev_gray = None
+        self.prev_pts = None
+        
+    def update(self, frame):
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        
+        if self.prev_pts is None:
+            self.prev_pts = cv2.goodFeaturesToTrack(gray, mask=None, **self.feature_params)
+            self.prev_gray = gray
+            return None
+            
+        # 计算光流
+        curr_pts, status, err = cv2.calcOpticalFlowPyrLK(
+            self.prev_gray, gray, self.prev_pts, None, **self.lk_params
+        )
+        
+        # 筛选有效点
+        good_prev = self.prev_pts[status == 1]
+        good_curr = curr_pts[status == 1]
+        
+        # 计算位姿变化（简化示例）
+        if len(good_prev) >= 2:
+            # 使用本质矩阵计算运动
+            E, mask = cv2.findEssentialMat(good_curr, good_prev, focal=500)
+            _, R, t, mask = cv2.recoverPose(E, good_curr, good_prev)
+            
+            # 更新
+            self.prev_pts = good_curr.reshape(-1, 1, 2)
+            self.prev_gray = gray
+            
+            return {'R': R, 't': t}
+        return None
+```
+
+## 多传感器融合
+
+### EKF 融合
+
+```python
+import numpy as np
+from filterpy.kalman import ExtendedKalmanFilter as EKF
+
+class LocalizationEKF:
+    def __init__(self):
+        self.ekf = EKF(dim_x=6, dim_z=3)  # x: [x,y,theta,vx,vy,omega]
+        
+        # 状态转移矩阵
+        self.ekf.F = np.eye(6)
+        
+        # 测量噪声
+        self.ekf.R *= 0.1  # 视觉测量噪声
+        self.ekf.Q *= 0.01  # 过程噪声
+        
+    def predict(self, dt, velocity, omega):
+        """基于里程计预测"""
+        x, y, theta = self.ekf.x[:3]
+        v = velocity
+        
+        # 运动学模型
+        self.ekf.x[0] += v * np.cos(theta) * dt
+        self.ekf.x[1] += v * np.sin(theta) * dt
+        self.ekf.x[2] += omega * dt
+        
+        self.ekf.predict()
+        
+    def update_visual(self, measurement):
+        """视觉定位更新"""
+        self.ekf.update(measurement)
+```
+
+## 应用案例
+
+<Card
+  title="ROBOCON 定位方案"
+  icon="robot"
+  href="/competition/robocon"
+>
+  查看 ROBOCON 比赛中的 AprilTag 定位应用
+</Card>

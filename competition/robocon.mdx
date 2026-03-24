@@ -1,0 +1,171 @@
+---
+title: 'ROBOCON 备赛经验'
+description: '全国大学生机器人大赛 ROBOCON 备赛经验分享'
+---
+
+## 赛事简介
+
+ROBOCON（全国大学生机器人大赛）是国内最具影响力的大学生机器人竞赛之一，每年举办一次，由不同主题的赛事组成。
+
+## 备赛时间线
+
+```mermaid
+gantt
+    title ROBOCON 备赛时间线（以年度为周期）
+    dateFormat  YYYY-MM
+    section 准备期
+    规则研读         :2023-10, 2M
+    方案设计         :2023-11, 2M
+    section 开发期
+    机械加工         :2024-01, 3M
+    电控开发         :2024-01, 3M
+    视觉开发         :2024-02, 2M
+    section 调试期
+    联合调试         :2024-04, 2M
+    模拟比赛         :2024-05, 1M
+    section 比赛期
+    正式比赛         :2024-06, 15d
+```
+
+## 技术方案架构
+
+<CardGroup cols={2}>
+  <Card title="机械设计" icon="cogs" href="/mechanical/introduction">
+    底盘设计、执行机构、传动方案
+  </Card>
+  <Card title="控制系统" icon="microchip" href="/embedded-software/introduction">
+    运动控制、任务调度、通信协议
+  </Card>
+  <Card title="视觉识别" icon="eye" href="/vision/introduction">
+    目标检测、定位导航、AprilTag
+  </Card>
+  <Card title="策略算法" icon="chess">
+    路径规划、决策系统、对抗策略
+  </Card>
+</CardGroup>
+
+## 备赛经验总结
+
+### 机械部分
+
+#### 底盘设计要点
+- **全向轮 vs 麦轮**：根据场地特性选择，全向轮灵活性高，麦轮载重能力强
+- **悬挂系统**：考虑场地平整度，预留 5-10mm 缓冲空间
+- **重心控制**：尽量降低重心，提高稳定性
+
+#### 执行机构
+```
+设计原则：
+1. 模块化设计，便于快速更换
+2. 预留调试余量（尺寸、力度）
+3. 关键部位使用标准件，缩短加工周期
+4. 考虑维修便利性，避免过度集成
+```
+
+### 电控部分
+
+#### 控制架构
+```cpp
+// 分层控制架构示例
+class RobotController {
+    // 底层：电机驱动
+    MotorDriver motors[4];
+    
+    // 中层：运动学解算
+    Kinematics kinematics;
+    
+    // 上层：任务调度
+    TaskScheduler scheduler;
+    
+    // 通信层
+    CANBus canBus;
+    UART visionUart;
+};
+```
+
+#### 调试技巧
+- **分模块调试**：先单电机，再底盘，最后整机
+- **日志系统**：关键数据实时输出，便于问题定位
+- **参数可调**：PID等参数支持在线调整
+
+### 视觉部分
+
+#### 常用方案
+| 任务类型 | 推荐方案 | 帧率 | 精度 |
+|---------|---------|------|------|
+| 目标检测 | YOLOv5 | 60+ FPS | mAP>0.85 |
+| 定位导航 | AprilTag | 30 FPS | ±5mm |
+| 颜色识别 | HSV阈值 | 60+ FPS | 依赖光照 |
+
+#### 部署优化
+- 使用 TensorRT 加速推理
+- 采用 ROI 裁剪减少计算量
+- 多线程：采集与推理分离
+
+### 团队协作
+
+#### 人员分工
+```
+标准团队配置（8-10人）：
+├── 机械组（3人）
+│   ├── 底盘设计
+│   └── 执行机构
+├── 电控组（3人）
+│   ├── 底层驱动
+│   └── 控制算法
+├── 视觉组（2人）
+│   ├── 图像处理
+│   └── 定位导航
+└── 管理（1-2人）
+    ├── 进度管理
+    └── 文档整理
+```
+
+#### 项目管理工具
+- **代码管理**：Git + Gitee/GitHub
+- **文档协作**：飞书文档 / 腾讯文档
+- **任务追踪**：Git Issues / Tower
+
+## 常见问题 FAQ
+
+<AccordionGroup>
+  <Accordion title="Q: 第一次参赛，如何快速入门？">
+    A: 建议先学习往届优秀开源方案（如武汉科技大学、电子科技大学），理解基本架构后再进行创新。同时加入社区交流群，向有经验的同学请教。
+  </Accordion>
+  <Accordion title="Q: 机械加工周期紧张怎么办？">
+    A: 
+    1. 提前联系加工厂，预约加工时间
+    2. 采用 3D 打印快速验证结构
+    3. 关键部件准备备份方案
+    4. 考虑使用标准件减少加工量
+  </Accordion>
+  <Accordion title="Q: 比赛现场突发故障如何处理？">
+    A:
+    1. 准备常用备件（电机、轮子、螺丝等）
+    2. 随身携带调试工具（电脑、烧录器）
+    3. 赛前充分模拟，制定应急预案
+    4. 保持冷静，快速定位问题
+  </Accordion>
+</AccordionGroup>
+
+## 资源推荐
+
+<CardGroup cols={2}>
+  <Card title="ROBOCON 官网" icon="globe" href="https://www.cnrobocon.net/">
+    获取最新规则与赛事信息
+  </Card>
+  <Card title="社区开源方案" icon="code" href="https://gitee.com/darrenpig/new_energy_coder_club">
+    查看 NEC 社区开源代码
+  </Card>
+</CardGroup>
+
+## 经验分享者
+
+感谢以下社区成员贡献的备赛经验：
+- @darrenpig - 机械设计总负责人
+- @team-lead - 电控架构设计
+- @vision-expert - 视觉算法优化
+
+<Note>
+  本文档持续更新中，如果你有更多经验想要分享，欢迎提交 PR！
+</Note>

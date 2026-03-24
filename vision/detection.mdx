@@ -1,0 +1,129 @@
+---
+title: '目标检测'
+description: '目标检测算法与实践'
+---
+
+## 算法对比
+
+| 算法 | 速度(fps) | 精度(mAP) | 模型大小 | 适用平台 |
+|------|-----------|-----------|---------|---------|
+| YOLOv5-n | 100+ | 45.7 | 1.9MB | 嵌入式 |
+| YOLOv5-s | 80+ | 56.8 | 7.2MB | 嵌入式 |
+| YOLOv8-n | 120+ | 52.6 | 3.2MB | 嵌入式 |
+| YOLOv8-s | 100+ | 61.8 | 11.2MB | 边缘端 |
+
+## YOLO 部署
+
+### 训练自定义数据集
+
+```python
+from ultralytics import YOLO
+
+# 加载预训练模型
+model = YOLO('yolov8n.pt')
+
+# 训练
+model.train(
+    data='robocon.yaml',  # 数据集配置
+    epochs=100,
+    imgsz=640,
+    batch=16,
+    device='cuda'
+)
+
+# 导出为 TensorRT
+model.export(format='engine', device='cuda')
+```
+
+### Jetson 部署
+
+```python
+import tensorrt as trt
+import pycuda.driver as cuda
+import pycuda.autoinit
+
+class YOLODetector:
+    def __init__(self, engine_path):
+        self.logger = trt.Logger(trt.Logger.WARNING)
+        with open(engine_path, 'rb') as f:
+            runtime = trt.Runtime(self.logger)
+            self.engine = runtime.deserialize_cuda_engine(f.read())
+        self.context = self.engine.create_execution_context()
+        
+    def detect(self, image):
+        # 预处理
+        input_image = self.preprocess(image)
+        
+        # 推理
+        output = self.infer(input_image)
+        
+        # 后处理
+        results = self.postprocess(output)
+        return results
+```
+
+## 传统方法
+
+### 颜色阈值法
+```python
+import cv2
+import numpy as np
+
+def color_detect(frame, lower_hsv, upper_hsv):
+    """基于颜色的目标检测"""
+    # 转换到HSV
+    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+    
+    # 阈值分割
+    mask = cv2.inRange(hsv, lower_hsv, upper_hsv)
+    
+    # 形态学操作
+    kernel = np.ones((5, 5), np.uint8)
+    mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
+    mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
+    
+    # 找轮廓
+    contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    
+    # 筛选最大轮廓
+    if contours:
+        largest = max(contours, key=cv2.contourArea)
+        x, y, w, h = cv2.boundingRect(largest)
+        return (x, y, w, h)
+    return None
+```
+
+### 形状匹配
+```python
+def shape_detect(contour, template_contours):
+    """形状匹配"""
+    scores = []
+    for template in template_contours:
+        score = cv2.matchShapes(contour, template, cv2.CONTOURS_MATCH_I1, 0)
+        scores.append(score)
+    return np.argmin(scores)
+```
+
+## 应用场景
+
+<CardGroup cols={2}>
+  <Card title="球类检测">
+    比赛用球的实时检测与跟踪
+  </Card>
+  <Card title="障碍物识别">
+    赛道边界、障碍物的识别
+  </Card>
+  <Card title="目标跟踪">
+    多目标跟踪与轨迹预测
+  </Card>
+  <Card title="姿态估计">
+    机械臂抓取姿态检测
+  </Card>
+</CardGroup>
+
+## 性能优化
+
+- **ROI 裁剪**：只处理感兴趣区域
+- **多线程**：采集与处理并行
+- **量化**：INT8 量化减少计算量
+- **批处理**：多帧一起推理

@@ -1,0 +1,330 @@
+---
+title: 'AIC 备赛经验'
+description: '全国大学生智能汽车竞赛（AIC）备赛经验分享'
+---
+
+## 赛事简介
+
+全国大学生智能汽车竞赛（AIC, Automatic Intelligent Car）是以智能汽车为研究对象的创意性科技竞赛，涵盖多个组别和赛道。
+
+## 竞赛组别
+
+<CardGroup cols={3}>
+  <Card title="电磁组" icon="bolt">
+    基于电磁引导的智能车
+  </Card>
+  <Card title="摄像头组" icon="camera">
+    基于视觉识别的智能车
+  </Card>
+  <Card title="创意组" icon="lightbulb">
+    开放式主题创新设计
+  </Card>
+  <Card title="越野组" icon="mountain">
+    复杂地形适应智能车
+  </Card>
+  <Card title="信标组" icon="tower-broadcast">
+    主动寻的信标智能车
+  </Card>
+  <Card title="AI组" icon="brain">
+    深度学习与人工智能
+  </Card>
+</CardGroup>
+
+## 备赛时间规划
+
+```
+备赛周期（约8-10个月）：
+
+第1-2月：规则研读与方案设计
+├── 仔细研读比赛规则
+├── 技术方案选型
+└── 元器件采购清单
+
+第3-5月：硬件开发与调试
+├── 主板设计制作
+├── 传感器选型调试
+├── 电机驱动调试
+└── 机械结构加工
+
+第6-7月：算法开发与优化
+├── 图像处理算法
+├── 控制算法（PID/模糊）
+├── 路径规划算法
+└── 特殊元素识别
+
+第8-9月：整车联调与优化
+├── 整车集成调试
+├── 参数整定优化
+├── 稳定性测试
+└── 速度提升
+
+第10月：赛前准备
+├── 模拟比赛
+├── 故障预案
+└── 心理素质训练
+```
+
+## 核心技术详解
+
+### 图像处理（摄像头组）
+
+#### 图像采集
+```c
+// MT9V034 摄像头初始化示例
+void MT9V034_Init(void) {
+    // 配置摄像头参数
+    MT9V034_WriteReg(0x01, 0x0080);  // 曝光时间
+    MT9V034_WriteReg(0x02, 0x0000);  // 增益
+    MT9V034_WriteReg(0x03, 0x01E0);  // 图像高度 (480)
+    MT9V034_WriteReg(0x04, 0x0280);  // 图像宽度 (640)
+    
+    // DMA配置
+    DMA_InitTypeDef DMA_InitStruct;
+    DMA_InitStruct.Channel = DMA_Channel_0;
+    DMA_InitStruct.Direction = DMA_PERIPH_TO_MEMORY;
+    DMA_InitStruct.PeriphInc = DMA_PINC_DISABLE;
+    DMA_InitStruct.MemInc = DMA_MINC_ENABLE;
+    DMA_InitStruct.PeriphDataAlignment = DMA_PDATAALIGN_BYTE;
+    DMA_InitStruct.MemDataAlignment = DMA_MDATAALIGN_BYTE;
+    DMA_InitStruct.Mode = DMA_CIRCULAR;
+    DMA_InitStruct.Priority = DMA_PRIORITY_HIGH;
+    HAL_DMA_Init(&DMA_InitStruct);
+}
+```
+
+#### 图像处理算法
+```python
+# Python仿真代码，实际在单片机用C实现
+import cv2
+import numpy as np
+
+def process_image(frame):
+    # 1. 灰度转换
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    
+    # 2. 二值化
+    _, binary = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    
+    # 3. 边缘检测
+    edges = cv2.Canny(binary, 50, 150)
+    
+    # 4. 提取中线
+    midline = extract_midline(edges)
+    
+    return midline
+
+def extract_midline(edges):
+    """提取赛道中线"""
+    height, width = edges.shape
+    midline = []
+    
+    for row in range(height - 1, -1, -10):  # 从下到上，每隔10行
+        left = find_left_edge(edges[row, :])
+        right = find_right_edge(edges[row, :])
+        if left != -1 and right != -1:
+            midline.append((row, (left + right) // 2))
+    
+    return midline
+```
+
+#### 元素识别
+| 元素 | 识别方法 | 难度 |
+|------|---------|------|
+| 直道 | 中线偏差小 | ⭐ |
+| 弯道 | 曲率计算 | ⭐⭐ |
+| 十字 | 连通域分析 | ⭐⭐⭐ |
+| 圆环 | 特征匹配 | ⭐⭐⭐ |
+| 三岔路 | 路口判断 | ⭐⭐⭐⭐ |
+| 断路 | 边缘突变检测 | ⭐⭐⭐⭐ |
+
+### 控制算法
+
+#### 舵机控制
+```cpp
+class ServoController {
+public:
+    // PID参数
+    float Kp = 1.0f;
+    float Ki = 0.0f;
+    float Kd = 0.5f;
+    
+    float calculate(int error) {
+        integral += error;
+        float derivative = error - lastError;
+        lastError = error;
+        
+        float output = Kp * error + Ki * integral + Kd * derivative;
+        
+        // 限幅
+        if (output > SERVO_MAX) output = SERVO_MAX;
+        if (output < SERVO_MIN) output = SERVO_MIN;
+        
+        return output;
+    }
+    
+private:
+    float integral = 0;
+    float lastError = 0;
+};
+```
+
+#### 电机控制
+```cpp
+// 差速控制
+void differential_control(float speed, float steering) {
+    float leftSpeed, rightSpeed;
+    
+    if (steering > 0) {  // 右转
+        leftSpeed = speed;
+        rightSpeed = speed * (1 - steering / MAX_STEERING);
+    } else {  // 左转
+        leftSpeed = speed * (1 + steering / MAX_STEERING);
+        rightSpeed = speed;
+    }
+    
+    set_motor_speed(LEFT_MOTOR, leftSpeed);
+    set_motor_speed(RIGHT_MOTOR, rightSpeed);
+}
+```
+
+### 电磁组技术要点
+
+#### 电感排布方案
+```
+推荐排布（T型）：
+
+      L1
+       |
+  L2---+---L3
+       |
+      L4
+
+L1,L4: 纵向电感，检测直道和弯道
+L2,L3: 横向电感，检测横向偏差
+```
+
+#### 信号处理
+```cpp
+class EM_Sensor {
+public:
+    float filter(float raw) {
+        // 滑动平均滤波
+        buffer[bufferIndex] = raw;
+        bufferIndex = (bufferIndex + 1) % BUFFER_SIZE;
+        
+        float sum = 0;
+        for (int i = 0; i < BUFFER_SIZE; i++) {
+            sum += buffer[i];
+        }
+        return sum / BUFFER_SIZE;
+    }
+    
+    float get_error() {
+        // 归一化处理
+        float left = filter(L2_value) / L2_max;
+        float right = filter(L3_value) / L3_max;
+        
+        // 计算偏差
+        return (left - right) / (left + right + 0.001f);
+    }
+
+private:
+    float buffer[BUFFER_SIZE];
+    int bufferIndex = 0;
+};
+```
+
+## 硬件选型建议
+
+### 主控芯片
+| 组别 | 推荐型号 | 主频 | 特点 |
+|------|---------|------|------|
+| 基础组 | STM32F103 | 72MHz | 性价比高 |
+| 高级组 | STM32H7 | 480MHz | 性能强劲 |
+| AI组 | Jetson Nano | 四核 | AI推理 |
+
+### 传感器
+| 类型 | 推荐型号 | 参数 |
+|------|---------|------|
+| 摄像头 | MT9V034 | 752×480, 120fps |
+| 电感 | 10mH | 工字型 |
+| 编码器 | 1024线 | 增量式 |
+| 陀螺仪 | MPU6050 | 6轴 |
+
+### 电机与驱动
+- **电机**：RS-380/RS-540（根据车重选择）
+- **驱动**：IR2104 + MOS（自己打板）或成品驱动
+
+## 调试技巧
+
+### 上位机调试
+```python
+# 串口数据可视化
+import serial
+import matplotlib.pyplot as plt
+from collections import deque
+
+class Debugger:
+    def __init__(self, port):
+        self.ser = serial.Serial(port, 115200)
+        self.data = deque(maxlen=1000)
+        
+    def plot(self):
+        plt.ion()
+        while True:
+            line = self.ser.readline().decode().strip()
+            if line:
+                value = float(line)
+                self.data.append(value)
+                
+                plt.clf()
+                plt.plot(self.data)
+                plt.pause(0.01)
+```
+
+### 常见问题排查
+
+<AccordionGroup>
+  <Accordion title="Q: 图像处理帧率低怎么办？">
+    A:
+    1. 降低图像分辨率（如 188×120）
+    2. 优化算法，减少浮点运算
+    3. 使用 DMA 传输
+    4. 减少图像采集行数
+  </Accordion>
+  <Accordion title="Q: 车模抖动严重怎么解决？">
+    A:
+    1. 降低 PID 的 P 值，增加 D 值
+    2. 检查机械结构是否松动
+    3. 增加滤波算法
+    4. 降低控制频率
+  </Accordion>
+  <Accordion title="Q: 如何提高过弯速度？">
+    A:
+    1. 提前减速，入弯前降到安全速度
+    2. 使用差速控制
+    3. 优化路径，走最佳赛车线
+    4. 增加陀螺仪辅助判断
+  </Accordion>
+</AccordionGroup>
+
+## 资源推荐
+
+<CardGroup cols={2}>
+  <Card title="智能车竞赛论坛" icon="comments" href="https://zhinengche.com/">
+    国内最大的智能车技术交流平台
+  </Card>
+  <Card title="逐飞科技" icon="plane" href="https://www.ztj1993.com/">
+    提供开源库和开发板
+  </Card>
+  <Card title="龙邱科技" icon="dragon" href="http://www.lqist.cn/">
+    智能车配件供应商
+  </Card>
+  <Card title="NEC社区方案" icon="code" href="https://gitee.com/darrenpig/new_energy_coder_club">
+    社区开源代码仓库
+  </Card>
+</CardGroup>
+
+<Note>
+  本文档基于社区成员参赛经验整理，持续更新中。如有疑问，欢迎在社区讨论区交流。
+</Note>
