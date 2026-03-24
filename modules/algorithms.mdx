@@ -1,0 +1,277 @@
+---
+title: "算法库"
+description: "常用算法实现与优化"
+---
+
+## 概述
+
+算法库提供机器人开发中常用的算法实现，包括控制算法、滤波算法、路径规划等。
+
+## PID 控制器
+
+### 位置式 PID
+
+```cpp
+class PID {
+public:
+    struct Config {
+        float kp;
+        float ki;
+        float kd;
+        float outputMin;
+        float outputMax;
+        float integralMin;
+        float integralMax;
+    };
+    
+    PID(const Config& config) : config_(config) {}
+    
+    float calculate(float setpoint, float measurement) {
+        float error = setpoint - measurement;
+        
+        // 积分
+        integral_ += error;
+        integral_ = clamp(integral_, config_.integralMin, config_.integralMax);
+        
+        // 微分
+        float derivative = error - lastError_;
+        lastError_ = error;
+        
+        // 输出
+        float output = config_.kp * error 
+                     + config_.ki * integral_ 
+                     + config_.kd * derivative;
+        
+        return clamp(output, config_.outputMin, config_.outputMax);
+    }
+    
+    void reset() {
+        integral_ = 0;
+        lastError_ = 0;
+    }
+    
+private:
+    Config config_;
+    float integral_ = 0;
+    float lastError_ = 0;
+};
+```
+
+### 增量式 PID
+
+```cpp
+class IncrementalPID {
+public:
+    float calculate(float error) {
+        float deltaOutput = config_.kp * (error - lastError1_)
+                          + config_.ki * error
+                          + config_.kd * (error - 2*lastError1_ + lastError2_);
+        
+        lastError2_ = lastError1_;
+        lastError1_ = error;
+        
+        output_ += deltaOutput;
+        return clamp(output_, config_.outputMin, config_.outputMax);
+    }
+    
+private:
+    float lastError1_ = 0;
+    float lastError2_ = 0;
+    float output_ = 0;
+};
+```
+
+## 数字滤波
+
+### 一阶低通滤波
+
+```cpp
+class LowPassFilter {
+public:
+    LowPassFilter(float alpha) : alpha_(alpha) {}
+    
+    float filter(float input) {
+        output_ = alpha_ * input + (1 - alpha_) * output_;
+        return output_;
+    }
+    
+    void reset() { output_ = 0; }
+    
+private:
+    float alpha_;  // 滤波系数 (0-1)
+    float output_ = 0;
+};
+```
+
+### 滑动平均滤波
+
+```cpp
+class MovingAverageFilter {
+public:
+    MovingAverageFilter(size_t windowSize) 
+        : windowSize_(windowSize), buffer_(windowSize) {}
+    
+    float filter(float input) {
+        sum_ -= buffer_[index_];
+        buffer_[index_] = input;
+        sum_ += input;
+        index_ = (index_ + 1) % windowSize_;
+        
+        if (count_ < windowSize_) count_++;
+        return sum_ / count_;
+    }
+    
+private:
+    size_t windowSize_;
+    std::vector<float> buffer_;
+    size_t index_ = 0;
+    size_t count_ = 0;
+    float sum_ = 0;
+};
+```
+
+### 卡尔曼滤波
+
+```cpp
+class KalmanFilter {
+public:
+    struct State {
+        float x;      // 状态估计
+        float p;      // 估计误差协方差
+        float q;      // 过程噪声协方差
+        float r;      // 测量噪声协方差
+    };
+    
+    KalmanFilter(const State& state) : state_(state) {}
+    
+    float update(float measurement) {
+        // 预测
+        state_.p = state_.p + state_.q;
+        
+        // 更新
+        float k = state_.p / (state_.p + state_.r);  // 卡尔曼增益
+        state_.x = state_.x + k * (measurement - state_.x);
+        state_.p = (1 - k) * state_.p;
+        
+        return state_.x;
+    }
+    
+private:
+    State state_;
+};
+```
+
+## 路径规划
+
+### 贝塞尔曲线
+
+```cpp
+class BezierCurve {
+public:
+    // 三次贝塞尔曲线
+    static Point cubic(const Point& p0, const Point& p1, 
+                       const Point& p2, const Point& p3, float t) {
+        float u = 1 - t;
+        float tt = t * t;
+        float uu = u * u;
+        float uuu = uu * u;
+        float ttt = tt * t;
+        
+        Point p = uuu * p0;
+        p += 3 * uu * t * p1;
+        p += 3 * u * tt * p2;
+        p += ttt * p3;
+        
+        return p;
+    }
+};
+```
+
+### 纯追踪算法
+
+```cpp
+class PurePursuit {
+public:
+    struct Pose {
+        float x, y, theta;
+    };
+    
+    PurePursuit(float lookaheadDistance) 
+        : lookaheadDistance_(lookaheadDistance) {}
+    
+    float computeCurvature(const Pose& robot, const Point& target) {
+        // 转换到机器人坐标系
+        float dx = target.x - robot.x;
+        float dy = target.y - robot.y;
+        
+        float localX = cos(robot.theta) * dx + sin(robot.theta) * dy;
+        float localY = -sin(robot.theta) * dx + cos(robot.theta) * dy;
+        
+        // 计算曲率
+        float curvature = 2 * localY / (localX * localX + localY * localY);
+        return curvature;
+    }
+    
+private:
+    float lookaheadDistance_;
+};
+```
+
+## 数学工具
+
+### 矩阵运算
+
+```cpp
+class Matrix2x2 {
+public:
+    float data[2][2];
+    
+    Matrix2x2 operator*(const Matrix2x2& other) {
+        Matrix2x2 result;
+        for (int i = 0; i < 2; i++)
+            for (int j = 0; j < 2; j++)
+                result.data[i][j] = data[i][0] * other.data[0][j]
+                                  + data[i][1] * other.data[1][j];
+        return result;
+    }
+    
+    float determinant() {
+        return data[0][0] * data[1][1] - data[0][1] * data[1][0];
+    }
+    
+    Matrix2x2 inverse() {
+        float det = determinant();
+        Matrix2x2 result;
+        result.data[0][0] = data[1][1] / det;
+        result.data[0][1] = -data[0][1] / det;
+        result.data[1][0] = -data[1][0] / det;
+        result.data[1][1] = data[0][0] / det;
+        return result;
+    }
+};
+```
+
+### 角度处理
+
+```cpp
+namespace AngleUtils {
+    // 角度归一化到 [-pi, pi]
+    float normalize(float angle) {
+        while (angle > M_PI) angle -= 2 * M_PI;
+        while (angle < -M_PI) angle += 2 * M_PI;
+        return angle;
+    }
+    
+    // 角度差值 (考虑周期性)
+    float difference(float target, float current) {
+        return normalize(target - current);
+    }
+}
+```
+
+## 性能优化
+
+- 使用定点数代替浮点数（在资源受限平台）
+- 查表法代替三角函数计算
+- 内联小函数减少函数调用开销
+- 使用 SIMD 指令加速矩阵运算

@@ -1,0 +1,165 @@
+---
+title: "机器人控制"
+description: "机器人运动控制与任务执行"
+---
+
+## 概述
+
+机器人控制模块负责机器人的运动控制、任务执行和状态管理。
+
+## 功能特性
+
+<CardGroup cols={2}>
+  <Card title="底盘控制" icon="car">
+    全向轮/麦轮底盘运动学解算
+  </Card>
+  <Card title="机械臂控制" icon="hand">
+    多自由度机械臂逆运动学
+  </Card>
+  <Card title="任务调度" icon="list-check">
+    任务队列管理与状态机
+  </Card>
+  <Card title="协同控制" icon="people-arrows">
+    多机器人协同作业
+  </Card>
+</CardGroup>
+
+## 底盘控制
+
+### 全向轮底盘
+
+```cpp
+class OmniChassis {
+public:
+    struct Velocity {
+        float vx;  // X方向速度 (m/s)
+        float vy;  // Y方向速度 (m/s)
+        float omega;  // 旋转角速度 (rad/s)
+    };
+    
+    // 设置目标速度
+    void setTargetVelocity(const Velocity& vel);
+    
+    // 速度分解到各轮
+    void calculateWheelSpeeds();
+    
+private:
+    static constexpr float WHEEL_RADIUS = 0.076f;  // 轮半径 (m)
+    static constexpr float ROBOT_RADIUS = 0.25f;   // 机器人半径 (m)
+};
+```
+
+### 麦轮底盘
+
+```cpp
+class MecanumChassis {
+public:
+    // 麦轮速度解算
+    void mecanumIK(float vx, float vy, float omega, 
+                   float& w1, float& w2, float& w3, float& w4) {
+        // 逆运动学公式
+        w1 = vx - vy - omega * (L + W);
+        w2 = vx + vy + omega * (L + W);
+        w3 = vx + vy - omega * (L + W);
+        w4 = vx - vy + omega * (L + W);
+    }
+    
+private:
+    float L;  // 前后轮距的一半
+    float W;  // 左右轮距的一半
+};
+```
+
+## 机械臂控制
+
+### 正运动学
+
+```cpp
+// 2自由度机械臂
+void forwardKinematics(float theta1, float theta2, 
+                       float& x, float& y) {
+    x = L1 * cos(theta1) + L2 * cos(theta1 + theta2);
+    y = L1 * sin(theta1) + L2 * sin(theta1 + theta2);
+}
+```
+
+### 逆运动学
+
+```cpp
+bool inverseKinematics(float x, float y, 
+                       float& theta1, float& theta2) {
+    float r = sqrt(x * x + y * y);
+    if (r > L1 + L2 || r < fabs(L1 - L2)) {
+        return false;  // 目标点不可达
+    }
+    
+    float cos_theta2 = (r * r - L1 * L1 - L2 * L2) / (2 * L1 * L2);
+    theta2 = acos(cos_theta2);
+    
+    float alpha = atan2(y, x);
+    float beta = acos((L1 * L1 + r * r - L2 * L2) / (2 * L1 * r));
+    theta1 = alpha - beta;
+    
+    return true;
+}
+```
+
+## 状态机
+
+```cpp
+enum class RobotState {
+    IDLE,       // 空闲
+    MOVING,     // 移动中
+    EXECUTING,  // 执行任务
+    ERROR       // 错误状态
+};
+
+class StateMachine {
+public:
+    void transition(RobotState newState) {
+        // 状态转换逻辑
+        if (isValidTransition(currentState_, newState)) {
+            onExit(currentState_);
+            currentState_ = newState;
+            onEnter(currentState_);
+        }
+    }
+    
+    void update() {
+        switch (currentState_) {
+            case RobotState::IDLE:
+                handleIdle();
+                break;
+            case RobotState::MOVING:
+                handleMoving();
+                break;
+            // ...
+        }
+    }
+};
+```
+
+## 任务调度器
+
+```cpp
+class TaskScheduler {
+public:
+    void addTask(const Task& task);
+    void cancelTask(int taskId);
+    void run();
+    
+private:
+    std::priority_queue<Task> taskQueue_;
+    std::vector<Task> runningTasks_;
+};
+```
+
+## API 参考
+
+<Card
+  title="查看完整 API"
+  icon="code"
+  href="/api-reference/introduction"
+>
+  机器人控制模块的完整 API 文档
+</Card>

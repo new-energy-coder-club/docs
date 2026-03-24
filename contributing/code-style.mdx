@@ -1,0 +1,211 @@
+---
+title: "代码规范"
+description: "NEC 项目的代码风格指南"
+---
+
+## 概述
+
+统一的代码风格有助于提高代码可读性和可维护性。请遵循以下规范编写代码。
+
+## C/C++ 代码规范
+
+### 命名规范
+
+```cpp
+// 类名：大驼峰
+class MotorController {
+    // 成员变量：小驼峰，以下划线结尾
+    float targetSpeed_;
+    
+public:
+    // 函数名：小驼峰
+    void setTargetSpeed(float speed);
+    float getTargetSpeed() const;
+    
+    // 常量：全大写，下划线分隔
+    static constexpr float MAX_SPEED = 100.0f;
+};
+
+// 结构体：大驼峰
+struct RobotConfig {
+    float wheelBase;
+    float trackWidth;
+};
+
+// 枚举：大驼峰，值用 k 前缀
+enum class MotorState {
+    kStopped,
+    kRunning,
+    kError
+};
+
+// 宏：全大写，项目前缀
+#define NEC_DEBUG_ENABLED 1
+```
+
+### 代码格式
+
+```cpp
+// 缩进：4 个空格
+// 大括号：换行
+class Example {
+public:
+    void doSomething() {
+        if (condition) {
+            // do something
+        } else {
+            // do something else
+        }
+        
+        for (int i = 0; i < count; ++i) {
+            // loop body
+        }
+    }
+};
+```
+
+### 注释规范
+
+```cpp
+/**
+ * @brief 计算电机速度
+ * @param target 目标速度 (rpm)
+ * @param current 当前速度 (rpm)
+ * @return 控制输出 (-1000 ~ 1000)
+ * @note 使用 PID 控制算法
+ */
+int calculateMotorSpeed(float target, float current);
+```
+
+## Python 代码规范
+
+遵循 [PEP 8](https://pep8.org/) 规范。
+
+### 命名规范
+
+```python
+# 模块名：小写，下划线分隔
+import motor_controller
+
+# 类名：大驼峰
+class RobotController:
+    # 类常量：全大写
+    MAX_SPEED = 100.0
+    
+    def __init__(self):
+        # 实例变量：小写，下划线分隔
+        self.target_speed = 0.0
+        self._private_var = 0  # 私有变量前加下划线
+    
+    # 函数名：小写，下划线分隔
+    def set_target_speed(self, speed: float) -> None:
+        """设置目标速度"""
+        self.target_speed = speed
+    
+    # 私有方法前加下划线
+    def _calculate_output(self) -> int:
+        """内部计算方法"""
+        pass
+
+# 函数名：小写，下划线分隔
+def process_image(image_path: str) -> np.ndarray:
+    """处理图像并返回结果"""
+    pass
+
+# 常量：全大写
+DEFAULT_PORT = 8080
+```
+
+### 文档字符串
+
+```python
+def pid_control(
+    target: float,
+    current: float,
+    kp: float,
+    ki: float,
+    kd: float
+) -> float:
+    """
+    PID 控制算法实现
+    
+    Args:
+        target: 目标值
+        current: 当前值
+        kp: 比例系数
+        ki: 积分系数
+        kd: 微分系数
+    
+    Returns:
+        控制输出值
+    
+    Raises:
+        ValueError: 当参数为负数时
+    
+    Example:
+        >>> output = pid_control(100, 50, 1.0, 0.1, 0.01)
+        >>> print(output)
+        50.5
+    """
+    pass
+```
+
+## 嵌入式代码规范
+
+### 硬件抽象层
+
+```c
+// hal_motor.h
+#ifndef HAL_MOTOR_H
+#define HAL_MOTOR_H
+
+#include <stdint.h>
+
+typedef struct {
+    uint16_t pwmChannel;
+    uint16_t directionPin;
+    uint16_t enablePin;
+} MotorHardwareConfig_t;
+
+// 初始化函数
+int HAL_Motor_Init(const MotorHardwareConfig_t* config);
+
+// 设置速度
+int HAL_Motor_SetSpeed(int16_t speed);
+
+// 停止电机
+void HAL_Motor_Stop(void);
+
+#endif /* HAL_MOTOR_H */
+```
+
+### 中断服务程序
+
+```c
+// 中断服务程序尽量简短
+void TIM2_IRQHandler(void) {
+    if (TIM_GetITStatus(TIM2, TIM_IT_Update) != RESET) {
+        TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
+        
+        // 只设置标志位，具体处理在主循环
+        g_speedUpdateFlag = 1;
+    }
+}
+```
+
+## 代码审查清单
+
+- [ ] 命名符合规范
+- [ ] 代码格式统一
+- [ ] 有足够的注释
+- [ ] 没有魔法数字
+- [ ] 错误处理完善
+- [ ] 没有内存泄漏
+- [ ] 线程安全（如适用）
+- [ ] 单元测试通过
+
+## 工具推荐
+
+- **C/C++**: clang-format, cppcheck
+- **Python**: black, pylint, mypy
+- **通用**: pre-commit hooks

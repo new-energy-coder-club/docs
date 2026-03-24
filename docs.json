@@ -1,20 +1,20 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "NEC Documentation",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#0EA5E9",
+    "light": "#38BDF8",
+    "dark": "#0284C7"
   },
   "favicon": "/favicon.svg",
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "文档",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "入门指南",
             "pages": [
               "index",
               "quickstart",
@@ -22,47 +22,47 @@
             ]
           },
           {
-            "group": "Customization",
+            "group": "项目模块",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "modules/overview",
+              "modules/robotics",
+              "modules/embedded",
+              "modules/algorithms"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "贡献指南",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "contributing/guidelines",
+              "contributing/workflow",
+              "contributing/code-style"
             ]
           },
           {
-            "group": "AI tools",
+            "group": "社区",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "community/about",
+              "community/a416-lab",
+              "community/discord"
             ]
           }
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "API 参考",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "API 文档",
             "pages": [
               "api-reference/introduction"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "接口示例",
             "pages": [
               "api-reference/endpoint/get",
               "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "api-reference/endpoint/delete"
             ]
           }
         ]
@@ -71,14 +71,14 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
+          "anchor": "Gitee 仓库",
+          "href": "https://gitee.com/darrenpig/new_energy_coder_club",
+          "icon": "code"
         },
         {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
+          "anchor": "ROBOCON 官网",
+          "href": "https://www.cnrobocon.net/",
+          "icon": "robot"
         }
       ]
     }
@@ -90,33 +90,30 @@
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "问题反馈",
+        "href": "https://gitee.com/darrenpig/new_energy_coder_club/issues"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "加入社区",
+      "href": "https://gitee.com/darrenpig/new_energy_coder_club"
     }
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "cursor",
+      "vscode"
+    ]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "github": "https://gitee.com/darrenpig",
+      "linkedin": "https://www.linkedin.com/company/new-energy-coder"
     }
   }
 }

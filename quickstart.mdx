@@ -1,80 +1,118 @@
 ---
-title: "Quickstart"
-description: "Start building awesome documentation in minutes"
+title: "快速开始"
+description: "加入 NEC 社区，开始你的贡献之旅"
 ---
 
-## Get started in three steps
+## 环境准备
 
-Get your documentation site running locally and make your first customization.
+在开始之前，请确保你的开发环境已配置完成。
 
-### Step 1: Set up your local environment
-
-<AccordionGroup>
-  <Accordion icon="copy" title="Clone your docs locally">
-    During the onboarding process, you created a GitHub repository with your docs content if you didn't already have one. You can find a link to this repository in your [dashboard](https://dashboard.mintlify.com).
-    
-    To clone the repository locally so that you can make and preview changes to your docs, follow the [Cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) guide in the GitHub docs.
-  </Accordion>
-  <Accordion icon="rectangle-terminal" title="Start the preview server">
-    1. Install the Mintlify CLI: `npm i -g mint`
-    2. Navigate to your docs directory and run: `mint dev`
-    3. Open `http://localhost:3000` to see your docs live!
-    
-    <Tip>Your preview updates automatically as you edit files.</Tip>
-  </Accordion>
-</AccordionGroup>
-
-### Step 2: Deploy your changes
-
-<AccordionGroup>
-  <Accordion icon="github" title="Install our GitHub app">
-    Install the Mintlify GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app).
-    
-    Our GitHub app automatically deploys your changes to your docs site, so you don't need to manage deployments yourself.
-</Accordion>
-<Accordion icon="palette" title="Update your site name and colors">
-    For a first change, let's update the name and colors of your docs site.
-
-    1. Open `docs.json` in your editor.
-    2. Change the `"name"` field to your project name.
-    3. Update the `"colors"` to match your brand.
-    4. Save and see your changes instantly at `http://localhost:3000`.
-
-    <Tip>Try changing the primary color to see an immediate difference!</Tip>
-  </Accordion>
-</AccordionGroup>
-
-### Step 3: Go live
-
-<Accordion icon="rocket" title="Publish your docs">
-  1. Commit and push your changes.
-  2. Your docs will update and be live in moments!
-</Accordion>
-
-## Next steps
-
-Now that you have your docs running, explore these key features:
+### 必备工具
 
 <CardGroup cols={2}>
-
-<Card title="Write Content" icon="pen-to-square" href="/essentials/markdown">
-  Learn MDX syntax and start writing your documentation.
-</Card>
-
-<Card title="Customize style" icon="palette" href="/essentials/settings">
-  Make your docs match your brand perfectly.
-</Card>
-
-<Card title="Add code examples" icon="square-code" href="/essentials/code">
-  Include syntax-highlighted code blocks.
-</Card>
-
-<Card title="API documentation" icon="code" href="/api-reference/introduction">
-  Auto-generate API docs from OpenAPI specs.
-</Card>
-
+  <Card title="Git" icon="git-alt">
+    版本控制工具
+    ```bash
+    git --version
+    ```
+  </Card>
+  <Card title="Python" icon="python">
+    算法开发与仿真
+    ```bash
+    python --version
+    ```
+  </Card>
+  <Card title="Keil / STM32CubeIDE" icon="microchip">
+    嵌入式开发环境
+  </Card>
+  <Card title="SolidWorks / CAD" icon="cube">
+    机械设计工具
+  </Card>
 </CardGroup>
 
-<Note>
-  **Need help?** See our [full documentation](https://mintlify.com/docs) or join our [community](https://mintlify.com/community).
-</Note>
+## 获取代码
+
+### 克隆仓库
+
+```bash
+# 克隆主仓库
+git clone https://gitee.com/darrenpig/new_energy_coder_club.git
+
+# 进入项目目录
+cd new_energy_coder_club
+```
+
+### 子模块初始化
+
+```bash
+# 初始化并更新子模块
+git submodule update --init --recursive
+```
+
+## 项目结构
+
+```
+new_energy_coder_club/
+├── docs/                   # 文档
+├── firmware/              # 嵌入式固件
+│   ├── stm32/            # STM32 代码
+│   └── esp32/            # ESP32 代码
+├── software/              # 上位机软件
+│   ├── vision/           # 视觉算法
+│   └── control/          # 控制算法
+├── hardware/              # 硬件设计
+│   ├── pcb/              # PCB 文件
+│   └── mechanical/       # 机械结构
+└── tools/                 # 工具脚本
+```
+
+## 第一个贡献
+
+### 1. Fork 仓库
+
+访问 [Gitee 仓库](https://gitee.com/darrenpig/new_energy_coder_club) 并点击 Fork 按钮。
+
+### 2. 创建分支
+
+```bash
+# 创建功能分支
+git checkout -b feature/my-first-contribution
+```
+
+### 3. 提交更改
+
+```bash
+# 添加更改
+git add .
+
+# 提交
+git commit -m "feat: 添加新功能"
+
+# 推送到你的 Fork
+git push origin feature/my-first-contribution
+```
+
+### 4. 创建 Pull Request
+
+在 Gitee 上创建 Pull Request，等待代码审查。
+
+## 开发规范
+
+<Card
+  title="代码规范"
+  icon="book"
+  href="/contributing/code-style"
+>
+  了解 NEC 的代码风格与提交规范
+</Card>
+
+## 获取帮助
+
+<CardGroup cols={2}>
+  <Card title="查看 Issues" icon="circle-question" href="https://gitee.com/darrenpig/new_energy_coder_club/issues">
+    遇到问题？查看已知问题或提交新 Issue
+  </Card>
+  <Card title="加入讨论" icon="comments">
+    参与社区讨论，与其他开发者交流
+  </Card>
+</CardGroup>

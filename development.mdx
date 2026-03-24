@@ -1,94 +1,109 @@
 ---
-title: 'Development'
-description: 'Preview changes locally to update your docs'
+title: "本地开发"
+description: "在本地编辑和预览文档"
 ---
 
-<Info>
-  **Prerequisites**:
-  - Node.js version 19 or higher
-  - A docs repository with a `docs.json` file
-</Info>
+## 安装 Mintlify
 
-Follow these steps to install and run Mintlify on your operating system.
-
-<Steps>
-<Step title="Install the Mintlify CLI">
+首先，确保安装了 Node.js (18+)，然后安装 Mintlify CLI：
 
 ```bash
-npm i -g mint
+npm install -g mintlify
 ```
-</Step>
 
-<Step title="Preview locally">
+## 本地预览
 
-Navigate to your docs directory where your `docs.json` file is located, and run the following command:
+在项目根目录运行：
 
 ```bash
 mint dev
 ```
 
-A local preview of your documentation will be available at `http://localhost:3000`.
+本地服务器将在 `http://localhost:3000` 启动，自动检测文件变化并热更新。
 
-</Step>
+## 文档结构
+
+```
+docs/
+├── index.mdx           # 首页
+├── quickstart.mdx      # 快速开始
+├── development.mdx     # 开发指南
+├── docs.json           # 站点配置
+├── modules/            # 模块文档
+│   ├── overview.mdx
+│   ├── robotics.mdx
+│   ├── embedded.mdx
+│   └── algorithms.mdx
+├── contributing/       # 贡献指南
+│   ├── guidelines.mdx
+│   ├── workflow.mdx
+│   └── code-style.mdx
+├── community/          # 社区
+│   ├── about.mdx
+│   ├── a416-lab.mdx
+│   └── discord.mdx
+├── api-reference/      # API 文档
+└── essentials/         # 基础教程
+```
+
+## 创建新页面
+
+1. 创建 `.mdx` 文件
+2. 添加 frontmatter：
+```yaml
+---
+title: "页面标题"
+description: "页面描述"
+---
+```
+3. 在 `docs.json` 中添加导航
+
+## 组件使用
+
+### 卡片
+
+```mdx
+<Card title="标题" icon="icon-name">
+  内容描述
+</Card>
+```
+
+### 卡片组
+
+```mdx
+<CardGroup cols={2}>
+  <Card title="卡片1">内容1</Card>
+  <Card title="卡片2">内容2</Card>
+</CardGroup>
+```
+
+### 步骤
+
+```mdx
+<Steps>
+  <Step title="步骤1">说明1</Step>
+  <Step title="步骤2">说明2</Step>
 </Steps>
-
-## Custom ports
-
-By default, Mintlify uses port 3000. You can customize the port Mintlify runs on by using the `--port` flag. For example, to run Mintlify on port 3333, use this command:
-
-```bash
-mint dev --port 3333
 ```
 
-If you attempt to run Mintlify on a port that's already in use, it will use the next available port:
+## 检查链接
 
-```md
-Port 3000 is already in use. Trying 3001 instead.
-```
-
-## Mintlify versions
-
-Please note that each CLI release is associated with a specific version of Mintlify. If your local preview does not align with the production version, please update the CLI:
-
-```bash
-npm mint update
-```
-
-## Validating links
-
-The CLI can assist with validating links in your documentation. To identify any broken links, use the following command:
+运行以下命令检查死链：
 
 ```bash
 mint broken-links
 ```
 
-## Deployment
+## 部署
 
-If the deployment is successful, you should see the following:
+文档会自动部署到 Mintlify 平台。提交更改到仓库后：
 
-<Frame>
-  <img src="/images/checks-passed.png" alt="Screenshot of a deployment confirmation message that says All checks have passed." style={{ borderRadius: '0.5rem' }} />
-</Frame>
+1. 连接 Gitee/GitHub 仓库到 Mintlify
+2. 推送更改到主分支
+3. 自动构建和部署
 
-## Code formatting
+## 更多资源
 
-We suggest using extensions on your IDE to recognize and format MDX. If you're a VSCode user, consider the [MDX VSCode extension](https://marketplace.visualstudio.com/items?itemName=unifiedjs.vscode-mdx) for syntax highlighting, and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) for code formatting.
-
-## Troubleshooting
-
-<AccordionGroup>
-  <Accordion title='Error: Could not load the "sharp" module using the darwin-arm64 runtime'>
-
-    This may be due to an outdated version of node. Try the following:
-    1. Remove the currently-installed version of the CLI: `npm remove -g mint`
-    2. Upgrade to Node v19 or higher.
-    3. Reinstall the CLI: `npm i -g mint`
-  </Accordion>
-
-  <Accordion title="Issue: Encountering an unknown error">
-  
-    Solution: Go to the root of your device and delete the `~/.mintlify` folder. Then run `mint dev` again.
-  </Accordion>
-</AccordionGroup>
-
-Curious about what changed in the latest CLI version? Check out the [CLI changelog](https://www.npmjs.com/package/mintlify?activeTab=versions).
+- [Mintlify 文档](https://mintlify.com/docs)
+- [组件参考](https://mintlify.com/docs/content/components/accordions)
+- [Markdown 语法](https://mintlify.com/docs/content/text)
