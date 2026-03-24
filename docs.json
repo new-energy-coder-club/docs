@@ -71,6 +71,11 @@
     "global": {
       "anchors": [
         {
+          "anchor": "官方网站",
+          "href": "https://www.newenergycoder.club/",
+          "icon": "globe"
+        },
+        {
           "anchor": "Gitee 仓库",
           "href": "https://gitee.com/darrenpig/new_energy_coder_club",
           "icon": "code"
@@ -89,6 +94,10 @@
   },
   "navbar": {
     "links": [
+      {
+        "label": "官方网站",
+        "href": "https://www.newenergycoder.club/"
+      },
       {
         "label": "问题反馈",
         "href": "https://gitee.com/darrenpig/new_energy_coder_club/issues"
