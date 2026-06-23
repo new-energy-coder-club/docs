@@ -1,32 +1,45 @@
 # NEC 社区文档站点
 
-本目录包含 NEC (New Energy Coder) 新能源开发者社区的 Sphinx 文档站点配置。
+本目录包含 NEC (New Energy Coder) 新能源开发者社区的文档站点配置。站点同时支持 **Sphinx + Read the Docs** 和 **Mintlify** 两种构建/部署方式，内容源以 Sphinx 为主，通过 Git 同步到 Mintlify 发布。
+
+在线地址：
+- Mintlify 站点：https://docs.newenergycoder.club/
+- Read the Docs：见 `.readthedocs.yaml` 配置
 
 ## 📁 目录结构
 
 ```
 docs/
 ├── .readthedocs.yaml      # Read the Docs 构建配置
+├── .gitignore             # 忽略 Sphinx _build/
 ├── conf.py                # Sphinx 配置文件
-├── index.rst              # 文档首页
+├── docs.json              # Mintlify 配置
+├── index.rst              # Sphinx 文档首页
 ├── requirements.txt       # Python 依赖
 ├── 404.rst                # 404 错误页面
 ├── README.md              # 本文件
 │
 ├── _static/               # 静态资源（CSS/JS/图片）
-│   ├── custom.css
-│   └── custom.js
 ├── _templates/            # HTML 模板
 │
-├── competitions/          # 竞赛文档索引
-│   └── index.rst
-├── projects/              # 项目文档索引
-│   └── index.rst
+├── wiki/                  # 飞书 Wiki 导出文档
+│   ├── index.rst
+│   ├── README.md
+│   └── *.md
 │
-└── [其他现有目录]          # start-here, community, learn 等
+├── start-here/            # 新手上路
+├── competitions/          # 竞赛文档索引
+├── projects/              # 项目文档索引
+├── community/             # 社区与贡献
+├── learn/                 # 学习资源
+├── contribute/            # 贡献指南
+├── curc26/                # CURC26 赛季
+├── nec-plus/              # NEC+ 付费会员
+├── nec_quickstart/        # 快速开始
+└── ...
 ```
 
-## 🚀 本地构建
+## 🚀 本地构建（Sphinx）
 
 ### 安装依赖
 
@@ -56,33 +69,34 @@ python -m http.server 8000
 # 访问 http://localhost:8000
 ```
 
-## 🌐 Read the Docs 部署
+## 🌐 部署
 
-文档已配置自动部署到 Read the Docs:
+### Mintlify
 
-- 仓库: https://gitee.com/darrenpig/new_energy_coder_club
-- 文档路径: `docs/`
-- 配置文件: `docs/.readthedocs.yaml`
+项目已配置 Mintlify，GitHub 仓库变更会自动触发部署：
 
-### 部署状态检查
+- 仓库：https://github.com/new-energy-coder-club/docs
+- 在线站点：https://docs.newenergycoder.club/
 
-构建配置检查清单:
+### Read the Docs
 
-- [x] Sphinx 配置: `docs/conf.py`
-- [x] 构建配置: `docs/.readthedocs.yaml`
-- [x] 依赖文件: `docs/requirements.txt`
-- [x] 首页文档: `docs/index.rst`
+文档仍保留 Read the Docs 构建配置：
+
+- 配置文件：`docs/.readthedocs.yaml`
+- Sphinx 配置：`docs/conf.py`
+- 依赖文件：`docs/requirements.txt`
+- 首页文档：`docs/index.rst`
 
 ## 📝 文档格式
 
-本站支持两种文档格式:
+本站支持两种文档格式：
 
 1. **reStructuredText (.rst)** - Sphinx 原生格式
 2. **Markdown (.md)** - 通过 MyST Parser 支持
 
 ### 添加新页面
 
-在 `index.rst` 中的 `toctree` 添加新文件路径:
+在 `index.rst` 中的 `toctree` 添加新文件路径：
 
 ```rst
 .. toctree::
@@ -95,15 +109,34 @@ python -m http.server 8000
 
 ### 跨文件链接
 
-RST 格式:
+RST 格式：
 ```rst
 :doc:`页面标题 <path/to/file>`
 ```
 
-Markdown 格式:
+Markdown 格式：
 ```markdown
 [页面标题](path/to/file.md)
 ```
+
+## 🔁 飞书 Wiki 导入
+
+仓库提供了 `tools/feishu-import/` 脚本，用于将 NEC 飞书 Wiki 内容导入为 Sphinx/Markdown 文档：
+
+```bash
+# 从父仓库进入工具目录
+cd ../tools/feishu-import
+
+# 导入顶层 Wiki 节点
+python import_wiki_top_level.py \
+  --source "https://scn0bdoc8zxg.feishu.cn/wiki/S10LwzVZdiWLwxkEnEqcTcmEn6e" \
+  --nodes-json /path/to/nodes.json \
+  --out-dir ../../docs/wiki
+```
+
+脚本说明：
+- `fetch_feishu_content.py`：修复 Windows 兼容性的 feishu-doc-webify 抓取脚本
+- `import_wiki_top_level.py`：将飞书 Wiki 顶层节点转换为 Markdown 并导入 `docs/wiki/`
 
 ## 🔧 配置说明
 
@@ -131,13 +164,14 @@ Markdown 格式:
 - [MyST Parser 文档](https://myst-parser.readthedocs.io/)
 - [Read the Docs 文档](https://docs.readthedocs.io/)
 - [RTD Theme 文档](https://sphinx-rtd-theme.readthedocs.io/)
+- [Mintlify 文档](https://www.mintlify.com/docs)
 
 ## 🤝 贡献
 
-如需更新文档，请:
+如需更新文档，请：
 
 1. 修改相关 `.rst` 或 `.md` 文件
-2. 本地构建验证
+2. 本地构建验证 `sphinx-build -b html . _build/html`
 3. 提交 PR 到主分支
 
-详细的贡献指南请参考: [CONTRIBUTING.md](../CONTRIBUTING.md)
+详细的贡献指南请参考：[CONTRIBUTING.md](../CONTRIBUTING.md)
