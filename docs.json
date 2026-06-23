@@ -81,16 +81,16 @@
             "group": "Wiki 知识库",
             "pages": [
               "wiki/nec-wiki-home",
-              "wiki/01_start-here-新人入口",
-              "wiki/02_learn-学习路线",
-              "wiki/03_build-项目与竞赛",
-              "wiki/08_常见q-a",
-              "wiki/04_contribute-参与gitee协作",
-              "wiki/05_community-社区",
-              "wiki/11_nec-安全与规范索引",
-              "wiki/07_nec-培训资源中心",
-              "wiki/09_nec-往届经验速查-框架",
-              "wiki/06_nec-付费会员-月付"
+              "wiki/start-here",
+              "wiki/learning-path",
+              "wiki/projects-and-competitions",
+              "wiki/faq",
+              "wiki/gitee-contribution",
+              "wiki/community",
+              "wiki/safety-and-standards",
+              "wiki/training-resources",
+              "wiki/experience-index",
+              "wiki/nec-plus-membership"
             ]
           }
         ]

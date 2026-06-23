@@ -7,17 +7,17 @@
 
 | 序号 | 文件名 | 标题 |
 |:----:|--------|------|
-| 01 | `01_start-here-新人入口.md` | < ① Start Here（新人入口） > |
-| 02 | `02_learn-学习路线.md` | ② Learn · 学习路线 |
-| 03 | `03_build-项目与竞赛.md` | < ③ Build（项目与竞赛） > |
-| 04 | `04_contribute-参与gitee协作.md` | < ④ Contribute（参与Gitee协作） > |
-| 05 | `05_community-社区.md` | <  ⑤ Community（社区）> |
-| 06 | `06_nec-付费会员-月付.md` | < ⑥ NEC+（付费会员 / 月付） > |
-| 07 | `07_nec-培训资源中心.md` | 📚 NEC 培训资源中心 |
-| 08 | `08_常见q-a.md` | 常见Q&A |
-| 09 | `09_nec-往届经验速查-框架.md` | NEC 往届经验速查（框架） |
+| - | `start-here.mdx` | Start Here（新人入口） |
+| - | `learning-path.mdx` | Learn · 学习路线 |
+| - | `projects-and-competitions.mdx` | Build（项目与竞赛） |
+| - | `gitee-contribution.mdx` | Contribute（参与Gitee协作） |
+| - | `community.mdx` | Community（社区） |
+| - | `nec-plus-membership.mdx` | NEC+（付费会员 / 月付） |
+| - | `training-resources.mdx` | 📚 NEC 培训资源中心 |
+| - | `faq.mdx` | 常见Q&A |
+| - | `experience-index.mdx` | NEC 往届经验速查（框架） |
 | 10 | `nec-wiki-home.mdx` | NEC 知识库首页 |
-| 11 | `11_nec-安全与规范索引.md` | NEC 安全与规范索引 |
+| - | `safety-and-standards.mdx` | NEC 安全与规范索引 |
 
 ## 说明
 
