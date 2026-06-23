@@ -3,22 +3,38 @@
   "theme": "mint",
   "name": "NEC 新能源开发者社区",
   "colors": {
-    "primary": "#0EA5E9",
-    "light": "#38BDF8",
-    "dark": "#0284C7"
+    "primary": "#2980B9",
+    "light": "#3498DB",
+    "dark": "#1F618D"
   },
   "favicon": "/favicon.svg",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
   "navigation": {
     "tabs": [
+      {
+        "tab": "首页",
+        "pages": ["index"]
+      },
       {
         "tab": "文档",
         "groups": [
           {
-            "group": "入门指南",
+            "group": "快速开始",
             "pages": [
-              "index",
               "quickstart",
-              "development"
+              "development",
+              "nec_quickstart/README"
+            ]
+          },
+          {
+            "group": "新手上路",
+            "pages": [
+              "start-here/60min",
+              "start-here/newcomers",
+              "start-here/first-good-issue"
             ]
           },
           {
@@ -31,81 +47,116 @@
             ]
           },
           {
-            "group": "机构设计",
+            "group": "技术专题",
             "pages": [
               "mechanical/introduction",
-              "mechanical/chassis"
-            ]
-          },
-          {
-            "group": "视觉识别",
-            "pages": [
+              "mechanical/chassis",
               "vision/introduction",
               "vision/detection",
-              "vision/localization"
-            ]
-          },
-          {
-            "group": "嵌软开发",
-            "pages": [
+              "vision/localization",
               "embedded-software/introduction",
               "embedded-software/control"
             ]
           },
           {
-            "group": "贡献指南",
+            "group": "学习资源",
             "pages": [
-              "contributing/guidelines",
-              "contributing/workflow",
-              "contributing/code-style"
+              "learn/roles",
+              "contribute/labels"
             ]
           },
           {
-            "group": "社区",
+            "group": "模板与规范",
             "pages": [
-              "community/about",
-              "community/a416-lab",
-              "community/discord"
+              "templates/README_PROJECT_TEMPLATE",
+              "templates/README_COMPETITION_TEMPLATE"
+            ]
+          },
+          {
+            "group": "Wiki 知识库",
+            "pages": [
+              "wiki/10_NEC知识库_首页",
+              "wiki/01_start-here-新人入口",
+              "wiki/02_learn-学习路线",
+              "wiki/03_build-项目与竞赛",
+              "wiki/08_常见q-a",
+              "wiki/04_contribute-参与gitee协作",
+              "wiki/05_community-社区",
+              "wiki/11_nec-安全与规范索引",
+              "wiki/07_nec-培训资源中心",
+              "wiki/09_nec-往届经验速查-框架",
+              "wiki/06_nec-付费会员-月付"
             ]
           }
         ]
       },
       {
-        "tab": "备赛经验",
+        "tab": "竞赛",
         "groups": [
           {
             "group": "竞赛概览",
             "pages": [
-              "competition/introduction"
-            ]
-          },
-          {
-            "group": "经验分享",
-            "pages": [
+              "competition/introduction",
               "competition/robocon",
               "competition/energy-saving",
               "competition/aic"
+            ]
+          },
+          {
+            "group": "CURC 2026",
+            "pages": [
+              "curc26/机构Sig/README",
+              "curc26/视觉Sig/README",
+              "curc26/运营SIG/README"
+            ]
+          },
+          {
+            "group": "NEC+",
+            "pages": ["nec-plus/landing"]
+          }
+        ]
+      },
+      {
+        "tab": "社区",
+        "groups": [
+          {
+            "group": "关于我们",
+            "pages": [
+              "community/about",
+              "community/a416-lab",
+              "community/discord",
+              "community/README"
+            ]
+          },
+          {
+            "group": "社区治理",
+            "pages": [
+              "GOVERNANCE",
+              "CODE_OF_CONDUCT",
+              "SUPPORT",
+              "SECURITY",
+              "community/maintainers",
+              "community/TEAM",
+              "community/weekly"
+            ]
+          },
+          {
+            "group": "贡献指南",
+            "pages": [
+              "CONTRIBUTING",
+              "contributing/guidelines",
+              "contributing/workflow",
+              "contributing/code-style"
             ]
           }
         ]
       },
       {
-        "tab": "API 参考",
-        "groups": [
-          {
-            "group": "API 文档",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "接口示例",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete"
-            ]
-          }
+        "tab": "关于",
+        "pages": [
+          "README",
+          "ROADMAP",
+          "resources"
         ]
       }
     ],
@@ -122,16 +173,17 @@
           "icon": "code"
         },
         {
+          "anchor": "GitHub 镜像",
+          "href": "https://github.com/Darrenpig/new_energy_coder_club",
+          "icon": "github"
+        },
+        {
           "anchor": "ROBOCON 官网",
           "href": "https://www.cnrobocon.net/",
           "icon": "robot"
         }
       ]
     }
-  },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
   },
   "navbar": {
     "links": [
@@ -151,18 +203,11 @@
     }
   },
   "contextual": {
-    "options": [
-      "copy",
-      "view",
-      "chatgpt",
-      "claude",
-      "cursor",
-      "vscode"
-    ]
+    "options": ["copy", "view", "chatgpt", "claude", "cursor", "vscode"]
   },
   "footer": {
     "socials": {
-      "github": "https://gitee.com/darrenpig",
+      "github": "https://github.com/Darrenpig",
       "linkedin": "https://www.linkedin.com/company/new-energy-coder"
     }
   }
