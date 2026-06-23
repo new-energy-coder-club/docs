@@ -1,22 +1,39 @@
-/* NEC 新能源开发者社区 — 主视觉设计 */
-/* 配色法则：60% 极夜黑/深空海军蓝 | 30% 钛白/钢灰蓝 | 10% 工程橙 + 能源绿 */
+/* NEC 新能源开发者社区 — 主视觉设计 v2 */
+/* 配色法则：60% 极夜黑/深空海军蓝 | 30% 钛白/钢灰蓝 | 10% 工程琥珀 */
 
 :root {
-  --nec-void-black: #0a0e17;
-  --nec-deep-navy: #0a1929;
-  --nec-navy-elevated: #0f2137;
-  --nec-navy-highlight: #142b45;
-  --nec-steel-blue: #8b9db8;
-  --nec-titanium-white: #e8eaed;
-  --nec-engineering-orange: #ff6b35;
-  --nec-engineering-orange-light: #ff8c5a;
-  --nec-engineering-orange-dark: #cc5529;
+  /* Background layers */
+  --nec-page-bg: #0b1120;
+  --nec-elevated-bg: #151e32;
+  --nec-highlight-bg: #1e293b;
+
+  /* Accent */
+  --nec-amber: #f59e0b;
+  --nec-amber-light: #fbbf24;
+  --nec-amber-dark: #d97706;
   --nec-energy-green: #22c55e;
-  --nec-energy-green-dark: #16a34a;
-  --nec-border-subtle: rgba(139, 157, 184, 0.15);
+
+  /* Text */
+  --nec-heading: #f8fafc;
+  --nec-body: #cbd5e1;
+  --nec-muted: #64748b;
+  --nec-border: #1e293b;
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* Radius scale */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
 }
 
-/* Force dark palette across the site */
+/* Force dark palette */
 html,
 html.dark {
   color-scheme: dark;
@@ -24,168 +41,247 @@ html.dark {
 
 body,
 html.dark body {
-  background-color: var(--nec-deep-navy);
-  color: var(--nec-titanium-white);
+  background-color: var(--nec-page-bg);
+  color: var(--nec-body);
+  line-height: 1.75;
 }
 
-/* Global background and text overrides */
+/* Global background */
 #content-wrapper,
 main,
 html.dark #content-wrapper,
 html.dark main {
-  background-color: var(--nec-deep-navy);
+  background-color: var(--nec-page-bg);
 }
 
 /* Navbar */
 #navbar,
 html.dark #navbar {
-  background-color: rgba(10, 25, 41, 0.85);
+  background-color: rgba(11, 17, 32, 0.9);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--nec-border-subtle);
+  border-bottom: 1px solid var(--nec-border);
 }
 
 /* Sidebar navigation */
 aside.sidebar,
-html.dark aside.sidebar,
 nav.sidebar,
+html.dark aside.sidebar,
 html.dark nav.sidebar {
-  background-color: var(--nec-void-black);
-  border-right: 1px solid var(--nec-border-subtle);
+  background-color: var(--nec-page-bg);
+  border-right: 1px solid var(--nec-border);
 }
 
 aside.sidebar a,
 nav.sidebar a,
 html.dark aside.sidebar a,
 html.dark nav.sidebar a {
-  color: var(--nec-steel-blue);
+  color: var(--nec-muted);
+  border-radius: var(--radius-md);
+  margin: var(--space-1) var(--space-2);
+  padding: var(--space-2) var(--space-3);
 }
 
 aside.sidebar a:hover,
 nav.sidebar a:hover,
 html.dark aside.sidebar a:hover,
 html.dark nav.sidebar a:hover {
-  color: var(--nec-titanium-white);
+  color: var(--nec-body);
+  background-color: var(--nec-elevated-bg);
+}
+
+/* Active sidebar item: left border indicator */
+aside.sidebar [aria-current="page"],
+aside.sidebar a[data-active="true"],
+nav.sidebar [aria-current="page"],
+nav.sidebar a[data-active="true"],
+html.dark aside.sidebar [aria-current="page"],
+html.dark aside.sidebar a[data-active="true"],
+html.dark nav.sidebar [aria-current="page"],
+html.dark nav.sidebar a[data-active="true"] {
+  color: var(--nec-amber) !important;
+  background-color: var(--nec-elevated-bg);
+  border-left: 3px solid var(--nec-amber);
+}
+
+/* Right-side TOC (On this page) */
+.toc,
+[class*="toc"],
+[role="complementary"],
+html.dark .toc,
+html.dark [class*="toc"],
+html.dark [role="complementary"] {
+  background-color: transparent !important;
+  border-left: 1px solid var(--nec-border);
+}
+
+.toc a,
+[class*="toc"] a,
+[role="complementary"] a,
+html.dark .toc a,
+html.dark [class*="toc"] a,
+html.dark [role="complementary"] a {
+  color: var(--nec-muted);
+  border-radius: 0;
+}
+
+.toc a:hover,
+[class*="toc"] a:hover,
+[role="complementary"] a:hover,
+html.dark .toc a:hover,
+html.dark [class*="toc"] a:hover,
+html.dark [role="complementary"] a:hover {
+  color: var(--nec-body);
+}
+
+/* Active TOC item: ONLY text color change + subtle left indicator */
+.toc [aria-current="true"],
+.toc a[data-active="true"],
+[class*="toc"] [aria-current="true"],
+[class*="toc"] a[data-active="true"],
+[role="complementary"] [aria-current="true"],
+[role="complementary"] a[data-active="true"],
+html.dark .toc [aria-current="true"],
+html.dark .toc a[data-active="true"],
+html.dark [class*="toc"] [aria-current="true"],
+html.dark [class*="toc"] a[data-active="true"],
+html.dark [role="complementary"] [aria-current="true"],
+html.dark [role="complementary"] a[data-active="true"] {
+  color: var(--nec-amber) !important;
+  background-color: transparent !important;
+  border-left: 2px solid var(--nec-amber);
 }
 
 /* Cards */
 .mint-card,
-html.dark .mint-card,
 [class*="Card"],
+html.dark .mint-card,
 html.dark [class*="Card"] {
-  background-color: var(--nec-navy-elevated);
-  border: 1px solid var(--nec-border-subtle);
+  background-color: var(--nec-elevated-bg);
+  border: 1px solid var(--nec-border);
+  border-radius: var(--radius-md);
+  box-shadow: none;
+}
+
+.mint-card:hover,
+[class*="Card"]:hover,
+html.dark .mint-card:hover,
+html.dark [class*="Card"]:hover {
+  border-color: var(--nec-amber);
+}
+
+/* Card icons:统一线框浅色 */
+[class*="Card"] svg,
+[class*="Card"] [class*="icon"],
+html.dark [class*="Card"] svg,
+html.dark [class*="Card"] [class*="icon"] {
+  color: var(--nec-muted);
+  stroke-width: 1.5;
 }
 
 /* Headings */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-html.dark h1,
-html.dark h2,
-html.dark h3,
-html.dark h4,
-html.dark h5,
-html.dark h6 {
-  color: var(--nec-titanium-white);
+h1, h2, h3, h4, h5, h6,
+html.dark h1, html.dark h2, html.dark h3, html.dark h4, html.dark h5, html.dark h6 {
+  color: var(--nec-heading);
+  line-height: 1.3;
 }
 
+h1 { font-size: 32px; font-weight: 700; }
+h2 { font-size: 24px; font-weight: 600; }
+h3 { font-size: 18px; font-weight: 600; }
+
 /* Paragraphs and lists */
-p,
-li,
-span,
-html.dark p,
-html.dark li,
-html.dark span {
-  color: var(--nec-steel-blue);
+p, li,
+html.dark p, html.dark li {
+  color: var(--nec-body);
 }
 
 /* Links */
 a,
 html.dark a {
-  color: var(--nec-engineering-orange-light);
+  color: var(--nec-amber-light);
 }
 
 a:hover,
 html.dark a:hover {
-  color: var(--nec-engineering-orange);
+  color: var(--nec-amber);
 }
 
 /* Buttons */
+button,
+a.button,
+html.dark button,
+html.dark a.button {
+  border-radius: var(--radius-sm);
+}
+
 button[class*="primary"],
 a[class*="primary"],
 html.dark button[class*="primary"],
 html.dark a[class*="primary"] {
-  background-color: var(--nec-engineering-orange);
-  color: var(--nec-titanium-white);
+  background-color: var(--nec-amber);
+  color: #0b1120;
   border: none;
+  font-weight: 600;
 }
 
 button[class*="primary"]:hover,
 a[class*="primary"]:hover,
 html.dark button[class*="primary"]:hover,
 html.dark a[class*="primary"]:hover {
-  background-color: var(--nec-engineering-orange-light);
+  background-color: var(--nec-amber-light);
 }
 
 /* Code blocks */
 pre,
-code,
-html.dark pre,
-html.dark code {
-  background-color: var(--nec-void-black);
-  color: var(--nec-titanium-white);
-  border: 1px solid var(--nec-border-subtle);
+html.dark pre {
+  background-color: var(--nec-highlight-bg);
+  border: 1px solid var(--nec-border);
+  border-radius: var(--radius-md);
 }
 
 /* Inline code */
 :not(pre) > code,
 html.dark :not(pre) > code {
-  background-color: var(--nec-navy-highlight);
-  color: var(--nec-engineering-orange-light);
-  padding: 0.15rem 0.35rem;
-  border-radius: 0.25rem;
+  background-color: var(--nec-highlight-bg);
+  color: var(--nec-amber-light);
+  padding: 0.15rem 0.4rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9em;
 }
 
 /* Tables */
 table,
 html.dark table {
-  background-color: var(--nec-navy-elevated);
-  border: 1px solid var(--nec-border-subtle);
+  background-color: var(--nec-elevated-bg);
+  border: 1px solid var(--nec-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
 }
 
 th,
 html.dark th {
-  background-color: var(--nec-navy-highlight);
-  color: var(--nec-titanium-white);
+  background-color: var(--nec-highlight-bg);
+  color: var(--nec-heading);
 }
 
 td,
 html.dark td {
-  color: var(--nec-steel-blue);
-  border-bottom: 1px solid var(--nec-border-subtle);
+  color: var(--nec-body);
+  border-bottom: 1px solid var(--nec-border);
 }
 
 /* Footer */
 footer,
 html.dark footer {
-  background-color: var(--nec-void-black);
-  border-top: 1px solid var(--nec-border-subtle);
+  background-color: var(--nec-page-bg);
+  border-top: 1px solid var(--nec-border);
 }
 
-/* Active tab / pill */
-[aria-selected="true"],
-html.dark [aria-selected="true"] {
-  color: var(--nec-engineering-orange);
-}
-
-/* Steps component accents */
+/* Steps component */
 .mint-step-icon,
 html.dark .mint-step-icon {
-  background-color: var(--nec-engineering-orange);
-  color: var(--nec-titanium-white);
+  background-color: var(--nec-amber);
+  color: #0b1120;
 }
 
 /* Status / success accents */
@@ -197,6 +293,15 @@ html.dark .mint-status-success {
 /* Selection highlight */
 ::selection,
 html.dark ::selection {
-  background-color: rgba(255, 107, 53, 0.3);
-  color: var(--nec-titanium-white);
+  background-color: rgba(245, 158, 11, 0.25);
+  color: var(--nec-heading);
+}
+
+/* Reduce visual noise on home/about pages by hiding right TOC when content is short */
+/* Mintlify controls TOC visibility; this is a fallback to tone it down */
+.toc:empty,
+[class*="toc"]:empty,
+html.dark .toc:empty,
+html.dark [class*="toc"]:empty {
+  display: none;
 }
