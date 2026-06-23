@@ -3,9 +3,9 @@
   "theme": "mint",
   "name": "NEC 新能源开发者社区",
   "colors": {
-    "primary": "#F59E0B",
-    "light": "#FBBF24",
-    "dark": "#D97706"
+    "primary": "#0066FF",
+    "light": "#58A6FF",
+    "dark": "#1A5FBD"
   },
   "appearance": {
     "default": "dark",

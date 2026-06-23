@@ -1,36 +1,42 @@
-/* NEC 新能源开发者社区 — 主视觉设计 v2 */
-/* 配色法则：60% 极夜黑/深空海军蓝 | 30% 钛白/钢灰蓝 | 10% 工程琥珀 */
+/* NEC 新能源开发者社区 — GitHub Dark × McKinsey Blue 视觉系统 v3 */
 
 :root {
-  /* Background layers */
-  --nec-page-bg: #0b1120;
-  --nec-elevated-bg: #151e32;
-  --nec-highlight-bg: #1e293b;
+  /* Background layers - GitHub Dark */
+  --bg-page: #0d1117;
+  --bg-surface: #161b22;
+  --bg-elevated: #21262d;
+  --bg-code: #1e2530;
 
-  /* Accent */
-  --nec-amber: #f59e0b;
-  --nec-amber-light: #fbbf24;
-  --nec-amber-dark: #d97706;
-  --nec-energy-green: #22c55e;
+  /* McKinsey Blue accent system */
+  --mck-primary: #0066ff;
+  --mck-primary-soft: #1a5fbd;
+  --mck-primary-dim: #0d3b66;
+  --mck-accent: #00a9ce;
 
-  /* Text */
-  --nec-heading: #f8fafc;
-  --nec-body: #cbd5e1;
-  --nec-muted: #64748b;
-  --nec-border: #1e293b;
+  /* Text hierarchy */
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --text-tertiary: #484f58;
+  --text-link: #58a6ff;
+
+  /* Borders */
+  --border-default: #30363d;
+  --border-subtle: #21262d;
 
   /* Spacing scale */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
   --space-4: 16px;
+  --space-5: 20px;
   --space-6: 24px;
   --space-8: 32px;
 
   /* Radius scale */
   --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
 }
 
 /* Force dark palette */
@@ -41,8 +47,9 @@ html.dark {
 
 body,
 html.dark body {
-  background-color: var(--nec-page-bg);
-  color: var(--nec-body);
+  background-color: var(--bg-page);
+  color: var(--text-secondary);
+  font-size: 14px;
   line-height: 1.75;
 }
 
@@ -51,15 +58,26 @@ html.dark body {
 main,
 html.dark #content-wrapper,
 html.dark main {
-  background-color: var(--nec-page-bg);
+  background-color: var(--bg-page);
+}
+
+/* Content area max-width for readability */
+#content-wrapper > main,
+#content-wrapper > div,
+html.dark #content-wrapper > main,
+html.dark #content-wrapper > div {
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Navbar */
 #navbar,
 html.dark #navbar {
-  background-color: rgba(11, 17, 32, 0.9);
+  background-color: rgba(13, 17, 23, 0.95);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--nec-border);
+  border-bottom: 1px solid var(--border-default);
+  height: 56px;
 }
 
 /* Sidebar navigation */
@@ -67,43 +85,75 @@ aside.sidebar,
 nav.sidebar,
 html.dark aside.sidebar,
 html.dark nav.sidebar {
-  background-color: var(--nec-page-bg);
-  border-right: 1px solid var(--nec-border);
+  background-color: var(--bg-page);
+  border-right: 1px solid var(--border-default);
+  width: 240px;
+  font-size: 13px;
+  line-height: 1.6;
 }
 
+/* Sidebar section titles */
+aside.sidebar h2,
+aside.sidebar h3,
+aside.sidebar p,
+nav.sidebar h2,
+nav.sidebar h3,
+nav.sidebar p,
+html.dark aside.sidebar h2,
+html.dark aside.sidebar h3,
+html.dark aside.sidebar p,
+html.dark nav.sidebar h2,
+html.dark nav.sidebar h3,
+html.dark nav.sidebar p {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-tertiary);
+  padding: var(--space-4) var(--space-4) var(--space-2);
+}
+
+/* Sidebar links */
 aside.sidebar a,
 nav.sidebar a,
 html.dark aside.sidebar a,
 html.dark nav.sidebar a {
-  color: var(--nec-muted);
+  color: var(--text-secondary);
   border-radius: var(--radius-md);
-  margin: var(--space-1) var(--space-2);
-  padding: var(--space-2) var(--space-3);
+  margin: 2px var(--space-2);
+  padding: 6px var(--space-3);
+  transition: background 0.2s, color 0.2s;
 }
 
 aside.sidebar a:hover,
 nav.sidebar a:hover,
 html.dark aside.sidebar a:hover,
 html.dark nav.sidebar a:hover {
-  color: var(--nec-body);
-  background-color: var(--nec-elevated-bg);
+  color: var(--text-primary);
+  background-color: var(--bg-elevated);
 }
 
-/* Active sidebar item: left border indicator */
+/* Active sidebar item - left blue indicator + dim background */
 aside.sidebar [aria-current="page"],
 aside.sidebar a[data-active="true"],
+aside.sidebar a[aria-selected="true"],
 nav.sidebar [aria-current="page"],
 nav.sidebar a[data-active="true"],
+nav.sidebar a[aria-selected="true"],
 html.dark aside.sidebar [aria-current="page"],
 html.dark aside.sidebar a[data-active="true"],
+html.dark aside.sidebar a[aria-selected="true"],
 html.dark nav.sidebar [aria-current="page"],
-html.dark nav.sidebar a[data-active="true"] {
-  color: var(--nec-amber) !important;
-  background-color: var(--nec-elevated-bg);
-  border-left: 3px solid var(--nec-amber);
+html.dark nav.sidebar a[data-active="true"],
+html.dark nav.sidebar a[aria-selected="true"] {
+  color: var(--text-primary) !important;
+  background-color: var(--mck-primary-dim) !important;
+  border-left: 3px solid var(--mck-primary) !important;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-weight: 500;
 }
 
-/* Right-side TOC (On this page) */
+/* Right-side TOC */
 .toc,
 [class*="toc"],
 [role="complementary"],
@@ -111,17 +161,38 @@ html.dark .toc,
 html.dark [class*="toc"],
 html.dark [role="complementary"] {
   background-color: transparent !important;
-  border-left: 1px solid var(--nec-border);
+  border-left: 1px solid var(--border-default);
+  font-size: 12px;
+  line-height: 1.6;
+  width: 200px;
 }
 
+/* TOC title */
+.toc-title,
+[class*="toc"] > div:first-child,
+[role="complementary"] > div:first-child,
+html.dark .toc-title,
+html.dark [class*="toc"] > div:first-child,
+html.dark [role="complementary"] > div:first-child {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-3);
+}
+
+/* TOC items */
 .toc a,
 [class*="toc"] a,
 [role="complementary"] a,
 html.dark .toc a,
 html.dark [class*="toc"] a,
 html.dark [role="complementary"] a {
-  color: var(--nec-muted);
-  border-radius: 0;
+  color: var(--text-secondary);
+  padding: var(--space-1) 0 var(--space-1) var(--space-3);
+  border-left: 2px solid var(--border-subtle);
+  transition: color 0.2s, border-color 0.2s;
 }
 
 .toc a:hover,
@@ -130,25 +201,33 @@ html.dark [role="complementary"] a {
 html.dark .toc a:hover,
 html.dark [class*="toc"] a:hover,
 html.dark [role="complementary"] a:hover {
-  color: var(--nec-body);
+  color: var(--text-primary);
+  border-left-color: var(--text-tertiary);
 }
 
-/* Active TOC item: ONLY text color change + subtle left indicator */
+/* Active TOC item - ONLY text color + left border */
 .toc [aria-current="true"],
 .toc a[data-active="true"],
+.toc a[aria-selected="true"],
 [class*="toc"] [aria-current="true"],
 [class*="toc"] a[data-active="true"],
+[class*="toc"] a[aria-selected="true"],
 [role="complementary"] [aria-current="true"],
 [role="complementary"] a[data-active="true"],
+[role="complementary"] a[aria-selected="true"],
 html.dark .toc [aria-current="true"],
 html.dark .toc a[data-active="true"],
+html.dark .toc a[aria-selected="true"],
 html.dark [class*="toc"] [aria-current="true"],
 html.dark [class*="toc"] a[data-active="true"],
+html.dark [class*="toc"] a[aria-selected="true"],
 html.dark [role="complementary"] [aria-current="true"],
-html.dark [role="complementary"] a[data-active="true"] {
-  color: var(--nec-amber) !important;
+html.dark [role="complementary"] a[data-active="true"],
+html.dark [role="complementary"] a[aria-selected="true"] {
+  color: var(--mck-primary) !important;
   background-color: transparent !important;
-  border-left: 2px solid var(--nec-amber);
+  border-left-color: var(--mck-primary) !important;
+  font-weight: 500;
 }
 
 /* Cards */
@@ -156,54 +235,118 @@ html.dark [role="complementary"] a[data-active="true"] {
 [class*="Card"],
 html.dark .mint-card,
 html.dark [class*="Card"] {
-  background-color: var(--nec-elevated-bg);
-  border: 1px solid var(--nec-border);
-  border-radius: var(--radius-md);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
   box-shadow: none;
+  transition: border-color 0.2s, transform 0.2s;
 }
 
 .mint-card:hover,
 [class*="Card"]:hover,
 html.dark .mint-card:hover,
 html.dark [class*="Card"]:hover {
-  border-color: var(--nec-amber);
+  border-color: var(--mck-primary);
+  transform: translateY(-1px);
 }
 
-/* Card icons:统一线框浅色 */
+/* Card icons - outline style, McKinsey blue */
 [class*="Card"] svg,
 [class*="Card"] [class*="icon"],
 html.dark [class*="Card"] svg,
 html.dark [class*="Card"] [class*="icon"] {
-  color: var(--nec-muted);
+  width: 32px;
+  height: 32px;
+  color: var(--mck-primary);
   stroke-width: 1.5;
+  margin-bottom: var(--space-3);
+}
+
+/* Card titles */
+[class*="Card"] h3,
+[class*="Card"] [class*="title"],
+html.dark [class*="Card"] h3,
+html.dark [class*="Card"] [class*="title"] {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-1);
+}
+
+/* Card descriptions */
+[class*="Card"] p,
+[class*="Card"] [class*="description"],
+html.dark [class*="Card"] p,
+html.dark [class*="Card"] [class*="description"] {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
 }
 
 /* Headings */
 h1, h2, h3, h4, h5, h6,
 html.dark h1, html.dark h2, html.dark h3, html.dark h4, html.dark h5, html.dark h6 {
-  color: var(--nec-heading);
+  color: var(--text-primary);
   line-height: 1.3;
 }
 
-h1 { font-size: 32px; font-weight: 700; }
-h2 { font-size: 24px; font-weight: 600; }
-h3 { font-size: 18px; font-weight: 600; }
+h1 {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-2);
+}
 
-/* Paragraphs and lists */
-p, li,
-html.dark p, html.dark li {
-  color: var(--nec-body);
+h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--border-default);
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-3);
+}
+
+/* Paragraphs */
+p,
+html.dark p {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.75;
+  margin-bottom: var(--space-4);
+  max-width: 640px;
+}
+
+/* Lists */
+li,
+html.dark li {
+  color: var(--text-secondary);
+  font-size: 14px;
+  padding: 3px 0;
+}
+
+li strong,
+html.dark li strong {
+  color: var(--text-primary);
+  font-weight: 500;
 }
 
 /* Links */
 a,
 html.dark a {
-  color: var(--nec-amber-light);
+  color: var(--text-link);
 }
 
 a:hover,
 html.dark a:hover {
-  color: var(--nec-amber);
+  color: var(--mck-primary);
 }
 
 /* Buttons */
@@ -211,15 +354,15 @@ button,
 a.button,
 html.dark button,
 html.dark a.button {
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
 }
 
 button[class*="primary"],
 a[class*="primary"],
 html.dark button[class*="primary"],
 html.dark a[class*="primary"] {
-  background-color: var(--nec-amber);
-  color: #0b1120;
+  background-color: var(--mck-primary);
+  color: #ffffff;
   border: none;
   font-weight: 600;
 }
@@ -228,77 +371,83 @@ button[class*="primary"]:hover,
 a[class*="primary"]:hover,
 html.dark button[class*="primary"]:hover,
 html.dark a[class*="primary"]:hover {
-  background-color: var(--nec-amber-light);
+  background-color: var(--mck-primary-soft);
 }
 
 /* Code blocks */
 pre,
 html.dark pre {
-  background-color: var(--nec-highlight-bg);
-  border: 1px solid var(--nec-border);
-  border-radius: var(--radius-md);
+  background-color: var(--bg-code);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
 }
 
-/* Inline code */
+/* Inline code / command pills */
 :not(pre) > code,
 html.dark :not(pre) > code {
-  background-color: var(--nec-highlight-bg);
-  color: var(--nec-amber-light);
-  padding: 0.15rem 0.4rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.9em;
+  background-color: var(--bg-elevated);
+  color: var(--text-link);
+  padding: 3px 8px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  font-size: 12px;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
 }
 
 /* Tables */
 table,
 html.dark table {
-  background-color: var(--nec-elevated-bg);
-  border: 1px solid var(--nec-border);
-  border-radius: var(--radius-md);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
   overflow: hidden;
+  font-size: 13px;
 }
 
 th,
 html.dark th {
-  background-color: var(--nec-highlight-bg);
-  color: var(--nec-heading);
+  background-color: var(--bg-elevated);
+  color: var(--text-primary);
+  font-weight: 600;
+  padding: var(--space-3) var(--space-4);
 }
 
 td,
 html.dark td {
-  color: var(--nec-body);
-  border-bottom: 1px solid var(--nec-border);
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-default);
+  padding: var(--space-3) var(--space-4);
 }
 
 /* Footer */
 footer,
 html.dark footer {
-  background-color: var(--nec-page-bg);
-  border-top: 1px solid var(--nec-border);
+  background-color: var(--bg-page);
+  border-top: 1px solid var(--border-default);
 }
 
 /* Steps component */
 .mint-step-icon,
 html.dark .mint-step-icon {
-  background-color: var(--nec-amber);
-  color: #0b1120;
+  background-color: var(--mck-primary);
+  color: #ffffff;
 }
 
 /* Status / success accents */
 .mint-status-success,
 html.dark .mint-status-success {
-  color: var(--nec-energy-green);
+  color: #3fb950;
 }
 
 /* Selection highlight */
 ::selection,
 html.dark ::selection {
-  background-color: rgba(245, 158, 11, 0.25);
-  color: var(--nec-heading);
+  background-color: rgba(0, 102, 255, 0.25);
+  color: var(--text-primary);
 }
 
-/* Reduce visual noise on home/about pages by hiding right TOC when content is short */
-/* Mintlify controls TOC visibility; this is a fallback to tone it down */
+/* Hide empty TOC */
 .toc:empty,
 [class*="toc"]:empty,
 html.dark .toc:empty,
