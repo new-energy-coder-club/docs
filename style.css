@@ -1,0 +1,202 @@
+/* NEC 新能源开发者社区 — 主视觉设计 */
+/* 配色法则：60% 极夜黑/深空海军蓝 | 30% 钛白/钢灰蓝 | 10% 工程橙 + 能源绿 */
+
+:root {
+  --nec-void-black: #0a0e17;
+  --nec-deep-navy: #0a1929;
+  --nec-navy-elevated: #0f2137;
+  --nec-navy-highlight: #142b45;
+  --nec-steel-blue: #8b9db8;
+  --nec-titanium-white: #e8eaed;
+  --nec-engineering-orange: #ff6b35;
+  --nec-engineering-orange-light: #ff8c5a;
+  --nec-engineering-orange-dark: #cc5529;
+  --nec-energy-green: #22c55e;
+  --nec-energy-green-dark: #16a34a;
+  --nec-border-subtle: rgba(139, 157, 184, 0.15);
+}
+
+/* Force dark palette across the site */
+html,
+html.dark {
+  color-scheme: dark;
+}
+
+body,
+html.dark body {
+  background-color: var(--nec-deep-navy);
+  color: var(--nec-titanium-white);
+}
+
+/* Global background and text overrides */
+#content-wrapper,
+main,
+html.dark #content-wrapper,
+html.dark main {
+  background-color: var(--nec-deep-navy);
+}
+
+/* Navbar */
+#navbar,
+html.dark #navbar {
+  background-color: rgba(10, 25, 41, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--nec-border-subtle);
+}
+
+/* Sidebar navigation */
+aside.sidebar,
+html.dark aside.sidebar,
+nav.sidebar,
+html.dark nav.sidebar {
+  background-color: var(--nec-void-black);
+  border-right: 1px solid var(--nec-border-subtle);
+}
+
+aside.sidebar a,
+nav.sidebar a,
+html.dark aside.sidebar a,
+html.dark nav.sidebar a {
+  color: var(--nec-steel-blue);
+}
+
+aside.sidebar a:hover,
+nav.sidebar a:hover,
+html.dark aside.sidebar a:hover,
+html.dark nav.sidebar a:hover {
+  color: var(--nec-titanium-white);
+}
+
+/* Cards */
+.mint-card,
+html.dark .mint-card,
+[class*="Card"],
+html.dark [class*="Card"] {
+  background-color: var(--nec-navy-elevated);
+  border: 1px solid var(--nec-border-subtle);
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+html.dark h1,
+html.dark h2,
+html.dark h3,
+html.dark h4,
+html.dark h5,
+html.dark h6 {
+  color: var(--nec-titanium-white);
+}
+
+/* Paragraphs and lists */
+p,
+li,
+span,
+html.dark p,
+html.dark li,
+html.dark span {
+  color: var(--nec-steel-blue);
+}
+
+/* Links */
+a,
+html.dark a {
+  color: var(--nec-engineering-orange-light);
+}
+
+a:hover,
+html.dark a:hover {
+  color: var(--nec-engineering-orange);
+}
+
+/* Buttons */
+button[class*="primary"],
+a[class*="primary"],
+html.dark button[class*="primary"],
+html.dark a[class*="primary"] {
+  background-color: var(--nec-engineering-orange);
+  color: var(--nec-titanium-white);
+  border: none;
+}
+
+button[class*="primary"]:hover,
+a[class*="primary"]:hover,
+html.dark button[class*="primary"]:hover,
+html.dark a[class*="primary"]:hover {
+  background-color: var(--nec-engineering-orange-light);
+}
+
+/* Code blocks */
+pre,
+code,
+html.dark pre,
+html.dark code {
+  background-color: var(--nec-void-black);
+  color: var(--nec-titanium-white);
+  border: 1px solid var(--nec-border-subtle);
+}
+
+/* Inline code */
+:not(pre) > code,
+html.dark :not(pre) > code {
+  background-color: var(--nec-navy-highlight);
+  color: var(--nec-engineering-orange-light);
+  padding: 0.15rem 0.35rem;
+  border-radius: 0.25rem;
+}
+
+/* Tables */
+table,
+html.dark table {
+  background-color: var(--nec-navy-elevated);
+  border: 1px solid var(--nec-border-subtle);
+}
+
+th,
+html.dark th {
+  background-color: var(--nec-navy-highlight);
+  color: var(--nec-titanium-white);
+}
+
+td,
+html.dark td {
+  color: var(--nec-steel-blue);
+  border-bottom: 1px solid var(--nec-border-subtle);
+}
+
+/* Footer */
+footer,
+html.dark footer {
+  background-color: var(--nec-void-black);
+  border-top: 1px solid var(--nec-border-subtle);
+}
+
+/* Active tab / pill */
+[aria-selected="true"],
+html.dark [aria-selected="true"] {
+  color: var(--nec-engineering-orange);
+}
+
+/* Steps component accents */
+.mint-step-icon,
+html.dark .mint-step-icon {
+  background-color: var(--nec-engineering-orange);
+  color: var(--nec-titanium-white);
+}
+
+/* Status / success accents */
+.mint-status-success,
+html.dark .mint-status-success {
+  color: var(--nec-energy-green);
+}
+
+/* Selection highlight */
+::selection,
+html.dark ::selection {
+  background-color: rgba(255, 107, 53, 0.3);
+  color: var(--nec-titanium-white);
+}
