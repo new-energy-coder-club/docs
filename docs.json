@@ -124,6 +124,7 @@
             "group": "关于我们",
             "pages": [
               "community/about",
+              "community/mentors",
               "community/a416-lab",
               "community/discord",
               "community/README"
