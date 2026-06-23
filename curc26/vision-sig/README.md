@@ -1,3 +1,8 @@
+---
+title: "视觉 SIG"
+description: "NEC CURC26 视觉 SIG：算法、硬件与测试一体化视觉系统"
+---
+
 # 视觉 SIG (Visual SIG)
 
 ## 一、SIG 定义与目标

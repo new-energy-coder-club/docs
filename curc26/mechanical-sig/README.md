@@ -1,3 +1,8 @@
+---
+title: "机构 SIG"
+description: "NEC CURC26 机构 SIG：机械与电控研发力量"
+---
+
 # 机构 SIG (Mechanical & Control SIG)
 
 ## 一、简介

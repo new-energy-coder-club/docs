@@ -110,9 +110,11 @@
           {
             "group": "CURC 2026",
             "pages": [
-              "curc26/机构Sig/README",
-              "curc26/视觉Sig/README",
-              "curc26/运营SIG/README"
+              "curc26/mechanical-sig/README",
+              "curc26/mechanical-sig/mechanical",
+              "curc26/mechanical-sig/electrical",
+              "curc26/vision-sig/README",
+              "curc26/operation-sig/README"
             ]
           },
           {

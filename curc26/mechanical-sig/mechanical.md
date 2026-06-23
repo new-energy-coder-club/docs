@@ -1,3 +1,8 @@
+---
+title: "机械组"
+description: "CURC26 机械组：结构设计、运动仿真、加工制造与装配"
+---
+
 # 机械组 (Mechanical Group)
 
 ## 一、定位与目标
