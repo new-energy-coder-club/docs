@@ -1,0 +1,613 @@
+# ② Learn · 学习路线
+
+> 从入门到能带人的结构化成长路径
+
+---
+
+## 🎯 学习理念
+
+NEC 采用**项目驱动学习**模式：
+
+- **先干起来** → 通过 Quickstart 跑通第一个 Demo
+- **边做边学** → 在真实项目中积累技能
+- **输出倒逼输入** → 写文档、做分享、带新人
+
+---
+
+## 🛤️ 五大岗位路线图
+
+### 🤖 机构组（机械设计）
+
+<lark-table rows="5" cols="4" header-row="true" column-widths="183,183,183,183">
+
+  <lark-tr>
+    <lark-td>
+      阶段
+    </lark-td>
+    <lark-td>
+      目标
+    </lark-td>
+    <lark-td>
+      关键技能
+    </lark-td>
+    <lark-td>
+      推荐资源
+    </lark-td>
+  </lark-tr>
+  <lark-tr>
+    <lark-td>
+      **入门**
+    </lark-td>
+    <lark-td>
+      能看懂图纸
+    </lark-td>
+    <lark-td>
+      SolidWorks基础、机械制图
+    </lark-td>
+    <lark-td>
+      FRC图纸库、MayCAD教程
+    </lark-td>
+  </lark-tr>
+  <lark-tr>
+    <lark-td>
+      **进阶**
+    </lark-td>
+    <lark-td>
+      能独立设计
+    </lark-td>
+    <lark-td>
+      铝方型材设计、运动仿真
+    </lark-td>
+    <lark-td>
+      团队设计库、ANSYS入门
+    </lark-td>
+  </lark-tr>
+  <lark-tr>
+    <lark-td>
+      **熟练**
+    </lark-td>
+    <lark-td>
+      能负责模块
+    </lark-td>
+    <lark-td>
+      整机设计、工程图出图
+    </lark-td>
+    <lark-td>
+      ROBOCON历届方案
+    </lark-td>
+  </lark-tr>
+  <lark-tr>
+    <lark-td>
+      **专家**
+    </lark-td>
+    <lark-td>
+      能带团队
+    </lark-td>
+    <lark-td>
+      系统设计、项目管理
+    </lark-td>
+    <lark-td>
+      带队参赛、培养新人
+    </lark-td>
+  </lark-tr>
+</lark-table>
+
+**当前任务**: 2026 ROBOCON 轮腿机器狗机构设计
+
+---
+
+### 👁️ 视觉组（算法/AI）
+
+<lark-table rows="5" cols="4" header-row="true" column-widths="183,183,183,183">
+
+  <lark-tr>
+    <lark-td>
+      阶段
+    </lark-td>
+    <lark-td>
+      目标
+    </lark-td>
+    <lark-td>
+      关键技能
+    </lark-td>
+    <lark-td>
+      推荐资源
+    </lark-td>
+  </lark-tr>
+  <lark-tr>
+    <lark-td>
+      **入门**
+    </lark-td>
+    <lark-td>
+      跑通YOLO
+    </lark-td>
+    <lark-td>
+      Python、OpenCV、基础深度学习
+    </lark-td>
+    <lark-td>
+      李沐《动手学深度学习》
+    </lark-td>
+  </lark-tr>
+  <lark-tr>
+    <lark-td>
+      **进阶**
+    </lark-td>
+    <lark-td>
+      能调模型
+    </lark-td>
+    <lark-td>
+      目标检测、数据集制作、模型优化
+    </lark-td>
+    <lark-td>
+      中科大RM视觉课程
+    </lark-td>
+  </lark-tr>
+  <lark-tr>
+    <lark-td>
+      **熟练**
+    </lark-td>
+    <lark-td>
+      能部署到设备
+    </lark-td>
+    <lark-td>
+      TensorRT、模型量化、边缘部署
+    </lark-td>
+    <lark-td>
+      树莓派/嵌入式视觉
+    </lark-td>
+  </lark-tr>
+  <lark-tr>
+    <lark-td>
+      **专家**
+    </lark-td>
+    <lark-td>
+      能设计算法
+    </lark-td>
+    <lark-td>
+      自研算法、论文复现、带队攻关
+    </lark-td>
+    <lark-td>
+      顶会论文、开源贡献
+    </lark-td>
+  </lark-tr>
+</lark-table>
+
+**当前任务**: KFS数据集收集、YOLO模型训练
+
+---
+
+### ⚡ 电控组（嵌入式/上位机）
+
+<lark-table rows="5" cols="4" header-row="true" column-widths="183,183,183,183">
+
+  <lark-tr>
+    <lark-td>
+      阶段
+    </lark-td>
+    <lark-td>
+      目标
+    </lark-td>
+    <lark-td>
+      关键技能
+    </lark-td>
+    <lark-td>
+      推荐资源
+    </lark-td>
+  </lark-tr>
+  <lark-tr>
+    <lark-td>
+      **入门**
+    </lark-td>
+    <lark-td>
+      点亮LED
+    </lark-td>
+    <lark-td>
+      C语言、STM32基础、GPIO控制
+    </lark-td>
+    <lark-td>
+      正点原子教程
+    </lark-td>
+  </lark-tr>
+  <lark-tr>
+    <lark-td>
+      **进阶**
+    </lark-td>
+    <lark-td>
+      能写通信
+    </lark-td>
+    <lark-td>
+      CAN/串口、FreeRTOS、电机控制
+    </lark-td>
+    <lark-td>
+      野火教程、RM电控框架
+    </lark-td>
+  </lark-tr>
+  <lark-tr>
+    <lark-td>
+      **熟练**
+    </lark-td>
+    <lark-td>
+      能做系统
+    </lark-td>
+    <lark-td>
+      多电机协同、上位机开发、调试
+    </lark-td>
+    <lark-td>
+      ROS2、Qt上位机
+    </lark-td>
+  </lark-tr>
+  <lark-tr>
+    <lark-td>
+      **专家**
+    </lark-td>
+    <lark-td>
+      能架构设计
+    </lark-td>
+    <lark-td>
+      系统架构、性能优化、带队开发
+    </lark-td>
+    <lark-td>
+      开源项目维护
+    </lark-td>
+  </lark-tr>
+</lark-table>
+
+**当前任务**: DM-MC02电控板调试、8010电机驱动
+
+---
+
+### 🔧 硬件组（PCB/电路）
+
+<lark-table rows="5" cols="4" header-row="true" column-widths="183,183,183,183">
+
+  <lark-tr>
+    <lark-td>
+      阶段
+    </lark-td>
+    <lark-td>
+      目标
+    </lark-td>
+    <lark-td>
+      关键技能
+    </lark-td>
+    <lark-td>
+      推荐资源
+    </lark-td>
+  </lark-tr>
+  <lark-tr>
+    <lark-td>
+      **入门**
+    </lark-td>
+    <lark-td>
+      能焊板子
+    </lark-td>
+    <lark-td>
+      基础电路、焊接技能、万用表使用
+    </lark-td>
+    <lark-td>
+      硬件设计基础课
+    </lark-td>
+  </lark-tr>
+  <lark-tr>
+    <lark-td>
+      **进阶**
+    </lark-td>
+    <lark-td>
+      能画PCB
+    </lark-td>
+    <lark-td>
+      Altium Designer、四层板设计
+    </lark-td>
+    <lark-td>
+      立创EDA开源项目
+    </lark-td>
+  </lark-tr>
+  <lark-tr>
+    <lark-td>
+      **熟练**
+    </lark-td>
+    <lark-td>
+      能独立打样
+    </lark-td>
+    <lark-td>
+      电源设计、信号完整性、DFM
+    </lark-td>
+    <lark-td>
+      JLC打样实践
+    </lark-td>
+  </lark-tr>
+  <lark-tr>
+    <lark-td>
+      **专家**
+    </lark-td>
+    <lark-td>
+      能做量产
+    </lark-td>
+    <lark-td>
+      可靠性设计、BOM成本、供应链管理
+    </lark-td>
+    <lark-td>
+      企业项目实战
+    </lark-td>
+  </lark-tr>
+</lark-table>
+
+**当前任务**: N630电调工艺升级、硬件模块测试
+
+---
+
+### 📢 运营组（社区/宣传）
+
+<lark-table rows="5" cols="4" header-row="true" column-widths="183,183,183,183">
+
+  <lark-tr>
+    <lark-td>
+      阶段
+    </lark-td>
+    <lark-td>
+      目标
+    </lark-td>
+    <lark-td>
+      关键技能
+    </lark-td>
+    <lark-td
+
+
+>
+
+      推荐资源
+    </lark-td>
+  </lark-tr>
+  <lark-tr>
+    <lark-td>
+      **入门**
+    </lark-td>
+    <lark-td>
+      能写推文
+    </lark-td>
+    <lark-td>
+      文案写作、排版设计、基础PS
+    </lark-td>
+    <lark-td>
+      飞书文档教程
+    </lark-td>
+  </lark-tr>
+  <lark-tr>
+    <lark-td>
+      **进阶**
+    </lark-td>
+    <lark-td>
+      能做活动
+    </lark-td>
+    <lark-td>
+      活动策划、社群运营、数据分析
+    </lark-td>
+    <lark-td>
+      NEC活动案例
+    </lark-td>
+  </lark-tr>
+  <lark-tr>
+    <lark-td>
+      **熟练**
+    </lark-td>
+    <lark-td>
+      能管项目
+    </lark-td>
+    <lark-td>
+      项目管理、跨组协调、资源对接
+    </lark-td>
+    <lark-td>
+      开源社区运营
+    </lark-td>
+  </lark-tr>
+  <lark-tr>
+    <lark-td>
+      **专家**
+    </lark-td>
+    <lark-td>
+      能带社区
+    </lark-td>
+    <lark-td>
+      社区文化、品牌建设、生态建设
+    </lark-td>
+    <lark-td>
+      开源基金会经验
+    </lark-td>
+  </lark-tr>
+</lark-table>
+
+**当前任务**: 社群维护、活动组织、对外合作
+
+---
+
+## 📋 技能矩阵
+
+### 开发基线（所有成员必备）
+
+- [ ] **Git 基础** - 克隆、提交、分支、PR
+- [ ] **Markdown 写作** - 文档规范、飞书排版
+- [ ] **项目管理工具** - 飞书 Base、Issue 追踪
+- [ ] **沟通协作** - 例会汇报、异步沟通、文档沉淀
+
+### 进阶技能（按岗位选修）
+
+<lark-table rows="7" cols="6" header-row="true" column-widths="122,122,122,122,122,122">
+
+  <lark-tr>
+    <lark-td>
+      技能
+    </lark-td>
+    <lark-td>
+      机构
+    </lark-td>
+    <lark-td>
+      视觉
+    </lark-td>
+    <lark-td>
+      电控
+    </lark-td>
+    <lark-td>
+      硬件
+    </lark-td>
+    <lark-td>
+      运营
+    </lark-td>
+  </lark-tr>
+  <lark-tr>
+    <lark-td>
+      SolidWorks
+    </lark-td>
+    <lark-td>
+      ⭐⭐⭐
+    </lark-td>
+    <lark-td>
+      -
+    </lark-td>
+    <lark-td>
+      -
+    </lark-td>
+    <lark-td>
+      -
+    </lark-td>
+    <lark-td>
+      -
+    </lark-td>
+  </lark-tr>
+  <lark-tr>
+    <lark-td>
+      Python
+    </lark-td>
+    <lark-td>
+      -
+    </lark-td>
+    <lark-td>
+      ⭐⭐⭐
+    </lark-td>
+    <lark-td>
+      ⭐⭐
+    </lark-td>
+    <lark-td>
+      -
+    </lark-td>
+    <lark-td>
+      ⭐
+    </lark-td>
+  </lark-tr>
+  <lark-tr>
+    <lark-td>
+      C/C++
+    </lark-td>
+    <lark-td>
+      -
+    </lark-td>
+    <lark-td>
+      ⭐
+    </lark-td>
+    <lark-td>
+      ⭐⭐⭐
+    </lark-td>
+    <lark-td>
+      ⭐⭐
+    </lark-td>
+    <lark-td>
+      -
+    </lark-td>
+  </lark-tr>
+  <lark-tr>
+    <lark-td>
+      PCB设计
+    </lark-td>
+    <lark-td>
+      -
+    </lark-td>
+    <lark-td>
+      -
+    </lark-td>
+    <lark-td>
+      ⭐
+    </lark-td>
+    <lark-td>
+      ⭐⭐⭐
+    </lark-td>
+    <lark-td>
+      -
+    </lark-td>
+  </lark-tr>
+  <lark-tr>
+    <lark-td>
+      深度学习
+    </lark-td>
+    <lark-td>
+      -
+    </lark-td>
+    <lark-td>
+      ⭐⭐⭐
+    </lark-td>
+    <lark-td>
+      -
+    </lark-td>
+    <lark-td>
+      -
+    </lark-td>
+    <lark-td>
+      -
+    </lark-td>
+  </lark-tr>
+  <lark-tr>
+    <lark-td>
+      文案写作
+    </lark-td>
+    <lark-td>
+      -
+    </lark-td>
+    <lark-td>
+      -
+    </lark-td>
+    <lark-td>
+      -
+    </lark-td>
+    <lark-td>
+      -
+    </lark-td>
+    <lark-td>
+      ⭐⭐⭐
+    </lark-td>
+  </lark-tr>
+</lark-table>
+
+---
+
+## 📚 推荐资源库
+
+### 官方文档
+
+- [飞书使用指南](https://scn0bdoc8zxg.feishu.cn/wiki/OTyadE3JhoqKltx9H16cYmLgnbg)
+- [项目管理指南](https://scn0bdoc8zxg.feishu.cn/docx/VZF7dgkiKouP4fx46Q5cQdkUnzf)
+
+### 技术资源
+
+- **FRC图纸库**: [百度网盘](http://pan.baidu.com/s/1zgAP8AmdhWhqjbqm_c0mog?pwd=v72M)
+- **RM视觉课程**: 中科大进阶课程
+- **电控框架**: [湖南大学跃鹿战队开源框架](https://gitee.com/hnuyuelurm/basic_framework)
+
+### 开源社区
+
+- [openEuler 嵌入式SIG](https://gitee.com/openeuler/yocto-meta-openeuler)
+- [RoboMaster 论坛](https://bbs.robomaster.com/)
+- [ROBOCON 技术论坛](https://ask.cnrobocon.net/)
+
+---
+
+## 🎓 First Good Issue
+
+新手推荐从以下任务开始：
+
+1. **文档贡献** - 完善 README、补充注释
+1. **Bug 修复** - 修复文档中的链接错误
+1. **翻译工作** - 翻译技术文档、论文摘要
+1. **测试任务** - 跑通 Demo 并记录问题
+> 💡 提示：在 [Gitee Issues](https://gitee.com/darrenpig/new_energy_coder_club/issues) 中搜索 `good-first-issue` 标签
+
+---
+
+*最后更新: 2026-04-05 | 与 NEC成员积分管理 联动*
