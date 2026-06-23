@@ -32,6 +32,7 @@
           {
             "group": "新手上路",
             "pages": [
+              "start-here/curc2027-onboarding",
               "start-here/60min",
               "start-here/newcomers",
               "start-here/first-good-issue"
