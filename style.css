@@ -454,3 +454,129 @@ html.dark .toc:empty,
 html.dark [class*="toc"]:empty {
   display: none;
 }
+
+/* =========================================================
+   Homepage enhancements
+   ========================================================= */
+
+/* Hero stats badges: centered, surface background, subtle border */
+.hero-stats,
+html.dark .hero-stats {
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+
+.hero-stats [class*="Card"],
+html.dark .hero-stats [class*="Card"] {
+  text-align: center;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  padding: 20px 16px;
+}
+
+.hero-stats [class*="Card"] [class*="title"],
+html.dark .hero-stats [class*="Card"] [class*="title"] {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--mck-primary);
+  margin-bottom: 4px;
+}
+
+.hero-stats [class*="Card"] p,
+html.dark .hero-stats [class*="Card"] p {
+  margin: 0 auto;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+/* Button group spacing */
+.mint-button-group,
+html.dark .mint-button-group,
+[class*="ButtonGroup"] {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 20px 0 8px;
+}
+
+/* Primary button: McKinsey blue */
+button[class*="primary"],
+a[class*="primary"],
+html.dark button[class*="primary"],
+html.dark a[class*="primary"] {
+  background-color: var(--mck-primary);
+  color: #ffffff;
+  border: 1px solid var(--mck-primary);
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+}
+
+button[class*="primary"]:hover,
+a[class*="primary"]:hover,
+html.dark button[class*="primary"]:hover,
+html.dark a[class*="primary"]:hover {
+  background-color: var(--mck-primary-soft);
+  border-color: var(--mck-primary-soft);
+}
+
+/* Secondary button: outlined */
+button[class*="secondary"],
+a[class*="secondary"],
+html.dark button[class*="secondary"],
+html.dark a[class*="secondary"] {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-default);
+  font-weight: 500;
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+}
+
+button[class*="secondary"]:hover,
+a[class*="secondary"]:hover,
+html.dark button[class*="secondary"]:hover,
+html.dark a[class*="secondary"]:hover {
+  border-color: var(--mck-primary);
+  color: var(--mck-primary);
+}
+
+/* Card hover lift and border glow */
+[class*="Card"],
+html.dark [class*="Card"] {
+  border: 1px solid var(--border-default);
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+[class*="Card"]:hover,
+html.dark [class*="Card"]:hover {
+  border-color: var(--mck-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 102, 255, 0.08);
+}
+
+/* Inline links inside cards should remain readable */
+[class*="Card"] a,
+html.dark [class*="Card"] a {
+  color: var(--text-link);
+}
+
+/* Reduce right TOC noise on homepage by making items more compact */
+.toc a,
+[class*="toc"] a,
+html.dark .toc a,
+html.dark [class*="toc"] a {
+  font-size: 12px;
+  padding: 3px 0 3px 10px;
+}
+
+/* Homepage section spacing */
+#content-wrapper h2,
+html.dark #content-wrapper h2 {
+  margin-top: 48px;
+}
+
+#content-wrapper h2:first-of-type,
+html.dark #content-wrapper h2:first-of-type {
+  margin-top: 32px;
+}

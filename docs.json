@@ -198,7 +198,7 @@
           "icon": "book-open"
         },
         {
-          "anchor": "加入收集",
+          "anchor": "加入社区",
           "href": "/community/join-collection",
           "icon": "user-plus"
         }
@@ -219,7 +219,7 @@
     "primary": {
       "type": "button",
       "label": "加入社区",
-      "href": "https://gitee.com/darrenpig/new_energy_coder_club"
+      "href": "/start-here/60min"
     }
   },
   "contextual": {
