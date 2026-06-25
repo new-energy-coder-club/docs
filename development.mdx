@@ -1,66 +1,125 @@
 ---
 title: "本地开发"
-description: "在本地编辑和预览文档"
+description: "在本地编辑、预览和部署 NEC 文档站"
 ---
 
 # 本地开发
 
+本页介绍如何在本地编辑、预览和提交 NEC 文档站的改动。
 
-## 安装 Mintlify
+---
 
-首先，确保安装了 Node.js (18+)，然后安装 Mintlify CLI：
+## 环境准备
+
+确保已安装：
+
+- **Node.js 18+**：用于运行 Mintlify CLI
+- **Python 3.10+**：用于运行文档健康检查脚本
+- **Git**：用于提交和推送
+
+---
+
+## 安装 Mintlify CLI
 
 ```bash
 npm install -g mintlify
 ```
 
+验证安装：
+
+```bash
+mint --version
+```
+
+---
+
 ## 本地预览
 
-在项目根目录运行：
+在项目根目录（`docs.json` 所在目录）运行：
 
 ```bash
 mint dev
 ```
 
-本地服务器将在 `http://localhost:3000` 启动，自动检测文件变化并热更新。
+本地服务器默认在 `http://localhost:3000` 启动，保存文件后会自动热更新。
 
-## 文档结构
+<Tip>
+  如果端口 3000 被占用，Mintlify 会自动尝试 3001、3002 等后续端口。
+</Tip>
+
+---
+
+## 项目结构
+
+当前文档站结构如下：
 
 ```
 docs/
-├── index.mdx           # 首页
-├── quickstart.mdx      # 快速开始
-├── development.mdx     # 开发指南
-├── docs.json           # 站点配置
-├── modules/            # 模块文档
-│   ├── overview.mdx
-│   ├── robotics.mdx
-│   ├── embedded.mdx
-│   └── algorithms.mdx
-├── contributing/       # 贡献指南
-│   ├── guidelines.mdx
-│   ├── workflow.mdx
-│   └── code-style.mdx
-├── community/          # 社区
-│   ├── about.mdx
-│   ├── a416-lab.mdx
-│   └── discord.mdx
-
+├── index.mdx                 # 站点首页
+├── docs.json                 # Mintlify 站点配置与导航
+├── style.css                 # 自定义主题样式
+├── robots.txt                # 搜索引擎与 AI 爬虫指引
+├── llms.txt                  # LLM 索引文件
+├── AGENTS.md                 # 给 AI Agent 的项目说明
+├── images/                   # 图片资源
+│   ├── NEC-home.gif
+│   ├── qq-group-qrcode.jpg
+│   ├── feishu-curc-collection.png
+│   └── ...
+├── start-here/               # 新手上路
+├── modules/                  # 项目模块总览
+├── mechanical/               # 机械设计专题
+├── vision/                   # 机器视觉专题
+├── embedded-software/        # 嵌入式软件专题
+├── learn/                    # 学习资源
+├── templates/                # 文档模板
+├── wiki/                     # Wiki 知识库
+├── ai-tools/                 # AI 工具指南
+├── competition/              # 竞赛概览
+├── curc26/                   # CURC 2026 赛季文档
+├── community/                # 社区介绍与治理
+├── contributing/             # 贡献指南
+└── tools/ci/                 # CI 检查脚本
+    └── check_docs.py
 ```
+
+---
 
 ## 创建新页面
 
-1. 创建 `.mdx` 文件
-2. 添加 frontmatter：
+1. 在合适目录创建 `.mdx` 文件
+2. 添加 YAML frontmatter：
+
 ```yaml
 ---
 title: "页面标题"
 description: "页面描述"
 ---
 ```
-3. 在 `docs.json` 中添加导航
 
-## 组件使用
+3. 在 `docs.json` 的 `navigation` 中注册页面
+4. 运行 `python tools/ci/check_docs.py` 确认无错误
+
+<Warning>
+  空菜单不要上线：新增导航项前，请确认目标页面已有实质内容，并且 frontmatter 完整。
+</Warning>
+
+---
+
+## 图片与静态资源
+
+- 图片统一放入 `images/` 目录
+- 引用时使用以 `/images/` 开头的绝对路径：
+
+```mdx
+<img src="/images/NEC-home.gif" alt="示例图片" width="400" />
+```
+
+- 二维码、截图等建议压缩后再提交，避免仓库体积膨胀
+
+---
+
+## 常用组件
 
 ### 卡片
 
@@ -88,24 +147,41 @@ description: "页面描述"
 </Steps>
 ```
 
-## 检查链接
+更多组件请参考 [Mintlify 组件文档](https://mintlify.com/docs/content/components/accordions)。
 
-运行以下命令检查死链：
+---
+
+## 提交前检查
+
+在提交 PR 或推送前，请先运行 CI 健康检查脚本：
 
 ```bash
-mint broken-links
+python tools/ci/check_docs.py
 ```
+
+脚本会自动检查：
+
+- `docs.json` JSON 合法性与推荐字段
+- 导航页面文件存在性
+- `.mdx` 文件 frontmatter 完整
+- 内部链接可解析
+- 无 `localhost` 链接
+- 外部链接抽样可达性
+
+---
 
 ## 部署
 
-文档会自动部署到 Mintlify 平台。提交更改到仓库后：
+推送到 `https://github.com/new-energy-coder-club/docs` 的 `main` 分支后，Mintlify 会自动构建并部署到：
 
-1. 连接 Gitee/GitHub 仓库到 Mintlify
-2. 推送更改到主分支
-3. 自动构建和部署
+**https://docs.newenergycoder.club/**
+
+无需手动连接 Gitee/GitHub 到 Mintlify，部署由 GitHub Actions 与 Mintlify 集成自动完成。
+
+---
 
 ## 更多资源
 
 - [Mintlify 文档](https://mintlify.com/docs)
-- [组件参考](https://mintlify.com/docs/content/components/accordions)
 - [Markdown 语法](https://mintlify.com/docs/text)
+- [NEC 贡献指南](/contributing/guidelines)
