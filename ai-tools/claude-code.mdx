@@ -1,43 +1,49 @@
 ---
-title: "Claude Code setup"
-description: "Configure Claude Code for your documentation workflow"
+title: "Claude Code 使用指南"
+description: "在 NEC 文档站点中使用 Claude Code 进行 AI 辅助写作与维护"
 icon: "asterisk"
 ---
 
-Set up Claude Code to help you write and maintain your Mintlify documentation.
+# Claude Code 使用指南
 
-## Prerequisites
+Claude Code 是 Anthropic 推出的终端式 AI 编程助手，特别适合批量修改文档、重构导航、检查链接和补充 frontmatter 等重复性工作。
 
-- Active Claude subscription (Pro, Max, or API access)
+## 前置条件
 
-## Setup
+- 已安装 Node.js 18+
+- 拥有 Claude 订阅（Pro / Max / API）
+
+## 安装与启动
+
+```bash
+npm install -g @anthropic-ai/claude-code
+claude
+```
+
+## 在 NEC 文档中的典型用法
 
 <Steps>
-<Step title="Install Claude Code">
+<Step title="进入 docs 目录">
   ```bash
-  npm install -g @anthropic-ai/claude-code
+  cd docs
   ```
 </Step>
 
-<Step title="Install the Mintlify skill">
-  In your docs directory, run:
-
-  ```bash
-  npx skills add https://mintlify.com/docs
-  ```
-
-  This gives Claude Code Mintlify's component reference, writing standards,
-  and workflow guidance.
+<Step title="让 Claude 读取项目规范">
+  首次使用时，建议提示 Claude 先阅读项目根目录的 `AGENTS.md`，了解 NEC 文档的文件规范、导航结构与内容边界。
 </Step>
 
-<Step title="Customize project instructions">
-  Edit `AGENTS.md` in your project root to add project-specific terminology,
-  style preferences, and content boundaries.
-</Step>
+<Step title="执行文档维护任务">
+  示例指令：
 
-<Step title="Start writing with Claude Code">
-  ```bash
-  claude
-  ```
+  - "检查所有 mdx 文件是否都有 frontmatter，补充缺失的 title 和 description"
+  - "把 docs.json 中未注册的孤立页面列出来"
+  - "批量修复 community/team.mdx 中的 badge 颜色拼写错误"
 </Step>
 </Steps>
+
+## 常用技巧
+
+- **批量替换**：用自然语言描述替换规则，Claude 会自动扫描多文件并确认。
+- **JSON 校验**：让 Claude 在修改 `docs.json` 后自动运行 JSON 校验。
+- **保持简洁**：给 Claude 的指令尽量具体，例如"只改拼写，不调整结构"。

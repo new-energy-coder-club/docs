@@ -1,39 +1,53 @@
 ---
-title: "Windsurf setup"
-description: "Configure Windsurf for your documentation workflow"
+title: "Windsurf 使用指南"
+description: "在 NEC 文档站点中使用 Windsurf 编辑器进行 AI 辅助写作"
 icon: "water"
 ---
 
-Set up Windsurf's Cascade AI assistant to help you write and maintain your Mintlify documentation.
+# Windsurf 使用指南
 
-## Prerequisites
+Windsurf 是 Codeium 推出的 AI 原生编辑器，核心功能是 Cascade——可以理解整个项目上下文并执行多步骤任务，适合快速生成章节、补全页面和整理 Wiki。
 
-- Windsurf editor installed
+## 前置条件
 
-## Setup
+- 已安装 Windsurf 编辑器
+- 已克隆 NEC 文档仓库到本地
+
+## 打开项目
+
+1. 打开 Windsurf。
+2. 选择 **Open Folder**，选择 `docs` 目录（包含 `docs.json` 的根目录）。
+
+## 推荐工作流
 
 <Steps>
-<Step title="Open your docs directory in Windsurf">
-  Open the root of your documentation repository where `docs.json` is located.
-</Step>
+<Step title="加载项目上下文">
+  在 Cascade 中提问：
 
-<Step title="Install the Mintlify skill">
-  In the integrated terminal, run:
-
-  ```bash
-  npx skills add https://mintlify.com/docs
+  ```text
+  请总结 AGENTS.md 和 docs.json 中的关键规范，并列出当前导航中未注册的页面。
   ```
-
-  This gives Windsurf Mintlify's component reference, writing standards,
-  and workflow guidance.
 </Step>
 
-<Step title="Customize project instructions">
-  Edit `AGENTS.md` in your project root to add project-specific terminology,
-  style preferences, and content boundaries.
+<Step title="生成或重构内容">
+  例如：
+
+  ```text
+  根据现有内容，为社区治理页面 CODE_OF_CONDUCT.mdx 补充一段"安全范围"说明。
+  ```
 </Step>
 
-<Step title="Start writing with Cascade">
-  Open a file and use Cascade to draft and edit documentation.
+<Step title="执行多文件维护任务">
+  Cascade 可以直接读取、修改多个文件。例如：
+
+  ```text
+  把 start-here 目录下所有 .md 文件迁移为 .mdx，并补充 frontmatter。
+  ```
 </Step>
 </Steps>
+
+## 注意事项
+
+- Cascade 执行文件操作前会请求确认，请仔细检查变更范围。
+- 生成中文内容后，通读一遍确保术语统一（如"维护者""贡献者"等）。
+- 对于链接和外部引用，建议用 `mintlify broken-links` 或手动验证。

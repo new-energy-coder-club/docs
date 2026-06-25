@@ -11,6 +11,9 @@
     "default": "dark",
     "strict": true
   },
+  "styles": [
+    "style.css"
+  ],
   "favicon": "/favicon.svg",
   "logo": {
     "light": "/logo/light.svg",

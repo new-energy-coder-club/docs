@@ -45,6 +45,25 @@ mint dev
 - `wiki/` 目录为飞书 Wiki 导出快照，通过 `tools/feishu-import/` 更新
 - `competitions/`、`curc26/` 下的历史文档正在逐步迁移到 Mintlify 导航
 
+## 持续集成
+
+- `.github/workflows/docs-check.yml` 会在 `push` / `pull_request` 时自动运行
+- 检查项包括：
+  - `docs.json` JSON 合法性
+  - 导航中的页面文件存在性
+  - `.mdx` 文件包含 YAML frontmatter
+  - Markdown / MDX 内部链接可解析
+  - 未重新引入已删除的归档目录（`legacy/`、`api-reference/`、`essentials/`）
+- 本地可手动执行：
+  ```bash
+  python tools/ci/check_docs.py
+  ```
+
+## 主题样式
+
+- 自定义主题文件为根目录 `style.css`
+- 已在 `docs.json` 中通过 `styles: ["style.css"]` 显式引用
+
 ## 注意事项
 
 - 不要再引入 Sphinx / Read the Docs 配置

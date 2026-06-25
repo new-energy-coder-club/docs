@@ -1,39 +1,53 @@
 ---
-title: "Cursor setup"
-description: "Configure Cursor for your documentation workflow"
+title: "Cursor 使用指南"
+description: "在 NEC 文档站点中使用 Cursor 编辑器进行 AI 辅助写作"
 icon: "arrow-pointer"
 ---
 
-Set up Cursor to help you write and maintain your Mintlify documentation.
+# Cursor 使用指南
 
-## Prerequisites
+Cursor 是基于 VS Code 的 AI 编辑器，内置 Composer、Chat 和 Tab 补全，适合在写文档时进行段落润色、表格生成和多文件改写。
 
-- Cursor editor installed
+## 前置条件
 
-## Setup
+- 已安装 Cursor 编辑器
+- 已克隆 NEC 文档仓库到本地
+
+## 打开项目
+
+1. 打开 Cursor。
+2. 选择 **File → Open Folder**，选择 `docs` 目录（包含 `docs.json` 的根目录）。
+
+## 推荐工作流
 
 <Steps>
-<Step title="Open your docs directory in Cursor">
-  Open the root of your documentation repository where `docs.json` is located.
-</Step>
+<Step title="理解项目规范">
+  在 Cursor Chat 中输入：
 
-<Step title="Install the Mintlify skill">
-  In the integrated terminal, run:
-
-  ```bash
-  npx skills add https://mintlify.com/docs
+  ```text
+  请阅读 AGENTS.md 和 docs.json，告诉我 NEC 文档站点的文件规范、导航结构和注意事项。
   ```
-
-  This gives Cursor Mintlify's component reference, writing standards,
-  and workflow guidance.
 </Step>
 
-<Step title="Customize project instructions">
-  Edit `AGENTS.md` in your project root to add project-specific terminology,
-  style preferences, and content boundaries.
+<Step title="新建或编辑页面">
+  新建 `.mdx` 文件时，先让 Cursor 按 NEC 规范生成 frontmatter：
+
+  ```text
+  为新的 wiki 页面生成 frontmatter，title 和 description 用中文。
+  ```
 </Step>
 
-<Step title="Start writing with Cursor">
-  Open a file and use Cursor's AI features to draft and edit documentation.
+<Step title="使用 Composer 做跨文件修改">
+  例如：
+
+  ```text
+  在 docs.json 的"文档"Tab 下新增"常用工具"分组，并将 ai-tools 下的三篇指南放进去。
+  ```
 </Step>
 </Steps>
+
+## 注意事项
+
+- Cursor 的 AI 输出需要人工核对，特别是链接、路径和命令。
+- 修改 `docs.json` 后，建议运行 `python -m json.tool docs.json` 做格式校验。
+- 保持 NEC 文档的中文语境，不要让 Cursor 把页面改回英文模板。
