@@ -5,25 +5,41 @@ description: "NEC 新人入群与资料收集入口汇总页"
 
 # 加入 NEC & 资料收集
 
-欢迎加入 NEC 新能源开发者社区！请根据你的需求点击下方卡片或按下方步骤完成入群、资料登记与第一个贡献。
+欢迎加入 NEC 新能源开发者社区！请根据你的需求扫描下方二维码，完成入群、资料登记与第一个贡献。
 
 ---
 
 ## 飞书资料收集
 
-新人入群后，运营同学会在 QQ 群中发布飞书收集表二维码/链接，用于登记成员信息、学习意向与技能方向，方便后续分组与资源推送。
+以下飞书收集表用于登记成员信息、个人展板与 CURC 赛季意向，方便团队后续分组与资源推送。
 
 <CardGroup cols={2}>
-  <Card title="飞书收集表 ①：成员登记" icon="clipboard">
-    填写姓名、学校/公司、联系方式与感兴趣的技术方向，方便运营同学拉你入对应 SIG 群。
+  <Card title="飞书收集表 ①：NEC 官网个人展板" icon="clipboard">
+    <img
+      src="/images/feishu-nec-website-display-board.png"
+      alt="NEC 官网个人展板收集表二维码"
+      width="240"
+      className="mx-auto rounded-lg border border-border"
+    />
+    <p className="text-xs text-muted-foreground text-center mt-2">
+      填写个人简介与展板信息，登上 NEC 官网成员展示页
+    </p>
   </Card>
-  <Card title="飞书收集表 ②：意向与技能" icon="clipboard-list">
-    填写你的技能栈（机械 / 硬件 / 嵌入式 / 视觉 / 运营 / 项管）与可投入时间，便于项目分组。
+  <Card title="飞书收集表 ②：CURC 信息收集" icon="clipboard-list">
+    <img
+      src="/images/feishu-curc-collection.png"
+      alt="CURC 收集表二维码"
+      width="240"
+      className="mx-auto rounded-lg border border-border"
+    />
+    <p className="text-xs text-muted-foreground text-center mt-2">
+      填写技术方向、可投入时间与赛季意向，便于 CURC 分组
+    </p>
   </Card>
 </CardGroup>
 
 <Tip>
-  飞书收集表链接由运营同学在 QQ 群内定期更新。如果链接失效，请直接在 NEC QQ 群（479053780）中 @运营 或提交 [Gitee Issue](https://gitee.com/darrenpig/new_energy_coder_club/issues)。
+  如果二维码失效，请直接在 NEC QQ 群（479053780）中 @运营 或提交 [Gitee Issue](https://gitee.com/darrenpig/new_energy_coder_club/issues)。
 </Tip>
 
 ---
@@ -32,9 +48,15 @@ description: "NEC 新人入群与资料收集入口汇总页"
 
 加入 NEC QQ 交流群，与其他成员实时交流技术问题、竞赛动态与活动通知。
 
-<Card title="NEC QQ 交流群：479053780" icon="message-circle" href="https://qm.qq.com/q/479053780">
-  <p className="text-sm mt-2">申请时请备注：姓名 + 学校/公司 + 技术方向</p>
-  <p className="text-xs text-muted-foreground mt-1">例如：张三-常州工学院-机械设计</p>
+<Card title="NEC QQ 交流群：479053780" icon="message-circle">
+  <img
+    src="/images/qq-group-qrcode.jpg"
+    alt="NEC QQ 交流群二维码"
+    width="240"
+    className="mx-auto rounded-lg"
+  />
+  <p className="text-sm text-center mt-3">申请时请备注：姓名 + 学校/公司 + 技术方向</p>
+  <p className="text-xs text-muted-foreground text-center">例如：张三-常州工学院-机械设计</p>
 </Card>
 
 ---
@@ -69,4 +91,4 @@ description: "NEC 新人入群与资料收集入口汇总页"
 
 ---
 
-*运营同学如需更新收集表链接或 QQ 群入口，请直接修改 `community/join-collection.mdx` 并提交 PR。*
+*运营同学如需更新二维码，请直接替换 `images/` 目录下对应图片并提交 PR。*
