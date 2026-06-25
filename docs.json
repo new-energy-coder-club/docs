@@ -90,7 +90,10 @@
               "vision/detection",
               "vision/localization",
               "embedded-software/introduction",
-              "embedded-software/control"
+              "embedded-software/control",
+              "embedded-software/development-setup",
+              "embedded-software/vibe-coding-debug",
+              "embedded-software/hxc-motor-control"
             ]
           },
           {
