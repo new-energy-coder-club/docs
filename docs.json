@@ -69,6 +69,7 @@
               "mechanical/introduction",
               "mechanical/chassis",
               "mechanical/cnc-engraver-operation",
+              "mechanical/falcon2-laser-engraver",
               "vision/introduction",
               "vision/detection",
               "vision/localization",

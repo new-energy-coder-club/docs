@@ -1,0 +1,234 @@
+---
+title: "Falcon2 40W 激光雕刻机指南"
+description: "Creality Falcon2 40W 激光雕刻机使用说明：安全须知、组装、软件操作、固件升级与故障排查"
+---
+
+# Falcon2 40W 激光雕刻机指南
+
+本文档整理了 Creality Falcon2 40W 激光雕刻机的完整使用说明与操作指引。完整官方手册请访问 [Creality Wiki](https://wiki.creality.com/zh/laser-engraver/falcon2/user-manual)。
+
+<Warning>
+  目前设备进气异常，建议使用外接气动。
+</Warning>
+
+## 产品概述
+
+**Creality Falcon2 40W** 是一款高性能激光雕刻切割机，主要特点包括：
+
+| 项目 | 参数 |
+|---|---|
+| 激光功率 | 40W（光功率），机器功率 120W |
+| 雕刻速度 | 最高 25,000 mm/min |
+| 工作区域 | 400 mm × 415 mm |
+| 切割能力 | 可切割 20 mm 软木、0.15 mm 不锈钢 |
+| 软件支持 | LightBurn、LaserGRBL |
+| 操作系统 | Windows / macOS |
+
+![Falcon2 40W 外观](/images/falcon2-laser-engraver/image1.png)
+
+## 安全须知
+
+<Warning>
+  激光雕刻机属于高能量设备，请严格遵守以下安全规范。
+</Warning>
+
+### 基本安全要求
+
+- **环境要求**：放置在通风、凉爽、无尘环境中，远离易燃易爆物，建议室外或强排风环境使用
+- **温度范围**：工作温度 5°C–35°C，避免潮湿或雷暴天气使用
+- **眼部保护**：必须佩戴护目镜，严禁直视激光点
+- **安装规范**：确保机器在水平面上运行，启动前确认机器状态稳定
+- **消防准备**：准备灭火器，严禁无人值守运行
+- **儿童安全**：10 岁以下儿童无成人监护严禁使用
+
+### 激光模组特殊注意事项
+
+- **硅胶管连接**：无论是否使用气助，激光模组上的硅胶管**必须连接**，防止镜头污染
+- **电子区域**：通电时严禁触碰电子区域，禁止带电插拔激光模组电缆
+- **运行中**：设备运行时严禁触碰任何移动部件和激光模组
+
+## 组装步骤
+
+<Steps>
+  <Step title="安装激光模组" icon="puzzle-piece">
+    将激光模组安装到框架指定位置，确保固定牢靠。
+  </Step>
+  <Step title="连接气助系统" icon="wind">
+    连接 Air Assist 气助系统。注意：当前进气异常，建议外接气动。
+  </Step>
+  <Step title="调整支脚高度" icon="ruler">
+    调整机器支脚，使整机保持水平稳定。
+  </Step>
+  <Step title="对焦" icon="eye">
+    使用随机附带的多级固定对焦块，可在约 3 秒内完成激光头高度调整。
+  </Step>
+</Steps>
+
+![组装与对焦示意](/images/falcon2-laser-engraver/image2.png)
+
+## 40W 激光模组：可调光斑
+
+Falcon2 40W 具有独特的双模式切换功能：
+
+| 模式 | 指示灯状态 | 功率 | 适用场景 |
+|---|---|---|---|
+| Normal（普通模式） | 两灯常亮 | 40W | 切割厚材料，速度快 |
+| Precise（精密切割） | 一灯常亮 | 20W | 精细雕刻，切割缝隙更小 |
+
+**切换方法**：通电后长按 Reset 按钮 2 秒进行档位切换。
+
+## 软件安装与使用
+
+### 支持的软件
+
+<CardGroup cols={2}>
+  <Card title="LightBurn（推荐）" icon="pen-ruler" href="https://lightburnsoftware.com/">
+    功能强劲、支持多种文件格式、可视化预览。参考教程：[黑英激光 LightBurn 基本使用方法](https://www.bilibili.com/video/BV1sx4y1x7Co/)
+  </Card>
+  <Card title="Falcon" icon="gamepad">
+    创想三维官方软件，适合新手进行简单雕刻切割
+  </Card>
+</CardGroup>
+
+![LightBurn 软件界面](/images/falcon2-laser-engraver/image3.jpeg)
+
+![Falcon 软件界面](/images/falcon2-laser-engraver/image4.jpeg)
+
+### 连接方式
+
+- **在线模式**：通过 USB-C 数据线连接电脑，打开软件连接设备
+- **离线模式**：插入 TF 卡，无需连接电脑
+
+### 使用流程
+
+#### 在线模式
+
+1. **雕刻机预热与对焦**：打开右侧开关开启雕刻机，确认机器状态良好（激光模组上方绿灯常亮、红灯闪烁），同时保持保护罩上排风扇稳定运行。使用多级固定对焦块调整激光头高度。
+2. **安装软件**：下载并安装 LightBurn。
+3. **打开软件、配置文件**：将导入的文件调整到合适的位置，进行预览，确认雕刻/切割路径。
+4. **配置雕刻/切割速率和功率**：切割一般功率设置为 100%。
+
+#### 离线模式
+
+1. **导入配置文件**：使用 TF 卡中的 `Creality Falcon2.lbdev` 文件。
+2. **相机校准**（如适用）：参考 TF 卡中的 "Camera Calibration and Alignment" 文件。
+3. **对焦**：使用多级固定对焦块调整激光头高度。
+4. **测试雕刻**：使用 TF 卡中的 G-Code 文件进行首次雕刻测试。
+
+## 操作面板说明
+
+### 按键功能
+
+- **Frame（边框预览）**：短按进入预览模式，激光发出弱光并沿 X/Y 轴移动，显示工作区域范围
+- **开始/暂停**：
+  - 预览模式下短按：开始雕刻（激光强光）
+  - 雕刻中短按：暂停（绿灯渐变）
+  - 暂停时短按：继续雕刻
+- **长按 3 秒**：停止当前作业，设备复位并进入待机模式（蜂鸣器响一声，复位后响两声，绿灯渐变）
+
+### 指示灯说明
+
+- **蓝色常亮**：预览模式或雕刻中
+- **绿色渐变**：待机模式或暂停状态
+
+## 镜头状态监测
+
+激光模组具有镜头污染检测功能：
+
+- **🔴 红灯**：镜头严重污染，立即停止工作并清洁
+- **🟠 橙灯**：镜头轻微污染，建议尽快停止清洁
+- **🟢 绿灯**：镜头干净，请定期维护
+
+### 镜头清洁方法
+
+#### 方法一：气动吹
+
+![气动吹镜头](/images/falcon2-laser-engraver/image5.jpeg)
+
+然后推车搬上去，或者把空压机拉过来：
+
+![移动空压机](/images/falcon2-laser-engraver/image6.jpeg)
+
+![对准镜头吹气](/images/falcon2-laser-engraver/image7.jpeg)
+
+对着镜头吹气。注意：原装气泵在暂停及正常工作时可能罢工，滤棉未更换时气动效果较差，容易让粉尘进入镜头。
+
+#### 方法二：酒精滤洗
+
+使用无水酒精配合专用镜头纸或棉签，轻轻擦拭激光镜头表面，避免划伤。
+
+## 固件升级
+
+<Warning>
+  升级过程中严禁断电，否则可能导致设备变砖。
+</Warning>
+
+### 主板固件升级
+
+1. 备份 TF 卡文件到电脑，清空 TF 卡
+2. 下载最新 `.bin` 文件到 TF 卡根目录
+3. **断电**状态下插入 TF 卡
+4. 通电后自动升级（蜂鸣器持续发声，停止后完成）
+
+### 激光模组固件升级
+
+1. 通过读卡器将 TF 卡插入激光模组顶部的 Type-C 接口（使用 A-to-C 转接头）
+2. 通电后自动升级（指示灯依次亮橙色，完成后变绿色）
+
+## TF 卡内容清单
+
+随机 TF 卡包含以下重要文件：
+
+- 产品说明书
+- 组装说明视频
+- 相机校准与对齐指南
+- 推荐参数设置
+- 软件操作教程
+- G-Code 测试文件
+- 错误代码说明
+- GRBL 配置参数说明
+- 常见问题解答（FAQ）
+
+## 故障排查
+
+<AccordionGroup>
+  <Accordion title="雕刻效果不理想（线条歪斜、效果浅）">
+    1. 检查官网或 TF 卡中的推荐参数
+    2. 检查设备螺丝是否拧紧，皮带松紧是否合适：
+       - 激光模组在重力作用下应能缓慢沿 X 轴滑动
+       - 激光头组件任何滑轮无空转
+       - 皮带松紧适中
+  </Accordion>
+  <Accordion title="软件无响应或无法连接">
+    1. 确认数据线具有通信功能，电脑端为 USB-A 接口（无 USB-A 可使用附带的 A-to-C 转接头）
+    2. 确认已正确导入 `Creality Falcon2.lbdev` 文件
+    3. 确认雕刻设备对应的 COM 端口未被占用
+    4. 如仍无法解决，记录操作视频并反馈系统信息和软件版本给售后团队
+  </Accordion>
+  <Accordion title="陶瓷/玻璃雕刻问题">
+    可以雕刻，但需在材料表面涂抹防反射材料，确保雕刻效果并防止反射光损坏激光模组。
+  </Accordion>
+</AccordionGroup>
+
+## 售后服务
+
+- **官方邮箱**：falcon@creality.com
+- **商务电话**：+86 755-8523 4565
+- **公司地址**：深圳市龙华区民治街道新牛社区梅龙路锦绣鸿都大厦 18 楼
+- **官方网站**：[www.creality.com](https://www.creality.com)
+
+## 官方文档下载
+
+- **快速使用指南（PDF）**：[下载链接](https://download.bastelgarage.ch/Produkte/Falcon2_40W.pdf)
+- **Creality Wiki 官方文档**：[访问页面](https://wiki.creality.com/zh/laser-engraver/falcon2-pro)
+- **用户手册 PDF**：[Creality Falcon2 User Manual](https://cdn.shopifycdn.net/s/files/1/0799/8714/7049/files/Creality_Falcon2_User_Manual.pdf?v=1718179969)
+
+<Note>
+  首次使用前请仔细阅读随机附带的所有文档，并观看 TF 卡中的视频教程，以确保安全和最佳使用效果。
+</Note>
+
+## 相关资源
+
+- [主轴雕刻机操作指南](/mechanical/cnc-engraver-operation)
+- [A416 实验室](/community/a416-lab)
+- [机构设计概述](/mechanical/introduction)
