@@ -176,7 +176,8 @@
               "contributing",
               "contributing/guidelines",
               "contributing/workflow",
-              "contributing/code-style"
+              "contributing/code-style",
+              "contributing/gitee-collaboration"
             ]
           }
         ]
