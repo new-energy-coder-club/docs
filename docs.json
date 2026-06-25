@@ -33,7 +33,9 @@
     "tabs": [
       {
         "tab": "首页",
-        "pages": ["index"]
+        "pages": [
+          "index"
+        ]
       },
       {
         "tab": "文档",
@@ -72,18 +74,33 @@
             ]
           },
           {
-            "group": "技术专题",
+            "group": "机械",
             "pages": [
               "mechanical/introduction",
               "mechanical/chassis",
               "mechanical/cnc-engraver-operation",
               "mechanical/falcon2-laser-engraver",
-              "mechanical/k1-printer-guide",
+              "mechanical/k1-printer-guide"
+            ]
+          },
+          {
+            "group": "视觉与嵌入式",
+            "pages": [
               "vision/introduction",
               "vision/detection",
               "vision/localization",
               "embedded-software/introduction",
               "embedded-software/control"
+            ]
+          },
+          {
+            "group": "AI 工具",
+            "pages": [
+              "ai-tools/claude-code",
+              "ai-tools/cursor",
+              "ai-tools/windsurf",
+              "ai-tools/mcp-server",
+              "ai-tools/ai-feasibility-study"
             ]
           },
           {
@@ -93,33 +110,7 @@
               "templates/competition-template",
               "templates/weekly-report-template"
             ]
-          },
-          {
-            "group": "Wiki 知识库",
-            "pages": [
-              "wiki/nec-wiki-home",
-              "wiki/start-here",
-              "wiki/learning-path",
-              "wiki/faq",
-              "wiki/gitee-contribution",
-              "wiki/community",
-              "wiki/safety-and-standards",
-              "wiki/training-resources",
-              "wiki/hku-software-trainee",
-              "wiki/experience-index",
-              "wiki/nec-plus-membership"
-            ]
           }
-        ]
-      },
-      {
-        "tab": "AI 工具",
-        "pages": [
-          "ai-tools/claude-code",
-          "ai-tools/cursor",
-          "ai-tools/windsurf",
-          "ai-tools/mcp-server",
-          "ai-tools/ai-feasibility-study"
         ]
       },
       {
@@ -155,7 +146,12 @@
               "community/about",
               "community/join-collection",
               "community/nec-plus",
-              "community/skill-branch",
+              "community/skill-branch"
+            ]
+          },
+          {
+            "group": "社区与活动",
+            "pages": [
               "community/mentors",
               "community/a416-lab",
               "community/discord",
@@ -163,12 +159,17 @@
             ]
           },
           {
-            "group": "社区治理",
+            "group": "治理与安全",
             "pages": [
               "GOVERNANCE",
               "CODE_OF_CONDUCT",
               "SUPPORT",
-              "SECURITY",
+              "SECURITY"
+            ]
+          },
+          {
+            "group": "核心团队",
+            "pages": [
               "community/maintainers",
               "community/team"
             ]
@@ -181,6 +182,32 @@
               "contributing/workflow",
               "contributing/code-style",
               "contributing/gitee-collaboration"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Wiki",
+        "groups": [
+          {
+            "group": "Wiki 入门",
+            "pages": [
+              "wiki/nec-wiki-home",
+              "wiki/start-here",
+              "wiki/learning-path",
+              "wiki/faq"
+            ]
+          },
+          {
+            "group": "Wiki 资源",
+            "pages": [
+              "wiki/gitee-contribution",
+              "wiki/community",
+              "wiki/safety-and-standards",
+              "wiki/training-resources",
+              "wiki/hku-software-trainee",
+              "wiki/experience-index",
+              "wiki/nec-plus-membership"
             ]
           }
         ]
@@ -247,7 +274,14 @@
     }
   },
   "contextual": {
-    "options": ["copy", "view", "chatgpt", "claude", "cursor", "vscode"]
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "cursor",
+      "vscode"
+    ]
   },
   "footer": {
     "socials": {
