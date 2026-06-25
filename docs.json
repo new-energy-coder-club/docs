@@ -2,6 +2,10 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
   "name": "NEC 新能源开发者社区",
+  "metadata": {
+    "title": "NEC 新能源开发者社区文档",
+    "description": "面向机器人竞赛与真实工程项目的开源工程社区：沉淀 ROBOCON、RoboMaster、智能车等赛事的机械、嵌入式、机器视觉与运营经验。"
+  },
   "colors": {
     "primary": "#0066FF",
     "light": "#58A6FF",
@@ -15,6 +19,12 @@
     "style.css"
   ],
   "favicon": "/favicon.svg",
+  "search": {
+    "prompt": "搜索文档、竞赛、项目与社区资料..."
+  },
+  "seo": {
+    "indexHiddenPages": false
+  },
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"

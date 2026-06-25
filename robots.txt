@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://docs.newenergycoder.club/sitemap.xml
+
+# AI crawlers
+LLMs-txt: https://docs.newenergycoder.club/llms.txt

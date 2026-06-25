@@ -35,7 +35,7 @@ mint dev
 当前分为 5 个顶部 Tab：
 
 1. **首页** — 站点入口
-2. **文档** — 快速开始、新手上路、项目模块、技术专题、Wiki 知识库
+2. **文档** — 快速开始、新手上路、项目模块、技术专题、学习资源、模板与规范、Wiki 知识库、AI 工具
 3. **竞赛** — 竞赛概览、CURC 2026
 4. **社区** — 关于我们、社区治理、贡献指南
 5. **关于** — README、路线图、资源汇总
@@ -43,16 +43,18 @@ mint dev
 ## 内容来源
 
 - `wiki/` 目录为飞书 Wiki 导出快照，通过 `tools/feishu-import/` 更新
-- `competitions/`、`curc26/` 下的历史文档正在逐步迁移到 Mintlify 导航
+- `competition/`、`curc26/` 下的历史文档正在逐步迁移到 Mintlify 导航
 
 ## 持续集成
 
 - `.github/workflows/docs-check.yml` 会在 `push` / `pull_request` 时自动运行
 - 检查项包括：
-  - `docs.json` JSON 合法性
+  - `docs.json` JSON 合法性与推荐字段（`metadata`、`search`、`seo`）
   - 导航中的页面文件存在性
-  - `.mdx` 文件包含 YAML frontmatter
-  - Markdown / MDX 内部链接可解析
+  - `.mdx` 文件包含非空 `title` 与 `description` 的 YAML frontmatter
+  - Markdown / MDX 内部链接可解析，不含 `localhost` 与非 ASCII 路径
+  - `robots.txt` 存在
+  - 外部链接抽样健康检查（警告级别）
   - 未重新引入已删除的归档目录（`legacy/`、`api-reference/`、`essentials/`）
 - 本地可手动执行：
   ```bash

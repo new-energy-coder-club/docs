@@ -1,23 +1,23 @@
 # NEC 知识库导出文档索引
 
-> 导出时间：2026-06-22  
+> 导出时间：2026-06-26
 > 来源：[飞书 Wiki](https://scn0bdoc8zxg.feishu.cn/wiki/S10LwzVZdiWLwxkEnEqcTcmEn6e)
 
 ## 文档清单
 
-| 序号 | 文件名 | 标题 |
-|:----:|--------|------|
-| - | `start-here.mdx` | Start Here（新人入口） |
-| - | `learning-path.mdx` | Learn · 学习路线 |
-| - | `projects-and-competitions.mdx` | Build（项目与竞赛） |
-| - | `gitee-contribution.mdx` | Contribute（参与Gitee协作） |
-| - | `community.mdx` | Community（社区） |
-| - | `nec-plus-membership.mdx` | NEC+（付费会员 / 月付） |
-| - | `training-resources.mdx` | 📚 NEC 培训资源中心 |
-| - | `faq.mdx` | 常见Q&A |
-| - | `experience-index.mdx` | NEC 往届经验速查（框架） |
-| 10 | `nec-wiki-home.mdx` | NEC 知识库首页 |
-| - | `safety-and-standards.mdx` | NEC 安全与规范索引 |
+| 文件名 | 标题 |
+|--------|------|
+| `start-here.mdx` | Start Here（新人入口） |
+| `learning-path.mdx` | Learn · 学习路线 |
+| `gitee-contribution.mdx` | Contribute（参与 Gitee 协作） |
+| `community.mdx` | Community（社区） |
+| `nec-plus-membership.mdx` | NEC+（付费会员 / 月付） |
+| `training-resources.mdx` | NEC 培训资源中心 |
+| `faq.mdx` | 常见 Q&A |
+| `experience-index.mdx` | NEC 往届经验速查 |
+| `safety-and-standards.mdx` | NEC 安全与规范索引 |
+| `hku-software-trainee.mdx` | HKU Robocon 软件组新人培训指南 |
+| `nec-wiki-home.mdx` | NEC 知识库首页 |
 
 ## 说明
 
