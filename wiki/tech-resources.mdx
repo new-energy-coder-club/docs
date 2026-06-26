@@ -1,0 +1,179 @@
+---
+title: "NEC 技术资源库"
+description: "NEC 技术资源库与新手学习路径：机械、硬件、软件、视觉、通信等分类资源索引"
+---
+
+# NEC 技术资源库与新手学习路径
+
+本仓库汇集了团队通过采购、开源社区合作及自主开发积累的技术资源，旨在为**零基础新成员**提供系统化的嵌入式与机器人开发学习路径。
+
+---
+
+## 学习路径梯度（由浅入深）
+
+我们按**技术栈复杂度**与**硬件抽象程度**建立五级进阶模型：
+
+```
+亚博智能套件（图形化/封装API）
+    ↓
+幻尔机器人（模块化ROS）
+    ↓
+轮趣科技（底层驱动开发）
+    ↓
+灯哥FOC（Field-Oriented Control，无刷电机矢量控制）
+    ↓
+社区原生项目/官方文档（裸机开发）
+```
+
+### 选择建议
+
+- **零基础（无C语言/无单片机经验）**：从 **亚博智能 MicroROS(ESP32)Robot** 入门，掌握虚拟机、Linux Docker、ROS 话题机制与基础 SLAM。
+- **有C语言或51单片机基础**：直接切入 **Yu_XBai 平衡小车** 或 **MechDog 机器狗** 项目，理解实时控制与逆向运动学。
+
+---
+
+## 新手快速入口
+
+### 01. 零起点推荐（亚博智能生态）
+
+**项目**：[MicroROS(ESP32)Robot](https://www.yahboom.com/study/MicroROS-ESP32)  
+**资料密码**：`ypom`
+
+**技术栈覆盖**：VMware 虚拟机 → ESP32-S3 硬件 → 激光雷达 SLAM → ROS2 话题订阅 → Linux 基础 → Docker 容器化
+
+**硬件特点**：纯 ESP32 方案（无需树莓派），降低硬件成本门槛。
+
+### 02. 进阶实践（适合有C基础/51单片机经验）
+
+| 项目 | 网盘链接 | 提取码 | 技术重点 |
+|------|----------|--------|----------|
+| **Yu_XBai 平衡小车** | [百度网盘](https://pan.baidu.com/s/1paNSVK26OVEOqIxOA-GkYg?pwd=xdt7) | `xdt7` | PID 控制、IMU 姿态解算、电机驱动 |
+| **MechDog 机器狗** | [百度网盘](https://pan.baidu.com/s/1LahXRI-P0pEQ-tDn42GBPA?pwd=d5p2) | `d5p2` | 四足仿生、关节控制、步态规划 |
+
+---
+
+## 资源索引表（按技术类别分类）
+
+### A. 机械设计资源（SolidWorks 标准件库）
+
+| 资源名称 | 百度网盘链接 | 提取码 | 解压密码 | 说明 |
+|----------|--------------|--------|----------|------|
+| 2024 FRC 发球机器人图纸集 | [82套图纸](https://pan.baidu.com/s/1Lb-6-qHJWfZHe0Xt7gENZA?pwd=qqqw) | `qqqw` | `www.yuanjingziyuan.com` | 竞赛级机械结构参考 |
+| 麦克纳姆轮资源包 | [链接](https://pan.baidu.com/s/1tcdy3Pal2nWJrMsk9uTvZg?pwd=8888) | `8888` | `www.yuanjingziyuan.com` | 全向移动底盘设计 |
+| 驱动轮设计资源 | [链接](https://pan.baidu.com/s/1ev6YT357j8gE5YqN-pSvKw?pwd=8888) | `8888` | `www.yuanjingziyuan.com` | 差速轮系建模 |
+| SW 标准件库 | [链接](https://pan.baidu.com/s/1q5CYWZu2qm4OTV5Cb_3F8Q?pwd=8888) | `8888` | `www.yuanjingziyuan.com` | 机械设计基础库 |
+| SW 齿轮组件 | [链接](https://pan.baidu.com/s/1fU57t5LUnv7MZXY-dB0FKA?pwd=6666) | `6666` | `www.yuanjingziyuan.com` | 齿轮啮合参数化模型 |
+| SW 螺母螺丝紧固件 | [链接](https://pan.baidu.com/s/1Uh7PgGlxNxghdW2g_wh8oA?pwd=8888) | `8888` | `www.yuanjingziyuan.com` | 标准紧固件库 |
+| SW 气缸组件 | [链接](https://pan.baidu.com/s/1GyOpvLqisBan5XhT6dwzzg?pwd=8888) | `8888` | `www.yuanjingziyuan.com` | 气动执行元件 |
+| MayCAD 铝型材设计软件 | [链接](https://pan.baidu.com/s/1NcGkC6xRrA6sJ226mdPGIA?pwd=6yq5) | `6yq5` | - | 2020/4040 欧标铝方通专用设计工具 |
+
+### B. 亚博智能硬件生态（Yahboom）
+
+| 开发板/套件 | 官方教程 | 提取码 | 技术定位 | 主控芯片 |
+|-------------|----------|--------|----------|----------|
+| MicroROS(ESP32)Robot | [教程](https://www.yahboom.com/study/MicroROS-ESP32) | `ypom` | ROS2 嵌入式入门 | ESP32-S3（无树莓派方案） |
+| MicroROS-Pi5 | [教程](https://www.yahboom.com/study/MicroROS-Pi5) | `sfah` | 高算力 ROS 机器人 | 树莓派5 + ESP32 协处理器 |
+| 树莓派5单板 | [教程](https://www.yahboom.com/study/raspberry5) | `erwp` | 上位机核心板 | Raspberry Pi 5 |
+| ROS机器人控制板 | [教程](https://www.yahboom.com/study/ROS-Driver-Board) | `o8jw` | STM32 底层驱动 | STM32F103/F4 |
+| MicroROS机器人控制板 | [教程](https://www.yahboom.com/study/MicroROS-Board) | `dsaf` | ROS2 通信专用 | ESP32-MicroROS 固件 |
+| 520编码器减速电机 | [教程](https://www.yahboom.com/study/MD520) | `sdfa` | 高精度轮式编码 | 带 AB 相编码器直流电机 |
+| 310编码器减速电机 | [教程](https://www.yahboom.com/study/MD310) | `4yhd` | 中扭矩驱动 | 平衡车/底盘动力单元 |
+| 24路舵机驱动板 | [教程](https://www.yahboom.com/study_module/24-channel-servo-driver) | `rx6m` | 多关节机械控制 | PCA9685 扩展方案 |
+| ROSMASTER-X3 | [教程](https://www.yahboom.com/study/ROSMASTER-X3) | `zsdf` | 全向轮 ROS 整车 | ROS 拓展板智能车 |
+| ROSMASTER R2 | [教程](https://www.yahboom.com/study/ROSMASTER-R2) | `afes` | 两轮差速 ROS 整车 | 差速底盘算法验证平台 |
+| PS2智能车套件 | [教程](http://www.yahboom.com/study_module/PS2) | `886d` | 遥控入门 | 2.4G 无线手柄控制 |
+| PS2智能车（网盘版） | [网盘](https://pan.baidu.com/s/1kHZ5rl-a5YPYm_Dx5jA86A?pwd=j2nj) | `j2nj` | - | - |
+| YH-K32开源舵机控制板 | [网盘](https://pan.baidu.com/s/1OXsgUKPavlQ6nry6YG9EJQ?pwd=bkmo) | `bkmo` | 32路舵机控制 | 机械狗/多足机器人核心 |
+| USB-PS2遥控手柄 | [教程](https://www.yahboom.com/study/USB-PS2) | `qscm` | 人机交互输入 | 标准 USB HID 协议 |
+| WiFi图传模块Lite版 | [教程](https://www.yahboom.com/study_module/ESP32-Lite) | `qk28` | 无线视频回传 | ESP32-CAM 方案 |
+| 2.4G遥控器 | [教程](http://www.yahboom.com/study_module/2.4G_RC) | `94jj` | 无线通信协议 | nRF24L01 方案 |
+| ESP32S3无线DAPLink仿真器 | [视频教程](https://www.bilibili.com/video/BV1SKyWYAE1L?vd_source=ada169d3e86c0743d314286c50fbabc1) | - | 无线调试下载 | CMSIS-DAP 协议 |
+
+### C. 通信与传感器模块
+
+| 模块名称 | 网盘链接 | 提取码 | 技术说明 |
+|----------|----------|--------|----------|
+| nRF24L01无线串口 | [链接](https://pan.baidu.com/s/1xkkUM2k5WmbYigenc7sZ_Q) | `b1oo` | 2.4G 无线点对点通信 |
+| nRF24L01无线模块资料包 | [链接](https://pan.baidu.com/s/11ZTARu_86LCGifKjZULrvA) | `yqly` | 多节点组网方案 |
+| K230视觉模块课程 | [教程](https://www.yahboom.com/study/K230) | `pmff` | 嘉楠 AI 视觉芯片开发 |
+| 塔联逻辑分析仪 | [链接](https://pan.baidu.com/s/1myz-iuHV1eZ2cZETUGVP-g?pwd=68yo) | `68yo` | 数字信号时序分析工具 |
+
+### D. 电机控制与驱动（FOC/电调）
+
+| 资源 | 网盘链接 | 提取码 | 技术领域 |
+|------|----------|--------|----------|
+| ESP32-FOC电机驱动板 | [链接](https://pan.baidu.com/s/1EuhwifGBV2Po64a_47iV3Q?pwd=6hv0) | `6hv0` | 无刷电机矢量控制 |
+| C_BM50驱控一体无刷电机 | [链接](https://pan.baidu.com/s/1ANVQ4UFU3ve5kFZRXsdsTg) | - | 集成驱动无刷电机 |
+| AM32电调调参卡 | [链接](https://pan.baidu.com/s/1TGV1n_ZyOdKlT_6KmpXXBA?pwd=sxtc) | `sxtc` | 电子调速器配置 |
+| PWM直流电机调速模块3A | [教程](https://www.bilibili.com/opus/1010608867079356423) | - | H 桥驱动原理 |
+| 四路电机驱动模块 | [链接](https://pan.baidu.com/s/1EIyMZMTXlu3bg6m3UhKaQg) | `wz5a` | 多电机协同控制 |
+
+### E. ESP8266/ESP32 物联网方案
+
+| 模块 | 网盘链接 | 提取码 | 应用场景 |
+|------|----------|--------|----------|
+| ESP8266开发包 | [链接](https://pan.baidu.com/s/1X-_xI9pWe-FH5rPXtVJ1qQ?pwd=a5c8) | `a5c8` | WiFi 物联网基础 |
+| ESP-01模块 | [链接](https://pan.baidu.com/s/1MY-ijiF1wBZDxOW0MjKMCQ?pwd=qmep) | `qmep` | 最小系统 WiFi 透传 |
+| ESP-01S模块 | [链接](https://pan.baidu.com/s/1G_tb3Xz51RJBdjPBQHAXug?pwd=6yk5) | `6yk5` | 升级版带指示灯 |
+| ESP32-Relay继电器 | [链接](https://pan.baidu.com/s/1fZm-3bHHgeZ2bd9IzNDN1g?pwd=xp7j) | `xp7j` | 物联网开关控制 |
+
+### F. 第三方开源与社区资源
+
+| 资源 | 链接 | 提取码/说明 |
+|------|------|-------------|
+| NEC团队企业网盘总库 | [百度网盘](https://pan.baidu.com/s/1W2RayBVYXKY17Z5m9e7jlA?pwd=veww) | `veww`（全部资料汇总） |
+| PCBFLY设计资源 | [链接](https://pan.baidu.com/s/1i1S_iV8H6vND6trNlSHuLQ?pwd=1234) | `1234` |
+| 各大高校气动教程 | [链接](https://pan.baidu.com/s/1fjMW7g9zQfWwaDRmbepnww?pwd=8888) | `8888` |
+| UI设计资料 | [链接](https://pan.baidu.com/s/1Br8vvkiS3YGGjmcoN2HSVA?pwd=2222) | `2222` |
+| Abrobot资料库 | [远程下载器](https://product.abrobot.club/) | - |
+| esp32远程下载器 | [语雀文档](https://www.yuque.com/eemaker/wiki) | - |
+| maker DAPlink智能手柄 | [文档](https://emakefun.github.io/emakefun-docsify/#/zh-cn/esp32/maker_esp32/maker_esp32) | - |
+| ESP32语音开发 | [飞书文档](https://nomd375nyu.feishu.cn/wiki/VyKYwaOzgiLXvEkdfhicZuBlnrb) | - |
+
+---
+
+## 开发软件与工具
+
+**工程软件下载**：
+[软件管家公众号资源](https://mp.weixin.qq.com/s/TMdeXU_FnC2hX054ixtj0g)（SolidWorks、Altium Designer、Keil、VSCode 等开发环境）
+
+---
+
+## 仓库标识
+
+**NEC Logo**：
+[https://gitee.com/darrenpig/new_energy_coder_club/raw/master/Image/Logo.png](https://gitee.com/darrenpig/new_energy_coder_club/raw/master/Image/Logo.png)
+
+---
+
+## 使用建议
+
+1. **机械组**：优先下载 A 类资源（SolidWorks 库）+ 铝型材设计软件
+2. **硬件组**：从 B 类亚博套件入手，逐步过渡到 D 类 FOC 电机控制
+3. **软件组**：重点学习 MicroROS 系列（B 类）+ ESP32 物联网方案（E 类）
+
+---
+
+## 资源汇总速查表
+
+| 资源 | 提取码 | 说明 |
+|------|--------|------|
+| [82套2024FRC发球机器人图纸](https://pan.baidu.com/s/1Lb-6-qHJWfZHe0Xt7gENZA?pwd=qqqw) | `qqqw` | 解压密码：`www.yuanjingziyuan.com` |
+| [麦克纳姆轮资源](https://pan.baidu.com/s/1tcdy3Pal2nWJrMsk9uTvZg?pwd=8888) | `8888` | 解压密码：`www.yuanjingziyuan.com` |
+| [驱动轮资源](https://pan.baidu.com/s/1ev6YT357j8gE5YqN-pSvKw?pwd=8888) | `8888` | 解压密码：`www.yuanjingziyuan.com` |
+| [各大高校气动教程](https://pan.baidu.com/s/1fjMW7g9zQfWwaDRmbepnww?pwd=8888) | `8888` | 解压密码：`www.yuanjingziyuan.com` |
+| [SW标准库](https://pan.baidu.com/s/1q5CYWZu2qm4OTV5Cb_3F8Q?pwd=8888) | `8888` | 解压密码：`www.yuanjingziyuan.com` |
+| [SW齿轮](https://pan.baidu.com/s/1fU57t5LUnv7MZXY-dB0FKA?pwd=6666) | `6666` | 解压密码：`www.yuanjingziyuan.com` |
+| [UI设计资料](https://pan.baidu.com/s/1Br8vvkiS3YGGjmcoN2HSVA?pwd=2222) | `2222` | - |
+| [SW螺母螺丝](https://pan.baidu.com/s/1Uh7PgGlxNxghdW2g_wh8oA?pwd=8888) | `8888` | 解压密码：`www.yuanjingziyuan.com` |
+| [SW气缸](https://pan.baidu.com/s/1GyOpvLqisBan5XhT6dwzzg?pwd=8888) | `8888` | 解压密码：`www.yuanjingziyuan.com` |
+| [NEC团队企业百度网盘资料](https://pan.baidu.com/s/1W2RayBVYXKY17Z5m9e7jlA?pwd=veww) | `veww` | 全部资料汇总 |
+| [MayCAD 铝型材设计软件](https://pan.baidu.com/s/1NcGkC6xRrA6sJ226mdPGIA?pwd=6yq5) | `6yq5` | 2020/4040 欧标铝方通 |
+| [Yu_XBai 平衡小车](https://pan.baidu.com/s/1paNSVK26OVEOqIxOA-GkYg?pwd=xdt7) | `xdt7` | - |
+| [MechDog 机器狗](https://pan.baidu.com/s/1LahXRI-P0pEQ-tDn42GBPA?pwd=d5p2) | `d5p2` | - |
+
+---
+
+## 来源
+
+本指南整理自 Gitee Issue：[#IC9NDX](https://gitee.com/darrenpig/new_energy_coder_club/issues/IC9NDX)

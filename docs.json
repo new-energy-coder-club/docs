@@ -159,6 +159,7 @@
           {
             "group": "社区与活动",
             "pages": [
+              "community/nec2026-community",
               "community/mentors",
               "community/a416-lab",
               "community/discord",
@@ -213,6 +214,7 @@
               "wiki/safety-and-standards",
               "wiki/training-resources",
               "wiki/hku-software-trainee",
+              "wiki/tech-resources",
               "wiki/experience-index",
               "wiki/nec-plus-membership"
             ]
