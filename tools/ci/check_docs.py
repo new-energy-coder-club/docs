@@ -74,6 +74,9 @@ EXTERNAL_LINK_ALLOWLIST = {
     "edu.csdn.net",
     "fishros.com",
     "lightburnsoftware.com",
+    "openeuler.org",
+    "www.rt-thread.io",
+    "www.yahboom.com",
 }
 
 
