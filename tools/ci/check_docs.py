@@ -71,6 +71,9 @@ EXTERNAL_LINK_ALLOWLIST = {
     "qm.qq.com",
     "www.cnrobocon.net",
     "docs.m2stud.io",
+    "edu.csdn.net",
+    "fishros.com",
+    "lightburnsoftware.com",
 }
 
 
