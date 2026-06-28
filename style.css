@@ -113,6 +113,39 @@ html.dark nav.sidebar p {
   padding: var(--space-4) var(--space-4) var(--space-2);
 }
 
+/* Sidebar header / logo area - should never look like a button */
+aside.sidebar > div:first-child,
+nav.sidebar > div:first-child,
+aside.sidebar header,
+nav.sidebar header,
+aside.sidebar [class*="logo"],
+nav.sidebar [class*="logo"],
+html.dark aside.sidebar > div:first-child,
+html.dark nav.sidebar > div:first-child,
+html.dark aside.sidebar header,
+html.dark nav.sidebar header,
+html.dark aside.sidebar [class*="logo"],
+html.dark nav.sidebar [class*="logo"] {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+aside.sidebar > div:first-child a,
+nav.sidebar > div:first-child a,
+aside.sidebar header a,
+nav.sidebar header a,
+html.dark aside.sidebar > div:first-child a,
+html.dark nav.sidebar > div:first-child a,
+html.dark aside.sidebar header a,
+html.dark nav.sidebar header a {
+  background-color: transparent !important;
+  border: none !important;
+  color: var(--text-primary) !important;
+  font-weight: 600;
+  font-size: 14px;
+}
+
 /* Sidebar links */
 aside.sidebar a,
 nav.sidebar a,
@@ -136,7 +169,7 @@ html.dark nav.sidebar a:hover {
   background-color: var(--bg-elevated);
 }
 
-/* Active sidebar item - subtle left indicator only */
+/* Active sidebar item - minimal indicator */
 aside.sidebar [aria-current="page"],
 aside.sidebar a[data-active="true"],
 aside.sidebar a[aria-selected="true"],
@@ -149,11 +182,11 @@ html.dark aside.sidebar a[aria-selected="true"],
 html.dark nav.sidebar [aria-current="page"],
 html.dark nav.sidebar a[data-active="true"],
 html.dark nav.sidebar a[aria-selected="true"] {
-  color: var(--mck-primary) !important;
+  color: var(--text-primary) !important;
   background-color: transparent !important;
-  border-left: 2px solid var(--mck-primary) !important;
-  border-radius: 0;
-  font-weight: 500;
+  border-left: 2px solid var(--text-link) !important;
+  border-radius: 0 !important;
+  font-weight: 400 !important;
 }
 
 /* Right-side TOC */
@@ -208,7 +241,7 @@ html.dark [role="complementary"] a:hover {
   border-left-color: var(--text-tertiary);
 }
 
-/* Active TOC item - subtle text color + left border */
+/* Active TOC item - minimal indicator */
 .toc [aria-current="true"],
 .toc a[data-active="true"],
 .toc a[aria-selected="true"],
@@ -227,10 +260,10 @@ html.dark [class*="toc"] a[aria-selected="true"],
 html.dark [role="complementary"] [aria-current="true"],
 html.dark [role="complementary"] a[data-active="true"],
 html.dark [role="complementary"] a[aria-selected="true"] {
-  color: var(--text-link) !important;
+  color: var(--text-primary) !important;
   background-color: transparent !important;
-  border-left-color: var(--mck-primary) !important;
-  font-weight: 400;
+  border-left-color: var(--text-link) !important;
+  font-weight: 400 !important;
 }
 
 /* Cards */
