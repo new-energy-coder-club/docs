@@ -169,24 +169,78 @@ html.dark nav.sidebar a:hover {
   background-color: var(--bg-elevated);
 }
 
-/* Active sidebar item - minimal indicator */
-aside.sidebar [aria-current="page"],
+/* Active sidebar item - kill solid button look, keep only left indicator */
+aside.sidebar [aria-current],
+aside.sidebar [aria-current] *,
+aside.sidebar a[data-active="true"],
+aside.sidebar a[data-active="true"] *,
+aside.sidebar a[aria-selected="true"],
+aside.sidebar a[aria-selected="true"] *,
+aside.sidebar [class*="active"],
+aside.sidebar [class*="active"] *,
+aside.sidebar [class*="current"],
+aside.sidebar [class*="current"] *,
+nav.sidebar [aria-current],
+nav.sidebar [aria-current] *,
+nav.sidebar a[data-active="true"],
+nav.sidebar a[data-active="true"] *,
+nav.sidebar a[aria-selected="true"],
+nav.sidebar a[aria-selected="true"] *,
+nav.sidebar [class*="active"],
+nav.sidebar [class*="active"] *,
+nav.sidebar [class*="current"],
+nav.sidebar [class*="current"] *,
+html.dark aside.sidebar [aria-current],
+html.dark aside.sidebar [aria-current] *,
+html.dark aside.sidebar a[data-active="true"],
+html.dark aside.sidebar a[data-active="true"] *,
+html.dark aside.sidebar a[aria-selected="true"],
+html.dark aside.sidebar a[aria-selected="true"] *,
+html.dark aside.sidebar [class*="active"],
+html.dark aside.sidebar [class*="active"] *,
+html.dark aside.sidebar [class*="current"],
+html.dark aside.sidebar [class*="current"] *,
+html.dark nav.sidebar [aria-current],
+html.dark nav.sidebar [aria-current] *,
+html.dark nav.sidebar a[data-active="true"],
+html.dark nav.sidebar a[data-active="true"] *,
+html.dark nav.sidebar a[aria-selected="true"],
+html.dark nav.sidebar a[aria-selected="true"] *,
+html.dark nav.sidebar [class*="active"],
+html.dark nav.sidebar [class*="active"] *,
+html.dark nav.sidebar [class*="current"],
+html.dark nav.sidebar [class*="current"] * {
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+/* Active sidebar link text color and left indicator */
+aside.sidebar [aria-current],
 aside.sidebar a[data-active="true"],
 aside.sidebar a[aria-selected="true"],
-nav.sidebar [aria-current="page"],
+aside.sidebar [class*="active"]:is(a, span),
+aside.sidebar [class*="current"]:is(a, span),
+nav.sidebar [aria-current],
 nav.sidebar a[data-active="true"],
 nav.sidebar a[aria-selected="true"],
-html.dark aside.sidebar [aria-current="page"],
+nav.sidebar [class*="active"]:is(a, span),
+nav.sidebar [class*="current"]:is(a, span),
+html.dark aside.sidebar [aria-current],
 html.dark aside.sidebar a[data-active="true"],
 html.dark aside.sidebar a[aria-selected="true"],
-html.dark nav.sidebar [aria-current="page"],
+html.dark aside.sidebar [class*="active"]:is(a, span),
+html.dark aside.sidebar [class*="current"]:is(a, span),
+html.dark nav.sidebar [aria-current],
 html.dark nav.sidebar a[data-active="true"],
-html.dark nav.sidebar a[aria-selected="true"] {
+html.dark nav.sidebar a[aria-selected="true"],
+html.dark nav.sidebar [class*="active"]:is(a, span),
+html.dark nav.sidebar [class*="current"]:is(a, span) {
   color: var(--text-primary) !important;
-  background-color: transparent !important;
   border-left: 2px solid var(--text-link) !important;
-  border-radius: 0 !important;
   font-weight: 400 !important;
+  padding-left: 10px !important;
 }
 
 /* Right-side TOC */
@@ -241,27 +295,105 @@ html.dark [role="complementary"] a:hover {
   border-left-color: var(--text-tertiary);
 }
 
-/* Active TOC item - minimal indicator */
-.toc [aria-current="true"],
+/* Active TOC item - kill solid button look, keep only left indicator */
+.toc [aria-current],
+.toc [aria-current] *,
+.toc a[data-active="true"],
+.toc a[data-active="true"] *,
+.toc a[aria-selected="true"],
+.toc a[aria-selected="true"] *,
+.toc [class*="active"],
+.toc [class*="active"] *,
+.toc [class*="current"],
+.toc [class*="current"] *,
+[class*="toc"] [aria-current],
+[class*="toc"] [aria-current] *,
+[class*="toc"] a[data-active="true"],
+[class*="toc"] a[data-active="true"] *,
+[class*="toc"] a[aria-selected="true"],
+[class*="toc"] a[aria-selected="true"] *,
+[class*="toc"] [class*="active"],
+[class*="toc"] [class*="active"] *,
+[class*="toc"] [class*="current"],
+[class*="toc"] [class*="current"] *,
+[role="complementary"] [aria-current],
+[role="complementary"] [aria-current] *,
+[role="complementary"] a[data-active="true"],
+[role="complementary"] a[data-active="true"] *,
+[role="complementary"] a[aria-selected="true"],
+[role="complementary"] a[aria-selected="true"] *,
+[role="complementary"] [class*="active"],
+[role="complementary"] [class*="active"] *,
+[role="complementary"] [class*="current"],
+[role="complementary"] [class*="current"] *,
+html.dark .toc [aria-current],
+html.dark .toc [aria-current] *,
+html.dark .toc a[data-active="true"],
+html.dark .toc a[data-active="true"] *,
+html.dark .toc a[aria-selected="true"],
+html.dark .toc a[aria-selected="true"] *,
+html.dark .toc [class*="active"],
+html.dark .toc [class*="active"] *,
+html.dark .toc [class*="current"],
+html.dark .toc [class*="current"] *,
+html.dark [class*="toc"] [aria-current],
+html.dark [class*="toc"] [aria-current] *,
+html.dark [class*="toc"] a[data-active="true"],
+html.dark [class*="toc"] a[data-active="true"] *,
+html.dark [class*="toc"] a[aria-selected="true"],
+html.dark [class*="toc"] a[aria-selected="true"] *,
+html.dark [class*="toc"] [class*="active"],
+html.dark [class*="toc"] [class*="active"] *,
+html.dark [class*="toc"] [class*="current"],
+html.dark [class*="toc"] [class*="current"] *,
+html.dark [role="complementary"] [aria-current],
+html.dark [role="complementary"] [aria-current] *,
+html.dark [role="complementary"] a[data-active="true"],
+html.dark [role="complementary"] a[data-active="true"] *,
+html.dark [role="complementary"] a[aria-selected="true"],
+html.dark [role="complementary"] a[aria-selected="true"] *,
+html.dark [role="complementary"] [class*="active"],
+html.dark [role="complementary"] [class*="active"] *,
+html.dark [role="complementary"] [class*="current"],
+html.dark [role="complementary"] [class*="current"] * {
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+/* Active TOC link text color and left indicator */
+.toc [aria-current],
 .toc a[data-active="true"],
 .toc a[aria-selected="true"],
-[class*="toc"] [aria-current="true"],
+.toc [class*="active"]:is(a, span),
+.toc [class*="current"]:is(a, span),
+[class*="toc"] [aria-current],
 [class*="toc"] a[data-active="true"],
 [class*="toc"] a[aria-selected="true"],
-[role="complementary"] [aria-current="true"],
+[class*="toc"] [class*="active"]:is(a, span),
+[class*="toc"] [class*="current"]:is(a, span),
+[role="complementary"] [aria-current],
 [role="complementary"] a[data-active="true"],
 [role="complementary"] a[aria-selected="true"],
-html.dark .toc [aria-current="true"],
+[role="complementary"] [class*="active"]:is(a, span),
+[role="complementary"] [class*="current"]:is(a, span),
+html.dark .toc [aria-current],
 html.dark .toc a[data-active="true"],
 html.dark .toc a[aria-selected="true"],
-html.dark [class*="toc"] [aria-current="true"],
+html.dark .toc [class*="active"]:is(a, span),
+html.dark .toc [class*="current"]:is(a, span),
+html.dark [class*="toc"] [aria-current],
 html.dark [class*="toc"] a[data-active="true"],
 html.dark [class*="toc"] a[aria-selected="true"],
-html.dark [role="complementary"] [aria-current="true"],
+html.dark [class*="toc"] [class*="active"]:is(a, span),
+html.dark [class*="toc"] [class*="current"]:is(a, span),
+html.dark [role="complementary"] [aria-current],
 html.dark [role="complementary"] a[data-active="true"],
-html.dark [role="complementary"] a[aria-selected="true"] {
+html.dark [role="complementary"] a[aria-selected="true"],
+html.dark [role="complementary"] [class*="active"]:is(a, span),
+html.dark [role="complementary"] [class*="current"]:is(a, span) {
   color: var(--text-primary) !important;
-  background-color: transparent !important;
   border-left-color: var(--text-link) !important;
   font-weight: 400 !important;
 }

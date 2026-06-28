@@ -45,7 +45,6 @@
             "icon": "rocket",
             "pages": [
               "start-here/index",
-              "quickstart",
               "development"
             ]
           },
