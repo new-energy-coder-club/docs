@@ -267,11 +267,7 @@
           "href": "https://www.cnrobocon.net/",
           "icon": "robot"
         },
-        {
-          "anchor": "Skill 分支文档",
-          "href": "/community/skill-branch",
-          "icon": "book-open"
-        },
+
         {
           "anchor": "加入社区",
           "href": "/community/join-collection",
