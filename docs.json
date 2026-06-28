@@ -246,51 +246,32 @@
       }
     ],
     "global": {
-      "anchors": [
-        {
-          "anchor": "官方网站",
-          "href": "https://www.newenergycoder.club/",
-          "icon": "globe"
-        },
-        {
-          "anchor": "Gitee 仓库",
-          "href": "https://gitee.com/darrenpig/new_energy_coder_club",
-          "icon": "code"
-        },
-        {
-          "anchor": "GitHub 镜像",
-          "href": "https://github.com/Darrenpig/new_energy_coder_club",
-          "icon": "github"
-        },
-        {
-          "anchor": "ROBOCON 官网",
-          "href": "https://www.cnrobocon.net/",
-          "icon": "robot"
-        },
-
-        {
-          "anchor": "加入社区",
-          "href": "/community/join-collection",
-          "icon": "user-plus"
-        }
-      ]
+      "anchors": []
     }
   },
   "navbar": {
     "links": [
       {
-        "label": "官方网站",
+        "label": "官网",
         "href": "https://www.newenergycoder.club/"
       },
       {
-        "label": "问题反馈",
-        "href": "https://gitee.com/darrenpig/new_energy_coder_club/issues"
+        "label": "Gitee",
+        "href": "https://gitee.com/darrenpig/new_energy_coder_club"
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/Darrenpig/new_energy_coder_club"
+      },
+      {
+        "label": "ROBOCON",
+        "href": "https://www.cnrobocon.net/"
       }
     ],
     "primary": {
       "type": "button",
       "label": "加入社区",
-      "href": "/start-here/60min"
+      "href": "/community/join-collection"
     }
   },
   "contextual": {

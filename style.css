@@ -634,46 +634,21 @@ html.dark .hero-gsap .hero-subtitle {
   line-height: 1.6;
 }
 
-/* Fake centered search prompt (visual only) */
-.hero-search,
-html.dark .hero-search {
-  display: flex;
-  align-items: center;
-  max-width: 640px;
-  margin: 0 auto 40px;
-  padding: 14px 18px;
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-default);
+/* Hero CTA: larger primary button */
+.hero-cta,
+html.dark .hero-cta {
+  justify-content: center;
+  margin: 8px 0 40px;
+}
+
+.hero-cta button,
+.hero-cta a,
+html.dark .hero-cta button,
+html.dark .hero-cta a {
+  padding: 14px 32px;
+  font-size: 16px;
+  font-weight: 600;
   border-radius: 999px;
-  color: var(--text-tertiary);
-  font-size: 14px;
-  cursor: text;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.hero-search:hover,
-html.dark .hero-search:hover {
-  border-color: var(--mck-primary);
-  box-shadow: 0 0 0 3px rgba(10, 228, 72, 0.1);
-}
-
-.hero-search svg,
-html.dark .hero-search svg {
-  width: 18px;
-  height: 18px;
-  margin-right: 12px;
-  color: var(--text-tertiary);
-}
-
-.hero-search kbd,
-html.dark .hero-search kbd {
-  margin-left: auto;
-  padding: 4px 8px;
-  background-color: var(--bg-elevated);
-  border: 1px solid var(--border-default);
-  border-radius: var(--radius-md);
-  font-size: 12px;
-  color: var(--text-secondary);
 }
 
 /* Make hero banner blend with dark background */
