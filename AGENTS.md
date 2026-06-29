@@ -43,7 +43,7 @@ mint dev
 
 ## 内容来源
 
-- `wiki/` 目录为飞书 Wiki 导出快照，通过 `tools/feishu-import/` 更新
+- `wiki/` 目录为飞书 Wiki 导出快照，可通过 `.kimi/skills/feishu-to-nec-mdx/` Skill 从飞书导入/更新
 - `competition/`、`curc26/` 下的历史文档正在逐步迁移到 Mintlify 导航
 
 ## 持续集成
