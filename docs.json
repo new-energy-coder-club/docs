@@ -141,15 +141,19 @@
               "competition/robocon",
               "competition/robocon2026-registration",
               "competition/energy-saving",
-              "competition/aic"
+              "competition/aic",
+              "competition/aic-algorithm-2026",
+              "competition/curc-resources"
             ]
           },
           {
             "group": "CURC 2026",
             "pages": [
               "curc26/mechanical-sig/about",
+              "curc26/proposal",
               "curc26/mechanical-sig/mechanical",
               "curc26/mechanical-sig/electrical",
+              "curc26/mechanical-sig/capabilities",
               "curc26/vision-sig/about",
               "curc26/operation-sig/about"
             ]
