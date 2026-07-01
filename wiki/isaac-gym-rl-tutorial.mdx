@@ -111,7 +111,7 @@ https://github.com/isaac-sim/IsaacGymEnvs/blob/main/docs/rl_examples.md
 
 ## 1.1 安装与配置软件开发环境：
 
-参考资料：[Anaconda安装时默认python版本改成其他版本的两种方式_python_脚本之家](https%3A%2F%2Fwww.jb51.net%2Fpython%2F301746qcc.htm)
+参考资料：[Anaconda安装时默认python版本改成其他版本的两种方式_python_脚本之家](https://www.jb51.net/python/301746qcc.htm)
 
 下面给出对IsaccGym下的整体配置环境，首先需要保证Conda安装完毕，**然后需要配置如下的软件环境.bashrc，其中后三个需要修改envs为后面建立虚拟空间的名称**，否则在运行中会保存：
 ```bash
@@ -208,7 +208,6 @@ conda create -n OmniRobCtrl python=3.8.10升级CUDA 12.1+pytorch 2.3：
 
 （1）安装CUDA12.1
 
-<!-- Unsupported block type: 999 -->
 ```python
 wget https://developer.download.nvidia.com/compute/cuda/12.1.0/local_installers/cuda-repo-ubuntu2004-12-1-local_12.1.0-530.30.02-1_amd64.deb
 sudo dpkg -i cuda-repo-ubuntu2004-12-1-local_12.1.0-530.30.02-1_amd64.deb
@@ -254,8 +253,6 @@ sudo chmod a+r /usr/local/cuda-10.1/include/* /usr/local/cuda-10.1/lib64/*
 ```
 
 （3）安装libtorch
-
-<!-- Unsupported block type: 999 -->
 
 ![media](https://pub-7714d99fbd654288a82d7b2f7be01efb.r2.dev/isaac-gym-rl/013-image-image-18.png)
 
@@ -520,7 +517,7 @@ def compute_observations(self, env_ids=None):
 numpy.squeeze(a, axis=None)
 ```
 
-其中，参数a是需要操作的数组，axis是要删除的维度。若不指定axis参数，则squeeze()方法会[删除所有](https%3A%2F%2Fso.csdn.net%2Fso%2Fsearch%3Fq%3D%25E5%2588%25A0%25E9%2599%25A4%25E6%2589%2580%25E6%259C%2589%26spm%3D1001.2101.3001.7020)长度为1的维度，主要功能时降维排列：
+其中，参数a是需要操作的数组，axis是要删除的维度。若不指定axis参数，则squeeze()方法会[删除所有](https://so.csdn.net/so/search?q=%E5%88%A0%E9%99%A4%E6%89%80%E6%9C%89&spm=1001.2101.3001.7020)长度为1的维度，主要功能时降维排列：
 
 ![media](https://pub-7714d99fbd654288a82d7b2f7be01efb.r2.dev/isaac-gym-rl/015-image-image-20.png)
 
@@ -883,7 +880,7 @@ print(a)print(a1)print(a2)
 
 > 注：此处原飞书文档包含一个嵌入表格，已省略，详情请查看原文档。
 
-## 3.1 [LocomotionWithNP3O](https%3A%2F%2Fgithub.com%2Fzeonsunlightyu%2FLocomotionWithNP3O)项目学习
+## 3.1 [LocomotionWithNP3O](https://github.com/zeonsunlightyu/LocomotionWithNP3O)项目学习
 
 通过学习leggedgym例子其基本的内容和一些基本的软件接口如下：
 
@@ -1196,17 +1193,9 @@ URDF导出惯量不正确，正确导出方法：
 
 **操作流程**：选中你的link部件后，**选择 工具–》评估–》质量属性**，就可以得到惯性量了。要注意坐标和单位，urdf中用的是千克平方米，而质量**属性中默认显示的是克平方毫米**，而1克每平方毫米=1e-9千克每平方。不过你可以通过设置“质量属性”中的选项来选定单位：
 
-<!-- Unsupported block type: 999 -->
-
 ![media](https://pub-7714d99fbd654288a82d7b2f7be01efb.r2.dev/isaac-gym-rl/039-image-image-44.png)
 
 首先，在Solidworks左上角的工具栏中选择**“评估”→“质量属性”，即可打开“质量属性”属性框，之后在URDF导出工具中在Link界面选择对应的结构体名称，在质量属性中进行重算：**
-
-<!-- Unsupported block type: 999 -->
-
-<!-- Unsupported block type: 999 -->
-
-<!-- Unsupported block type: 999 -->
 
 ![media](https://pub-7714d99fbd654288a82d7b2f7be01efb.r2.dev/isaac-gym-rl/040-image-image-45.png)
 
@@ -1670,7 +1659,7 @@ wandb.log(wandb_dict, step=locs['it'])
 
 则在每次启动时选择已有账户并复制API（不会显示），回车后启动训练则会将过程中的log数据上传。
 
-登录网站：https://wandb.ai注册用户，训练时候需要保证能联网，则数据可以上传，通过刷新网络了解最新的训练结果：
+登录网站：[wandb.ai](https://wandb.ai) 注册用户，训练时候需要保证能联网，则数据可以上传，通过刷新网络了解最新的训练结果：
 
       ![media](https://pub-7714d99fbd654288a82d7b2f7be01efb.r2.dev/isaac-gym-rl/053-image-image-58.png)
 
@@ -2572,7 +2561,7 @@ struct _msg_response
 
 > 本教程参考了https://blog.csdn.net/qq_41451125/article/details/116262611这个帖子。
 > 
-> 1. 安装miniconda, 在linux版本里面选择[Miniconda3 Linux-aarch64 64-bit](https%3A%2F%2Frepo.anaconda.com%2Fminiconda%2FMiniconda3-latest-Linux-aarch64.sh)版本，创建虚拟环境(python=3.6)。直接创建可能提示当前渠道找不到python3.6*，这时可以修改channel
+> 1. 安装miniconda, 在linux版本里面选择[Miniconda3 Linux-aarch64 64-bit](https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh)版本，创建虚拟环境(python=3.6)。直接创建可能提示当前渠道找不到python3.6*，这时可以修改channel
 > ```bash
 conda config --add channels conda-forge
 ```
