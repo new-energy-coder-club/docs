@@ -77,6 +77,7 @@ EXTERNAL_LINK_ALLOWLIST = {
     "openeuler.org",
     "www.rt-thread.io",
     "www.yahboom.com",
+    "cdn.newenergycoder.club",
 }
 
 

@@ -1,0 +1,171 @@
+---
+title: "AtomCode 安装与 HXC/AM32 底盘开发环境配置"
+description: "通过 AtomCode AI 终端安装、拉取 NEC Skill 分支，并在 CLI 中配置 HXC 开发 AM32 底盘环境。"
+---
+
+# Day02 · AtomCode 安装与 HXC/AM32 底盘开发环境配置
+
+本教程介绍如何安装 AtomCode AI 终端，并通过两条核心命令启动它；随后拉取 `Darrenpig/new_energy_coder_club` 的 Skill 分支，并在 AtomCode CLI 中配置 HXC 开发 AM32 底盘环境。
+
+---
+
+## 1. 安装 AtomCode
+
+AtomCode 是一款开源终端级 AI 编码助手，支持 Windows、macOS、Linux 与 HarmonyOS PC。
+
+### 1.1 Windows（PowerShell）
+
+以管理员身份打开 PowerShell，执行安装脚本：
+
+```powershell
+irm https://raw.atomgit.com/atomgit_atomcode/atomcode/raw/main/scripts/install.ps1 | iex
+```
+
+脚本会自动将 `atomcode` 加入 PATH（通常为 `~/.atomcode/bin` 或 `C:\Users\<用户名>\.atomcode\bin`）。
+
+### 1.2 macOS / Linux / HarmonyOS PC
+
+打开终端，执行：
+
+```bash
+curl -fsSL https://raw.atomgit.com/atomgit_atomcode/atomcode/raw/main/scripts/install.sh | sh
+```
+
+安装完成后，重新加载 shell 配置或重启终端：
+
+```bash
+source ~/.bashrc  # 或 ~/.zshrc
+```
+
+### 1.3 验证安装
+
+```bash
+atomcode --version
+```
+
+正常应输出版本号，例如 `atomcode 4.25.7`。
+
+---
+
+## 2. 两条核心命令
+
+| 步骤 | 命令 | 作用 |
+| --- | --- | --- |
+| 安装 | `irm ... \| iex` 或 `curl ... \| sh` | 一键安装 AtomCode 到本地 |
+| 启动 | `atomcode` | 进入 AI 终端会话 |
+
+启动后，你会看到 AtomCode 的交互界面，可以直接用自然语言描述任务。
+
+---
+
+## 3. 拉取 Skill 分支
+
+在 AtomCode 终端中，执行以下命令克隆 NEC 仓库的 Skill 分支到本地：
+
+```bash
+git clone -b skill https://gitee.com/Darrenpig/new_energy_coder_club.git
+```
+
+> 如果网络较慢，也可以先配置 Git 使用 AtomGit 镜像或 SSH 密钥。
+
+进入仓库目录：
+
+```bash
+cd new_energy_coder_club
+```
+
+确认当前分支为 `skill`：
+
+```bash
+git branch --show-current
+```
+
+---
+
+## 4. 配置 HXC 开发 AM32 底盘环境
+
+进入 `new_energy_coder_club` 目录后，直接启动 AtomCode 并输入配置需求：
+
+```bash
+cd new_energy_coder_club
+atomcode
+```
+
+在 AtomCode CLI 中输入类似以下提示词：
+
+```text
+帮我配置 HXC 开发 AM32 底盘环境，包括安装所需依赖、检查串口/烧录工具、准备 AM32 电调固件配置。
+```
+
+AtomCode 会根据仓库内的 Skill 配置和项目结构，自动完成以下常见步骤：
+
+1. 检查系统是否安装 Python、pip、pyserial 等依赖。
+2. 检查 ST-Link / USB 转串口驱动是否正确识别。
+3. 下载或定位 AM32 配置工具（AM32 Config Tool）。
+4. 根据 HXC 底盘硬件清单，生成或校验电机参数文件。
+5. 输出下一步烧录/调试命令。
+
+> 如果你的硬件版本或电调型号有特殊要求，可以在提示词中补充，例如：「使用 HXC v2.1 底盘、AM32 F051 电调」。
+
+---
+
+## 5. 常用后续命令
+
+在 AtomCode 会话中，可以继续使用以下命令推进工作：
+
+```text
+/undo              撤销上一步修改
+/help              查看 AtomCode 命令列表
+/exit              退出 AtomCode
+```
+
+如需手动烧录 AM32 固件，常见命令示例：
+
+```bash
+# 使用 AM32 官方烧录工具（需提前安装）
+am32-config-tool --port /dev/ttyUSB0 --firmware firmware.hex
+```
+
+Windows 下串口号通常为 `COM3`、`COM4` 等；Linux/macOS 下通常为 `/dev/ttyUSB0` 或 `/dev/ttyACM0`。
+
+---
+
+## 6. 常见问题
+
+### Q1：PowerShell 执行策略阻止安装脚本？
+
+临时允许执行：
+
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+### Q2：安装后 `atomcode` 命令找不到？
+
+检查 PATH 是否包含 `~/.atomcode/bin`，或手动添加：
+
+```bash
+export PATH="$HOME/.atomcode/bin:$PATH"
+```
+
+### Q3：拉取 Skill 分支失败？
+
+确认 Gitee 账号有访问权限，或改用 HTTPS/SSH：
+
+```bash
+git clone -b skill git@gitee.com:Darrenpig/new_energy_coder_club.git
+```
+
+### Q4：AM32 配置工具无法识别电调？
+
+- 确认电调已上电并与电脑通过 USB 连接。
+- 确认驱动已安装（Windows 可设备管理器查看）。
+- 确认选择了正确的串口与波特率。
+
+---
+
+## 7. 相关资源
+
+- [AtomCode 官方文档](https://atomcode.atomgit.com/)
+- [AM32 电调固件 GitHub](https://github.com/am32-firmware/am32)
+- [NEC 主仓库（Skill 分支）](https://gitee.com/Darrenpig/new_energy_coder_club/tree/skill)
