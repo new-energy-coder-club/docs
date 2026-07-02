@@ -59,6 +59,18 @@
             ]
           },
           {
+            "group": "10 日集训",
+            "icon": "calendar-days",
+            "pages": [
+              "training/index",
+              "training/day01-onboarding",
+              "training/day02-mechanical-basics",
+              "training/day03-mechanical-modeling",
+              "training/day04-manufacturing",
+              "training/day05-chassis-design"
+            ]
+          },
+          {
             "group": "项目模块",
             "icon": "cubes",
             "pages": [
@@ -89,6 +101,7 @@
                 ]
               },
               "mechanical/ek-team-25-mechanical-training",
+              "mechanical/ek-mechanical-solidworks",
               "mechanical/rhino-modeling-tutorial"
             ]
           },
@@ -105,7 +118,9 @@
               "embedded-software/control",
               "embedded-software/development-setup",
               "embedded-software/vibe-coding-debug",
-              "embedded-software/hxc-motor-control"
+              "embedded-software/hxc-motor-control",
+              "embedded-software/cube-mars-ak70-10-kv100",
+              "embedded-software/atomcode-hxc-am32-setup"
             ]
           },
           {
@@ -117,7 +132,8 @@
               "ai-tools/windsurf",
               "ai-tools/mcp-server",
               "ai-tools/openclaw-setup",
-              "ai-tools/ai-feasibility-study"
+              "ai-tools/ai-feasibility-study",
+              "ai-tools/isaac-gym-rl-tutorial"
             ]
           },
           {
@@ -215,30 +231,46 @@
         "tab": "Wiki",
         "groups": [
           {
-            "group": "Wiki 入门",
+            "group": "Wiki 总览",
+            "icon": "book-open",
             "pages": [
               "wiki/nec-wiki-home",
-              "wiki/important-docs",
+              "wiki/important-docs"
+            ]
+          },
+          {
+            "group": "新人入门",
+            "icon": "rocket",
+            "pages": [
               "wiki/start-here",
               "wiki/learning-path",
               "wiki/faq"
             ]
           },
           {
-            "group": "Wiki 资源",
+            "group": "社区与协作",
+            "icon": "users",
             "pages": [
-              "wiki/gitee-contribution",
               "wiki/community",
-              "wiki/safety-and-standards",
+              "wiki/gitee-contribution",
+              "wiki/nec-plus-membership"
+            ]
+          },
+          {
+            "group": "培训与资源",
+            "icon": "graduation-cap",
+            "pages": [
               "wiki/training-resources",
-              "wiki/isaac-gym-rl-tutorial",
-              "wiki/day02-atomcode-hxc-am32-setup",
-              "wiki/day03-ek-mechanical-solidworks",
-              "wiki/hku-software-trainee",
               "wiki/tech-resources",
-              "wiki/experience-index",
-              "wiki/nec-plus-membership",
-              "wiki/cubemarsak70-10-kv100"
+              "wiki/hku-software-trainee",
+              "wiki/experience-index"
+            ]
+          },
+          {
+            "group": "规范与安全",
+            "icon": "shield-check",
+            "pages": [
+              "wiki/safety-and-standards"
             ]
           }
         ]
@@ -255,6 +287,24 @@
       "anchors": []
     }
   },
+  "redirects": [
+    {
+      "source": "/wiki/cubemarsak70-10-kv100",
+      "destination": "/embedded-software/cube-mars-ak70-10-kv100"
+    },
+    {
+      "source": "/wiki/isaac-gym-rl-tutorial",
+      "destination": "/ai-tools/isaac-gym-rl-tutorial"
+    },
+    {
+      "source": "/wiki/day02-atomcode-hxc-am32-setup",
+      "destination": "/embedded-software/atomcode-hxc-am32-setup"
+    },
+    {
+      "source": "/wiki/day03-ek-mechanical-solidworks",
+      "destination": "/mechanical/ek-mechanical-solidworks"
+    }
+  ],
   "navbar": {
     "links": [
       {

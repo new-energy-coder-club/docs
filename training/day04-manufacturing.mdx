@@ -1,0 +1,113 @@
+---
+title: "Day 4：制造工艺"
+description: "NEC 10 日集训第 4 天：3D 打印、CNC 雕刻机、激光雕刻机的安全操作与刀路/切片流程。"
+---
+
+# Day 4：制造工艺
+
+**主题**：3D 打印 · CNC 雕刻 · 激光雕刻 · 安全规范  
+**建议时长**：3–4 小时  
+**实践目标**：完成一次 3D 打印切片，了解 CNC 与激光雕刻的完整操作流程。
+
+---
+
+## 今日目标
+
+1. 掌握 K1 系列 3D 打印机的耗材选择、切片与打印流程；
+2. 了解 A416 主轴雕刻机的软件安装、刀路生成与对刀操作；
+3. 了解 Falcon2 40W 激光雕刻机的安全使用与软件配置；
+4. 建立实验室设备使用的安全意识。
+
+---
+
+## 必读材料
+
+<CardGroup cols={2}>
+  <Card title="K1 打印机使用说明书" icon="print" href="/mechanical/k1-printer-guide">
+    耗材选择、BambuLab/Creality Print 切片、打印流程与故障排查。
+  </Card>
+  <Card title="主轴雕刻机软件安装指南" icon="screwdriver-wrench" href="/mechanical/cnc-engraver-installation">
+    USB 驱动、CNC V4 控制软件、精雕与 NC 转换器安装步骤。
+  </Card>
+  <Card title="主轴雕刻机刀路生成" icon="route" href="/mechanical/cnc-engraver-toolpath">
+    精雕软件绘图、刀路生成、导出 `.eng` 并转换为 `.nc`。
+  </Card>
+  <Card title="主轴雕刻机软件端操作" icon="desktop" href="/mechanical/cnc-engraver-operation">
+    CNC V4 软件端连接、对刀、XY 定位、启动加工与安全注意事项。
+  </Card>
+  <Card title="Falcon2 40W 激光雕刻机指南" icon="fire" href="/mechanical/falcon2-laser-engraver">
+    组装、LightBurn/Falcon 软件、对焦、固件升级与故障排查。
+  </Card>
+  <Card title="主轴雕刻机原始资料下载" icon="download" href="/mechanical/cnc-engraver-resources">
+    雕刻机驱动、软件、PDF 与演示素材下载索引。
+  </Card>
+</CardGroup>
+
+---
+
+## 核心知识点
+
+### 3D 打印
+
+| 耗材 | 特点 | 适用场景 |
+|------|------|----------|
+| PLA | 易打印、无毒、脆 | 原型、外观件 |
+| PETG | 韧性好、耐温略高 | 功能件 |
+| ABS | 强度高、需封箱 | 承力件 |
+| TPU | 柔性 | 缓冲、轮胎 |
+| 光敏树脂 | 精度高、有气味 | 精细小件 |
+
+**切片关键参数**：层厚、壁厚、填充密度、支撑、 brim/raft、打印温度、速度。
+
+### CNC 雕刻机
+
+1. **软件安装**：USB 驱动 → CNC V4 控制软件 → 精雕/NC 转换器；
+2. **刀路生成**：在精雕软件中绘制图形 → 生成刀路 → 导出 `.eng` → 转换为 `.nc`；
+3. **软件端操作**：连接机器 → 回机械原点 → 对刀 → 加载 NC → 启动加工；
+4. **安全要点**：佩戴护目镜、固定工件、先空跑再加工、禁止戴手套操作旋转刀具。
+
+### 激光雕刻机
+
+- 使用前检查光路、对焦与排烟；
+- 根据材料设置功率与速度；
+- 严禁雕刻不明材料（如 PVC 会释放有毒气体）。
+
+---
+
+## 实践任务
+
+### 任务 1：3D 打印切片
+
+使用 [Day 3](/training/day03-mechanical-modeling) 导出的 **STL** 文件：
+
+1. 在 BambuLab 或 Creality Print 中导入模型；
+2. 设置合理层厚（0.2mm）、填充密度（20%）、支撑（按需）；
+3. 生成切片并导出 G-code；
+4. 截图保存切片预览与预计时间。
+
+### 任务 2：CNC 雕刻流程演练
+
+在指导人员陪同下完成：
+
+1. 观看 CNC 软件安装与刀路生成演示；
+2. 记录对刀步骤（X/Y 定位、Z 对刀）；
+3. 填写设备使用安全检查表。
+
+### 任务 3：激光雕刻安全学习
+
+阅读 [Falcon2 指南](/mechanical/falcon2-laser-engraver) 的安全章节，列出 3 条必须遵守的安全规则。
+
+---
+
+## 今日产出
+
+- [ ] 一个已完成切片的 3D 打印 G-code 文件与切片截图；
+- [ ] CNC 对刀步骤笔记；
+- [ ] 激光雕刻安全自查清单。
+
+---
+
+## 延伸阅读
+
+- [底盘与机构设计 Day 5](/training/day05-chassis-design)
+- [机械组十日集训 Day 4：拆除实践](/mechanical/ek-team-25-mechanical-training)
