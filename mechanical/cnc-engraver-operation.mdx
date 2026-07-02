@@ -27,7 +27,7 @@ description: "NEC A416 实验室主轴雕刻机软件端操作备忘与标准流
 
 控制软件主要分为左侧导航栏与右侧可视化区：
 
-![控制软件主界面](/images/cnc-engraver/control-panel.png)
+![控制软件主界面](https://cdn.newenergycoder.club/images/cnc-engraver/control-panel.png)
 
 左侧导航栏从上到下依次为：**任务、控制、控制 Ⅱ、命令、设置、提示、开始、重启**。右侧显示当前刀路预览、坐标与机器状态。
 
@@ -40,7 +40,7 @@ description: "NEC A416 实验室主轴雕刻机软件端操作备忘与标准流
     3. 选择正确的 COM 口（常见为 COM3）与波特率（通常为 115200）。
     4. 点击"连接机器"，确认顶部"机器状态"由"未连接"变为已连接。
 
-    ![串口设置与连接机器](/images/cnc-engraver/settings-serial.png)
+    ![串口设置与连接机器](https://cdn.newenergycoder.club/images/cnc-engraver/settings-serial.png)
 
     若无法识别设备，可尝试更换 USB COM 口，或点击"重启"重新枚举串口。
   </Step>
@@ -49,11 +49,11 @@ description: "NEC A416 实验室主轴雕刻机软件端操作备忘与标准流
     1. 点击左侧"任务"，进入任务管理页面。
     2. 点击"载入任务"，选择 `.nc` 格式的刀路文件。
 
-    ![任务页面载入任务](/images/cnc-engraver/task-load.png)
+    ![任务页面载入任务](https://cdn.newenergycoder.club/images/cnc-engraver/task-load.png)
 
     载入后，右侧会显示刀路轮廓预览，同时可看到文件行数、预计加工时间、工作零点等信息。
 
-    ![已载入任务的刀路预览](/images/cnc-engraver/task-preview.png)
+    ![已载入任务的刀路预览](https://cdn.newenergycoder.club/images/cnc-engraver/task-preview.png)
   </Step>
 
   <Step title="校准 X/Y 轴位置" icon="arrows-up-down-left-right">
@@ -61,7 +61,7 @@ description: "NEC A416 实验室主轴雕刻机软件端操作备忘与标准流
     2. 以刀路路径轮廓数据为依据，使用 **X+ / X- / Y+ / Y-** 按钮移动刀头。
     3. 确保刀头运作路径位于玻纤板的正确区域内，避免加工到夹具或台面。
 
-    ![运动控制与功能控制](/images/cnc-engraver/control-functions.png)
+    ![运动控制与功能控制](https://cdn.newenergycoder.club/images/cnc-engraver/control-functions.png)
   </Step>
 
   <Step title="Z 轴对刀" icon="arrow-down">
@@ -69,7 +69,7 @@ description: "NEC A416 实验室主轴雕刻机软件端操作备忘与标准流
 
     1. 点击左侧"控制 Ⅱ"，将移动单位调整为 **0.1 mm**，移动速度建议保持默认值。
 
-       ![移动单位与速度设置](/images/cnc-engraver/movement-unit.png)
+       ![移动单位与速度设置](https://cdn.newenergycoder.club/images/cnc-engraver/movement-unit.png)
 
     2. 返回"控制"页面，利用方向按钮缓慢放下刀头。
     3. 在刀头快要贴近玻纤板时（肉眼观测约 1–2 mm），停止快速移动。
@@ -78,7 +78,7 @@ description: "NEC A416 实验室主轴雕刻机软件端操作备忘与标准流
     6. 点按"Z-"，使刀头缓慢接近玻纤板。
     7. 持续下刀，最终进刀约 **0.3–0.6 mm**。
 
-    ![控制 II 页面精调参数](/images/cnc-engraver/control-ii.png)
+    ![控制 II 页面精调参数](https://cdn.newenergycoder.club/images/cnc-engraver/control-ii.png)
 
     <Tip>
       对刀时建议先手动转动主轴确认刀具无摆动，再启动主轴，防止刀具偏心刮伤板材。
@@ -90,7 +90,7 @@ description: "NEC A416 实验室主轴雕刻机软件端操作备忘与标准流
     2. 检查"进给速率"是否为预期值（默认 100%）。
     3. 点击左侧"开始"按钮启动加工。
 
-    ![开始加工前的控制页面](/images/cnc-engraver/control-preview.png)
+    ![开始加工前的控制页面](https://cdn.newenergycoder.club/images/cnc-engraver/control-preview.png)
 
     加工过程中保持观察，发现异常立即点击"暂停"或"急停"。
   </Step>

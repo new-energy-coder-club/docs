@@ -193,13 +193,16 @@ def check_robots_txt() -> list[str]:
 # Markdown/MDX 中链接的正则
 MD_LINK_RE = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
 HTML_HREF_RE = re.compile(r"\b(?:href|src)=[\"']([^\"']+)[\"']", re.IGNORECASE)
+CODE_BLOCK_RE = re.compile(r"```[\s\S]*?```|~~~[\s\S]*?~~~")
 
 
 def extract_links(text: str) -> set[str]:
+    # 移除代码块中的内容，避免把示例链接当作真实引用检查
+    text_without_code = CODE_BLOCK_RE.sub("", text)
     links: set[str] = set()
-    for _, url in MD_LINK_RE.findall(text):
+    for _, url in MD_LINK_RE.findall(text_without_code):
         links.add(url)
-    for url in HTML_HREF_RE.findall(text):
+    for url in HTML_HREF_RE.findall(text_without_code):
         links.add(url)
     return links
 
