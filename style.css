@@ -757,7 +757,7 @@ html.dark #content-wrapper h2:first-of-type {
 .hero-gsap,
 html.dark .hero-gsap {
   text-align: center;
-  padding: 64px 24px 32px;
+  padding: 24px 24px 12px;
 }
 
 .hero-gsap .hero-tagline,
@@ -767,7 +767,7 @@ html.dark .hero-gsap .hero-tagline {
   font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
   font-size: 14px;
   letter-spacing: 0.04em;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .hero-gsap .hero-tagline::before,
@@ -789,7 +789,7 @@ html.dark .hero-gsap h1 {
   letter-spacing: -0.04em;
   line-height: 1.05;
   color: var(--text-primary);
-  margin: 0 auto 24px;
+  margin: 0 auto 16px;
   max-width: 900px;
 }
 
@@ -798,7 +798,7 @@ html.dark .hero-gsap .hero-subtitle {
   font-size: 18px;
   color: var(--text-secondary);
   max-width: 640px;
-  margin: 0 auto 32px;
+  margin: 0 auto 20px;
   line-height: 1.6;
 }
 
@@ -806,7 +806,7 @@ html.dark .hero-gsap .hero-subtitle {
 .hero-cta,
 html.dark .hero-cta {
   justify-content: center;
-  margin: 8px 0 40px;
+  margin: 4px 0 16px;
 }
 
 .hero-cta button,
