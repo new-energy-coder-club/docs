@@ -762,7 +762,8 @@ html.dark .hero-gsap {
 
 .hero-gsap .hero-tagline,
 html.dark .hero-gsap .hero-tagline {
-  display: inline-block;
+  display: block;
+  text-align: center;
   color: var(--mck-accent);
   font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
   font-size: 14px;
