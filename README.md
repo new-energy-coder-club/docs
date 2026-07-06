@@ -53,6 +53,8 @@ python tools/ci/check_docs.py
 
 ## 项目结构
 
+> 说明：Wiki 中的技术教程已按主题迁移到对应 SIG / 工具目录（如机械设计、嵌入式软件、AI 工具），`wiki/` 主要保留新人入口、社区协作、培训资源与安全规范等飞书原始沉淀。旧 Wiki URL 已通过 `docs.json` 的 `redirects` 自动跳转。
+
 ```
 .
 ├── index.mdx                 # 站点首页
@@ -71,7 +73,7 @@ python tools/ci/check_docs.py
 ├── curc26/                   # CURC 2026 赛季文档
 ├── community/                # 社区介绍与治理
 ├── contributing/             # 贡献指南
-├── wiki/                     # 飞书 Wiki 导出快照
+├── wiki/                     # 飞书 Wiki 导出快照（新人/社区/资源类沉淀）
 └── tools/ci/                 # CI 检查脚本
 ```
 
