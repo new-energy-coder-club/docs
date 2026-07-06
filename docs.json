@@ -71,16 +71,6 @@
             ]
           },
           {
-            "group": "项目模块",
-            "icon": "cubes",
-            "pages": [
-              "modules/overview",
-              "modules/robotics",
-              "modules/embedded",
-              "modules/algorithms"
-            ]
-          },
-          {
             "group": "机构 SIG",
             "icon": "gears",
             "pages": [
@@ -109,9 +99,6 @@
             "group": "视觉与嵌入式",
             "icon": "eye",
             "pages": [
-              "vision/introduction",
-              "vision/detection",
-              "vision/localization",
               "vision/odin1-update",
               "vision/ms200-lidar",
               "embedded-software/introduction",
