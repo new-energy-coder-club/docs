@@ -141,14 +141,28 @@
             "group": "竞赛概览",
             "pages": [
               "competition/introduction",
-              "competition/robocon",
-              "competition/robocon2026-registration",
-              "competition/robocon2026-schedule",
-              "competition/robocon2026-newcomer-guide",
-              "competition/energy-saving",
-              "competition/aic",
-              "competition/aic-algorithm-2026",
-              "competition/curc-resources"
+              {
+                "group": "全国大学生机器人大赛ROBOCON备赛",
+                "pages": [
+                  "competition/robocon",
+                  "competition/robocon2026-guide",
+                  "competition/robocon2026-newcomer-guide",
+                  "competition/curc-resources"
+                ]
+              },
+              {
+                "group": "全国大学生节能减排备赛",
+                "pages": [
+                  "competition/energy-saving"
+                ]
+              },
+              {
+                "group": "全国大学生智能汽车备赛",
+                "pages": [
+                  "competition/aic",
+                  "competition/aic-algorithm-2026"
+                ]
+              }
             ]
           },
           {
