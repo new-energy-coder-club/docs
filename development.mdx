@@ -47,6 +47,27 @@ mint dev
 
 ---
 
+## 环境变量与敏感配置
+
+如果站点未来需要接入地图等第三方服务，请在本地创建 `.env` 文件：
+
+```bash
+cp .env.example .env
+```
+
+然后按实际情况填入真实 Key。参考模板已包含高德地图常用的三类变量：
+
+- `VITE_AMAP_KEY`：JSAPI Key，用于前端地图显示
+- `VITE_AMAP_SECURITY_CODE`：高德安全密钥
+- `VITE_AMAP_WEBSERVICE_KEY`：WebService Key，用于天气/搜索等后端 API
+
+<Warning>
+  `.env` 文件已被 `.gitignore` 忽略，**请勿将真实 API Key 直接写入仓库**。
+  如需在 CI/部署环境使用，请在对应平台的 Secrets 管理器中配置。
+</Warning>
+
+---
+
 ## 项目结构
 
 当前文档站结构如下：
