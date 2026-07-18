@@ -87,7 +87,8 @@
                   "mechanical/cnc-engraver-operation",
                   "mechanical/cnc-engraver-resources",
                   "mechanical/falcon2-laser-engraver",
-                  "mechanical/k1-printer-guide"
+                  "mechanical/k1-printer-guide",
+                  "mechanical/lumenpnp-introduction"
                 ]
               },
               "mechanical/ek-team-25-mechanical-training",
@@ -119,6 +120,7 @@
               "ai-tools/windsurf",
               "ai-tools/mcp-server",
               "ai-tools/openclaw-setup",
+              "ai-tools/feishu-cli",
               "ai-tools/ai-feasibility-study",
               "ai-tools/isaac-gym-rl-tutorial"
             ]
