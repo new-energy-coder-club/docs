@@ -23,6 +23,10 @@ pnpm-debug.log*
 *.swo
 *~
 
-# 系统文件
+# Python
+__pycache__/
+*.py[cod]
+
+# OS
 .DS_Store
 Thumbs.db
