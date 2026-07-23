@@ -1,0 +1,265 @@
+---
+title: "社区报名流程"
+description: "NEC 新能源开发者社区报名与入社全流程指引：从注册到完成第一个贡献的每一步"
+---
+
+欢迎加入 **NEC 新能源开发者社区**！本页面将带你完成从报名到正式入社的全部步骤，预计耗时 **15-30 分钟**。
+
+---
+
+## 报名资格
+
+| 条件 | 说明 |
+|------|------|
+| 身份 | 年满 18 周岁的高校在校学生、教师或工程从业者 |
+| 技术方向 | 不限，机械/硬件/软件/视觉/运营/项目管理均可参与 |
+| 时间投入 | 至少能保证每周 3-5 小时参与社区活动或项目 |
+| 态度 | 愿意主动学习、积极提问、乐于分享 |
+
+> 无需相关竞赛经验，社区为新人准备了完整的培训路径与导师指引。
+
+---
+
+## 报名流程总览
+
+<Steps>
+  <Step title="加入 QQ 交流群">
+    加入 NEC QQ 交流群（群号：**479053780**），申请时备注：`姓名 + 学校/公司 + 技术方向`。
+  </Step>
+  <Step title="填写飞书信息收集表">
+    扫码填写社区飞书收集表，完成成员信息登记与个人展板资料填写。
+  </Step>
+  <Step title="注册 Gitee 账号">
+    前往 [Gitee](https://gitee.com/) 注册账号，这是社区代码托管与协作的主力平台。
+  </Step>
+  <Step title="Fork 主仓库">
+    Fork [NEC 主仓库](https://gitee.com/darrenpig/new_energy_coder_club) 到自己的 Gitee 账号下。
+  </Step>
+  <Step title="完成首个 Good First Issue">
+    从 `good first issue` 标签中挑选一个任务，提交你的第一个 Pull Request。
+  </Step>
+  <Step title="加入飞书组织">
+    完成首个任务后，联系运营同学邀请你加入 NEC 飞书组织与内部群组。
+  </Step>
+</Steps>
+
+---
+
+## 第一步：加入 QQ 交流群
+
+社区主要使用 **QQ 群** 进行日常交流与通知发布。
+
+<Card title="NEC QQ 交流群：479053780" icon="message-circle">
+  <img
+    src="https://cdn.newenergycoder.club/images/qq-group-qrcode.jpg"
+    alt="NEC QQ 交流群二维码"
+    width="240"
+    className="mx-auto rounded-lg"
+  />
+  <p className="text-sm text-center mt-3">申请时请备注：<strong>姓名 + 学校/公司 + 技术方向</strong></p>
+  <p className="text-xs text-muted-foreground text-center">例如：张三-常州工学院-机械设计</p>
+</Card>
+
+### 入群后必做
+
+1. **修改群昵称**：`姓名 + 学校/公司 + 技术方向`（与入群申请一致）
+2. **浏览群公告**：了解当前赛季信息、培训安排与近期活动
+3. **自我介绍**：在群里简短介绍自己的技术背景与学习目标
+
+---
+
+## 第二步：填写飞书信息收集表
+
+以下飞书收集表用于登记成员信息、个人展板与赛季意向，方便后续分组与资源推送。
+
+<CardGroup cols={2}>
+  <Card title="飞书收集表 ①：NEC 官网个人展板" icon="clipboard">
+    <img
+      src="https://cdn.newenergycoder.club/images/feishu-nec-website-display-board.png"
+      alt="NEC 官网个人展板收集表二维码"
+      width="240"
+      className="mx-auto rounded-lg border border-border"
+    />
+    <p className="text-xs text-muted-foreground text-center mt-2">
+      填写个人简介与展板信息，登上 NEC 官网成员展示页
+    </p>
+  </Card>
+  <Card title="飞书收集表 ②：CURC 信息收集" icon="clipboard-list">
+    <img
+      src="https://cdn.newenergycoder.club/images/feishu-curc-collection.png"
+      alt="CURC 收集表二维码"
+      width="240"
+      className="mx-auto rounded-lg border border-border"
+    />
+    <p className="text-xs text-muted-foreground text-center mt-2">
+      填写技术方向、可投入时间与赛季意向，便于 CURC 分组
+    </p>
+  </Card>
+</CardGroup>
+
+<Tip>
+  如果二维码失效，请在 NEC QQ 群中 @运营 或提交 [Gitee Issue](https://gitee.com/darrenpig/new_energy_coder_club/issues) 获取最新链接。
+</Tip>
+
+---
+
+## 第三步：注册 Gitee 账号
+
+社区代码与文档均托管在 **Gitee**（码云），你需要一个 Gitee 账号来参与开发。
+
+<Card title="注册 Gitee 账号" icon="user-plus" href="https://gitee.com/signup">
+  前往 Gitee 官网注册账号。建议使用常用邮箱，用户名使用英文（推荐 `姓名缩写 + 学校缩写`）。
+</Card>
+
+> 如果已有 Gitee 账号，可直接使用。确保个人主页信息完整，便于社区成员互认。
+
+---
+
+## 第四步：Fork 主仓库
+
+<Steps>
+  <Step title="打开主仓库">
+    访问 [NEC 主仓库](https://gitee.com/darrenpig/new_energy_coder_club)。
+  </Step>
+  <Step title="点击 Fork">
+    点击右上角 <strong>Fork</strong> 按钮，将仓库派生到自己的账号下。
+  </Step>
+  <Step title="Clone 到本地（可选）">
+    ```bash
+    git clone https://gitee.com/你的Gitee用户名/new_energy_coder_club.git
+    ```
+  </Step>
+</Steps>
+
+<Card
+  title="Gitee 提交教程（团队版）"
+  icon="book"
+  href="https://scn0bdoc8zxg.feishu.cn/docx/QkkYdBJE0o2Q9Xx9O5ocIoWZnde"
+  horizontal
+>
+  请先熟读团队版 Gitee 提交教程，后续所有考核与贡献都基于 Gitee 操作。
+</Card>
+
+---
+
+## 第五步：完成首个 Good First Issue
+
+这是新人的**考核任务**，也是你融入社区的最佳方式。
+
+<CardGroup cols={2}>
+  <Card
+    title="浏览 Good First Issues"
+    icon="search"
+    href="https://gitee.com/darrenpig/new_energy_coder_club/issues"
+  >
+    在 Issues 列表中筛选 `good first issue` 标签，挑选一个适合你的任务。
+  </Card>
+  <Card
+    title="新人任务指南"
+    icon="map"
+    href="/start-here/first-good-issue"
+  >
+    详细了解新人任务体系、标签规范与交付标准。
+  </Card>
+</CardGroup>
+
+### 提交流程
+
+<Steps>
+  <Step title="认领任务">
+    在选中的 Issue 下评论：`我想认领这个任务，预计在 3 天内提交 PR。`
+  </Step>
+  <Step title="创建分支">
+    ```bash
+    git checkout -b gfi/<issue-id>-short-title
+    ```
+  </Step>
+  <Step title="完成并提交">
+    按 Issue 要求完成内容，commit message 格式：`docs: 简短说明`
+  </Step>
+  <Step title="发起 Pull Request">
+    向主仓库 `main` 分支发起 PR，描述中关联 Issue 编号。
+  </Step>
+</Steps>
+
+<Note>
+  首次 PR 建议选择 `type:docs` 标签的文档类任务，难度较低、上手更快。
+</Note>
+
+---
+
+## 第六步：加入飞书组织
+
+完成首个 PR 并被合入后，联系运营同学加入：
+
+- **NEC 飞书组织**：访问内部文档、日历与视频会议
+- **各技术方向内部群**：机械 / 硬件 / 软件 / 视觉 / 运营 专用讨论组
+- **赛季专项群**：CURC 2027、ROBOCON 等赛事备战群
+
+---
+
+## 报名后：学习路径
+
+入社后建议按以下路径快速上手：
+
+<CardGroup cols={3}>
+  <Card
+    title="快速开始"
+    icon="rocket"
+    href="/start-here/index"
+  >
+    NEC 官方文档快速入口，新人必读
+  </Card>
+  <Card
+    title="新人入门指南"
+    icon="graduation-cap"
+    href="/start-here/newcomer-guide"
+  >
+    三域技能基线与学习路径总览
+  </Card>
+  <Card
+    title="10 日集训"
+    icon="calendar-days"
+    href="/training/index"
+  >
+    从零开始的体系化培训课程
+  </Card>
+</CardGroup>
+
+---
+
+## 常见问题
+
+<AccordionGroup>
+  <Accordion title="报名有时间限制吗？">
+    社区报名全年开放，但各赛季有集中招新期（通常在每年 5-6 月与 11-12 月）。集中招新期会有更多培训资源与导师支持。
+  </Accordion>
+  <Accordion title="我不确定自己适合哪个方向，怎么办？">
+    可以先浏览 <a href="/start-here/newcomer-guide">新人入门指南</a> 的技能基线，了解各组别特点。也可以在 QQ 群中咨询各方向学长，他们会根据你的背景给出建议。
+  </Accordion>
+  <Accordion title="报名需要缴费吗？">
+    不需要。NEC 社区是开源、免费的社区组织，不收取任何形式的报名费或会费。
+  </Accordion>
+  <Accordion title="我已经有竞赛经验，可以跳过 Good First Issue 吗？">
+    首次 Good First Issue 不仅是技术考核，更是让你熟悉社区协作流程（分支规范、PR 模板、Review 流程）的必经环节。有经验的成员可以选择 `difficulty:3` 以上的任务。
+  </Accordion>
+  <Accordion title="飞书收集表提交后没收到反馈？">
+    收集表由运营同学定期处理，通常在 2-3 个工作日内完成。如超过一周未收到反馈，请直接在 QQ 群中 @运营 查询。
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## 联系方式
+
+| 渠道 | 说明 |
+|------|------|
+| QQ 群 | **479053780**（主力交流） |
+| 飞书 | 完成报名后由运营邀请 |
+| Gitee | [darrenpig/new_energy_coder_club](https://gitee.com/darrenpig/new_energy_coder_club) |
+| GitHub | [Darrenpig/new_energy_coder_club](https://github.com/Darrenpig/new_energy_coder_club) |
+| Discord | [NEC Community](https://discord.gg/y8PhUYGaHJ) |
+
+---
+
+*本页面由 NEC 运营组维护，内容变更请提交 PR 或联系运营同学。*
