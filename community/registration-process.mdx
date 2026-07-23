@@ -1,265 +1,360 @@
 ---
-title: "社区报名流程"
-description: "NEC 新能源开发者社区报名与入社全流程指引：从注册到完成第一个贡献的每一步"
+title: "开源之夏 2026 · 社区报名流程"
+description: "开源之夏 2026 社区（组织）报名完整指引：含经典模式与领航模式双模式报名流程、后台管理系统字段详解、导航路径与常见问题。"
 ---
 
-欢迎加入 **NEC 新能源开发者社区**！本页面将带你完成从报名到正式入社的全部步骤，预计耗时 **15-30 分钟**。
-
----
-
-## 报名资格
-
-| 条件 | 说明 |
-|------|------|
-| 身份 | 年满 18 周岁的高校在校学生、教师或工程从业者 |
-| 技术方向 | 不限，机械/硬件/软件/视觉/运营/项目管理均可参与 |
-| 时间投入 | 至少能保证每周 3-5 小时参与社区活动或项目 |
-| 态度 | 愿意主动学习、积极提问、乐于分享 |
-
-> 无需相关竞赛经验，社区为新人准备了完整的培训路径与导师指引。
+> 📖 官方组织指南：[CommunityGuide](https://docs2026.summer.ospp.ac.cn/help/CommunityGuide)  
+> 📖 领航模式指南：[Pioneer-guide](https://docs2026.summer.ospp.ac.cn/help/Pioneer-guide)  
+> 📧 组委会邮箱：**org@summer-ospp.ac.cn**  
+> 🌐 活动官网：[summer.ospp.ac.cn](https://summer.ospp.ac.cn/)  
+> 📅 文章发布时间：2026-07-10
 
 ---
 
-## 报名流程总览
+## 活动背景
 
-<Steps>
-  <Step title="加入 QQ 交流群">
-    加入 NEC QQ 交流群（群号：**479053780**），申请时备注：`姓名 + 学校/公司 + 技术方向`。
-  </Step>
-  <Step title="填写飞书信息收集表">
-    扫码填写社区飞书收集表，完成成员信息登记与个人展板资料填写。
-  </Step>
-  <Step title="注册 Gitee 账号">
-    前往 [Gitee](https://gitee.com/) 注册账号，这是社区代码托管与协作的主力平台。
-  </Step>
-  <Step title="Fork 主仓库">
-    Fork [NEC 主仓库](https://gitee.com/darrenpig/new_energy_coder_club) 到自己的 Gitee 账号下。
-  </Step>
-  <Step title="完成首个 Good First Issue">
-    从 `good first issue` 标签中挑选一个任务，提交你的第一个 Pull Request。
-  </Step>
-  <Step title="加入飞书组织">
-    完成首个任务后，联系运营同学邀请你加入 NEC 飞书组织与内部群组。
-  </Step>
-</Steps>
+开源之夏是中国科学院软件研究所发起的"点亮计划"系列活动，2026 年正式步入 **2.0 时代**——以基础软件为技术核心，以 **RISC-V 为生态重心**。活动联合各大开源组织，针对重要开源软件的开发与维护提供项目开发任务，并向全球高校学生开放报名。
+
+2026 年采用 **1+1 双模式并行**：**经典模式** + **全新领航模式（Pioneer Mode）**。
+
+> 历史数据：累计 **288** 家开源社区、**3487** 个项目任务、来自 **1026** 所高校的 **12257** 名学生报名，成功解决 **2794** 个实际项目问题。
 
 ---
 
-## 第一步：加入 QQ 交流群
-
-社区主要使用 **QQ 群** 进行日常交流与通知发布。
-
-<Card title="NEC QQ 交流群：479053780" icon="message-circle">
-  <img
-    src="https://cdn.newenergycoder.club/images/qq-group-qrcode.jpg"
-    alt="NEC QQ 交流群二维码"
-    width="240"
-    className="mx-auto rounded-lg"
-  />
-  <p className="text-sm text-center mt-3">申请时请备注：<strong>姓名 + 学校/公司 + 技术方向</strong></p>
-  <p className="text-xs text-muted-foreground text-center">例如：张三-常州工学院-机械设计</p>
-</Card>
-
-### 入群后必做
-
-1. **修改群昵称**：`姓名 + 学校/公司 + 技术方向`（与入群申请一致）
-2. **浏览群公告**：了解当前赛季信息、培训安排与近期活动
-3. **自我介绍**：在群里简短介绍自己的技术背景与学习目标
-
----
-
-## 第二步：填写飞书信息收集表
-
-以下飞书收集表用于登记成员信息、个人展板与赛季意向，方便后续分组与资源推送。
-
-<CardGroup cols={2}>
-  <Card title="飞书收集表 ①：NEC 官网个人展板" icon="clipboard">
-    <img
-      src="https://cdn.newenergycoder.club/images/feishu-nec-website-display-board.png"
-      alt="NEC 官网个人展板收集表二维码"
-      width="240"
-      className="mx-auto rounded-lg border border-border"
-    />
-    <p className="text-xs text-muted-foreground text-center mt-2">
-      填写个人简介与展板信息，登上 NEC 官网成员展示页
-    </p>
-  </Card>
-  <Card title="飞书收集表 ②：CURC 信息收集" icon="clipboard-list">
-    <img
-      src="https://cdn.newenergycoder.club/images/feishu-curc-collection.png"
-      alt="CURC 收集表二维码"
-      width="240"
-      className="mx-auto rounded-lg border border-border"
-    />
-    <p className="text-xs text-muted-foreground text-center mt-2">
-      填写技术方向、可投入时间与赛季意向，便于 CURC 分组
-    </p>
-  </Card>
-</CardGroup>
-
-<Tip>
-  如果二维码失效，请在 NEC QQ 群中 @运营 或提交 [Gitee Issue](https://gitee.com/darrenpig/new_energy_coder_club/issues) 获取最新链接。
-</Tip>
-
----
-
-## 第三步：注册 Gitee 账号
-
-社区代码与文档均托管在 **Gitee**（码云），你需要一个 Gitee 账号来参与开发。
-
-<Card title="注册 Gitee 账号" icon="user-plus" href="https://gitee.com/signup">
-  前往 Gitee 官网注册账号。建议使用常用邮箱，用户名使用英文（推荐 `姓名缩写 + 学校缩写`）。
-</Card>
-
-> 如果已有 Gitee 账号，可直接使用。确保个人主页信息完整，便于社区成员互认。
-
----
-
-## 第四步：Fork 主仓库
-
-<Steps>
-  <Step title="打开主仓库">
-    访问 [NEC 主仓库](https://gitee.com/darrenpig/new_energy_coder_club)。
-  </Step>
-  <Step title="点击 Fork">
-    点击右上角 <strong>Fork</strong> 按钮，将仓库派生到自己的账号下。
-  </Step>
-  <Step title="Clone 到本地（可选）">
-    ```bash
-    git clone https://gitee.com/你的Gitee用户名/new_energy_coder_club.git
-    ```
-  </Step>
-</Steps>
-
-<Card
-  title="Gitee 提交教程（团队版）"
-  icon="book"
-  href="https://scn0bdoc8zxg.feishu.cn/docx/QkkYdBJE0o2Q9Xx9O5ocIoWZnde"
-  horizontal
->
-  请先熟读团队版 Gitee 提交教程，后续所有考核与贡献都基于 Gitee 操作。
-</Card>
-
----
-
-## 第五步：完成首个 Good First Issue
-
-这是新人的**考核任务**，也是你融入社区的最佳方式。
-
-<CardGroup cols={2}>
-  <Card
-    title="浏览 Good First Issues"
-    icon="search"
-    href="https://gitee.com/darrenpig/new_energy_coder_club/issues"
-  >
-    在 Issues 列表中筛选 `good first issue` 标签，挑选一个适合你的任务。
-  </Card>
-  <Card
-    title="新人任务指南"
-    icon="map"
-    href="/start-here/first-good-issue"
-  >
-    详细了解新人任务体系、标签规范与交付标准。
-  </Card>
-</CardGroup>
-
-### 提交流程
-
-<Steps>
-  <Step title="认领任务">
-    在选中的 Issue 下评论：`我想认领这个任务，预计在 3 天内提交 PR。`
-  </Step>
-  <Step title="创建分支">
-    ```bash
-    git checkout -b gfi/<issue-id>-short-title
-    ```
-  </Step>
-  <Step title="完成并提交">
-    按 Issue 要求完成内容，commit message 格式：`docs: 简短说明`
-  </Step>
-  <Step title="发起 Pull Request">
-    向主仓库 `main` 分支发起 PR，描述中关联 Issue 编号。
-  </Step>
-</Steps>
-
-<Note>
-  首次 PR 建议选择 `type:docs` 标签的文档类任务，难度较低、上手更快。
-</Note>
-
----
-
-## 第六步：加入飞书组织
-
-完成首个 PR 并被合入后，联系运营同学加入：
-
-- **NEC 飞书组织**：访问内部文档、日历与视频会议
-- **各技术方向内部群**：机械 / 硬件 / 软件 / 视觉 / 运营 专用讨论组
-- **赛季专项群**：CURC 2027、ROBOCON 等赛事备战群
-
----
-
-## 报名后：学习路径
-
-入社后建议按以下路径快速上手：
+## 后台管理系统入口
 
 <CardGroup cols={3}>
-  <Card
-    title="快速开始"
-    icon="rocket"
-    href="/start-here/index"
-  >
-    NEC 官方文档快速入口，新人必读
+  <Card title="活动官网（外部展示）" icon="globe" href="https://summer.ospp.ac.cn/">
+    面向公众的活动展示页面，学生浏览项目与报名入口
   </Card>
-  <Card
-    title="新人入门指南"
-    icon="graduation-cap"
-    href="/start-here/newcomer-guide"
-  >
-    三域技能基线与学习路径总览
+  <Card title="后台管理系统（组织登录）" icon="shield" href="https://portal.summer.ospp.ac.cn/">
+    组织报名、项目管理、领航模式 — 需要登录
   </Card>
-  <Card
-    title="10 日集训"
-    icon="calendar-days"
-    href="/training/index"
-  >
-    从零开始的体系化培训课程
+  <Card title="参与指南文档" icon="book-open" href="https://docs2026.summer.ospp.ac.cn/">
+    OSPP 2026 完整参与指南与帮助文档
+  </Card>
+</CardGroup>
+
+### 帮助文档直达
+
+<CardGroup cols={2}>
+  <Card title="🟢 组织指南" icon="building" href="https://docs2026.summer.ospp.ac.cn/help/CommunityGuide">
+    社区/企业报名、项目管理、导师指定全流程
+  </Card>
+  <Card title="🚩 领航模式指南" icon="compass" href="https://docs2026.summer.ospp.ac.cn/help/Pioneer-guide">
+    2026 全新模式：学生定义问题、Pitch 选拔
+  </Card>
+  <Card title="🟣 学生指南" icon="graduation-cap" href="https://docs2026.summer.ospp.ac.cn/help/student%20guide">
+    学生申请、提案、开发与结项指引
+  </Card>
+  <Card title="🟡 导师指南" icon="user-check" href="https://docs2026.summer.ospp.ac.cn/help/mentor%20guide">
+    导师身份验证、审核与指导学生全流程
+  </Card>
+  <Card title="🔥 热点问题 FAQ" icon="circle-help" href="https://docs2026.summer.ospp.ac.cn/help/FAQ">
+    常见问题解答汇总
+  </Card>
+  <Card title="🌐 英文版指南" icon="languages" href="https://docs2026-en.summer.ospp.ac.cn/">
+    English version of the participation guide
   </Card>
 </CardGroup>
 
 ---
 
-## 常见问题
+## 后台管理系统导航路径
 
-<AccordionGroup>
-  <Accordion title="报名有时间限制吗？">
-    社区报名全年开放，但各赛季有集中招新期（通常在每年 5-6 月与 11-12 月）。集中招新期会有更多培训资源与导师支持。
-  </Accordion>
-  <Accordion title="我不确定自己适合哪个方向，怎么办？">
-    可以先浏览 <a href="/start-here/newcomer-guide">新人入门指南</a> 的技能基线，了解各组别特点。也可以在 QQ 群中咨询各方向学长，他们会根据你的背景给出建议。
-  </Accordion>
-  <Accordion title="报名需要缴费吗？">
-    不需要。NEC 社区是开源、免费的社区组织，不收取任何形式的报名费或会费。
-  </Accordion>
-  <Accordion title="我已经有竞赛经验，可以跳过 Good First Issue 吗？">
-    首次 Good First Issue 不仅是技术考核，更是让你熟悉社区协作流程（分支规范、PR 模板、Review 流程）的必经环节。有经验的成员可以选择 `difficulty:3` 以上的任务。
-  </Accordion>
-  <Accordion title="飞书收集表提交后没收到反馈？">
-    收集表由运营同学定期处理，通常在 2-3 个工作日内完成。如超过一周未收到反馈，请直接在 QQ 群中 @运营 查询。
-  </Accordion>
-</AccordionGroup>
+### 组织报名完整操作路径
 
----
-
-## 联系方式
-
-| 渠道 | 说明 |
-|------|------|
-| QQ 群 | **479053780**（主力交流） |
-| 飞书 | 完成报名后由运营邀请 |
-| Gitee | [darrenpig/new_energy_coder_club](https://gitee.com/darrenpig/new_energy_coder_club) |
-| GitHub | [Darrenpig/new_energy_coder_club](https://github.com/Darrenpig/new_energy_coder_club) |
-| Discord | [NEC Community](https://discord.gg/y8PhUYGaHJ) |
+<Steps>
+  <Step title="浏览器打开后台">
+    访问 <a href="https://portal.summer.ospp.ac.cn/">portal.summer.ospp.ac.cn</a>
+  </Step>
+  <Step title="注册或登录">
+    新组织注册账号，往届组织用原账号登录（需**更新资料后重新提交审核**）
+  </Step>
+  <Step title="左侧菜单 → 组织报名">
+    登录后点击左侧菜单 <strong>"组织报名"</strong>，填写组织资料表单（详见下方字段详解）
+  </Step>
+  <Step title="项目管理 → 发布项目（经典模式）">
+    审核通过后，左侧菜单 <strong>"项目管理" → "发布项目"</strong>，按字段要求逐项填写
+  </Step>
+  <Step title="领航模式 → 发布需求方向（受邀社区）">
+    首期受邀社区额外可见左侧菜单 <strong>"领航模式" → "发布需求方向"</strong>
+  </Step>
+</Steps>
 
 ---
 
-*本页面由 NEC 运营组维护，内容变更请提交 PR 或联系运营同学。*
+## 一、谁能报名？（社区/企业资格）
+
+### 🏢 企业（满足任一条件）
+
+1. 拥有 **RISC-V 软硬件产品**
+2. 企业为 **RVI（RISC-V International）会员**
+3. 有开源软件上游面向 **RV 架构支持的贡献记录**
+
+### 👥 开源组织
+
+- 以 **核心基础软件类** 为主，具体范围：
+  - 操作系统、系统固件、编译器与工具链、系统基础库、语言运行时、虚拟化基础、调试与性能分析、AI 核心框架、安全基础
+- 仓库采用 **OSI 认证开源协议** 或 OKF 推荐开放协议
+- 公开运营 **半年以上**
+
+---
+
+## 二、经典模式 — 社区报名流程
+
+```
+注册/登录 → 提交组织资料 → 组委会审核 → 上线官网 → 发布项目 → 导师验证 → 项目审核上线
+```
+
+### Step 1：组织报名（全年持续开放）
+
+| 事项 | 说明 |
+|---|---|
+| 入口 | 活动官网 [summer.ospp.ac.cn](https://summer.ospp.ac.cn/) 组织登录入口 |
+| 新组织 | 注册组织账号，填写提交组织资料 |
+| 往届组织 | 用原账号登录，**更新资料后重新提交审核** |
+| 审核 | 组委会审核通过即报名成功，组织陆续上线官网 |
+
+> ⚠️ 组织联络人与导师身份重合时，请使用**不同邮箱**注册系统。
+
+### Step 2：提交项目（全年持续开放）
+
+**组织联络人**通过组织账号在系统内提交项目，每个项目需包含：
+
+| 字段 | 要求 |
+|---|---|
+| 项目名称 | 明确体现技术+目标任务 |
+| 项目描述 | 背景、已有工作、不足、改进要点、最终目标 |
+| 项目难度 | 基础级 / 进阶级 |
+| 技术领域 & 编程语言 | — |
+| 项目产出要求 | 可量化，明确学生需要做什么、预期效果 |
+| 项目技术要求 | 编程语言、技术栈、开发经验等 |
+| 项目成果仓库 | 已有仓库地址（非新建空仓） |
+| 开发周期 | **1-3 个月**（以月为单位） |
+| 预估工时 | 参考值 |
+| 学习资料 | 参考书籍、论文、博客、issue 链接等 |
+
+**项目类型要求**：
+- 组委会全额支持：**核心基础软件 + RISC-V 生态**相关项目
+- 尚未支持 RISC-V 的组织，应发布一个 RISC-V 类项目并完成结项
+- 非上述范围：组织可**自费支持**（承担结项报酬），需签合作协议
+
+### Step 3：指定导师 + 导师身份验证
+
+1. 组织账号为每个项目指定一名导师（系统内添加导师信息）
+2. 系统自动向导师发邀请邮件 → 导师点链接登录完成身份验证
+3. **未完成身份验证的项目无法审核发布**
+4. 一位导师最多指导 **2 个项目**
+5. 🚨 导师不得同时以学生身份参加活动
+
+### Step 4：组委会项目审核 → 上线官网
+
+审核通过的项目陆续上线官网展示。
+
+### Step 5：学生申请审核（持续进行）
+
+- 导师应在收到学生申请后 **一周内审核**
+- 无人申请/无人中选的项目持续开放
+- 导师审核通过 → 组委会审核 → 中选确认
+- **申请书质量是最主要标准**
+- ❌ 不允许提前内定学生、私下承诺中选或要求学生提前开发
+
+### Step 6：项目开发 + 结项
+
+- 学生按开发周期完成开发，提交结项报告 + PR/MR
+- 导师结项审核 → 组委会成果审核 → 发放报酬
+
+**经典模式报酬**：基础级 3500 元 / 进阶级 5000 元（税前）
+
+---
+
+## 三、领航模式 — 社区报名流程
+
+> ⚠️ **首期限定为组委会邀请制**，受邀社区参与。
+
+```
+受邀 → 发布需求方向(1-3个) → 开放Pitch时段 → 学生投递提案 → 社区组织Pitch选拔 →
+生成项目任务 → 提交系统 → 学生提交正式申请书 → 开发 → 结项
+```
+
+### Step 1：发布需求方向
+
+受邀社区在系统内完成组织报名后，发布 **1-3 个需求方向**，每个方向填写：
+
+| 字段 | 要求 |
+|---|---|
+| **方向名称** | 简洁明确，如"RISC-V 驱动性能优化" |
+| **方向简述** | 2-3 句话说明关注什么（不描述具体任务） |
+| **方向重要性** | 对社区的价值，解决什么痛点或技术债 |
+| **对学生的期望** | 需要哪些背景知识或能力 |
+| **社区提供支持** | 如：每周一次 30min 线上同步、开发板远程访问、文档/测试集、代码导读 |
+| **建议切入点**（可选） | 社区已想到但没精力做的具体方向 |
+| **提案接收渠道** | 社区指定邮箱或其他渠道（**系统外提交**） |
+| **Pitch 时段** | 如："2026 年 X 月 X 日 19:00-21:00" 或 "另行通知" |
+
+### Step 2：学生提交简易提案
+
+学生选择感兴趣的方向 → 深入社区挖掘待解决问题 → 撰写简易提案 → 投递至社区指定渠道。
+
+### Step 3：社区开放 Pitch，选拔提案
+
+- 社区定期集中组织提案沟通（线上会议或其他形式）
+- 即时确认提案是否通过
+- 选定学生和提案
+
+### Step 4：生成正式项目任务
+
+- 导师+学生共同细化需求和产出
+- 基于选定提案生成具体项目任务（格式同经典模式）
+- 由社区账号提交至系统并指定学生账号
+- 学生提交正式申请书
+
+### Step 5：开发 + 结项
+
+- 开发周期：**2-6 个月**（以月为单位）
+- 导师结项审核 → 组委会成果审核 → 发放报酬
+
+**领航模式报酬**：基础级 6000 元 / 进阶级 8000 元 / 挑战级 10000 元（税前）
+
+---
+
+## 四、两种模式对比
+
+| 维度 | 经典模式 | 领航模式 |
+|---|---|---|
+| **参与方式** | 公开报名 | 组委会邀请制（首期） |
+| **主导方** | 社区发布具体项目 | 社区给方向，**学生定义问题** |
+| **项目来源** | 社区/导师预定义 | 学生提案 → 师生共同细化 |
+| **提案渠道** | 活动系统内 | 社区指定外部渠道（邮箱等） |
+| **选拔方式** | 导师审核申请书 | Pitch 沟通 + 即时确认 |
+| **开发周期** | 1-3 个月 | 2-6 个月 |
+| **报酬档位** | 3500 / 5000 | 6000 / 8000 / 10000 |
+| **难度档位** | 基础、进阶 | 基础、进阶、**挑战** |
+
+---
+
+## 五、附录：后台管理系统表单字段详解
+
+> 来源：组织指南 + 后台管理系统 portal.summer.ospp.ac.cn
+
+### A.1 组织报名表单
+
+#### 基本信息区
+
+| 字段 | 必填 | 说明 |
+|---|---|---|
+| **组织名称** | ✅ | 组织全称，需与营业执照/注册文件一致。往届组织用原账号登录后需更新资料重新提交 |
+| **组织简称** | ✅ | 简洁缩写或常用名，用于官网列表展示 |
+| **组织类型** | ✅ | 下拉选择：开源组织 / 企业（企业需满足 RISC-V 相关条件） |
+| **组织 Logo** | 否 | 建议上传正方形清晰 Logo，用于官网展示 |
+| **组织官网** | ✅ | 以 `https://` 开头的完整网址 |
+| **组织代码仓库地址** | ✅ | 以 `https://` 开头的仓库地址（GitHub / Gitee 等） |
+| **组织所在国家/地区** | ✅ | 下拉选择，默认"中国大陆" |
+
+#### 描述信息区
+
+| 字段 | 必填 | 说明 |
+|---|---|---|
+| **组织简介** | ✅ | 简要介绍组织背景、核心方向、社区规模等（官网列表展示用） |
+| **组织详细描述** | ✅ | 详细介绍：技术领域、已有成果、社区治理模式、参与开源之夏的意愿和目标 |
+| **技术标签** | 否 | 从系统标签库中选择，如"操作系统""编译器""RISC-V""AI"等，帮助学生在官网筛选 |
+
+#### 联系人信息区
+
+| 字段 | 必填 | 说明 |
+|---|---|---|
+| **联系人姓名** | ✅ | 组织联络人真实姓名，作为组委会与组织的沟通桥梁 |
+| **联系人邮箱** | ✅ | 接收系统通知和审核结果。⚠️ 若联络人同时担任导师，需用**不同邮箱**注册导师账号 |
+| **联系人手机号** | 否 | 备用联系方式 |
+
+#### 资质信息区
+
+| 字段 | 必填 | 说明 |
+|---|---|---|
+| **组织注册文件/营业执照** | 否 | 企业需上传营业执照；开源组织可上传社区注册/备案文件，用于资质审核 |
+
+#### 提交操作
+
+| 按钮 | 说明 |
+|---|---|
+| **提交审核** | 确认信息无误后提交，组委会审核通过即上线官网 |
+| **保存草稿** | 未完成时暂存，不影响审核状态 |
+| **重置** | 清空当前表单所有内容 |
+| **返回** | 返回上一页，注意先保存 |
+
+### A.2 经典模式 — 项目发布字段
+
+完成组织报名后，在系统内逐个项目发布：
+
+| 字段 | 必填 | 说明 |
+|---|---|---|
+| **项目名称** | ✅ | 明确体现技术方向+目标任务。示例："RISC-V 平台上的 OpenSSL 性能优化" |
+| **项目描述** | ✅ | 包含：相关背景、已有工作基础、存在不足、改进要点、最终实现目标 |
+| **项目难度** | ✅ | 下拉选择：**基础级**（3500元）/ **进阶级**（5000元） |
+| **技术领域** | ✅ | 如：操作系统、编译器、数据库、AI 框架等 |
+| **编程语言** | ✅ | 项目主要使用的编程语言 |
+| **项目产出要求** | ✅ | **可量化**描述学生需完成什么、达到什么效果。如"实现 XX 模块，通过 YY 基准测试，性能提升 ZZ%" |
+| **项目技术要求** | ✅ | 对学生的技能要求，如"熟悉 C 语言、了解 RISC-V 指令集、有 Linux 内核开发经验" |
+| **项目成果仓库** | ✅ | 已有项目仓库地址（**不能是新建空仓**） |
+| **项目开发周期** | ✅ | **1-3 个月**（以月为单位） |
+| **预估工时** | ✅ | 参考值，如"每周约 20 小时" |
+| **项目备注/学习资料** | 否 | 推荐预习的参考书籍、论文、博客、相关 issue 链接等 |
+
+> ⚠️ **类型约束**：组委会全额支持「核心基础软件+RISC-V 生态」项目；非此类项目需组织**自费**承担报酬并签合作协议。
+
+### A.3 领航模式 — 需求方向发布字段
+
+首期仅限受邀社区。每个社区发布 **1-3 个方向**：
+
+| 字段 | 必填 | 说明 |
+|---|---|---|
+| **方向名称** | ✅ | 简洁明确。示例："RISC-V 驱动性能优化""基础库的跨平台适配""固件构建系统改进" |
+| **方向简述** | ✅ | 2-3 句话说明关注什么，**不描述具体任务**。示例："我们关注 RISC-V 平台上的驱动性能优化，尤其是外设驱动的中断延迟、DMA 传输效率以及多核环境下的并发访问开销。" |
+| **方向重要性** | ✅ | 对社区的价值，解决什么用户痛点或技术债。示例："随着 RISC-V 硬件走向高性能场景，驱动性能已成用户反馈主要瓶颈，直接影响生态吸引力。" |
+| **对学生的期望** | ✅ | 学生需要具备哪些背景知识或能力 |
+| **社区提供支持** | ✅ | 如：每周一次 30min 线上同步、开发板远程访问、性能分析文档/测试集、相关模块代码导读 |
+| **建议切入点** | 否 | 社区已想到但没精力做的具体方向，供学生参考 |
+| **提案接收渠道** | ✅ | 社区指定邮箱或其他渠道（**系统外提交**） |
+| **Pitch 时段** | ✅ | 社区计划开放的提案沟通时段。格式："2026年X月X日 19:00-21:00" 或 "另行通知" |
+
+---
+
+## 六、社区额外可参与事项
+
+| 事项 | 说明 |
+|---|---|
+| 📹 **组织介绍视频** | 投稿至 org@summer-ospp.ac.cn，在官网/公众号/B站展示，20 分钟内 |
+| 📄 **开源之夏页面** | 在组织官网/仓库上线 OSPP 专题页（含项目清单+详情+参考资料） |
+| 🤝 **自费支持项目** | 非核心基础软件项目可由组织自费承担报酬，签署合作协议后高亮标注 |
+
+---
+
+## 七、关键注意事项
+
+1. **全年滚动**：所有流程持续开放，不再有固定截止日期
+2. **RISC-V 优先**：所有项目首先应支持 RISC-V 架构
+3. **导师身份独立**：联络人与导师需用不同邮箱，导师不能同时当学生
+4. **禁止内定**：不允许提前承诺中选或要求学生提前开发
+5. **信息修改**：需向组委会发邮件申请，建议发布时仔细核对
+
+---
+
+## 八、相关资源链接
+
+| 资源 | 链接 |
+|---|---|
+| 活动官网 | [summer.ospp.ac.cn](https://summer.ospp.ac.cn/) |
+| 后台管理系统 | [portal.summer.ospp.ac.cn](https://portal.summer.ospp.ac.cn/) |
+| 参与指南（中文） | [docs2026.summer.ospp.ac.cn](https://docs2026.summer.ospp.ac.cn/) |
+| 参与指南（英文） | [docs2026-en.summer.ospp.ac.cn](https://docs2026-en.summer.ospp.ac.cn/) |
+| 领航模式指南 | [docs2026.summer.ospp.ac.cn/help/Pioneer-guide](https://docs2026.summer.ospp.ac.cn/help/Pioneer-guide) |
+| 组织指南 | [docs2026.summer.ospp.ac.cn/help/CommunityGuide](https://docs2026.summer.ospp.ac.cn/help/CommunityGuide) |
+| 学生指南 | [docs2026.summer.ospp.ac.cn/help/student%20guide](https://docs2026.summer.ospp.ac.cn/help/student%20guide) |
+| 导师指南 | [docs2026.summer.ospp.ac.cn/help/mentor%20guide](https://docs2026.summer.ospp.ac.cn/help/mentor%20guide) |
+| 热点问题 FAQ | [docs2026.summer.ospp.ac.cn/help/FAQ](https://docs2026.summer.ospp.ac.cn/help/FAQ) |
+| 组委会邮箱 | **org@summer-ospp.ac.cn** |
+
+---
+
+*本页面内容整合自 OSPP 2026 官方组织指南与后台管理系统实际操作流程，如有更新以官方文档为准。*
