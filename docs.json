@@ -94,7 +94,22 @@
               "mechanical/ek-team-25-mechanical-training",
               "mechanical/ek-mechanical-solidworks",
               "mechanical/rhino-modeling-tutorial",
-              "mechanical/training-resources"
+              {
+                "group": "培训资料",
+                "icon": "book-open",
+                "pages": [
+                  "mechanical/training-resources",
+                  "mechanical/training-structure-design-methodology",
+                  "mechanical/training-weight-reduction-guide",
+                  "mechanical/training-threaded-fasteners",
+                  "mechanical/training-aluminum-tube-pneumatics",
+                  "mechanical/falcon2-user-manual",
+                  "mechanical/m2006-motor-guide",
+                  "mechanical/m3508-motor-guide",
+                  "mechanical/training-how-to-ask",
+                  "mechanical/training-how-to-debug"
+                ]
+              }
             ]
           },
           {
