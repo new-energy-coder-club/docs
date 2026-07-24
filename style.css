@@ -829,3 +829,102 @@ html.dark .hero-banner-img {
   margin: 0 auto 24px;
   border-radius: var(--radius-xl);
 }
+
+/* =========================================================
+   Floating share QR widget
+   ========================================================= */
+
+/* Fixed bottom-right container */
+.share-qr-widget,
+html.dark .share-qr-widget {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+/* QR panel: hidden until hover / focus */
+.share-qr-panel,
+html.dark .share-qr-panel {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  padding: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  text-align: center;
+}
+
+.share-qr-widget:hover .share-qr-panel,
+.share-qr-widget:focus-within .share-qr-panel,
+html.dark .share-qr-widget:hover .share-qr-panel,
+html.dark .share-qr-widget:focus-within .share-qr-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.share-qr-panel img,
+html.dark .share-qr-panel img {
+  display: block;
+  width: 148px;
+  height: 148px;
+  border-radius: var(--radius-md);
+  background-color: #ffffff;
+}
+
+.share-qr-tip,
+html.dark .share-qr-tip {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+/* Floating action button */
+.share-qr-fab,
+html.dark .share-qr-fab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--mck-primary);
+  color: #ffffff;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 102, 255, 0.35);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  outline: none;
+}
+
+.share-qr-fab:hover,
+.share-qr-fab:focus-visible,
+html.dark .share-qr-fab:hover,
+html.dark .share-qr-fab:focus-visible {
+  background-color: var(--mck-primary-soft);
+  transform: translateY(-1px);
+}
+
+.share-qr-fab svg,
+html.dark .share-qr-fab svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Do not print the floating widget */
+@media print {
+  .share-qr-widget,
+  html.dark .share-qr-widget {
+    display: none;
+  }
+}
