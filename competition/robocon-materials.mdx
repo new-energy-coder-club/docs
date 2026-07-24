@@ -1,6 +1,6 @@
 ---
 title: "ROBOCON 资料包"
-description: "NEC 社区 ROBOCON 备赛资料包：OpenPnP 贴片机教程、电机驱动手册、嵌入式电控教程、机械结构设计文档、平面定位资料与演示视频，文件托管于社区 CDN。"
+description: "NEC 社区 ROBOCON 备赛资料包：OpenPnP 贴片机教程、电机驱动手册、嵌入式电控教程、机械结构设计文档、平面定位资料、演示视频与参赛队马术/四足整机开源方案，文件托管于社区 CDN。"
 ---
 
 本页面汇总 ROBOCON 备赛过程中沉淀的教程、软件与设计资料，所有文件托管于社区 CDN（cdn.newenergycoder.club），点击即可下载。
@@ -19,7 +19,7 @@ description: "NEC 社区 ROBOCON 备赛资料包：OpenPnP 贴片机教程、电
 - [演示视频](#演示视频) — PnP 贴片机 Creo 装配演示
 - [调试与测试资料](#调试与测试资料) — VOFA+、激光测距数据页、电池浪涌测试
 - [机械设计培训与教程](#机械设计培训与教程) — SW 草图作业、ANSYS 拓扑优化、轻量化设计
-- [各院校开源方案](#各院校开源方案) — 川大、哈工程、福建理工、大连工业四足/马术机器人机械与电控开源包
+- [参赛队整机开源方案（马术 / 四足）](#参赛队整机开源方案马术--四足) — 各校马术/四足机器人整机模型与电控固件
 - [赛事与参考资料](#赛事与参考资料) — ROBOCON 调研报告、夏令营规则、供应商资料
 - [嵌入式与电控教程](#嵌入式与电控教程) — 中科大电控教学、ESP32 硬件设计、STM32 控制板
 - [焊接实战指南](#焊接实战指南) — 焊接避坑、贴片进阶、PCB 进化三部曲
@@ -119,18 +119,35 @@ description: "NEC 社区 ROBOCON 备赛资料包：OpenPnP 贴片机教程、电
 - [Creality Falcon2 激光雕刻机用户手册 V3.0](https://cdn.newenergycoder.club/files/mechanical/creality-falcon2-laser-engraver-manual-v3.0.pdf)（PDF，3.07 MB，24 页）
   创想三维 Falcon2 激光雕刻机快速使用指南（中英双语），配合 [/mechanical/falcon2-laser-engraver](/mechanical/falcon2-laser-engraver) 使用。
 
-## 各院校开源方案
+## 参赛队整机开源方案（马术 / 四足）
 
-- [2023 四川大学：马术机器人 8 自由度机械开源](https://cdn.newenergycoder.club/files/robocon/sichuan-univ-2023-equestrian-8dof-mechanical.zip)（ZIP，13.35 MB）
-  ROBOCON 2023 马术任务四足机器人 SolidWorks 整机模型（SLDPRT/SLDASM），含 NUC 主机、RealSense 相机、IMU 等部件布局参考（2023-07）。
-- [2024 大连工业大学：四足机器人电控开源](https://cdn.newenergycoder.club/files/robocon/dalian-polytechnic-2024-quadruped-control.7z)（7Z，0.42 MB）
-  四足机器人电控方案资料包，体积小、适合快速翻阅参考整体电控架构。
-- [2024 哈尔滨工程大学：8 自由度并联四足「可可」电控开源](https://cdn.newenergycoder.club/files/robocon/harbin-engineering-2024-8dof-parallel-coco-control.7z)（7Z，13.29 MB）
-  哈工程 8 自由度并联腿四足机器人「可可」的电控开源资料，并联构型电控参考。
-- [2024 福建理工大学：8 自由度串联四足机械开源](https://cdn.newenergycoder.club/files/robocon/fujian-univ-tech-2024-8dof-serial-mechanical.zip)（ZIP，38.58 MB）
-  串联腿四足整机 SolidWorks 模型（v2.0），含宇树 GO-M8010-6 电机、同步带传动、碳方管机架等完整零件与装配体。
-- [2024 福建理工大学：8 自由度并联方案（DM4310 废案存档）](https://cdn.newenergycoder.club/files/robocon/fujian-univ-tech-2024-8dof-parallel-4310-deprecated.7z)（7Z，35.29 MB）
-  基于达妙 DM4310 电机的并联腿早期方案存档（已弃用），供构型对比与避坑参考。
+各校参赛队开源的马术 / 四足机器人整机方案，含 SolidWorks 整机模型与 STM32 电控固件，按学校与赛季整理。更多队伍开源链接（百度网盘等）见 [Robocon 开源文档汇总](/mechanical/robocon-open-source-docs)。
+
+### 机械结构（SolidWorks 整机模型）
+
+- [湖北工业大学 HCRT-DOG（2019，8 自由度并联四足）](https://cdn.newenergycoder.club/files/robocon/hubei-univ-tech-2019-hcrt-dog-quadruped.zip)（ZIP，95.87 MB）
+  HCRT-DOG 开源仓库快照：SolidWorks 整机与零件模型（M3508 电机、吸盘夹末端机构等），含硬件目录，早期经典四足方案参考。
+- [四川大学马术（2023，8 自由度机械）](https://cdn.newenergycoder.club/files/robocon/sichuan-univ-2023-equestrian-8dof-mechanical.zip)（ZIP，13.35 MB）
+  8 自由度马术机器人 SolidWorks 零件与装配模型，含 IMU、NUC、RealSense 等传感器安装结构。
+- [四川大学马术（2023，串联 12 自由度机械）](https://cdn.newenergycoder.club/files/robocon/sichuan-univ-2023-equestrian-12dof-serial-mechanical.zip)（ZIP，65.93 MB）
+  同步带驱动一代：整机、腿部、身体全套 SolidWorks 装配，串联 12 自由度马术方案。
+- [福建理工大学（2024，8 自由度串联机械 2.0）](https://cdn.newenergycoder.club/files/robocon/fujian-univ-tech-2024-8dof-serial-mechanical.zip)（ZIP，38.58 MB）
+  "2.0 8自由度马"：碳方管机身 + 宇树 GO-M8010-6 电机 + 同步带传动的整机 SolidWorks 模型。
+- [福建理工大学（2024，12 自由度串联机械·带轮马二代）](https://cdn.newenergycoder.club/files/robocon/fujian-univ-tech-2024-12dof-serial-mechanical.zip)（ZIP，97.47 MB）
+  轮足式马术机器人二代整机模型：关节连接器、同步带、轴承等完整零件库与装配体。
+- [福建理工大学（2024，8 自由度宇树并联·Lain）](https://cdn.newenergycoder.club/files/robocon/fujian-univ-tech-2024-8dof-unitree-parallel-lain.7z)（7Z，61.61 MB）
+  GO-M8010-6 并联腿四足：碳纤管/碳纤板骨架、Mid-360 雷达保护罩、RealSense D435 与总装配模型。
+- [福建理工大学（2024，8 自由度并联·4310 废案存档）](https://cdn.newenergycoder.club/files/robocon/fujian-univ-tech-2024-8dof-parallel-4310-deprecated.7z)（7Z，35.29 MB）
+  机械文件 V5.0：4310 电机方案的分步子装配（大腿、小腿、底板、电机固定），方案迭代对照存档。
+- [晋中信息学院（2024，12 自由度串联机械）](https://cdn.newenergycoder.club/files/robocon/jinzhong-info-college-2024-12dof-serial-mechanical.zip)（ZIP，96.40 MB）
+  "12轴狗" 整机 SLDASM 装配，宇树 GO-M8010-6 电机、分电板与标准件库一应俱全。
+
+### 电控固件（STM32 工程）
+
+- [大连工业大学（2024，四足电控）](https://cdn.newenergycoder.club/files/robocon/dalian-polytechnic-2024-quadruped-control.7z)（7Z，0.42 MB）
+  DPU_ 四足机器人控制固件：STM32F4 HAL 库 + MDK-ARM 工程，结构清晰适合入门参考。
+- [哈尔滨工程大学（2024，8 自由度并联"可可"电控）](https://cdn.newenergycoder.club/files/robocon/harbin-engineering-2024-8dof-parallel-coco-control.7z)（7Z，13.29 MB）
+  Corgi_for_ROBOCON 开源工程：STM32H7 HAL + MDK-ARM 四足控制代码，并联腿机型参考。
 
 ## 赛事与参考资料
 
