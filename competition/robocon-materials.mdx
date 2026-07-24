@@ -1,9 +1,23 @@
 ---
 title: "ROBOCON 资料包"
-description: "NEC 社区 ROBOCON 备赛资料包：OpenPnP 贴片机教程与软件、机械结构设计文档、三维模型与演示视频，文件托管于社区 CDN。"
+description: "NEC 社区 ROBOCON 备赛资料包：OpenPnP 贴片机教程与软件、电机驱动手册、机械结构设计文档、传感器与测试资料、三维模型与演示视频，文件托管于社区 CDN。"
 ---
 
 本页面汇总 ROBOCON 备赛过程中沉淀的教程、软件与设计资料，所有文件托管于社区 CDN（cdn.newenergycoder.club），点击即可下载。
+
+## 电机与驱动
+
+- [宇树 GO-M8010-6 电机使用手册 v1.2](https://cdn.newenergycoder.club/files/electrical/unitree-go-m8010-6-motor-manual-v1.2.pdf)（PDF，1.04 MB，19 页）
+  Unitree GO-M8010-6 关节电机使用手册，含电气参数、通信协议与安全注意事项（2022-09）。
+- [宇树 GO-M8010-6 电机用户手册 v1.0](https://cdn.newenergycoder.club/files/electrical/unitree-go-m8010-6-motor-user-manual-v1.0.pdf)（PDF，0.76 MB，7 页）
+  GO-M8010-6 电机早期版本用户手册（2022-07），供版本对照参考。
+- [达妙 DM-S3519-1EC 减速电机（含 DM3520-1EC 驱动器）使用说明书 V1.0](https://cdn.newenergycoder.club/files/electrical/damiao-dm-s3519-1ec-motor-manual-v1.0.pdf)（PDF，1.66 MB，20 页）
+  达妙科技 DM-S3519-1EC 减速电机与驱动器的接线、CAN 通信与寄存器说明（2024-11）。
+- [达妙 DM-S3519-1EC 电机三维模型](https://cdn.newenergycoder.club/files/electrical/damiao-dm-s3519-1ec-3d-model.SLDPRT)（SLDPRT，2.22 MB）
+  DM-S3519-1EC 电机 SolidWorks 零件模型（2024-10-21），可直接用于整机装配设计。
+- 达妙电机库类图：HXC 达妙电机驱动库（ESP32 + FreeRTOS）的 UML 类图，覆盖 `HXC_DMCtrl`、`DMMotor`（MIT/速度/速度位置三种模式）、`PID_CONTROL`、`HXC_CAN`/`HXC_TWAI` 等核心类，配合 [/embedded-software/hxc-motor-control](/embedded-software/hxc-motor-control) 阅读。
+
+![达妙电机库 UML 类图：HXC_DMCtrl 派生 DM3519/DM6220/DMH3510/DM3507，DMMotor 依赖 HXC_CAN 与 FreeRTOS](https://cdn.newenergycoder.club/images/motor/damiao-motor-library-class-diagram.jpg)
 
 ## OpenPnP 贴片机教程
 
@@ -45,3 +59,30 @@ description: "NEC 社区 ROBOCON 备赛资料包：OpenPnP 贴片机教程与软
 
 - [自制 PnP 贴片机 Creo 装配演示](https://cdn.newenergycoder.club/files/robocon/pnp-machine-creo-demo-2025-10-26.mp4)（MP4，11.54 MB，20 秒）
   Creo Parametric 中 MY_PNP_MACHINE 整机装配体的结构演示录屏（1080p60）。
+
+## 调试与测试资料
+
+- [VOFA+ 1.4.0 安装包](https://cdn.newenergycoder.club/files/electrical/vofa-plus-1.4.0-setup.exe)（EXE，33.19 MB）/ [VOFA+ 1.4.0 便携版](https://cdn.newenergycoder.club/files/electrical/vofa-plus-1.4.0-portable.zip)（ZIP，32.87 MB）
+  上位机串口调试与波形显示工具，电机 PID 调参、传感器数据可视化常用。
+- [SICK DT35-B15251 中程激光距离传感器数据页](https://cdn.newenergycoder.club/files/electrical/sick-dt35-b15251-datasheet-zh.pdf)（PDF，0.71 MB，10 页，中文）
+  DT35-B15251（订货号 1057652）激光测距传感器中文数据页，DC 12–30 V，M12 五针接口，IP65/67。
+- [TB47/48 电池架开关上电浪涌测试](https://cdn.newenergycoder.club/files/electrical/tb47-tb48-battery-inrush-current-test.pdf)（PDF，1.24 MB，7 页）
+  DJI TB47/48 电池架上电浪涌电流实测报告，含固态电容与 TVS 抑制方案对比波形。
+
+## 机械设计培训与教程
+
+- [HzMi 机械组第一次作业（SOLIDWORKS 草图）](https://cdn.newenergycoder.club/files/mechanical/hzmi-mechanical-homework-01.pdf)（PDF，6.01 MB，15 页）
+  机械组新人 SOLIDWORKS 草图训练题（带座轴承等），附思路提示与视频教程入口。
+- [RM 用 7 步超简明 ANSYS 拓扑优化教程](https://cdn.newenergycoder.club/files/mechanical/ansys-topology-optimization-7-steps-rm.pdf)（PDF，0.72 MB，7 页）
+  中南大学 FYT + 上理中英 RoboVigor 出品的 ANSYS Topology Optimization 极简流程教程。
+- [轻量化设计指南](https://cdn.newenergycoder.club/files/mechanical/lightweight-design-guide.pdf)（PDF，3.58 MB，14 页）
+  竞技机器人减重设计与板材零件减重方法，与《结构设计的思维逻辑》同系列。
+
+## 赛事与参考资料
+
+- [ROBOCON 调研报告（2019 年）](https://cdn.newenergycoder.club/files/robocon/robocon-research-report-2019.pdf)（PDF，3.03 MB，81 页）
+  全国大学生机器人大赛组委会出品的 ROBOCON 赛事调研报告，含亚太各国赛事概述（2019-09）。
+- [2023 机器人队夏令营比赛规则 2.0](https://cdn.newenergycoder.club/files/robocon/summer-camp-robot-rules-v2.0.pdf)（PDF，4.72 MB）
+  夏令营井字棋套环对抗赛规则：三层场地、取环放环计分与视觉自动加分细则（2023-08 更新）。
+- [道芯科技（Achip）公司介绍 V1.4（客户版）](https://cdn.newenergycoder.club/files/electrical/achip-technology-intro-v1.4.pdf)（PDF，2.13 MB，18 页）
+  上海道芯科技高性能专用模拟芯片公司简介，聚焦电感式位移与高精度压力传感器信号链芯片。
