@@ -53,7 +53,7 @@ python tools/ci/check_docs.py
 
 ## 项目结构
 
-> 说明：Wiki 中的技术教程已按主题迁移到对应 SIG / 工具目录（如机械设计、嵌入式软件、AI 工具），`wiki/` 主要保留新人入口、社区协作、培训资源与安全规范等飞书原始沉淀。旧 Wiki URL 已通过 `docs.json` 的 `redirects` 自动跳转。
+> 说明：Wiki 中的技术教程已按主题迁移到对应 SIG / 工具目录（如机械设计、嵌入式软件、AI 工具），`wiki/` 主要保留新人入口、社区协作、培训资源与安全规范等飞书原始沉淀。
 
 ```
 .
@@ -87,6 +87,7 @@ python tools/ci/check_docs.py
 ## 内容来源与导入
 
 - `wiki/` 与部分专题文档（如 `mechanical/lumenpnp/`）来自飞书 Wiki，可通过仓库内的 `.kimi/skills/feishu-to-nec-mdx/` Skill 从飞书增量导入并自动转换为带 frontmatter 的 MDX。
+- 大文件（PDF、压缩包、视频等）托管于 Cloudflare R2 CDN（`https://cdn.newenergycoder.club`），页面只引用 CDN 链接，不入 Git 仓库。
 - 旧 Wiki URL 已通过 `docs.json` 的 `redirects` 自动跳转。
 
 ## 贡献指南
