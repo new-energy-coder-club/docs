@@ -127,31 +127,25 @@ def normalize_fetch_response(data: dict, title_hint: str | None = None) -> tuple
 
 
 def fetch_document(doc_ref: str, title_hint: str | None = None, limit: int = 100) -> tuple[str, str]:
-    chunks: list[str] = []
+    """Fetch a document using v2 lark-cli docs +fetch (no offset/limit pagination)."""
+    command = [
+        lark_cli(),
+        "docs",
+        "+fetch",
+        "--doc",
+        doc_ref,
+        "--doc-format",
+        "markdown",
+        "--format",
+        "json",
+    ]
+    data = run_json(command)
     title = title_hint or "Untitled Feishu Document"
-    offset = 0
-    while True:
-        command = [
-            lark_cli(),
-            "docs",
-            "+fetch",
-            "--doc",
-            doc_ref,
-            "--format",
-            "json",
-            "--offset",
-            str(offset),
-            "--limit",
-            str(limit),
-        ]
-        data = run_json(command)
-        title, markdown, has_more = normalize_fetch_response(data, title)
-        if markdown and (not chunks or markdown != chunks[-1]):
-            chunks.append(markdown)
-        if not has_more:
-            break
-        offset += limit
-    return title, "\n\n".join(chunks).strip()
+    payload = data.get("data") if isinstance(data.get("data"), dict) else data
+    doc = payload.get("document", {})
+    title = doc.get("title") or payload.get("title") or title
+    content = doc.get("content") or payload.get("content") or ""
+    return str(title), str(content).strip()
 
 
 def resolve_wiki_node(source: str) -> dict:

@@ -18,6 +18,9 @@
   "styles": [
     "style.css"
   ],
+  "styling": {
+    "latex": true
+  },
   "favicon": "/favicon.svg",
   "search": {
     "prompt": "搜索文档、竞赛、项目与社区资料..."
@@ -111,6 +114,38 @@
                   "mechanical/dm-s3519-motor",
                   "mechanical/rm-rc-supplier-directory",
                   "mechanical/robocon-open-source-docs"
+                ]
+              },
+              {
+                "group": "LumenPnP 贴片机",
+                "icon": "microchip",
+                "pages": [
+                  "mechanical/lumenpnp/lumenpnp",
+                  "mechanical/lumenpnp/lumenpnp-v4",
+                  "mechanical/lumenpnp/doc-4",
+                  "mechanical/lumenpnp/doc-5",
+                  "mechanical/lumenpnp/doc-6",
+                  "mechanical/lumenpnp/doc-7",
+                  "mechanical/lumenpnp/v4-0",
+                  "mechanical/lumenpnp/doc-9",
+                  "mechanical/lumenpnp/doc-10",
+                  "mechanical/lumenpnp/doc-11",
+                  "mechanical/lumenpnp/doc-12",
+                  "mechanical/lumenpnp/doc-13",
+                  "mechanical/lumenpnp/doc-14",
+                  "mechanical/lumenpnp/doc-15",
+                  "mechanical/lumenpnp/doc-16",
+                  "mechanical/lumenpnp/doc-17",
+                  "mechanical/lumenpnp/doc-18",
+                  "mechanical/lumenpnp/doc-19",
+                  "mechanical/lumenpnp/mark-mark",
+                  "mechanical/lumenpnp/doc-21",
+                  "mechanical/lumenpnp/doc-22",
+                  "mechanical/lumenpnp/doc-23",
+                  "mechanical/lumenpnp/doc-24",
+                  "mechanical/lumenpnp/doc-25",
+                  "mechanical/lumenpnp/pos2pnp-pos",
+                  "mechanical/lumenpnp/openpnp"
                 ]
               }
             ]
