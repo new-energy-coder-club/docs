@@ -1,0 +1,22 @@
+---
+title: "lark-event"
+description: "飞书事件订阅：通过 WebSocket 长连接实时监听飞书事件（消息、通讯录变更、日历变更等），输出 NDJSON 到 stdout，支持 compact Agent 友好格式、正则路由、文件输出。当用户需要实时监听飞书事件、构建事件驱动管道时使用。"
+---
+
+| 项目 | 内容 |
+|---|---|
+| 来源 | [skills/lark-event/SKILL.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-event/SKILL.md) |
+| 分类 | 飞书/Lark 办公套件 |
+| 安装 | 克隆 [Skill 分支](https://github.com/new-energy-coder-club/new_energy_coder_club/tree/Skill) 后，将 `skills/lark-event/` 目录复制到 `~/.claude/skills/`（Claude Code）、`~/.trae/skills/`（Trae IDE）或 `~/.qclaw/skills/`（QClaw/OpenClaw），详见 [Skill 安装方式](/community/skill-branch) |
+
+# event (v1)
+
+> **前置条件：** 先阅读 [`../lark-shared/SKILL.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-shared/SKILL.md) 了解认证、权限处理和安全规则。
+
+## Shortcuts（推荐优先使用）
+
+Shortcut 是对常用操作的高级封装（`lark-cli event +<verb> [flags]`）。有 Shortcut 的操作优先使用。
+
+| Shortcut | 说明 |
+|----------|------|
+| [`+subscribe`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-event/references/lark-event-subscribe.md) | Subscribe to Lark events via WebSocket long connection (read-only, NDJSON output); bot-only; supports compact agent-friendly format, regex routing, file output |

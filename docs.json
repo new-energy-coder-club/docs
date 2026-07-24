@@ -344,6 +344,246 @@
           "ROADMAP",
           "resource-index"
         ]
+      },
+      {
+        "tab": "技能库",
+        "groups": [
+          {
+            "group": "概览",
+            "icon": "book-open",
+            "pages": [
+              "skills/index"
+            ]
+          },
+          {
+            "group": "飞书/Lark 办公套件（25）",
+            "icon": "feather",
+            "pages": [
+              "skills/lark-shared",
+              "skills/lark-contact",
+              "skills/lark-im",
+              "skills/lark-calendar",
+              "skills/lark-doc",
+              "skills/lark-sheets",
+              "skills/lark-base",
+              "skills/lark-task",
+              "skills/lark-approval",
+              "skills/lark-mail",
+              "skills/lark-drive",
+              "skills/lark-wiki",
+              "skills/lark-minutes",
+              "skills/lark-vc",
+              "skills/lark-vc-agent",
+              "skills/lark-okr",
+              "skills/lark-slides",
+              "skills/lark-whiteboard",
+              "skills/lark-markdown",
+              "skills/lark-event",
+              "skills/lark-attendance",
+              "skills/lark-openapi-explorer",
+              "skills/lark-skill-maker",
+              "skills/lark-workflow-meeting-summary",
+              "skills/lark-workflow-standup-report"
+            ]
+          },
+          {
+            "group": "AI CLI 调用器（6）",
+            "icon": "terminal",
+            "pages": [
+              "skills/kimi-cli",
+              "skills/claude-cli",
+              "skills/gemini-cli",
+              "skills/aicodewith",
+              "skills/trae-assistant",
+              "skills/persona-switch"
+            ]
+          },
+          {
+            "group": "前端 & 设计开发（14）",
+            "icon": "palette",
+            "pages": [
+              "skills/react-best-practices",
+              "skills/react-native-skills",
+              "skills/shadcn",
+              "skills/frontend-design",
+              "skills/frontend-skill",
+              "skills/web-design-guidelines",
+              "skills/web-artifacts-builder",
+              "skills/webapp-testing",
+              "skills/web-design",
+              "skills/canvas-design",
+              "skills/algorithmic-art",
+              "skills/brand-guidelines",
+              "skills/theme-factory",
+              "skills/chart-visualization"
+            ]
+          },
+          {
+            "group": "开发工程 & 工作流（17）",
+            "icon": "gears",
+            "pages": [
+              "skills/clean-code-zh",
+              "skills/security-best-practices",
+              "skills/git-commit",
+              "skills/gh-cli",
+              "skills/github-skill",
+              "skills/test-driven-development",
+              "skills/spec-to-implementation",
+              "skills/composition-patterns",
+              "skills/hook-analyzer-skill",
+              "skills/screenshot",
+              "skills/writing-plans",
+              "skills/executing-plans",
+              "skills/defuddle",
+              "skills/planning-with-files",
+              "skills/harness",
+              "skills/agentic-loop",
+              "skills/agent-browser"
+            ]
+          },
+          {
+            "group": "搜索 & 资讯聚合（8）",
+            "icon": "magnifying-glass",
+            "pages": [
+              "skills/baidu-search",
+              "skills/online-search",
+              "skills/multi-search-engine",
+              "skills/news",
+              "skills/news-extractor",
+              "skills/news-summary",
+              "skills/neodata-financial-search",
+              "skills/tech-news-digest"
+            ]
+          },
+          {
+            "group": "文档 & 办公文件（9）",
+            "icon": "file-lines",
+            "pages": [
+              "skills/docx",
+              "skills/pdf",
+              "skills/pptx",
+              "skills/xlsx",
+              "skills/doc-coauthoring",
+              "skills/file-skill",
+              "skills/email-skill",
+              "skills/mintlify",
+              "skills/nec-resource-publisher"
+            ]
+          },
+          {
+            "group": "集成 & 平台连接（14）",
+            "icon": "plug",
+            "pages": [
+              "skills/tencent-docs",
+              "skills/tencent-meeting-mcp",
+              "skills/tencent-survey",
+              "skills/tencent-news",
+              "skills/wecomcli-setup",
+              "skills/wecom-weisheng-scrm",
+              "skills/weiyun",
+              "skills/youdaonote",
+              "skills/notion",
+              "skills/ima",
+              "skills/kdocs",
+              "skills/imap-smtp-email",
+              "skills/tme-openapi",
+              "skills/flyai"
+            ]
+          },
+          {
+            "group": "学术 & 论文（6）",
+            "icon": "graduation-cap",
+            "pages": [
+              "skills/acad-paper-prompter",
+              "skills/paper-scaffold",
+              "skills/latex-win",
+              "skills/cit-thesis-writer",
+              "skills/gradpilot",
+              "skills/patent-application-cn"
+            ]
+          },
+          {
+            "group": "新能源 & 光伏（2）",
+            "icon": "solar-panel",
+            "pages": [
+              "skills/pv-station-rating",
+              "skills/pv-storage-bom"
+            ]
+          },
+          {
+            "group": "QClaw/OpenClaw 平台（15）",
+            "icon": "puzzle",
+            "pages": [
+              "skills/qclaw-cron-skill",
+              "skills/qclaw-env",
+              "skills/qclaw-rules",
+              "skills/qclaw-skill-creator",
+              "skills/qclaw-text-file",
+              "skills/qclaw-openclaw",
+              "skills/self-improving",
+              "skills/self-improving-agent",
+              "skills/session-logs",
+              "skills/skill-vetter",
+              "skills/public-skill",
+              "skills/content-factory",
+              "skills/cloud-upload-backup",
+              "skills/mcporter",
+              "skills/mcp-builder"
+            ]
+          },
+          {
+            "group": "效率 & 头脑风暴（9）",
+            "icon": "lightbulb",
+            "pages": [
+              "skills/productivity-automation-kit",
+              "skills/plan-my-day",
+              "skills/study-habits",
+              "skills/brainstorming",
+              "skills/consulting-analysis",
+              "skills/report-generator-skill",
+              "skills/ai-dev-dashboard",
+              "skills/ai-data-analysis",
+              "skills/ai-promotion-query"
+            ]
+          },
+          {
+            "group": "社交 & 微信生态（8）",
+            "icon": "comments",
+            "pages": [
+              "skills/wx-cli-wechat-local-data",
+              "skills/wechat-cli-export",
+              "skills/nec-wechat-sync",
+              "skills/corporate-deep-query",
+              "skills/xiaohongshu-images",
+              "skills/xiaohongshu-skills",
+              "skills/kimi-webbridge",
+              "skills/xbrowser"
+            ]
+          },
+          {
+            "group": "TRAE 内置 & 独立工具（17）",
+            "icon": "screwdriver-wrench",
+            "pages": [
+              "skills/TRAE-code-review",
+              "skills/TRAE-debugger",
+              "skills/TRAE-generate-mini-app",
+              "skills/data-analysis",
+              "skills/redis-development",
+              "skills/find-skills",
+              "skills/dogfood",
+              "skills/aippt",
+              "skills/weather-advisor",
+              "skills/slack-gif-creator",
+              "skills/fbs_bookwriter",
+              "skills/wendao-partner-qclaw-skill",
+              "skills/chuangye",
+              "skills/bdpan-storage",
+              "skills/kc-gui",
+              "skills/resume-builder",
+              "skills/resume-optimizer"
+            ]
+          }
+        ]
       }
     ],
     "global": {

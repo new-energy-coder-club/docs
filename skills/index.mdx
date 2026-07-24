@@ -1,0 +1,230 @@
+---
+title: "Skills 技能库索引"
+description: "NEC Skill 分支 150 个 AI Coding Skills 的完整索引，按 13 大分类组织，每个技能均有独立详情页"
+---
+
+NEC 主仓库的 Skill 分支收录了 **150 个** AI Coding Skills，覆盖飞书办公、AI CLI、前端设计、开发工程、搜索资讯、办公文档、平台集成、学术论文、新能源光伏、QClaw/OpenClaw、效率工具、微信生态与 TRAE 工具等 13 大分类。每个技能都有独立的详情页，包含完整的 SKILL.md 介绍、来源链接与安装方式。
+
+<Card
+  title="Skill 分支文档"
+  icon="code"
+  href="/community/skill-branch"
+  horizontal
+>
+  了解 Skill 分支的定位、目录结构、安装方式与贡献流程
+</Card>
+
+## 飞书/Lark 办公套件（25）
+
+| 技能 | 简介 |
+|---|---|
+| [`lark-shared`](/skills/lark-shared) | 飞书/Lark CLI 共享基础：应用配置初始化、认证登录（auth login）、身份切换（--as user/bot）、权限与 scope 管理、Perm… |
+| [`lark-contact`](/skills/lark-contact) | 飞书 / Lark 通讯录,用于按姓名 / 邮箱把员工解析成 open_id,以及按 open_id 反查员工的姓名 / 部门 / 邮箱 / 联系方式。当用户… |
+| [`lark-im`](/skills/lark-im) | 飞书即时通讯：收发消息和管理群聊。发送和回复消息、搜索聊天记录、管理群聊成员、上传下载图片和文件（支持大文件分片下载）、管理表情回复。当用户需要发消息、查看或… |
+| [`lark-calendar`](/skills/lark-calendar) | 飞书日历（calendar）：提供日历与日程（会议）的全面管理能力。核心场景包括：查看/搜索日程、创建/更新日程、管理参会人、查询忙闲状态及推荐空闲时段、查询… |
+| [`lark-doc`](/skills/lark-doc) | 飞书云文档（v2）：创建和编辑飞书文档。使用本 skill 时，docs +create、docs +fetch、docs +update 必须携带 --ap… |
+| [`lark-sheets`](/skills/lark-sheets) | 飞书电子表格：创建和操作电子表格。支持创建表格、创建/复制/删除/更新工作表、读写单元格、追加行数据、查找内容、导出文件。当用户需要创建电子表格、管理工作表、… |
+| [`lark-base`](/skills/lark-base) | 当需要用 lark-cli 操作飞书多维表格（Base）时调用：搜索 Base、建表、字段管理、记录读写、记录分享链接、视图配置、历史查询，以及角色/表单/仪… |
+| [`lark-task`](/skills/lark-task) | 飞书任务：管理任务、清单和任务智能体。创建待办任务、查看和更新任务状态、拆分子任务、组织任务清单、分配协作成员、上传任务附件、注册或注销任务智能体、更新任务智… |
+| [`lark-approval`](/skills/lark-approval) | 飞书审批 API：审批实例、审批任务管理。 |
+| [`lark-mail`](/skills/lark-mail) | 飞书邮箱 — draft, compose, send, reply, forward, read, and search emails; manage dr… |
+| [`lark-drive`](/skills/lark-drive) | 飞书云空间：管理云空间中的文件和文件夹。上传和下载文件、创建文件夹、复制/移动/删除文件、查看文件元数据、管理文档评论、管理文档权限、订阅用户评论变更事件、修… |
+| [`lark-wiki`](/skills/lark-wiki) | 飞书知识库：管理知识空间、空间成员和文档节点。创建和查询知识空间、查看和管理空间成员、管理节点层级结构、在知识库中组织文档和快捷方式。当用户需要在知识库中查找… |
+| [`lark-minutes`](/skills/lark-minutes) | 飞书妙记：妙记相关基本功能。1.查询妙记列表（按关键词/所有者/参与者/时间范围）；2.获取妙记基础信息（标题、封面、时长 等）；3.下载妙记音视频文件；4.… |
+| [`lark-vc`](/skills/lark-vc) | 飞书视频会议：查询会议记录、获取会议纪要产物（总结、待办、章节、逐字稿）。1. 查询已经结束的会议数量或详情时使用本技能(如历史日期｜ 昨天 \| 上周 \| 今… |
+| [`lark-vc-agent`](/skills/lark-vc-agent) | 飞书视频会议：让机器人代当前用户加入/离开正在进行的会议，并读取会议期间的实时事件（参会人加入与离开、发言、聊天、屏幕共享等）。1. 用户提供 9 位会议号、… |
+| [`lark-okr`](/skills/lark-okr) | 飞书 OKR：管理目标与关键结果。查看和编辑 OKR 周期、目标（Objective）、关键结果（Key Result）、对齐关系、量化指标和进展记录。当用户… |
+| [`lark-slides`](/skills/lark-slides) | 飞书幻灯片：创建和编辑幻灯片，接口通过 XML 协议通信。创建演示文稿、读取幻灯片内容、管理幻灯片页面（创建、删除、读取、局部替换）。当用户需要创建或编辑幻灯… |
+| [`lark-whiteboard`](/skills/lark-whiteboard) | > 飞书画板：查询和编辑飞书云文档中的画板。支持导出画板为预览图片、导出原始节点结构、使用 DSL（转成 OpenAPI 格式）、PlantUML/Merma… |
+| [`lark-markdown`](/skills/lark-markdown) | 飞书 Markdown：查看、创建、上传和编辑 Markdown 文件。当用户需要创建或编辑 Markdown 文件、读取或修改时使用。 |
+| [`lark-event`](/skills/lark-event) | 飞书事件订阅：通过 WebSocket 长连接实时监听飞书事件（消息、通讯录变更、日历变更等），输出 NDJSON 到 stdout，支持 compact A… |
+| [`lark-attendance`](/skills/lark-attendance) | 飞书考勤打卡：查询自己的考勤打卡记录 |
+| [`lark-openapi-explorer`](/skills/lark-openapi-explorer) | 飞书/Lark 原生 OpenAPI 探索：从官方文档库中挖掘未经 CLI 封装的原生 OpenAPI 接口。当用户的需求无法被现有 lark-* skill… |
+| [`lark-skill-maker`](/skills/lark-skill-maker) | 创建 lark-cli 的自定义 Skill。当用户需要把飞书 API 操作封装成可复用的 Skill（包装原子 API 或编排多步流程）时使用。 |
+| [`lark-workflow-meeting-summary`](/skills/lark-workflow-meeting-summary) | 会议纪要整理工作流：汇总指定时间范围内的会议纪要并生成结构化报告。当用户需要整理会议纪要、生成会议周报、回顾一段时间内的会议内容时使用。 |
+| [`lark-workflow-standup-report`](/skills/lark-workflow-standup-report) | 日程待办摘要：编排 calendar +agenda 和 task +get-my-tasks，生成指定日期的日程与未完成任务摘要。适用于了解今天/明天/本周… |
+
+## AI CLI 调用器（6）
+
+| 技能 | 简介 |
+|---|---|
+| [`kimi-cli`](/skills/kimi-cli) | 调用本地 Kimi CLI（kimi-for-coding 模型）执行编程、代码分析、代码生成等任务。当用户明确要求"用 Kimi"、"让 Kimi 处理"、… |
+| [`claude-cli`](/skills/claude-cli) | 调用本地 Claude Code CLI（claude 命令）执行通用 AI 任务、文件操作、代码分析等。当用户明确要求"用 Claude"、"让 Claud… |
+| [`gemini-cli`](/skills/gemini-cli) | 调用本地 Gemini CLI（gemini 命令，Google Gemini 模型）执行 AI 任务。当用户明确要求"用 Gemini"、"让 Gemini… |
+| [`aicodewith`](/skills/aicodewith) | 管理 AiCodeWith（api.with7.cn）模型配置。支持同步最新模型列表到 OpenClaw、查询可用模型、切换默认模型。当用户说"更新 ACW… |
+| [`trae-assistant`](/skills/trae-assistant) | trae-assistant 技能的详细介绍 |
+| [`persona-switch`](/skills/persona-switch) | \| 切换 agent 的人设（soul.md）。支持三套预设人设与原有人设之间自由切换。 触发词：切换人设、persona-switch、赛博朋友、温柔伴侣、… |
+
+## 前端 & 设计开发（14）
+
+| 技能 | 简介 |
+|---|---|
+| [`react-best-practices`](/skills/react-best-practices) | React and Next.js performance optimization guidelines from Vercel Engineering.… |
+| [`react-native-skills`](/skills/react-native-skills) | React Native and Expo best practices for building performant mobile apps. Use w… |
+| [`shadcn`](/skills/shadcn) | Manages shadcn components and projects — adding, searching, fixing, debugging,… |
+| [`frontend-design`](/skills/frontend-design) | Create distinctive, production-grade frontend interfaces with high design quali… |
+| [`frontend-skill`](/skills/frontend-skill) | Use when the task asks for a visually strong landing page, website, app, protot… |
+| [`web-design-guidelines`](/skills/web-design-guidelines) | Review UI code for Web Interface Guidelines compliance. Use when asked to "revi… |
+| [`web-artifacts-builder`](/skills/web-artifacts-builder) | Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts… |
+| [`webapp-testing`](/skills/webapp-testing) | Toolkit for interacting with and testing local web applications using Playwrigh… |
+| [`web-design`](/skills/web-design) | 网页设计与部署。生成精美的单页 HTML 网页（报告、落地页、数据可视化等），支持一键部署到 Cloudflare Pages。使用 Tailwind CSS… |
+| [`canvas-design`](/skills/canvas-design) | Create beautiful visual art in .png and .pdf documents using design philosophy.… |
+| [`algorithmic-art`](/skills/algorithmic-art) | Creating algorithmic art using p5.js with seeded randomness and interactive par… |
+| [`brand-guidelines`](/skills/brand-guidelines) | Applies Anthropic's official brand colors and typography to any sort of artifac… |
+| [`theme-factory`](/skills/theme-factory) | Toolkit for styling artifacts with a theme. These artifacts can be slides, docs… |
+| [`chart-visualization`](/skills/chart-visualization) | 把数据转成合适的图表与可渲染的图表规格。用户要可视化数据、选图、生成图表代码（Mermaid/Vega-Lite/Plotly/ECharts）或解释图表时调… |
+
+## 开发工程 & 工作流（17）
+
+| 技能 | 简介 |
+|---|---|
+| [`clean-code-zh`](/skills/clean-code-zh) | 遵循 Robert C. Martin 的《代码整洁之道》原则，进行代码审查、重构和编写。涵盖命名、函数、注释和错误处理的最佳实践。 |
+| [`security-best-practices`](/skills/security-best-practices) | Perform language and framework specific security best-practice reviews and sugg… |
+| [`git-commit`](/skills/git-commit) | Execute git commit with conventional commit message analysis, intelligent stagi… |
+| [`gh-cli`](/skills/gh-cli) | GitHub CLI (gh) comprehensive reference for repositories, issues, pull requests… |
+| [`github-skill`](/skills/github-skill) | 在用户提及 GitHub 仓库、Issue、Pull Request、Actions、代码管理相关内容与操作时使用此技能。触发关键词包括：创建 issue、新… |
+| [`test-driven-development`](/skills/test-driven-development) | Use when implementing any feature or bugfix, before writing implementation code |
+| [`spec-to-implementation`](/skills/spec-to-implementation) | Turns product or tech specs into concrete Notion tasks that Claude code can imp… |
+| [`composition-patterns`](/skills/composition-patterns) | React composition patterns that scale. Use when refactoring components with boo… |
+| [`hook-analyzer-skill`](/skills/hook-analyzer-skill) | 视频前三秒钩子分析技能。从分镜拆解结果中提取前三秒分镜数据，为钩子吸引力评估提供结构化上下文。运行脚本 `python scripts/analyze_hoo… |
+| [`screenshot`](/skills/screenshot) | Use when the user explicitly asks for a desktop or system screenshot (full scre… |
+| [`writing-plans`](/skills/writing-plans) | Use when you have a spec or requirements for a multi-step task, before touching… |
+| [`executing-plans`](/skills/executing-plans) | Use when you have a written implementation plan to execute in a separate sessio… |
+| [`defuddle`](/skills/defuddle) | Extract clean markdown content from web pages using Defuddle CLI, removing clut… |
+| [`planning-with-files`](/skills/planning-with-files) | Implements Manus-style file-based planning for complex tasks. Creates task_plan… |
+| [`harness`](/skills/harness) | This skill should be used for multi-session autonomous agent work requiring pro… |
+| [`agentic-loop`](/skills/agentic-loop) | 管理 Claude Code Agentic Loop 防护。控制每次对话的工具调用上限（默认25次）与连续重复命令检测（默认5次）。用户说"loop上限""… |
+| [`agent-browser`](/skills/agent-browser) | Browser automation CLI for AI agents. Use when the user needs to interact with… |
+
+## 搜索 & 资讯聚合（8）
+
+| 技能 | 简介 |
+|---|---|
+| [`baidu-search`](/skills/baidu-search) | 百度 AI 搜索。支持网页搜索、百度百科、秒懂百科、AI 智能生成四种模式。自动包含当前日期上下文。当用户要求搜索信息、查询百科、获取最新资讯、搜索新闻、查找… |
+| [`online-search`](/skills/online-search) | \| 元宝搜索标准版工具。是腾讯元宝的联网搜索服务，提供实时、精准的互联网内容检索能力。 核心特性：覆盖大量中文网站，包括官方媒体、政府网站等高权威性来源，以及… |
+| [`multi-search-engine`](/skills/multi-search-engine) | 多搜索引擎聚合，集成 17 个引擎（8 个国内 + 9 个国际）。支持高级搜索语法、时间筛选、站内搜索、隐私引擎和 WolframAlpha 知识查询。无需… |
+| [`news`](/skills/news) | 新闻与资讯查询。获取中文新闻和全球 AI 技术资讯，支持按分类查询（时政、财经、科技、社会、国际、体育、娱乐、AI 技术、AI 社区）。当用户询问最新新闻、A… |
+| [`news-extractor`](/skills/news-extractor) | 新闻站点内容提取。支持微信公众号、今日头条、网易新闻、搜狐新闻、腾讯新闻。当用户需要提取新闻内容、抓取公众号文章、爬取新闻、或获取新闻JSON/Markdow… |
+| [`news-summary`](/skills/news-summary) | This skill should be used when the user asks for news updates, daily briefings,… |
+| [`neodata-financial-search`](/skills/neodata-financial-search) | 自然语言通用金融数据搜索服务。用自然语言查询股票、基金、指数、板块、宏观经济、外汇、大宗商品等全品类金融数据，涵盖行情报价、财务报表（财报）、资金流向、研报评… |
+| [`tech-news-digest`](/skills/tech-news-digest) | 科技新闻多源聚合摘要。从100+信息源自动采集并评分科技新闻。Keywords: 科技新闻, tech news, RSS, industry trends. |
+
+## 文档 & 办公文件（9）
+
+| 技能 | 简介 |
+|---|---|
+| [`docx`](/skills/docx) | Use this skill whenever the user wants to create, read, edit, or manipulate Wor… |
+| [`pdf`](/skills/pdf) | Use this skill whenever the user wants to do anything with PDF files. This incl… |
+| [`pptx`](/skills/pptx) | Use this skill any time a .pptx file is involved in any way — as input, output,… |
+| [`xlsx`](/skills/xlsx) | Use this skill any time a spreadsheet file is the primary input or output. This… |
+| [`doc-coauthoring`](/skills/doc-coauthoring) | Guide users through a structured workflow for co-authoring documentation. Use w… |
+| [`file-skill`](/skills/file-skill) | 智能文件/桌面整理技能。当用户 prompt 中包含"桌面整理"、"文件整理"、"整理桌面"、"整理文件"、"整理文件夹"、"清理桌面"、"排列桌面"、"桌面… |
+| [`email-skill`](/skills/email-skill) | 当用户提到邮箱相关能力时，进入这个skill，统一邮件入口（纯路由层）：识别用户意图后路由到 public-skill 或 imap-smtp-email，自… |
+| [`mintlify`](/skills/mintlify) | Build and maintain documentation sites with Mintlify. Use when creating docs pa… |
+| [`nec-resource-publisher`](/skills/nec-resource-publisher) | 将培训/资料附件（PDF、Excel、工程图、压缩包等）发布到 NEC 文档站（new-energy-coder-club/docs，Mintlify）——原… |
+
+## 集成 & 平台连接（14）
+
+| 技能 | 简介 |
+|---|---|
+| [`tencent-docs`](/skills/tencent-docs) | 腾讯文档（docs.qq.com）-在线云文档平台，是创建、编辑、管理文档的首选 skill。涉及"新建/创建/编辑/读取/查看/搜索文档"、"保存文件"、"… |
+| [`tencent-meeting-mcp`](/skills/tencent-meeting-mcp) | 腾讯会议智能助手，支持会议管理、成员管理、录制、转写与智能纪要查询等功能。 |
+| [`tencent-survey`](/skills/tencent-survey) | 腾讯问卷（wj.qq.com）- 在线问卷调查平台。涉及「问卷」「调查」「表单」「投票」「考试」「测评」「wj.qq.com」等操作时优先使用。支持能力：(1… |
+| [`tencent-news`](/skills/tencent-news) | 7×24 新闻资讯搜索工具，聚焦中国国内信息和国际热点。支持新闻搜索，包括热点新闻、早报晚报、实时资讯、领域新闻和天气信息查询。当用户需要搜索新闻、新闻热榜、… |
+| [`wecomcli-setup`](/skills/wecomcli-setup) | 企业微信 CLI 安装引导与自然语言翻译技能。引导用户完成 wecom-cli 的下载安装、Skills 安装、初始化配置（扫码/手动接入），并将用户的自然语… |
+| [`wecom-weisheng-scrm`](/skills/wecom-weisheng-scrm) | 当用户需要查询或管理微盛企微管家（企业微信） SCRM 中的客户信息、客户标签、客户群、营销素材、活码、群发、跟进记录、聊天记录、联系人、商机、汇报、抽奖、客… |
+| [`weiyun`](/skills/weiyun) | 微云网盘 MCP 接口完整技能。包含目录列表查询（weiyun.list）、按分类拉取文件列表（weiyun.list_by_category）、批量下载（w… |
+| [`youdaonote`](/skills/youdaonote) | 有道云笔记全能工具：笔记管理（创建、搜索、浏览、读取）、待办管理（创建、完成、分组）、网页剪藏（服务端抓取）。当用户需要操作有道云笔记时使用此 Skill。 |
+| [`notion`](/skills/notion) | 在用户提及 Notion 笔记、知识库、工作区相关内容与操作时使用此技能。触发关键词包括：创建页面、新建页面、查询页面、搜索笔记、读取页面、获取页面、更新页面… |
+| [`ima`](/skills/ima) | \| 统一的 IMA OpenAPI 技能，支持笔记管理和知识库操作。 当用户提到知识库、资料库、笔记、备忘录、记事，或者想要上传文件、添加网页到知识库、 搜索… |
+| [`kdocs`](/skills/kdocs) | 操作金山文档（WPS 云文档 / Kdocs / 365.kdocs.cn / www.kdocs.cn）云文档的官方 Skill。核心能力覆盖云端新建、读取… |
+| [`imap-smtp-email`](/skills/imap-smtp-email) | 通过 IMAP/SMTP 连接个人邮箱，支持完整邮件收发、抄送、附件、HTML、收件箱检索与附件下载；是当前邮件体系中唯一的个人邮箱主通道。 |
+| [`tme-openapi`](/skills/tme-openapi) | 腾讯音乐开放平台（TME OpenAPI）算子平台通用客户端。提供对 `/musician/agent/operator/*` 一系列「算子」API 的发现、… |
+| [`flyai`](/skills/flyai) | Search flights, hotels, attractions, concerts, and travel deals with natural la… |
+
+## 学术 & 论文（6）
+
+| 技能 | 简介 |
+|---|---|
+| [`acad-paper-prompter`](/skills/acad-paper-prompter) | Academic paper writing assistant providing structured prompts for polishing, tr… |
+| [`paper-scaffold`](/skills/paper-scaffold) | 论文项目目录标准化工具。对现有论文目录进行体检和整理，或从零创建新论文项目结构。支持三种模板：CIT毕业设计（ctexbook）、国际会议/期刊（ICML/I… |
+| [`latex-win`](/skills/latex-win) | Fix and compile LaTeX documents on Windows with TeX Live. Use when the user enc… |
+| [`cit-thesis-writer`](/skills/cit-thesis-writer) | 在常州工学院（CIT）毕业设计 LaTeX 模板（如 overleaf-cit-template）中撰写、修改、润色毕业论文内容时使用，提供符合 CIT 格式… |
+| [`gradpilot`](/skills/gradpilot) | > 留学申请（硕/博）全流程助手，覆盖选校定位、文书撰写（PS/SOP/CV/推荐信）、 申请时间线规划、材料准备、套磁与面试辅导。适用于北美、欧洲、英联邦、… |
+| [`patent-application-cn`](/skills/patent-application-cn) | Drafts Chinese patent application materials and package skeletons. Invoke when… |
+
+## 新能源 & 光伏（2）
+
+| 技能 | 简介 |
+|---|---|
+| [`pv-station-rating`](/skills/pv-station-rating) | 工商业光伏电站项目分层分级评分。基于六维度（企业性质/省份/自发自用比例/材料齐全性/财务状况/行业稳定性）做 A/B/C/D 评级与十分制加权评分，输出综合… |
+| [`pv-storage-bom`](/skills/pv-storage-bom) | Generate photovoltaic and energy storage system standard product BOM (Bill of M… |
+
+## QClaw/OpenClaw 平台（15）
+
+| 技能 | 简介 |
+|---|---|
+| [`qclaw-cron-skill`](/skills/qclaw-cron-skill) | \| [MANDATORY - MUST LOAD] 凡是涉及定时/提醒/闹钟/周期执行/打卡/签到/cron/schedule/remind 等需求，以及修改… |
+| [`qclaw-env`](/skills/qclaw-env) | OpenClaw skill 全链路环境诊断与安装工具。安装任何 CLI、命令行工具、包管理器、运行时环境时必须使用此 skill。使用场景包括但不限于：(1… |
+| [`qclaw-rules`](/skills/qclaw-rules) | \| [SYSTEM RULES - MANDATORY - ALWAYS LOAD - DO NOT SKIP] QClaw系统基础运行规则，强制加载，不可卸… |
+| [`qclaw-skill-creator`](/skills/qclaw-skill-creator) | Guide for creating effective skills. This skill should be used when users want… |
+| [`qclaw-text-file`](/skills/qclaw-text-file) | \| 【强制触发·最高优先级·write 工具拦截】跨平台纯文本文件写入技能。 ## ‼️ WRITE 工具拦截规则（最高优先级，无豁免） 当你准备调用内置 `… |
+| [`qclaw-openclaw`](/skills/qclaw-openclaw) | OpenClaw 平台安装脚本集（macOS / Windows），目前尚无 SKILL.md 定义文件 |
+| [`self-improving`](/skills/self-improving) | Self-reflection + Self-criticism + Self-learning + Self-organizing memory. Agen… |
+| [`self-improving-agent`](/skills/self-improving-agent) | Captures learnings, errors, and corrections to enable continuous improvement. U… |
+| [`session-logs`](/skills/session-logs) | Search and analyze your own session logs (older/parent conversations) using jq. |
+| [`skill-vetter`](/skills/skill-vetter) | 面向 AI Agent 的安全优先技能审查工具。在从 ClawdHub、GitHub 或其他来源安装任何技能之前使用，检查危险标志、权限范围和可疑模式。 |
+| [`public-skill`](/skills/public-skill) | 平台公邮：用于将天气、日报、报告、提醒等内容推送到用户自己的邮箱，零配置完成消息留存 |
+| [`content-factory`](/skills/content-factory) | 多代理内容生产线。自动化从选题研究到内容创作的全流程。Keywords: 内容创作, 文案, content creation, copywriting. |
+| [`cloud-upload-backup`](/skills/cloud-upload-backup) | Cloud file upload and backup tool. Upload local files to Tencent SMH cloud stor… |
+| [`mcporter`](/skills/mcporter) | Use the mcporter CLI to list, configure, auth, and call MCP servers/tools direc… |
+| [`mcp-builder`](/skills/mcp-builder) | Guide for creating high-quality MCP (Model Context Protocol) servers that enabl… |
+
+## 效率 & 头脑风暴（9）
+
+| 技能 | 简介 |
+|---|---|
+| [`productivity-automation-kit`](/skills/productivity-automation-kit) | 效率自动化工具箱 — 自动化工作流模板 + 日程管理助手 + 任务提醒工具 + 数据整理自动化。整合热门Skill功能，帮助用户识别自动化机会、设计工作流、管… |
+| [`plan-my-day`](/skills/plan-my-day) | Generate an energy-optimized, time-blocked daily plan |
+| [`study-habits`](/skills/study-habits) | Build effective study habits with spaced repetition, active recall, and session… |
+| [`brainstorming`](/skills/brainstorming) | You MUST use this before any creative work - creating features, building compon… |
+| [`consulting-analysis`](/skills/consulting-analysis) | 用咨询方法做问题拆解与建议输出。用户要求做业务分析、方案对比、决策建议、复盘诊断、写咨询式报告时调用。 |
+| [`report-generator-skill`](/skills/report-generator-skill) | 视频分析报告生成技能。整合分镜拆解数据和钩子分析结果，生成 Markdown 格式的专业视频分析报告。运行脚本 `python scripts/generat… |
+| [`ai-dev-dashboard`](/skills/ai-dev-dashboard) | Prints the PowerShell AI Dev Dashboard (AI CLIs status, recently called Skills… |
+| [`ai-data-analysis`](/skills/ai-data-analysis) | 腾讯音乐人智能数据分析助手。当用户提到"分析数据"、"看看播放趋势"、"歌曲表现"、"听众画像"、"数据洞察"、"粉丝构成"、"我的数据怎么样"、"分析这首歌… |
+| [`ai-promotion-query`](/skills/ai-promotion-query) | 腾讯音乐人宣推数据查询能力。当用户提到"我这些歌宣推情况如何"、"看一下宣推数据"、"这首歌宣推效果怎么样"、"我有哪些歌在投放"、"这首歌还要不要继续投"、… |
+
+## 社交 & 微信生态（8）
+
+| 技能 | 简介 |
+|---|---|
+| [`wx-cli-wechat-local-data`](/skills/wx-cli-wechat-local-data) | 微信本地数据查询与导出 — WeChat local data CLI (messages, contacts, moments, favorites, im… |
+| [`wechat-cli-export`](/skills/wechat-cli-export) | Export WeChat group member lists via wechat-cli with automatic Windows encoding… |
+| [`nec-wechat-sync`](/skills/nec-wechat-sync) | \| 同步分析 NEC 战队微信群聊并生成结构化报告，供飞书 openClaw 机器人读取。 使用场景： 1. 导出指定微信群聊天记录（markdown/jso… |
+| [`corporate-deep-query`](/skills/corporate-deep-query) | > 通过 TrinaPower 企业深度信息接口查询企业工商、股东、高管、投资、司法风险、年报等全景数据。 支持测试环境和生产环境切换。 使用场景： (1)… |
+| [`xiaohongshu-images`](/skills/xiaohongshu-images) | Transform markdown/HTML into styled 3:4 ratio images for Xiaohongshu |
+| [`xiaohongshu-skills`](/skills/xiaohongshu-skills) | \| 小红书自动化技能集合。支持认证登录、内容发布、搜索发现、社交互动、复合运营。 当用户要求操作小红书（发布、搜索、评论、登录、分析、点赞、收藏）时触发。 |
+| [`kimi-webbridge`](/skills/kimi-webbridge) | \| Kimi WebBridge lets AI control the user's real browser — navigate, click, typ… |
+| [`xbrowser`](/skills/xbrowser) | \| EXCLUSIVE browser automation — REPLACES built-in Browser Automation and playw… |
+
+## TRAE 内置 & 独立工具（17）
+
+| 技能 | 简介 |
+|---|---|
+| [`TRAE-code-review`](/skills/TRAE-code-review) | 用于执行代码审查任务。适用于审查合并请求、代码差异，并提供关于代码质量、正确性和最佳实践的结构化反馈。 |
+| [`TRAE-debugger`](/skills/TRAE-debugger) | 用于调试需要收集运行时证据的复杂问题。它会启动一个调试服务器通过 HTTP 收集日志，然后遵循科学的调试流程（假设 → 插桩 → 复现 → 分析 → 修复 →… |
+| [`TRAE-generate-mini-app`](/skills/TRAE-generate-mini-app) | 当用户意图涉及小程序、Taro、微信小程序、跨端小程序等任何包含小程序的意图时，用于生成基于 Taro 框架的高质量、可运行的多端小程序代码。 |
+| [`data-analysis`](/skills/data-analysis) | Use this skill when the user uploads Excel (.xlsx/.xls) or CSV files and wants… |
+| [`redis-development`](/skills/redis-development) | Redis performance optimization and best practices. Use this skill when working… |
+| [`find-skills`](/skills/find-skills) | 基于腾讯 SkillHub 搜索、安装和管理技能。用户提到“找技能”“安装 skill”“扩展功能”“启用/禁用 skill”“删除 skill”“安装 Sk… |
+| [`dogfood`](/skills/dogfood) | Systematically explore and test a web application to find bugs, UX issues, and… |
+| [`aippt`](/skills/aippt) | 当用户明确要求使用 AI 智能设计生成 PPT 演示文稿时使用本技能（智绘高迪/AIPPT）。本技能调用远程 Design Agent API，根据文字描述自… |
+| [`weather-advisor`](/skills/weather-advisor) | 天气顾问。智能天气顾问。实时天气查询、未来7天预报、穿衣建议与出行活动推荐 Keywords: 天气查询, weather, 穿衣建议, 出行提醒. |
+| [`slack-gif-creator`](/skills/slack-gif-creator) | Knowledge and utilities for creating animated GIFs optimized for Slack. Provide… |
+| [`fbs_bookwriter`](/skills/fbs_bookwriter) | FBS 福帮手长文档写作：书/手册/白皮书/长篇报道全流程；Node 脚本驱动 intake、会话恢复、S/P/C/B 质检与 MD/HTML 交付。用户提及… |
+| [`wendao-partner-qclaw-skill`](/skills/wendao-partner-qclaw-skill) | 当用户发起任意旅行相关问询时，包含但不限于：预订酒店、机票查询、火车票查询、景点推荐、寻找当地特色玩乐、目的地查询、行程规划、美食住宿攻略、签证、查询旅游攻略… |
+| [`chuangye`](/skills/chuangye) | \| 服务于创业者，管理者和职业经理人，解答创业/商业/管理问题，引发用户从自身处境思考。 《创业可以学》问答技能。当用户询问创业、商业、经营、管理等相关问题时… |
+| [`bdpan-storage`](/skills/bdpan-storage) | 百度网盘文件管理 Skill。支持上传、下载、转存、分享、列表查询、搜索、移动、复制、重命名、创建文件夹。当用户提及"百度网盘"/"bdpan"/"网盘"并涉… |
+| [`kc-gui`](/skills/kc-gui) | Use the bundled kc.exe Windows agent to perform GUI-based desktop automation ta… |
+| [`resume-builder`](/skills/resume-builder) | Generate professional resumes that conform to the Reactive Resume schema. Use w… |
+| [`resume-optimizer`](/skills/resume-optimizer) | Professional resume builder with PDF export, ATS optimization, and analysis cap… |
