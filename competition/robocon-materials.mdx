@@ -1,21 +1,24 @@
 ---
 title: "ROBOCON 资料包"
-description: "NEC 社区 ROBOCON 备赛资料包：OpenPnP 贴片机教程与软件、电机驱动手册、机械结构设计文档、传感器与测试资料、三维模型与演示视频，文件托管于社区 CDN。"
+description: "NEC 社区 ROBOCON 备赛资料包：OpenPnP 贴片机教程、电机驱动手册、嵌入式电控教程、机械结构设计文档、平面定位资料与演示视频，文件托管于社区 CDN。"
 ---
 
 本页面汇总 ROBOCON 备赛过程中沉淀的教程、软件与设计资料，所有文件托管于社区 CDN（cdn.newenergycoder.club），点击即可下载。
 
 ## 分类导航
 
-- [电机与驱动](#电机与驱动) — 宇树 GO-M8010-6、达妙 DM-S3519 手册与模型、电机库类图
+- [电机与驱动](#电机与驱动) — 宇树 GO-M8010-6、达妙 DM-S3519、M2006 控制工程、FOC 读物
 - [OpenPnP 贴片机教程](#openpnp-贴片机教程) — 摄像头校准、吸嘴更换、复杂拼板贴片
 - [软件工具](#软件工具) — AiCube-ISP 烧录工具、贴片坐标 CSV 转换软件
-- [机械设计文档](#机械设计文档) — 传动机构、结构设计方法论、舵轮、直线导轨
+- [机械设计文档](#机械设计文档) — 传动机构、设计方法论、舵轮、机构图册、装配规范
 - [三维模型与硬件资料](#三维模型与硬件资料) — 限位开关 STEP、气泵固定件、震动飞达
 - [演示视频](#演示视频) — PnP 贴片机 Creo 装配演示
 - [调试与测试资料](#调试与测试资料) — VOFA+、激光测距数据页、电池浪涌测试
 - [机械设计培训与教程](#机械设计培训与教程) — SW 草图作业、ANSYS 拓扑优化、轻量化设计
 - [赛事与参考资料](#赛事与参考资料) — ROBOCON 调研报告、夏令营规则、供应商资料
+- [嵌入式与电控教程](#嵌入式与电控教程) — 中科大电控教学、ESP32 硬件设计、STM32 控制板
+- [焊接实战指南](#焊接实战指南) — 焊接避坑、贴片进阶、PCB 进化三部曲
+- [平面定位与导航](#平面定位与导航) — OPS 定位系统、IMU+里程计硕士论文
 
 ## 电机与驱动
 
@@ -30,6 +33,11 @@ description: "NEC 社区 ROBOCON 备赛资料包：OpenPnP 贴片机教程与软
 - 达妙电机库类图：HXC 达妙电机驱动库（ESP32 + FreeRTOS）的 UML 类图，覆盖 `HXC_DMCtrl`、`DMMotor`（MIT/速度/速度位置三种模式）、`PID_CONTROL`、`HXC_CAN`/`HXC_TWAI` 等核心类，配合 [/embedded-software/hxc-motor-control](/embedded-software/hxc-motor-control) 阅读。
 
 ![达妙电机库 UML 类图：HXC_DMCtrl 派生 DM3519/DM6220/DMH3510/DM3507，DMMotor 依赖 HXC_CAN 与 FreeRTOS](https://cdn.newenergycoder.club/images/motor/damiao-motor-library-class-diagram.jpg)
+
+- [M2006 电机 STM32F4 CAN + PID 控制示例工程](https://cdn.newenergycoder.club/files/electrical/m2006-stm32f4-can-pid-demo.zip)（ZIP，13.60 MB）
+  大疆 M2006 电机控制的 STM32F4 CubeMX 工程（CAN 收发、PID 闭环、串口），可直接烧录参考。
+- [深入理解无刷直流电机矢量控制技术](https://cdn.newenergycoder.club/files/electrical/bldc-vector-control-foc-guide.pdf)（PDF，4.12 MB，110 页）
+  上官致远著，零基础入门 BLDC 矢量控制（FOC）的系统性读物（第一版发行版）。
 
 ## OpenPnP 贴片机教程
 
@@ -57,6 +65,12 @@ description: "NEC 社区 ROBOCON 备赛资料包：OpenPnP 贴片机教程与软
   中南大学 EK 战队开源的舵轮轮组机械结构设计文档（2025-08）。
 - [HIWIN 上银直线导轨技术手册](https://cdn.newenergycoder.club/files/robocon/hiwin-linear-guideway-catalog.pdf)（PDF，16.37 MB，232 页）
   上银直线导轨选型型录与技术资料（2020 版）。
+- [RM2023 福建农林大学 071 战队：一种便宜的舵轮制作开源](https://cdn.newenergycoder.club/files/mechanical/rm2023-fafu-071-low-cost-steering-wheel.pdf)（PDF，0.36 MB，2 页）
+  打印件 + 板材 + 自制包胶的低成本舵轮方案，单轮约 15 元，经飞坡与暴力测试验证。
+- [实用机构图册](https://cdn.newenergycoder.club/files/mechanical/practical-mechanism-atlas.pdf)（PDF，35.73 MB，493 页）
+  机构设计参考图册（扫描版），收录大量经典机构结构与运动简图，方案设计灵感库。
+- [史上最全的机械装配技术规范](https://cdn.newenergycoder.club/files/mechanical/mechanical-assembly-specification.pdf)（PDF，0.24 MB，7 页）
+  机械装配作业全流程规范：作业前准备、基本规范、装配要求与检查要点。
 
 ## 三维模型与硬件资料
 
@@ -98,3 +112,32 @@ description: "NEC 社区 ROBOCON 备赛资料包：OpenPnP 贴片机教程与软
   夏令营井字棋套环对抗赛规则：三层场地、取环放环计分与视觉自动加分细则（2023-08 更新）。
 - [道芯科技（Achip）公司介绍 V1.4（客户版）](https://cdn.newenergycoder.club/files/electrical/achip-technology-intro-v1.4.pdf)（PDF，2.13 MB，18 页）
   上海道芯科技高性能专用模拟芯片公司简介，聚焦电感式位移与高精度压力传感器信号链芯片。
+
+## 嵌入式与电控教程
+
+- [【RoboMaster】中科大电控教学开源](https://cdn.newenergycoder.club/files/electrical/ustc-rm-electrical-teaching-open-source.pdf)（PDF，0.62 MB，12 页）
+  中科大电控教学体系：CubeMX 基础、CAN 通信、大疆 RM 电机控制、串口绘图、PID 闭环全链路。
+- [RM 电控组相关基础知识](https://cdn.newenergycoder.club/files/electrical/rm-electrical-basic-knowledge.pdf)（PDF，0.23 MB，4 页）
+  RoboMaster 电控组知识框架：主控选型、CubeMX/IDE 工具链、CAN 总线与调试工具速览。
+- [重邮 ESP32 入门系列教程：ESP32 硬件设计参考](https://cdn.newenergycoder.club/files/electrical/esp32-hardware-design-reference-cqupt.pdf)（PDF，0.82 MB，10 页）
+  重庆邮电大学出品的 ESP32 硬件设计入门：模组与芯片选型、最小系统与供电电路设计。
+- [工训 ROBO2026 硬件参考手册 V1.0](https://cdn.newenergycoder.club/files/electrical/gx-robo2026-stm32f405-board-manual.pdf)（PDF，0.37 MB，20 页）
+  工训 ROBO2026 STM32F405 竞赛控制板（GX-ROBO2026）教程，面向工科竞赛与嵌入式教学。
+- [树莓派 4B（DFR0619/DFR0618/DFR0697）WIKI 链接汇总](https://cdn.newenergycoder.club/files/electrical/raspberry-pi-4b-dfrobot-wiki-links.pdf)（PDF，0.24 MB，4 页）
+  DFRobot 树莓派 4B 开发环境搭建、系统烧录、远程登录等官方 WIKI 链接整理。
+
+## 焊接实战指南
+
+- [电路焊接：从入门到入土——避坑指南](https://cdn.newenergycoder.club/files/electrical/sourcing-soldering-ep01-beginner-pitfalls.pdf)（PDF，0.21 MB，3 页）
+  焊接入门常见误区：烙铁温度设定、烙铁头保养与挂锡保护等基础避坑要点。
+- [焊接求生指南 EP02：实战进阶篇](https://cdn.newenergycoder.club/files/electrical/soldering-survival-guide-ep02.pdf)（PDF，0.26 MB，4 页）
+  贴片阻容、密脚芯片焊接实战：防立碑、对位固定与助焊技巧。
+- [焊接求生指南 EP03：从洞洞板到完美 PCB](https://cdn.newenergycoder.club/files/electrical/soldering-survival-guide-ep03.pdf)（PDF，0.26 MB，4 页）
+  告别飞线：设计并焊接第一块 PCB 的完整进化路线。
+
+## 平面定位与导航
+
+- [全方位平面定位系统 OPS-9 使用说明书](https://cdn.newenergycoder.club/files/positioning/ops-9-omnidirectional-positioning-manual.pdf)（PDF，1.15 MB，21 页）
+  沈阳艾克申（NEUAction）OPS-9 全方位平面定位系统产品手册，ROBOCON 场地定位常用方案。
+- [基于惯性传感器与正交里程计的平面定位系统设计与实现（王厚伟）](https://cdn.newenergycoder.club/files/positioning/planar-positioning-imu-orthogonal-odometry-thesis.pdf)（PDF，9.89 MB，91 页）
+  东北大学硕士学位论文（2018）：IMU + 正交里程计融合平面定位系统的设计与实现。
