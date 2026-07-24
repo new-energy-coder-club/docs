@@ -1,47 +1,739 @@
 ---
 title: "Creality Falcon2 激光雕刻机用户手册"
-description: "创想三维 Creality Falcon2 激光雕刻机快速使用指南 V3.0（中英双语，24 页）：安全须知、设备组装、软件操作、维护与固件升级"
+description: "创想三维 Falcon2 激光雕刻机快速使用指南 V3.0（中英双语，原文）"
 ---
 
-> 出品：深圳市创想三维科技股份有限公司（SHENZHEN CREALITY 3D TECHNOLOGY）
-> 版本：快速使用指南 V3.0，中英双语，24 页
+[下载原始 PDF（3.1 MB）](https://cdn.newenergycoder.club/files/mech-training/creality-falcon2-user-manual.pdf)
 
-[下载 PDF（3.1 MB，24 页）](https://cdn.newenergycoder.club/files/mech-training/creality-falcon2-user-manual.pdf)
+以下为文档原文内容；含尺寸图、连线图、性能曲线等矢量图示的页面以整页原图展示：
 
-## 手册简介
+Creality Falcon2 快速使用指南Creality Falcon2 Quick Guide
 
-这是实验室 Creality Falcon2 激光雕刻机的**原厂快速使用指南**，中英双语编排，包含从开箱安全规范到日常维护的完整操作流程，是首次接触该设备前的必读文档。更多设备操作、保养信息可登录创想三维官网（www.cxsw3d.com）查询。
+V3.0
 
-## 手册内容结构
+深圳市创想三维科技股份有限公司
 
-1. **设备简介**：产品概述、部件名称与装箱清单；
-2. **使用安全须知**：基于 IEC 60825-1:2014 激光安全标准的操作原则；
-3. **设备组装与连接**：机架组装、激光模组安装、气助系统连接；
-4. **软件与操作**：雕刻软件的使用、在线/离线加工流程；
-5. **维护与保养**：机身与激光模组的定期清洁、镜头维护；
-6. **固件升级**：将 .bin 文件保存至 TF 卡根目录进行升级。
+SHENZHEN CREALITY 3D TECHNOLOGY CO., LTD.
 
-## 安全须知要点
+![原文第 3 页](https://cdn.newenergycoder.club/files/mech-training/images/creality-falcon2-user-manual/p03-full.png)
 
-本产品的激光安全等级基于 IEC 60825-1:2014，通过激光孔径发射的激光辐射**超过 1 级**，请务必遵守：
+![Creality Falcon2 激光雕刻机用户手册 插图](https://cdn.newenergycoder.club/files/mech-training/images/creality-falcon2-user-manual/p04-img01.jpeg)
 
-- 远离易燃易爆物品、挥发性溶剂与高热源，放置在通风、阴凉、少尘环境；
-- 安装时必须使用产品附带的电源线，不可用其他电源线代替；
-- 定期在断电情况下用防静电毛刷及干布清洁机身与激光模组；
-- **无论是否使用空气辅助，务必接上激光模组上的硅胶管**，否则有镜片脏污风险；
-- 工作环境温度 5–35 °C，避免潮湿环境，切勿在雷雨天气使用；
-- 通电时勿触碰电子区域，**严禁带电插拔激光模组线**；运行时勿触碰运动机构；
-- 加工材料下方务必放置激光无法穿透的平面物体（如铝合金）；
-- 雕刻过程中**必须佩戴护目镜**，避免直视激光光斑造成视力损伤；
-- 备好灭火器并定期检查；机器工作过程中严禁无人看管；
-- 严禁 10 岁以下儿童在无成人监督下使用。
+渲染图 Rendering picture
 
-## 配套阅读
+尊敬的用户：
 
-本站已整理一份更侧重实验室实际操作的 [Falcon2 40W 激光雕刻机指南](/mechanical/falcon2-laser-engraver)，包含双模式切换（40W 切割 / 20W 精密切割）、LightBurn 软件流程、镜头污染监测与清洁方法、故障排查与售后联系方式，建议与本手册配合阅读。
+感谢您选择创想三维的产品。为了您使用方便，请您在使用之前仔细阅读本快速使用指南，并严格按照快速使用指南的指示进行操作。
+
+创想三维团队时刻准备为您提供优质的服务。如果您在使用过程中遇到问题，请按照快速使用指南结尾所提供的电话、邮箱与我们进行联系。为了您能够更好地体验我们的产品，您还可以从TF 卡内找到相关使用说明及视频。
+
+您还可以登陆创想三维官网 (www.cxsw3d.com) 寻找相关软硬件、联系方式、设备操作、设备保养等信息。
+
+Dear Users,
+
+Thank you for choosing Creality. For your convenience, please read this quick guide carefully before use,and follow the instructions in the quick guide.
+
+Creality team is always here to provide you with quality services. If you encounter problems during use,
+
+01
+
+please contact us via the phone number or email address provided at the end of the Quick Guide. Besides,video instructions are available on the TF card for your reference.
+
+You can also visit Creality’s oﬃcial website (www.cxsw3d.com) to learn more about software and hardware, contact,operation, maintenance, etc.
+
+固件升级
+
+从https://www.crealitycloud.cn/en/software-ﬁrmware/other?type=16 下载最新固件，备份并删除TF 卡中的文件后，将bin 文件保存至 TF 卡根目录。
+
+Firmware Upgrade
+
+Download the latest ﬁrmware from https://www.crealitycloud.cn/en/software-ﬁrmware/other?type=16， back up and delete the ﬁles in the TF card, and save the bin ﬁle to the root directory of the TF card.
+
+主板固件
+
+断电状态下将 TF 卡插入卡槽，机器通电自动更新。更新过程蜂鸣器会一直发出响声，响声结束则更新完成（期间不可断电）。
+
+Motherboard Firmware
+
+When the machine is powered oﬀ, insert the TF card into the card slot, and it will automatically update the ﬁrmware when it is powered on. The buzzer will keep beeping during the update process, and the update will be completed when the beep ends (please keep the power on till completion).
+
+激光模组固件
+
+断电状态下将 TF 卡插入读卡器，通过A 对C 转接头插入激光模组顶部的Type-C 接口中，机器通电自动更新。更新过程中激光模组的指示灯会变成橙色跑马灯效果，跑马灯结束则更新完成（期间不可断电）。
+
+Laser Module Firmware
+
+When the machine is powered oﬀ, insert the TF card into the card reader, then insert it into the USB-C port on the top of the laser module through the USB-A to USB-C adapter, and the ﬁrmware will automatically update when it is powered on. During the update process, the indicator of the laser module will turn orange with a marquee eﬀect, and the update will be completed when it stops the marquee eﬀect (please keep the power on till completion).
+
+02
+
+使用安全须知
+
+激光雕刻机在雕刻或切割材料时使用高密度激光束照射材料，使材料表面产生高温，目的是在不燃烧的情况下使材料气化。但大多数材料本质上是易燃的，可能被点燃并形成明火，明火可能烧毁机器及其周围环境。
+
+小心- 使用此处指定以外的控制或调整或执行程序可能会导致危险的辐射暴露。本产品的激光安全分类基于 IEC 60825-1:2014，通过激光孔径发射的激光辐射的激光安全等级超过1 级。
+
+请遵循以下操作原则：
+
+1. 请勿将本产品放置在易燃易爆物品、挥发性溶剂或高热源附近，请将本产品放置在通风、阴凉、少尘的环境内。
+
+2. 请勿在安装过程中使用其他产品电源线代替，请使用本产品附带的电源线。
+
+3. 定期在断电的情况下，用防静电毛刷以及干布清洁机身及激光模组。
+
+4. 无论是否使用空气辅助，请务必接上激光模组上的硅胶管，否则将有镜片脏污风险。
+
+5. 激光工作环境温度在 5°C-35°C，避免在潮湿环境下使用本产品，切勿在雷雨天气下使用本产品。
+
+6. 如长时间不使用本产品，请关闭本产品，并断开电源线。
+
+7. 本产品已连接电源时，请勿用手或其他工具触碰电子相关区域。严禁带电插拔激光模组线。
+
+8. 本产品运行时，请勿触碰正在运动的机械机构及激光模组。
+
+9. 务必在加工材料下方放置激光无法穿透的平面物体，如铝合金。
+
+10. 激光雕刻过程中，请务必佩戴护目镜，避免直视激光光斑带来的视力损伤。
+
+11. 激光雕刻、切割过程中可能会产生少许烟雾或气味，建议在通风良好的环境下操作。
+
+12. 严禁10 岁以下的儿童在没有成人监督的情况下使用本产品，以免造成人身伤害。
+
+13. 准备好灭火器备用，并定期维护和检查灭火器；
+
+14. 机器工作过程中，严禁无人看管；
+
+15. 使用者应遵守设备所在地（使用地）相应国家、地区的法律法规，恪守职业道德，注意安全义务，严禁将我司的产品或设备使用在任何非法用途上。如有违反，相关法律责任我司概不负责。
+
+Security Statement
+
+When a laser engraver engraves or cuts materials, it casts high-density laser beam that heats the surface to vaporize materials without burning them. But most materials are inherently ﬂammable and can be ignited, which may burn the machine and the surroundings.
+
+Caution-Use of controls or adjustments or performance of procedures other than those speciﬁed herein may result in hazardous radiation exposure. The laser safety classiﬁcation of this product is based on IEC 60825-1:2014. The laser safety level of laser radiation emitted through laser aperture exceeds Class 1.
+
+Please use it as instructed below:
+
+03
+
+1. Do not place this product near ﬂammable and explosive materials, volatile solvents or heat sources. Please place this product in a ventilated, cool and dust-free environment.
+
+2. Do not use other power cords than the one provided in the package during the installation.
+
+3. Regularly clean the body and laser module with an anti-static brush and a dry cloth when the machine is powered oﬀ.
+
+4. Please connect the silicone tube on the laser module no matter using an air assist or not. Otherwise, there will be a risk of lens contamination.
+
+5. The working temperature of laser module is 5°C-35°C. Avoid using this product in a humid environment, and do not use it in thunderstorm weather.
+
+6. If the product isn’t used for a long time, please turn oﬀ the product and disconnect the power cord.
+
+7. When the product is connected to the power supply, please do not touch the electronic areas with your hands or other tools. It is forbidden to plug and unplug the laser module cable when the machine is powered on.
+
+8. When the product is running, please do not touch any part of the moving system and laser module.
+
+9. Please place a ﬂat object that the laser cannot penetrate under the processed material, such as aluminum alloy.
+
+10. During the laser engraving, please wear goggles to avoid vision damage caused by looking directly at the laser spot.
+
+11. Smoke or smell may be produced during laser engraving and cutting. It is recommended to operate in a well-ventilated environment.
+
+12. Children under the age of 10 are strictly prohibited from using this product without adult supervision to avoid injury.
+
+13. Prepare ﬁre extinguishers for backup. Regularly maintain and inspect the ﬁre extinguishers.
+
+14. It is forbidden to leave it unattended while the machine is working.
+
+15. Users should abide by the laws and regulations of the corresponding country and region where the equipment is located (where it is used), practise professional ethics, and pay attention to safety obligations. It is strictly forbidden to use our products or equipment for any illegal purposes. If there is any violation, we will not be responsible for the relevant legal responsibilities.
+
+04
+
+产品参数 Parameters
+
+产品名称
+
+Laser Engraver
+
+Product Name
+
+光功率
+
+12W 40W
+
+22W
+
+Optical Power
+
+产品尺寸
+
+664*570*193mm 664*570*163mm
+
+664*570*173mm
+
+Product Size
+
+设备净重
+
+7.18kg
+
+7.14kg
+
+7.68kg
+
+Equipment Weight
+
+输入电压
+
+100-240V~ 50-60Hz
+
+Input Voltage
+
+输出电压
+
+DC 24.0V 10.0A DC 24.0V 5.0A
+
+Output Voltage
+
+工作温度范围
+
+5℃-35℃
+
+Operating Temperature
+
+安规认证
+
+IEC60825、FDA、CE、ROHS、FCC、UKCA、UL 报告/UL Report、PSE
+
+Safety Certiﬁcations
+
+雕刻尺寸
+
+400mm*415mm
+
+Engraving Area
+
+激光源
+
+半导体激光器 Diode Laser
+
+Laser Source
+
+激光波长
+
+455±5nm
+
+Laser Wavelength
+
+安全等级
+
+Class IV (FDA 分类标准) / Class IV (FDA)
+
+Laser Class
+
+激光雕刻软件
+
+LightBurn、LaserGRBL
+
+Laser Engraving Software
+
+操作系统
+
+Windows/MacOS
+
+Operating System
+
+支持文件格式
+
+jpeg、jpg、png、bmp、svg、dxf 等 / Jpeg, jpg, png, bmp, svg, dxf, etc.
+
+Supported File Formats
+
+支持材料类型
+
+纸板、木板、竹板、橡胶板、皮革、织物、亚克力、塑料等。Cardboard, wood, bamboo, rubber, leather, fabric, acrylic, plastic, etc.
+
+Supported Materials
+
+05
+
+产品简介 Product Overview
+
+4
+
+5
+
+1
+
+6
+
+7
+
+2
+
+9 10
+
+3
+
+11 12 13 14
+
+8
+
+A B C
+
+1.左Y轴组件
+
+8.控制面板
+
+1.Left Y-axis Component
+
+8.Control Panel
+
+A. 气嘴
+
+2.右Y轴组件
+
+9.急停开关
+
+2.Right Y-axis Component
+
+9.Emergency Stop Button
+
+A.Gas Nozzle
+
+3.前X轴组件
+
+10.安全锁
+
+3.Front X-axis Component
+
+10.Security Lock
+
+B. 防尘盖& 过滤棉
+
+4.后X轴组件
+
+11.TF卡槽
+
+4.Rear X-axis Component
+
+11.TF Card Slot
+
+B.Dust Cover & Filter Cotton
+
+5.转接板
+
+12.Type-C接口
+
+5.Adapter Board
+
+12.Type-C Port
+
+C. 硅胶管
+
+C.Silicone Tube
+
+6.激光模组
+
+13.电源接口
+
+6.Laser Module
+
+13.Power Input
+
+7.脚架
+
+14.电源开关
+
+7.Raiser Stand
+
+14.Power Button
+
+06
+
+零部件清单 Parts List
+
+![Creality Falcon2 激光雕刻机用户手册 插图](https://cdn.newenergycoder.club/files/mech-training/images/creality-falcon2-user-manual/p10-img02.jpeg)
+
+1 10 22 12 14 6 8
+
+4
+
+23
+
+21 20 16 17
+
+3 7
+
+18
+
+2 9 13 19 15
+
+5
+
+1.机器框架*1
+
+12.适配器*1
+
+1. Machine Frame*1
+
+12. Power Supply*1
+
+2.脚架（含脚垫）*4
+
+13.M1.5/M2/M2.5/M3内六角扳手*1
+
+2. Raiser Stand (including pads) *4
+
+13.M1.5/M2/M2.5/M3 Allen Wrench*1
+
+3.脚架（不含脚垫）*4
+
+14.开口扳手*1
+
+3. Raiser Stand (without pad)*4
+
+14.Open-end Wrench*1
+
+4.激光模组*1
+
+15.TF卡&读卡器*1
+
+4. Laser Module*1
+
+15.TF Card & Card Reader*1
+
+5.气泵*1
+
+16.A对C转接头*1
+
+5. Air Pump*1
+
+16.USB-A to USB-C Adapter*1
+
+6.Type-C数据线*1
+
+17.钥匙*2
+
+6. USB-C Cable*1
+
+17.Key*2
+
+7.多级定焦条*1
+
+18.保护镜片*1
+
+7. Multi-level Fixed Focus Block*1
+
+18.Protective Lens*1
+
+8.防护眼镜*1
+
+19.M3X10/M4X6内六角沉头螺丝*4
+
+8. Goggles*1
+
+19.M3X10 / M4X6 Hexagon Socket Head Screw*4
+
+9.椴木板*3
+
+20.无尘布*1
+
+9.Basswood Board*3
+
+20.Dust-free Cloth*1
+
+10.防静电毛刷*1
+
+21.黑色理线带*3
+
+10. Anti-static Brush *1
+
+21.Black Cable Straps*3
+
+11.收纳盒*1
+
+22.金属保护板*1
+
+11. Storage Box*1
+
+22.Metal Protection Plate*1
+
+23.镊子*1
+
+23.Tweezers*1
+
+07
+
+组装说明 Assemble directions
+
+1. 安装四个脚架（含脚垫）：为了适配不同工作台面的大小，机器四角各有3 处位置可供安装，安装脚架时注意对称。
+
+1. Install four raiser stands (including pads): There are 3 positions for installation at each of the four corners of the machine, to suit diﬀerent size of workbenches. Pay attention to symmetry when installing the stands.
+
+备注： 另外四个脚架（不含脚垫）可增加机器高度，如有需要可叠加安装。
+
+Note: The other four raiser stands (without pads) can be used to raise the machine. You can stack them if necessary.
+
+![Creality Falcon2 激光雕刻机用户手册 插图](https://cdn.newenergycoder.club/files/mech-training/images/creality-falcon2-user-manual/p11-img03.jpeg)
+
+![Creality Falcon2 激光雕刻机用户手册 插图](https://cdn.newenergycoder.club/files/mech-training/images/creality-falcon2-user-manual/p11-img04.jpeg)
+
+LASERAPERTURE
+
+08
+
+2. 连接机器与气泵 | Connect the machine with the air pump
+
+2.1 拔掉气泵上的气嘴胶塞，再把机器上的硅胶管接到气泵的气嘴上。
+
+2.1 Unplug the rubber plug in the air nozzle of the air pump, and connect the silicone tube from the machine to the air nozzle of the air pump.
+
+![Creality Falcon2 激光雕刻机用户手册 插图](https://cdn.newenergycoder.club/files/mech-training/images/creality-falcon2-user-manual/p12-img05.jpeg)
+
+![Creality Falcon2 激光雕刻机用户手册 插图](https://cdn.newenergycoder.club/files/mech-training/images/creality-falcon2-user-manual/p12-img06.jpeg)
+
+2.2 将气泵连接线插入机器左侧的气泵接口，旋钮开关可调节气流大小。
+
+2.2 Plug the air pump cable into the air pump interface on the left side of the machine, and you can adjust the airﬂow through the knob switch.
+
+![Creality Falcon2 激光雕刻机用户手册 插图](https://cdn.newenergycoder.club/files/mech-training/images/creality-falcon2-user-manual/p12-img07.jpeg)
+
+09
+
+3. 安装激光模组：把它安装至固定板中，使用右侧的手拧螺丝将其锁紧。
+
+3. Install the laser module: Install it onto the bracket and lock it with the thumb screw on the right.
+
+![Creality Falcon2 激光雕刻机用户手册 插图](https://cdn.newenergycoder.club/files/mech-training/images/creality-falcon2-user-manual/p13-img08.jpeg)
+
+4. 连接激光模组与转接板：激光模组线与硅胶管可通过理线夹固定。
+
+4. Connect the laser module with the adapter board, and ﬁx the laser module cable and the silicone tube with the cable management clips.
+
+![Creality Falcon2 激光雕刻机用户手册 插图](https://cdn.newenergycoder.club/files/mech-training/images/creality-falcon2-user-manual/p13-img09.jpeg)
+
+10
+
+5. 使用理线带整理激光模组线与硅胶管。
+
+5. Organize the laser module cable and silicone tube with the cable straps.
+
+![Creality Falcon2 激光雕刻机用户手册 插图](https://cdn.newenergycoder.club/files/mech-training/images/creality-falcon2-user-manual/p14-img10.jpeg)
+
+准备工作 Preparation
+
+![Creality Falcon2 激光雕刻机用户手册 插图](https://cdn.newenergycoder.club/files/mech-training/images/creality-falcon2-user-manual/p14-img11.jpeg)
+
+在开始工作前，您需要完成以下准备工作：
+
+1. 再次仔细阅读使用安全须知中的内容。
+
+2. 依次放置金属保护板、蜂窝板( 需另行购买)、加工材料。
+
+Before starting work, you need to complete the following preparations:
+
+1. Carefully read the content in the security statement again.
+
+2. Stack the protective metal plate, honeycomb worktable(optional) and processed materials in sequence.
+
+11
+
+3. 使用多级定焦条正确调节激光模组焦距:
+
+请将多级定焦条放置在模组与加工材料之间，按照定焦条表面的镭雕提示，使激光模组护目罩底部与多级定焦条对应位置相接触，最后使用右侧的手拧螺丝将其锁紧。例如雕刻或者切割 2mm 厚的椴木板或其它材料。
+
+3. Adjust the focal length of the laser module with the multi-level ﬁxed focus block.
+
+Place the multi-level ﬁxed-focus block between the module and the processed material, lower the laser module until the bottom of the laser module cover touch on the corresponding tier marked on the multi-level ﬁxed-focus block, and then lock it with the thumb screw on the right side. For example, when you’re engraving or cutting 2mm thick basswood boards or other materials.
+
+![Creality Falcon2 激光雕刻机用户手册 插图](https://cdn.newenergycoder.club/files/mech-training/images/creality-falcon2-user-manual/p15-img12.jpeg)
+
+软件安装及使用 Software Installation & Use
+
+机器可通过Type-C 数据线联机工作（LaserGRBL、LightBurn），也可通过TF 卡进行离线工作（LightBurn）。详细的软件教程请参考TF 卡中的随机资料。
+
+The machine can be controlled with LaserGRBL or LightBurn after connected to a PC via a USB-C cable, and can also work by reading codes (exported from Lightburn) in a TF card. For software tutorials, please refer to the information provided in the TF card.
+
+12
+
+联机工作 Control from PC
+
+通过Type-C 数据线实时连接机器与软件。如果您的电脑没有USB-A 口，请使用附赠的转接头进行转换。在线工作时，您也可以通过控制面板的开始/ 暂停按键进行控制。
+
+Connect the machine to a PC via a USB-C cable. If your computer does not have a USB-A port, please use the included adapter to convert it. While controlling from PC, you can also control it through the Start/Pause button on the control panel of the machine.
+
+离线工作 Work with TF Card
+
+1. 首先通过 LightBurn 软件生成雕刻或切割文件（gcode），将文件保存至 TF 卡的根目录中（机器默认读取 TF 卡第一级目录中，系统修改日期最新的雕刻文件，建议删除第一级目录中其它雕刻文件）。上电前将 TF 卡插入机器，然后使用配套的电源适配器和电源线连接控制面板，最后打开控制面板右侧的电源开关。
+
+电源接通后，机器发出“滴... 滴”两声，机器进行初始化后进入待机模式，指示灯变成绿色呼吸灯效果。
+
+2. 按下Frame 按键，机器从待机模式进入预览模式，激光模组会发出弱光，并围绕所加工图片的最大 X、Y 边缘重复运动，此时蓝色指示灯常亮，您可以调整材料至合适位置，或通过控制面板上的方向键进行微调。
+
+1. Generate the engraving ﬁle (gcode) through the LightBurn software, and save the ﬁle to the root directory of the TF card (the machine will access the ﬁle with the latest data in the root directory of the TF card by default, so it is advised to delete other irrelevant ﬁles in the ﬁrst directory). Insert the TF card into the machine before powering it on, plug in the power adapter and power cord, and turn on the power button.
+
+After the machine is powered on, it will sound two beeps and enter standby mode. The indicator light will pulse green slowly.
+
+Press the Frame button, and the machine will exit the standby mode and enter the preview mode. The laser module will emit a weak beam and move along the X/Y axis to frame the target working area. The indicator will be in solid blue. You can adjust the material to a suitable position, or make ﬁne adjustments through the arrow buttons on the control panel.
+
+![Creality Falcon2 激光雕刻机用户手册 插图](https://cdn.newenergycoder.club/files/mech-training/images/creality-falcon2-user-manual/p16-img13.jpeg)
+
+13
+
+3. 预览模式下，按下开始/ 暂停按键，机器进入雕刻模式，此时激光模组会发出强光，机器开始雕刻，蓝色指示灯常亮。
+
+如果需要暂停雕刻，请按下开始/ 暂停按键，此时指示灯变成绿色呼吸灯效果，再次按下开始/ 暂停按键可以继续雕刻。
+
+如果需要取消雕刻，请长按开始/ 暂停按键3 秒，机器会发出“滴”一声，随后机器复位，复位完成机器发出“滴…滴”两声，进入待机模式，指示灯变成绿色呼吸灯效果。
+
+3. 雕刻完成后，机器会长“滴”三声，随后机器复位，复位完成机器发出“滴”一声，进入待机模式，指示灯变成绿色呼吸灯效果。
+
+In the preview mode, press the Start/Pause button to enter the engraving mode, the laser module will emit a strong beam, and the machine will start engraving. The indicator will be in solid blue. If you need to pause the engraving, please press the Start/Pause button, and the indicator light will pulse green slowly. Press the Start/Pause button again to continue engraving.
+
+If you need to cancel the engraving, please press and hold the Start/Pause button for 3 seconds, the machine will sound a beep, and the machine will reset. After the reset is completed, the machine will sound two beeps and enter the standby mode. The indicator will pulse green slowly.
+
+3. After the engraving is completed, the machine will sound three beeps and then reset. After the reset is completed, the machine will sound a beep and enter the standby mode, and the indicator will pulse green slowly.
+
+指示灯状态说明 Indicator Explanations
+
+控制面板 Control Panel
+
+1. 指示灯灭：机器处于断电状态，或上电异常。
+
+2. 白灯常亮：机器处于初始化模式，初始化完成后自动进入待机模式。
+
+3. 紫灯闪烁：机器处于固件升级模式，同时蜂鸣器发出急促的响声，等待升级完成后自动进入待机模式。
+
+4. 红灯闪烁：机器处于异常模式，同时蜂鸣器发出急促的响声，清除异常后自动进入待机模式。
+
+5. 绿色呼吸灯（明暗渐变的效果）：机器处于待机模式，可按下Frame 进入预览模式。
+
+6. 蓝灯常亮：机器处于预览模式或雕刻模式，此时激光模组处于出光状态，需格外注意安全。
+
+7. 黄灯闪烁： TF 卡中的根目录中没有gcode 文件，此时蜂鸣器会发出“滴…滴”两声。
+
+1. The indicator is oﬀ: The machine is in a power-oﬀ state, or some abnormality occurs.
+
+2. Solid white: The machine is in the initialization mode, and it will automatically enter the standby mode after the initialization is completed.
+
+3. Flashing purple: The machine is in the ﬁrmware upgrade mode, and the buzzer makes a rapid sound at the same time.It will automatically enter the standby mode after the upgrade is completed.
+
+14
+
+4. Flashing red: The machine is in abnormal mode, and the buzzer makes a rapid sound at the same time. It will automatically enter standby mode after dealing with the abnormality.
+
+5. Pulsing green (slowly): The machine is in standby mode, and you can press Frame button to enter preview mode.
+
+6. Solid blue: The machine is in preview mode or engraving mode, and the laser module is emitting a beam. Special attention should be paid to safety.
+
+7. Flashing yellow: There is no gcode ﬁle in the root directory of the TF card, and the buzzer will sound two beeps.
+
+激光模组 Laser Module AIR：检测当前经过激光模组的气流大小。红灯闪烁：无气流。雕刻或切割过程中烟尘可能会污染镜片，请检查气泵工作状态并确保接入硅胶管。橙灯常亮：小气流。雕刻时建议开启小气流，如果开启大气流，可能会影响雕刻效果。绿灯常亮：大气流。切割时可根据个人需求调节气流大小。
+
+FIRE：检测加工材料是否正在燃烧。红灯：检测到火焰，为确保安全建议立即停止当前工作。橙灯：有火灾隐患，请确认材料并合理设置工作参数。绿灯：未检测到火焰，请定期清理维护激光模组。
+
+LENS：检测激光模组镜片是否脏污。红灯：镜片严重脏污，请立即停止当前工作，并清理维护激光模组。橙灯：镜片轻度脏污，建议尽快停止当前工作，并清理维护激光模组。绿灯：未检测到镜片脏污，请定期清理维护激光模组。
+
+AIR: Detects the current airﬂow passing through the laser module.Flashing red: No airﬂow. Smoke and dust may contaminate the lens during engraving or cutting, please check the working status of the air pump and ensure that the silicone tube is connected.Solid orange: Small airﬂow volume. It is recommended to enable a small airﬂow volume when engraving, since a large airﬂow volume can aﬀect the engraving result.Solid green: Large airﬂow volume. The airﬂow volume can be adjusted according to individual needs when cutting.
+
+FIRE: Detects whether the processed material is burning.Red: Flame is detected. It is recommended to stop the current work immediately to ensure safety.Orange: There is a ﬁre hazard. Please conﬁrm the material and set the working parameters properly.Green: No ﬂame is detected. Please clean and maintain the laser module regularly.
+
+LENS: Detects whether the lens of the laser module is dirty.
+
+15
+
+Red: The lens is seriously dirty. Please stop the current work immediately, and clean and maintain the laser module.Orange: The lens is slightly dirty. It is recommended to stop the current work as soon as possible, and clean and maintain the laser module.Green: The lens is not dirty. Please clean and maintain the laser module regularly.
+
+备注 Notes 1.激光模组的报警功能可开启或关闭，当关闭时指示灯仍会正常指示当前状况。如果需要开启报警功能，请参考随机资料中的“激光模组报警功能.pdf”。2.报警时，按下激光模组上的Reset按键即可停止报警，但需要留意激光模组当前状况。3.激光模组上的Type-C接口主要用于升级激光模组固件，或导出激光模组的工作日志。接口无外接时请塞好防尘塞。
+
+1. The alarm functions of the laser module can be enabled or disabled, but the indicator light will still indicate the current situation normally when disabled. To enable the alarm, please refer to the “Laser Module Alarm Function.pdf" in the included documents.2. When alarming, please check the laser module carefully, and then press the Reset button on the laser module to stop the alarm.3. The USB-C port on the laser module can be used to upgrade the ﬁrmware of the laser module, or export the work log of the laser module. When the port is not in use, please plug in the dust-proof plug.
+
+与12W、22W激光模组相比，40W激光模组具有可调光束功能，通电后长按Reset按钮2秒可进行挡位切换，同时激光模组顶部的指示灯可指示当前挡位：两灯常亮(Normal)：当前为正常挡位，最大光功率为40W，可切割更厚的材料，切割速度更快。一灯常亮(Precise)：当前为精确挡位，最大光功率为20W，雕刻效果更细腻，切割缝隙更小。更多关于该功能的说明，可参考TF卡中的“Description of GRBL conﬁguration parameters(GRBL配置参数说明).pdf”。Compared with 12W and 22W laser modules, the laser beam of the 40W laser module can be adjusted by holding on the“Reset Button” for 2 seconds after power on. The indicator lights can indicate the current mode:Two lights on (Normal): The maximum output power is 40W. It can cut thicker material and cut faster.One light on (Precise): The maximum output power is 20W. It can engrave more precisely and leave a narrower kerf.Please refer to "Description of GRBL conﬁguration parameters(GRBL配置参数说明).pdf " in the TF card for more information.
+
+Reset按钮 Reset Button
+
+指示灯 Indicator Lights
+
+16
+
+本页原图（含矢量图示）：
+
+![原文第 19 页](https://cdn.newenergycoder.club/files/mech-training/images/creality-falcon2-user-manual/p19-full.png)
+
+Work with TF Card
+
+![Creality Falcon2 激光雕刻机用户手册 插图](https://cdn.newenergycoder.club/files/mech-training/images/creality-falcon2-user-manual/p20-img14.png)
+
+17
+
+Control from PC
+
+18
+
+产品保修卡
+
+产品寄回前请先联系售后专员，为正常进行售后处理，请务必填写此卡，并随机器寄回。
+
+返修 □            换货 □            退货 □
+
+故障描述或退、换货原因和建议：
+
+客户名称：                       联系电话：
+
+收件地址：
+
+机器制造编码：                          订单编号：
+
+维修情况记录：
+
+购买渠道：电商平台 □        线下 □
+
+购买日期：         年         月         日
+
+温馨提示：基本信息及返厂原因为客户必填项，维修情况记录部分为维修人员填写项。
+
+WARRANTY
+
+Before returning the product and filling in a warranty, please contact after-sale person for going through after-sale formality.And attach this warranty card along with the returned machine.
+
+Repair □           Change □           Return □
+
+Name：                          Telephone：
+
+Malfuction And Damage Depiction Or Return And Change Reasons\\Suggestions：
+
+Address：
+
+Serial Number：                      Order Number：
+
+Repair  Records：
+
+Channel：Platform □        Offline □
+
+Date of purchase Day          Mon.           Year
+
+Note: Client need ﬁlling in basic infor.and return reasons.Repair records shall retain for technicians.
+
+※
+
+使用者应遵守设备所在地（使用地）相应国家、地区法律法规，恪守职业道德，注意安全义务，严禁将我司的产品或设备使用在任何非法用途上。如有违反者所应承担的相关法律责任我司概不负责。
+
+※
+
+因每款机型不同，实物与图可能有所差异，请以实物为准，最终解释权归深圳市创想三维科技股份有限公司所有。
+
+Users should abide by the laws and regulations of the country and region where the equipment is located (place of use), abide by professional ethics, and pay attention to safety obligations. It is strictly forbidden to use our products or equipment for any illegal purpose.Our company is not responsible for the relevant legal responsibilities that the violator should bear.Since each model is diﬀerent, the actual product may be diﬀerent from the picture. Please refer to the actual product. The ﬁnal interpretation right belongs to Shenzhen Chuangxiang 3D Technology Co., Ltd.
+
+※
+
+※
+
+With the spirit of evangelists, we want to share the convenience of technology with everyone.
+
+本页原图（含矢量图示）：
+
+![原文第 24 页](https://cdn.newenergycoder.club/files/mech-training/images/creality-falcon2-user-manual/p24-full.png)
 
 ## 相关页面
 
-- [Falcon2 40W 激光雕刻机指南](/mechanical/falcon2-laser-engraver)
 - [机械组培训资料下载](/mechanical/training-resources)
-- [主轴雕刻机原始资料下载](/mechanical/cnc-engraver-resources)
+- [机构设计概述](/mechanical/introduction)
