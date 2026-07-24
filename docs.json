@@ -107,7 +107,10 @@
                   "mechanical/m2006-motor-guide",
                   "mechanical/m3508-motor-guide",
                   "mechanical/training-how-to-ask",
-                  "mechanical/training-how-to-debug"
+                  "mechanical/training-how-to-debug",
+                  "mechanical/dm-s3519-motor",
+                  "mechanical/rm-rc-supplier-directory",
+                  "mechanical/robocon-open-source-docs"
                 ]
               }
             ]
