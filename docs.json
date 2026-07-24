@@ -52,9 +52,9 @@
             "group": "新手上路",
             "icon": "graduation-cap",
             "pages": [
+              "start-here/newcomer-guide",
               "start-here/curc2027-onboarding",
               "start-here/2027-summer-camp",
-              "start-here/newcomer-guide",
               "start-here/first-good-issue"
             ]
           },
@@ -78,6 +78,9 @@
               "mechanical/chassis",
               "mechanical/chassis-omniwheel",
               "mechanical/chassis-mecanum",
+              "mechanical/ek-team-25-mechanical-training",
+              "mechanical/ek-mechanical-solidworks",
+              "mechanical/rhino-modeling-tutorial",
               {
                 "group": "设备与加工手册",
                 "icon": "wrench",
@@ -91,9 +94,6 @@
                   "mechanical/lumenpnp-introduction"
                 ]
               },
-              "mechanical/ek-team-25-mechanical-training",
-              "mechanical/ek-mechanical-solidworks",
-              "mechanical/rhino-modeling-tutorial",
               {
                 "group": "培训资料",
                 "icon": "book-open",
@@ -119,8 +119,8 @@
               "vision/odin1-update",
               "vision/ms200-lidar",
               "embedded-software/introduction",
-              "embedded-software/control",
               "embedded-software/development-setup",
+              "embedded-software/control",
               "embedded-software/vibe-coding-debug",
               "embedded-software/hxc-motor-control",
               "embedded-software/cube-mars-ak70-10-kv100",
@@ -187,8 +187,8 @@
           {
             "group": "CURC 2026",
             "pages": [
-              "curc26/mechanical-sig/about",
               "curc26/proposal",
+              "curc26/mechanical-sig/about",
               "curc26/mechanical-sig/mechanical",
               "curc26/mechanical-sig/electrical",
               "curc26/mechanical-sig/capabilities",
@@ -205,8 +205,8 @@
             "group": "关于我们",
             "pages": [
               "community/about",
-              "community/join-collection",
               "community/registration-process",
+              "community/join-collection",
               "community/nec-plus",
               "community/skill-branch",
               "community/sponsors"
@@ -216,9 +216,9 @@
             "group": "社区与活动",
             "pages": [
               "community/nec2026-community",
-              "community/mentors",
               "community/a416-lab",
               "community/projects",
+              "community/mentors",
               "community/discord",
               "community/story"
             ]
@@ -235,8 +235,8 @@
           {
             "group": "核心团队",
             "pages": [
-              "community/maintainers",
-              "community/team"
+              "community/team",
+              "community/maintainers"
             ]
           },
           {
