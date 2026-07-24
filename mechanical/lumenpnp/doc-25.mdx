@@ -1,0 +1,188 @@
+---
+title: "更新飞达固件"
+description: "所有送料器均预装固件。以下说明适用于更新新版固件或将自定义固件安装到送料器。"
+---
+
+<title>更新飞达固件</title>
+
+所有送料器均预装固件。以下说明适用于更新新版固件或将自定义固件安装到送料器。
+
+1. **将下载器跳线设置为 3.3v**
+
+确保编程器上的3 针接口跳线设置为 3.3V。确保跳线将中间的针脚连接到标有“3.3V”的针脚。飞达主板芯片的逻辑电平工作在 3.3V，因此在使用前应将其设置为 3.3V。
+
+<callout emoji="❗">
+**非常重要**
+下载器默认是5V，请一定按下图调整跳线位置，否则飞达主板可能损坏。
+</callout>
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MWQ2OWMxYjJlODMwOGRlYWUzOTEwNWY1Yzc1MmJlMTNfOTUyYTgxN2ViMjg0YjE2MDBjMTU3ODYxY2M5NDI1OGFfSUQ6NzY2MzgyNzgzNjAzNzQxODE3Ml8xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM)
+
+1. 将附带的编程器使用数据线连接到您的计算机。
+2. 从此处下载最新的固件，或者从[Photon 发布页面下载](https://github.com/photonfirmware/photon/releases)特定版本，或者[自行编译](https://www.yuque.com/lonlypan/td6smc/gk2fcnx6bbbq736z#Sx1Kh)。
+
+   <callout emoji="💡">
+   针对2026.6.1-6.18日下单客户，请下载 **firmware-1.0.5-18.bin** 固件
+   </callout>
+
+   <figure view-type="Card"><source href="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MDA0YTQ0NWJiMWVhN2I4N2M4YjU1NTg5ZGFjMzc2MTlfZTMxY2IwOTkxNjZhODM0MTMyY2ZlMjgzYjA2NzM4ZDlfSUQ6NzY2MzgyNzgzODQxNTUwNjY1NF8xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM" mime="application/octet-stream" token="UJOKbSLqzotPFbxNsQmcOU6KnEc"/></figure>
+
+以下是修改版固件，针对剥离电机转速不同导致的送料精度问题，如果剥离电机转速过快会导致编带薄膜拉扯过紧，需要降低转速。默认转速是22，请选择22以下固件测试。
+
+反之，如果转速过慢，请选择高转速固件。
+
+<figure view-type="Card"><source href="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YWZhMjM1NDRkMjUwZTM4NzIyZGM0NDMxZDc1NmU3OWJfZWU5NTZiMjAzMTBhMWYyMDJiNWUwYWEyZGE1NmMzM2RfSUQ6NzY2MzgyNzg0MDM0NDg1Mzc5NV8xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM" mime="application/octet-stream" token="UxJWbFfyxoWCskxJskscTrUxn1c"/></figure>
+
+<figure view-type="Card"><source href="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NDVlMjc4MDc3Y2MzN2UzODQyMDc4MDExOGU4M2JiN2NfZThmMmFkMDU0YjRjYzM2MWE0YjkyMjE3MTk0NjExMjFfSUQ6NzY2MzgyNzg0MDg2OTA5MjU1MV8xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM" mime="application/octet-stream" token="O3LrbleAhoFckSx2OIgcX6WunEd"/></figure>
+
+<figure view-type="Card"><source href="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YTNkN2FjNTFlYmMzN2ZiOTBjYzlmYWI5MDQ3NDU5OThfM2M2M2NjMWJmNjM0OWEyMzg4NDdhOTk5ODZmNDgzMWRfSUQ6NzY2MzgyNzg0MDE5ODA4NTgxMV8xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM" mime="application/octet-stream" token="Dv1Vb9cNio5nvEx9wOpcKBEqnoh"/></figure>
+
+<figure view-type="Card"><source href="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YzY1ODJkMzdiZjMzZTgyMWM5NGUzMDg5MDc4OGI5NjRfYjhmOWYwZGRlZDQyOGNjMjUxMGJmOGU0YTQ3NTIwOGJfSUQ6NzY2MzgyNzgzOTkwNDY0ODQ0M18xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM" mime="application/octet-stream" token="Qt9bbgsKtoGcDtxO0mLcVOA2njh"/></figure>
+
+<figure view-type="Card"><source href="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NmFmMjU4NjM3Yjc1ZTBjNGIwNDkxYjkxMjM2NTJhYzRfNmFkYjFkZDVjNzNmY2U4YWUyYzViZTE0ZTE0NzcxMTRfSUQ6NzY2MzgyNzg0MDEwMTY0OTYwOF8xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM" mime="application/octet-stream" token="XSNJbMSKgoXm1GxQ2QLce7uHnMg"/></figure>
+
+1. 下载并安装STM32CubeProgrammer 应用程序。
+
+<figure view-type="Card"><source href="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=M2FlOTdhYTRmZmFlMWE3ZDcxZjc5YmM1NDU1YjFjMmRfMTU2NjkxODJlZTE1MTBmNjc1ZTQxZjI1N2Y3MmU2NzFfSUQ6NzY2MzgyNzg0MzkyMjU3ODYzMV8xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM" mime="application/x-zip-compressed" token="MmCubyokfoNUBzx4dLvcquyInwh"/></figure>
+
+<figure view-type="Card"><source href="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZDkwZTIxODFhMzNjZDdmZDE2MGRjMzAxMzUzODdjOGNfOGZlZjIzNzZiMWFhNzZlMWFlNTA0MDI2ZDk1NmM2MjVfSUQ6NzY2MzgyNzg0MTU4NjYxMzUzNF8xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM" mime="application/x-zip-compressed" token="BayJbRM1WojXeAxmOwxcf7Funvg"/></figure>
+
+<figure view-type="Card"><source href="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MTcyZGNmNzljZTBhNjBlNzEyNzQ5N2U3OWY5YzExYWRfYWI5NTI2MzAwY2RlOWJjMWZhZTIzYWJlMWYzOTAwYzZfSUQ6NzY2MzgyNzg0MzczODE3Njc4N18xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM" mime="application/x-zip-compressed" token="GAYrbvY3BoGvaXxdtR9cvT9Rn5E"/></figure>
+
+<figure view-type="Card"><source href="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ODZiZWI4MWVkZTU0NmExMzE1NjNlNzZmYzJkNmQ2YTRfYTkxZjY2MTBlMjhiZTc1YzRiYTdiNGFmOWU4YWZiNWVfSUQ6NzY2MzgyNzg0NjY3ODIwMzY5NF8xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM" mime="application/x-zip-compressed" token="Nofob43SXoNZL7xm3sLcIgaEn2e"/></figure>
+
+<figure view-type="Card"><source href="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YmI3YTk5ZjZlNDQ4NzA5YWZhYTY4MTUyOTcwMzcxNDRfNGZlODU1NDFmZWJhN2FkYTNjYzg2NWM2ZGVhZGIzNTRfSUQ6NzY2MzgyNzg0NjYwMDIzMjIxMF8xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM" mime="application/x-zip-compressed" token="ZqgibUXvMoU7BJxsMRLc8Tz8nPb"/></figure>
+
+理论来说软件会自动安装下载器驱动，如果说你的电脑找不到下载器驱动，或者插入下载器没有com口显示，可以尝试单独下载下面的驱动安装，再次尝试
+
+<figure view-type="Card"><source href="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NWE3OGUxYzRiY2M5MmE0MmMwODU1Y2Y1ZDVhMWU3NzZfMDM5ZTQwYjJjZmViOGRlODM5NzkzMTY2MWU5NmRkODhfSUQ6NzY2MzgyNzg0NzU4NTkyNjM0Nl8xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM" mime="application/x-msdownload" token="RrZNbw57FoeCk0xGMO2cqbaOnmf"/></figure>
+
+如果驱动正常，你的设备管理器中应该会如下显示出串口和端口号
+
+![图片展示了设备管理器中端口（COM和LPT）下的USB Serial Port（COM10）设备。该图片与上下文内容相关，上下文提到若驱动正常，设备管理器中应显示串口和端口号，此图直观呈现了这一预期结果，帮助用户确认驱动安装是否成功，为后续使用STM32CubeProgrammer应用程序进行操作做准备。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZGNjNTk0ZGYyM2EyNTY3ZDBmNzY4ODk4ZGZmOTczZDJfN2UyMjczM2I0OWIzMWMxMGVjZTQ4OGVkYjhlZDlkZTRfSUQ6NzY2MzgyNzg0OTU5NzQ1NTY0M18xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM)
+
+1. 打开 STM32CubeProgrammer 应用程序
+2. 在连接按钮旁边的蓝色下拉菜单中，选择`UART`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NzcxMjgzMTg0MjkyYWM0ZDhhYWRkYzc5YTdkZjRkNTlfNzkxM2RmZDBhZDQ2NjMxZDA3NzkyZDRiNjBmOTcyMGJfSUQ6NzY2MzgyNzg1MDk2OTA3NDk4Nl8xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM)
+
+1. 单击圆形箭头图标扫描新设备。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YTczZDQ1MDYzNzFmZmZhZGJlZjA3ZWUxOTdjMDIzNjNfNzQ4ODI0MmQwOWEyZGZjMDVhMGNkNzMyNGJjOWM1YmRfSUQ6NzY2MzgyNzg1MDY0NjE3OTAzOF8xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM)
+
+1. 点击`Port`下拉菜单，选择出现的新端口。在 Mac 上，此端口应以 开头`cu.usbmodem`。 
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MTAxODMwOTNjMmMwYjBmM2MwYzEzNjVhZmM2MjY4MDZfOTVjYThkMzc2OTA4MGYxNjU0YTk5OTNjOWEyYWUwOTZfSUQ6NzY2MzgyNzg1NDIzNjQyMTM5OV8xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM)
+
+1. 设置以下设置：
+
+   - `Baudrate: 9600`
+   - `Parity: Even`
+   - `Read Unprotect (MCU): 不勾选`
+   - `TZEN Regression (MCU): 不勾选`
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZTVkMWY4Y2Q4NTVlNWRjMWJlMjVlZDlkYzYxYzc4MzFfNjc2ZWEzMDU2ODQ4OTZkM2VkZjQ1ZTM3NDllNThhMmFfSUQ6NzY2MzgyNzg1NTEyMTU2NjcwN18xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM)
+
+1. 按住进纸器上的 BOOT 按钮，**不松手一直按住**：
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NzkwN2NkYTE3MjllZWMyY2U0MWQ4Mjk3MDE3MzVjYjBfNWY1MWQxN2Q4NmNmZDNjZmU0ZWVhOGI0YWVlM2UzMGVfSUQ6NzY2MzgyNzg1ODE2MjQyMTAxN18xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM)
+
+1. 按住 BOOT 按钮，将编程器的引脚插入送料器上的通孔，如下图所示。通孔略微偏移，以便编程器引脚与通孔保持接触。连接后，再松开 BOOT 按钮。
+
+此步骤中，送料器不需要安装在机器上；它可以由编程器供电。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MjIzNzgxNTQxZjhmMDkxYmQxYzQxNDNkODUwZTJjMGVfNDIyYzg3MjZkZDQ0ZGNhYjExMjYxZjJmYjRmYTkzMDZfSUQ6NzY2MzgyNzg1OTU2MDgxMTgwNl8xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM)
+
+
+
+<grid>
+<column width-ratio="0.500000">
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NjEyMjE2NmMwOTI1YjM3MGU1ZDFmYTVhZDUzOWZmNjJfNGFjNWUxZmQ3YzhiMDEyNWQwZThlMWM4MTllZjkyOThfSUQ6NzY2MzgyNzg2MjQ1MzA2MjkyMV8xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM)
+</column>
+<column width-ratio="0.500000">
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZmFjMTEyNWY3YWZkMzE4ZDczZWRmNDNhZmQ2MTRiYWRfMTZiNDAwMzNkOThhNjFkMzU5NWQ3MjBhMzhiMjczMDlfSUQ6NzY2MzgyNzg2NTc3MDcyNDU0MF8xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM)
+</column>
+</grid>
+
+ 如果送料器的 LED 指示灯闪烁并变为红色，则表示尚未准备好进行编程。请重新插拔下载器。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YzE3NjBjMzQxZjFlMDc4OTlmYTMzYzExMjgwZWMwNDlfNGYzMDZiYTdlOGJhZjVkNjE5MGRmMjIwYzAzZDgwMzBfSUQ6NzY2MzgyNzg2NjgxNTE1NTM4Nl8xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM)
+
+1. 单击 STM32CubeProgrammer 中的绿色连接按钮。 
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ODRkNzNlNDZlNzRmNDEwZjhkYzIxZmYxZGU4N2RlNjNfNjlkNzMyZTM2ZTVjYzg0NmI2Y2IxZGY0ZThlYmEzYzJfSUQ6NzY2MzgyNzg3MDAwMjc0NDU4Nl8xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM)
+
+<callout emoji="❗">
+**如果无法连接**
+如果您无法连接到馈线，请检查编程器是否以正确的方向插入插针。此外，轻轻地向编程器侧面施加压力可以帮助确保插针与馈线PCB上的镀孔良好接触。
+</callout>
+
+> **尝试替代方法**
+> 
+> 少量飞达使用上述说明很难进入引导加载程序。如果无法连接，请尝试以下说明。
+> 
+> 1. 将编程器插入编程端口，但不要按下启动按钮。状态灯应变为红色。
+> 
+> ![图片展示了飞达固件更新过程中，将编程器插入编程端口的操作。画面中双手持编程器，编程器底部有红色标识，其上插有红色插针。背景为黄色木纹桌面。该图片与文档中“尝试替代方法”部分内容相关，对应步骤1，即“将编程器插入编程端口，但不要按下启动按钮。状态灯应变为红色”，直观呈现了此操作场景，帮助用户更清晰地了解操作方式。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZTEyMzZjNzlmMzdhYmNmNWViNWRkZTgxM2JkMmNjODNfNmY0ZmJjNzc4YmYxMmQyNDNhNWM5YmI0OGM5YTBjZDNfSUQ6NzY2MzgyNzg3MTI0NDQ4Nzk0Ml8xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM)
+> 
+> 1. 按住两个按钮。屏幕上会显示一些灯光图案。等到红蓝灯闪烁后，关闭。松开按钮。你的送料器现在已进入引导加载程序。
+> 
+> ![图片展示了将飞达供料器的主板从外壳中取出的场景。双手持主板，主板上有多个接口和电路元件，其中红色部分为电路板。主板被从黑色外壳中拉出，外壳底部有红色胶带。此图与文档中更新飞达固件的教程相关，是在连接编程器前，需先将主板从供料器中取出的操作步骤，为后续固件下载做准备。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZWQzNmM4YjUxMzI3M2VkZTgwODFmMDlkNmE0OTVmNGFfNzcyNzZkOGQ2ODNmNjg5ZWU5ZTdhY2Q4YzQ0Njg3OTFfSUQ6NzY2MzgyNzg3ODU1OTE1NzQ1M18xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM)
+> 
+> 1. 重新尝试连接。
+
+
+
+1. 连接后，切换到左侧的下载选项卡。 
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MWFiYThlNTA4OTI3ZDljZTY4YTQ4NDIxNzFlMWFlMjNfMGZmYTgxYWRhOTdkNjYyZjA3NTdhMWE3MzMwMzk2NDNfSUQ6NzY2MzgyNzg4MDcxNjg4MTE3NV8xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM)
+
+1. 单击“浏览”按钮并导航到前面下载的`firmware-xxx.bin`文件。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YmMxOTc1MDdiNmJhMDhlMjNjNTlkYTc2YzBlMWI5NWZfZDAyOTc1OTg4YzZmODQ3NWVhNTE5OGY1Mjk4ZWU5NWVfSUQ6NzY2MzgyNzg4MTUyNDc5MjUzMV8xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM)
+
+1. 确保“起始地址”为`0x08000000`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MmQwM2U3ODYyNDc5NTUyNTgwMzdmZTY2MGRjNjI4MGRfYjdhYjdkMzRiMmRkMGRhOTYxODdjNzVjMDNiOGQ3MjNfSUQ6NzY2MzgyNzg4NjY0MTYxNDEyNF8xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM)
+
+1. 单击“开始编程”。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MWMwMWU4ZWZiMDg3MTM3NGI5OWVkYmUzMGVjNmZlZGZfNmFiOGMxYTM4MDcxN2JjMDkxZWY0OWIwOWExNTdiODFfSUQ6NzY2MzgyNzg4ODE2NDI0NDczOV8xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM)
+
+1. 等到软件提示固件下载成功后，就可以断开编程器与供料器的连接了。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MGY3OGQ4MWNhYTYyMzU3MTYyYzczYzAyM2ZiZmZmOGZfNmY3MDY4YzhlNDlhY2MwNjhjNGMzMjgxMzdmMTQ1YThfSUQ6NzY2MzgyNzg5MDQ5MzY3MjYzNF8xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM)
+
+<callout emoji="❗">
+**下面的教程是面向需要自己开发飞达源码的技术人员，如果你只是下载固件，下面文章可以不用看。**
+</callout>
+
+# 编译Feeder源码（面向开发人员）
+
+LumenPnP 送料器运行[Photon](https://github.com/photonfirmware/photon)固件程序，这是一个用于拾取放置送料器的开源固件项目。OpenPnP内置了对 Photon 的支持，因此您可以轻松地将 LumenPnP 送料器与现有的 OpenPnP 设置配合使用。这些送料器专为与[LumenPnP](https://opulo.io/products/lumenpnp)配合使用而设计。
+
+## 下载
+
+在github下载：
+
+- [https://github.com/photonfirmware/photon/releases](https://github.com/photonfirmware/photon/releases)
+
+## 构建和上传
+
+我们使用[PlatformIO](http://platformio.org/)来构建、测试和上传此固件。有关使用 PlatformIO 的基本说明，请参阅其文档。
+
+推荐使用前面的方法，使用STM32CubeProgrammer下载bin文件
+
+![图片展示了在LumenPnP文件夹下的Feeder文件夹中，编译Feeder源码后的相关文件夹和文件。其中，红色箭头指向的“photon-1.0.5 > photon > .pio > build > photon-bmp”文件夹及“firmware.bin”文件是关键内容，表明在使用PlatformIO构建、测试和上传飞达固件后，可在此路径找到编译生成的bin文件，用于后续通过UART对飞达进行编程，如使用LumenPnP附带的FTDI USB UART桥接器。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MmYwYmNlZTk1NjU1Mjk0YzZkZWJkYmQ5NDAyZDA0NTRfMmNlNjExYzAyYWEyZDgzNzdjZTc4NjQ4ZTBiNDI0NDBfSUQ6NzY2MzgyNzg5MzUyODY2MTI3NF8xNzg0NTc1MDQxOjE3ODQ1Nzg2NDFfVjM)
+
+默认`pio`环境旨在与[Black Magic Probe](https://black-magic.org/index.html)配合使用，用于上传调试信息：
+
+```Plain Text
+pio run
+```
+
+但是，如果您只想通过 UART 对飞达进行编程，例如使用 LumenPnP 附带的 FTDI USB UART 桥接器，则可以使用：
+
+```Plain Text
+pio run -e photon-serial -t upload --upload-port /dev/tty...
+```

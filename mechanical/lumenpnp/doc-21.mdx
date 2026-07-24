@@ -1,0 +1,195 @@
+---
+title: "真空元件检测（气压传感器）"
+description: "使用 LumenPnP 拾取零件时，务必确认零件已成功拾取。虽然底部摄像头也能进行视觉确认，但使用 LumenPnP 的真空传感器可以更快地检测拾取是否成功，无需先将零件移动到底部摄像头前进行检测。由于底部摄像头也会检查零件（虽然速度稍慢些），但您可以放心地禁用真空零件检测功能，依然可以进行稳定贴片作业。"
+---
+
+# 真空元件检测（气压传感器）
+
+使用 LumenPnP 拾取零件时，务必确认零件已成功拾取。虽然底部摄像头也能进行视觉确认，但使用 LumenPnP 的真空传感器可以更快地检测拾取是否成功，无需先将零件移动到底部摄像头前进行检测。由于底部摄像头也会检查零件（虽然速度稍慢些），但您可以放心地禁用真空零件检测功能，依然可以进行稳定贴片作业。
+
+---
+
+<callout emoji="💡">
+v4.0.1版本有关于真空检测的教程，v4.1.0官方却删除，但配置文件中默认启用了该功能。所以这里补上教程。
+</callout>
+
+<callout emoji="💡">
+**禁用真空检测**
+根据多人使用反馈，和必要性，这里建议**禁用真空检测（实际我们可以通过底部相机识别也能完成检测功能，真空检测只是一个加分项，不是必须的）**
+如果您想禁用此功能，只需在`Machine Setup > Nozzle Tips > ReferenceNozzleTip N## > Part detection tab > Measurement Method > None`相应的喷嘴设置中将“**测量方法**”设置为“**None”即可。请务必在继续操作前`Apply`保存您的设置和配置**。
+</callout>
+
+![图片展示的是某软件界面中“Machine Setup”下的“Part Detection”设置页面。页面中“Measurement Method”下拉菜单被红色框线突出显示，当前选中“Absolute”。下方“Establish Level?”选项前有勾选，且“Perform Checks?”选项中“After Pick”前也有勾选，显示为选中状态。此外，还有“Vacuum Range”区域，数值分别为170.000和201.000。该图片与上文提到的禁用真空检测功能相关，直观呈现了相关设置选项。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NWI3Njc2NGViNGIyOGEzZTljN2ZmOGZmMTMwNGRhY2RfMTVkYTM4MTEyOTc5NjBkNDkwYThkOGM2NTI3MGI4ZjZfSUQ6NzY2MzgyMzYxMzg0NTU1NjQ0NF8xNzg0NTc1MDM3OjE3ODQ1Nzg2MzdfVjM)
+
+---
+
+如果你已经禁用了真空检测功能，直接跳转，进入下一步：[校准准备](https://tcnyw794ws3e.feishu.cn/wiki/BWF1wLHv2i1d4HkF6CMcJ6z3nuf?larkTabName=space#DXL5dNi9BorPadxiy3ycZt3BnYe)。
+
+如果你需要启用真空检测功能，可继续阅读下面教程。
+
+## 真空部件检测的工作原理
+
+当零件被拾取时，它会封闭吸嘴口，导致气动管路内的真空压力升高。真空传感器会测量这种压力变化，OpenPnP 利用这些数据来判断零件是否被成功拾取。在吸嘴尖端被覆盖的情况下，**如果真空传感器的读数落在真空范围的低值和高值之间，OpenPnP 则认为零件已被“拾取”**。
+
+由于吸嘴尖端尺寸的差异，每个人的喷嘴的真空读数都不同。**只要您了解如何正确设置高低真空值并进行相应的调整，具体的数值并不重要**。
+
+## 设置喷嘴真空部件检测：N1
+
+1. **选择要控制的正确喷嘴**。
+
+- 在 OpenPnP 的左下角，从**机器控制**下拉菜单中选择`Nozzle: N1 - N045 (Head:H1)`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NjY4YTg2Y2Y4YTYzNzJiZjg4NGVjMDk0MWNkMmU1NDlfMjU4MTExYmJjZjJkMjU5ZGFjYzQyNWU2YjNiMDdjYmVfSUQ6NzY2MzgyMzYxODk1ODIxNjM5NF8xNzg0NTc1MDM3OjE3ODQ1Nzg2MzdfVjM)
+
+1. **确认已安装正确的喷嘴头**。
+
+   - 确保`N045`喷嘴尖端牢固地连接到**喷嘴：N1（左侧工具头）**。
+2. **打开部件检测设置**。
+
+   - 导航至`Machine Setup > Nozzle Tips > ReferenceNozzleTip N045 > Part Detection`。
+
+   ![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZDdjYmQ0NThlODExMTI2Zjk4NzdiNTg2YmMzMzNjYmNfZGE3NDVhZGE4NzYzM2EzOTUyMjI4YTU3NDJiZmU5NmJfSUQ6NzY2MzgyMzYxNzY1NDA5OTIwNl8xNzg0NTc1MDM3OjE3ODQ1Nzg2MzdfVjM)
+3. **打开时测量真空压力**。
+
+   - 导航到`Machine Controls`选项卡中`Actuators`。
+   - 选择`H1:VAC1`打开真空压力窗口。
+   - 点击`On`启动气泵和阀门。
+
+   ![图片展示的是OpenPilot软件界面中设置喷嘴真空部件检测时的“Machine Setup”选项卡。界面中“Nozzle Tips”下“ReferenceNozzleTip N045”被选中，其下有“Configuration”“Part Detection”“Tool Changer”“Calibration”四个标签。在“Part Detection”标签下，可看到“Perform Check?”选项，下方有“After Pick”“Aligned”“Before Place”三个勾选框，以及“Low Value”“High Value”“Last Reading”输入框，还有“Vacuum Range”数值区域。该图与上文设置喷嘴真空部件检测的操作步骤相关，直观呈现了操作界面。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MDhjMDdhMmNmNWVjN2YyNDg3MjgxMzIyYjFhNTMxMjlfZDkwNGY5YmM1OGM4ZTI1ZjdjNzBlN2NhY2VjYTI3NjZfSUQ6NzY2MzgyMzYyNzA4Njc3NzY0Nl8xNzg0NTc1MDM3OjE3ODQ1Nzg2MzdfVjM)
+
+   - 点击`Read`。屏幕上`Read Value `将显示一个值。这表示喷嘴 N1**打开**时的真空压力。
+   - **请记下这个数字**，我们稍后会用到。
+
+   ![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MjdkN2E1YjE2NTJjNzJkOGQ0YjE0ZDljN2E5YTg1MTFfN2IxZjk4YmVlZjA5N2QzMjg3NTBiNGRjMjcyZWNlYzdfSUQ6NzY2MzgyMzYzMTYyNjA5NTgxOV8xNzg0NTc1MDM3OjE3ODQ1Nzg2MzdfVjM)
+4. **测量覆盖状态下的真空压力**。
+
+   - **从 LumenPnP 套件附带的元件条中取出一个元件**，并将**其靠近喷嘴尖端**。真空压力应该能够自行吸起并固定住该元件。（不要用手，只会导致细小碎屑堵住吸嘴口）
+   - 再点击一下Read。这代表拾取或“**覆盖**”零件时的真空压力。
+
+   ![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MzRjM2E4MzAyYTkyMGVmZWYwNTg2MjU5Y2I5OWM4ZjZfOWQzMzU5MTNiOGVmZWNiNjE3Y2RhNjRiMDA5MTA1OGRfSUQ6NzY2MzgyMzYzNTE1MjUwNTgxM18xNzg0NTc1MDM3OjE3ODQ1Nzg2MzdfVjM)
+
+   - **请记下这个新值**。我们稍后还会用到它。
+   - 点击`Off`即可停用泵和阀门。
+   - 关闭`H1:VAC1`真空压力窗口。
+
+<callout emoji="💡">
+**如果盖住吸嘴，气压值没有变化：**
+1. 请先检查气路是否连接好，是否存在漏气，着重看各接口位置有没有插到位
+2. 按照链接中办法增大PWM值：[没有吸力，电磁阀无法启动](https://tcnyw794ws3e.feishu.cn/wiki/K3jJwIn7wi9jBhkb9onceTHlnqu#BlEmdAy0FoyVMRxRIrFcZFycnbf)
+</callout>
+
+1. **计算检测阈值**。
+
+- **找出未覆盖值和已覆盖值的中点**。例如：
+
+  - **未覆盖**：**220**
+  - **已覆盖**：**200**
+  - **中间值**：**210** → 在`High Value`中填入此值。
+
+  ![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=Zjg2ZTJjZGJhZGRlM2YwMjBkYzhkZDhhYWMwYmFmNzVfMjRhMDkyOGNiNmNiMTEwZGRjZWIzYmE1Yjg2NWE0YzhfSUQ6NzY2MzgyMzYzNjE0NjU4ODk1NF8xNzg0NTc1MDM3OjE3ODQ1Nzg2MzdfVjM)
+- 确认低值
+
+  - **已覆盖**：**200**
+  - **未覆盖**：**220**
+  - **差值**：**220-200=20**
+  - **中间值**：**210**
+  - **最低值**：**中间值 - 差值 = 190，**→ 在`Low Value`中填入此值。如果有必要，可以继续降低该值，例如180。
+
+  ![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NTNmMWQ3NGQ3NDQxMjc2NDNkMWM2ZjEyMjA0ZmUwMGNfYmIyMjMwNDhhMzkyODg1ZjQzMzFjNDdiM2ExNTk5ZDlfSUQ6NzY2MzgyMzY0MDY5NzI3NzczMV8xNzg0NTc1MDM3OjE3ODQ1Nzg2MzdfVjM)
+
+<callout emoji="💡">
+**警告**
+未覆盖和已覆盖状态下的读数差异可能很小，但**即使是个位数的变化也可能表明拾取成功**。喷嘴尺寸会影响这些读数，因此不同喷嘴之间的读数会有差异。
+</callout>
+
+1. **应用并保存**
+
+- 点击`Apply`右下角保存对**N045**喷嘴尖端的更改。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MjZkZTcyYzZhOWY1YjFlMzcxMWU1MjYyZjI5ZmU0ZDVfMWZiZTk5MTY3YWU2NDFlZWNmNTljZGZjOGJiN2ZlMGNfSUQ6NzY2MzgyMzYzOTYwMjcyODExN18xNzg0NTc1MDM3OjE3ODQ1Nzg2MzdfVjM)
+
+- 立即保存您的 OpenPnP 配置`File > Save Configuration`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MmU1ZGFkMjE2MTYyOWYwNDM4YTc0YTZlNzdlMDljMmZfMmM2N2ZjYWI5OGY5MzA1YmI2NjcxZWYzM2M1Y2EwMzFfSUQ6NzY2MzgyMzY0Mzg5MzMwNDUzMF8xNzg0NTc1MDM3OjE3ODQ1Nzg2MzdfVjM)
+
+---
+
+## 设置喷嘴真空部件检测：N2
+
+1. **选择要控制的正确喷嘴**。
+
+- 在 OpenPnP 的左下角，从**机器控制**下拉菜单中选择`Nozzle: N2 - N24 (Head:H1)`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=Zjg4MTBmNzBlYWM3MGNmOWY3OTk5NzhhZGJiYmY4YzJfODJkYTU4MzU4NDJiNjAyODdkZWQ1NDIyZTU0YTRkNjNfSUQ6NzY2MzgyMzY0NTQ5NzIzMjY3MF8xNzg0NTc1MDM3OjE3ODQ1Nzg2MzdfVjM)
+
+1. **确认已安装正确的喷嘴头**。
+
+- 确保`N24`喷嘴尖端牢固地连接到**喷嘴：N2（右侧工具头）**。
+
+1. **打开“零件检测”选项卡**。
+
+   - 导航至`Machine Setup > Nozzle Tips > ReferenceNozzleTip N24 > Part Detection`。
+
+   ![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YzU5MWJhZmU0ODVkMWU3ZmVkNzViOWI4NzUwZDQ3YmNfOTYzNjM0YTYxNTdlZDBhMjBhNTdmMDQ2ZWYxY2YxNmNfSUQ6NzY2MzgyMzY0ODEzMzc3ODYxM18xNzg0NTc1MDM3OjE3ODQ1Nzg2MzdfVjM)
+2. **测量真空压力**。
+
+   - 导航到`Machine Controls`选项卡`Actuators`中。
+   - 选择`H1:VAC2`打开真空压力窗口。
+   - 点击`On`启动气泵和阀门。
+
+   ![图片展示的是OpenPilot软件界面，处于“Machine Setup”选项卡下的“Part Detection”页面。界面中显示了喷嘴参考、真空压力等信息，真空压力范围为220.000 - 248.000，当前读数为220.000。下方有“Vacuum Off”开关，以及“Measurement Method”下拉菜单，当前选中“None”。该图片与上文设置喷嘴真空部件检测的操作流程相关，是测量真空压力并读取数据时的软件界面呈现。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZjhjOGE3N2NlNjljNTkxNDNhZDc0MzAyYTQ2NTkyMjFfZDg5ZDdlYjdlN2NiNzVkNWY2OGY3NDI0OTk4ZDcwNTlfSUQ6NzY2MzgyMzY1MTAxNTM4MDE4OF8xNzg0NTc1MDM3OjE3ODQ1Nzg2MzdfVjM)
+
+   - 点击`Read`。屏幕上将显示一个数值。这表示喷嘴：N2**未遮盖**`Read Value box`时的真空压力。
+   - **请记下这个数值**，我们稍后会用到。
+
+   ![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NmE5Nzg1OGYxNGZmNGNjNWQ2YmIwYTYzY2ZmNjE0MGJfNzBiMTkyMGJmOTFhYzdmOTJiY2ZlMjAzMWE0NDE4M2NfSUQ6NzY2MzgyMzY1Nzg3NzE3OTY4NF8xNzg0NTc1MDM3OjE3ODQ1Nzg2MzdfVjM)
+3. **使用密封喷嘴测量真空压力**。
+
+- 从物料清单中选择一个尺寸合适的**零件，并将其靠近喷嘴**。真空压力应该能够自动吸起并固定住零件。
+- 再点击一下Read。这代表拾取或“**覆盖**”零件时的真空压力。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YTQ0MGNjMjViZTUzZmY1OGU2Mjg1OGEzZGNhYWFjODdfYjFhMzRlNGQxN2ZlOWE4MGNhOWVlNjhmMmNhY2YzNGNfSUQ6NzY2MzgyMzY1ODcwNzc5ODk4NV8xNzg0NTc1MDM3OjE3ODQ1Nzg2MzdfVjM)
+
+- **请记下这个新值**。我们稍后还会用到它。
+- 点击`Off`即可停用泵和阀门。
+- 关闭`H1:VAC2`真空压力窗口。
+
+<callout emoji="💡">
+**如果盖住吸嘴，气压值没有变化：**
+1. 请先检查气路是否连接好，是否存在漏气，着重看各接口位置有没有插到位
+2. 按照链接中办法增大PWM值：[没有吸力，电磁阀无法启动](https://tcnyw794ws3e.feishu.cn/wiki/K3jJwIn7wi9jBhkb9onceTHlnqu#BlEmdAy0FoyVMRxRIrFcZFycnbf)
+</callout>
+
+1. **计算检测阈值**。
+
+   1. **找出未覆盖值和已覆盖值的中点**。例如：
+
+   - **未覆盖**：**230**
+   - **已覆盖**：**200**
+   - **中间值**：**215** → 在`High Value`中填入此值。
+
+   ![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=Nzk4ODUwMGVmNjI3ZjI0NDliYmYyYjI0ZjIxMTQzNTFfYjcyMzEyZjM5ZDFlMGJkMjQ0YmNlMzBjYTczYjM2NWZfSUQ6NzY2MzgyMzY1OTg2NTQ1OTg5Ml8xNzg0NTc1MDM3OjE3ODQ1Nzg2MzdfVjM)
+
+   1. 确认低值
+
+   - **已覆盖**：**230**
+   - **未覆盖**：**200**
+   - **差值**：**30**
+   - **中间值**：**215**
+   - **最低值**：**中间值 - 差值 = 185，**→ 在`Low Value`中填入此值。如果有必要，可以继续降低该值，例如180。
+
+   ![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NmFlOGVhNGYzMmIzZDk2ZTNkYjRhMGJiZjJkMGNmNGVfMjFmMjYyZGE5MDY2NmZkNzk1NmJiZmMxYWQxMmFlOWVfSUQ6NzY2MzgyMzY2MzY3ODAxNjc0Ml8xNzg0NTc1MDM3OjE3ODQ1Nzg2MzdfVjM)
+
+**别忘了**
+
+未覆盖和已覆盖状态下的读数差异可能很小，但**即使是个位数的变化也可能表明拾取成功**。喷嘴尺寸会影响这些读数，因此不同喷嘴之间的读数会有差异。
+
+1. **应用并保存**
+
+- 点击`Apply`右下角保存对**N24**喷嘴尖端的更改。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZGFlZTA4YmNjZDM3ZTNmNTViOTBkOTUyMjQxNjU0M2JfMGUxYTM0NmE5ODFmNGI4M2NjMTk1MzMxZDE3OGY3ZTlfSUQ6NzY2MzgyMzY2NzU5MTE1NDkwOF8xNzg0NTc1MDM3OjE3ODQ1Nzg2MzdfVjM)
+
+- 立即保存您的 OpenPnP 配置`File > Save Configuration`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NTA2OWFkOGM0YzljYjYyMTZkYTkxN2JhMjAwZjJmMjdfYmFkNzcxNGFkMTZhMDlhMDhiY2IyNTUyMWRkODc2MzVfSUQ6NzY2MzgyMzY2NjIwMzAwNDE0M18xNzg0NTc1MDM3OjE3ODQ1Nzg2MzdfVjM)

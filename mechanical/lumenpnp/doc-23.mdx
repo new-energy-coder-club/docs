@@ -1,0 +1,176 @@
+---
+title: "拼板贴片教程"
+description: "这里的拼板指的是自己只有单板pos文件，但是pcb生产时为拼板生产且没有拼板后的pos文件。 本教程只适用于同一种板子且等间距拼板的电路板（阵列或者环形）"
+---
+
+# 拼板贴片教程
+
+<callout emoji="❗">
+这里的拼板指的是自己只有**单板pos文件**，但是pcb生产时为**拼板生产且没有拼板后的pos文件。**
+**本教程只适用于同一种板子且等间距拼板的电路板（阵列或者环形）**
+</callout>
+
+<callout emoji="❗">
+如果自己有拼板后的pos文件，直接按照入门教程的单板教程操作即可、
+</callout>
+
+## 一、获取单板pos文件
+
+按照 [常用软件的坐标文件导出和导入](https://tcnyw794ws3e.feishu.cn/wiki/GFHdwFMg2iHXsnkQTEcch4tJnYc) 获取单板pos文件。一定要注意原点位置，下图教程示例是在左下角。
+
+![图片展示的是一个电路板的示例，用于说明获取单板pos文件时原点位置的确定。电路板为紫色背景，上面有电路线路和元件标识。左下角有一个黄色的矩形框，框内有红色箭头指向，标注出原点位置。该图片与上文提到的“一定要注意原点位置”相呼应，直观呈现了原点在电路板左下角的示例，帮助用户理解在获取单板pos文件时，原点位置的确定方式。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YTgxMmQ2NmVmNjVjMTAyMzE4OTJlOWVhNDZiZDczYTFfOTc0OWFjMDQwM2I5Y2E3YmQ0ZjUxOTA0MGNlMjgyMTVfSUQ6NzY2MzgyMzczNjc5NzQwMDI1Ml8xNzg0NTc1MDM5OjE3ODQ1Nzg2MzlfVjM)
+
+## 二、获取拼板偏移量
+
+这一步有多种方式，如下选择其一
+
+### 1、手工测量
+
+手动测量。测量两个板子的间距，精确到小数点后1位即可，后续我们openpnp软件上还可以调整
+
+![图片展示了两块PCB板，左侧板子编号为0001，右侧板子编号为0002。两板子间距为53.5mm，右侧板子上标注有红色数字。该图片对应文档中获取拼板偏移量部分，用于说明手工测量拼板偏移量的方式，即测量两个板子的间距，精确到小数点后1位，后续在openpnp软件上还可进行调整。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=M2ZhZWIzM2RhYTRiMmI5MTExYThhNTRhZDkzNjJlYzdfNWViN2ZkMTk3YWY5ZDU5MjA3NGE3M2NkYzI5ZWI4MzJfSUQ6NzY2MzgyMzczOTE2Mjg0MDM0OV8xNzg0NTc1MDM5OjE3ODQ1Nzg2MzlfVjM)
+
+### 2、嘉立创生产稿
+
+我们找到PCB订单，选择**查看生产稿**
+
+![图片展示的是嘉立创PCB订单页面。页面左侧显示订单编号、订单状态、订单金额等信息，右侧有多个操作按钮，其中“查看生产稿”按钮被红色箭头突出指向。该图片与文档中获取拼板偏移量的上下文相关，用于说明在找到PCB订单后，选择“查看生产稿”这一操作步骤，以查看生产稿中的gerber图形，通常会标注标准偏移值，但也有例外情况，需手动测量偏移量。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OGE1OWFhYWUwNGI5Y2M0MzY2NzUzNzBlMmY4NTE4YWVfNGU0YjIwZjZlZjdkNThiZjA4Njk0ZWY1ZDliZjFiYWJfSUQ6NzY2MzgyMzczOTgwNDY4MzUzOF8xNzg0NTc1MDM5OjE3ODQ1Nzg2MzlfVjM)
+
+选择查看渲染图->gerber图形，通常这里会标准偏移值。但是也有例外
+
+![图片展示的是嘉立创DFM软件界面，用于获取拼板偏移量。界面上方有“查看生产稿”“查看渲染图”等选项，其中“查看渲染图”被红色箭头指向。下方是PCB板的渲染图，图中有多个圆环状结构，部分区域用红色框标注，显示了具体的尺寸数据，如“Y - 0.07”“Y - 0.05”等。该图与上下文关系为：在借助嘉立创DFM软件获取拼板偏移量时，通过此界面可查看PCB板的渲染图，辅助测量偏移量。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MWU1ZmEyZjNmYjM2NDAxNTQ4MmZkY2MxNzNiOWEwYTZfZDM5ZTM3ZDZiYjgyY2VjNmY4NmJmNWI3NzhmMDMzYjlfSUQ6NzY2MzgyMzc0MjA0ODU3MDU4M18xNzg0NTc1MDM5OjE3ODQ1Nzg2MzlfVjM)
+
+下图这个就没有标注出偏移量。我们需要使用测量工具手动测量，但这个通常也是不准确的，后续openpnp软件上需要修改。或者查看下面的DFM软件教程获取精准偏移量
+
+![图片展示的是嘉立创DFM软件中PCB订单查看生产稿界面，用于获取拼板偏移量。画面中显示文件名为“6935526A P1 V-CUT -drawing”，并有“查看生产稿”的蓝色按钮。画面右上角有“查看生产稿”的文字提示。画面中还标注了两个封装的中心点距离为0.000mm，以及V-CUT的尺寸数据。该图片与上下文介绍的借助嘉立创DFM软件获取拼板偏移量的内容相关，直观呈现了软件操作及偏移量显示情况。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NmJhZmE4ZjllOGQ2ZjhhYzI4Nzk0NzAxY2QwNGFhMjVfNzhhNGY4ODU0NjYwMzQwYmFhNDBmNDRiYWU0ZDQyOWZfSUQ6NzY2MzgyMzc0NzA5NDE3MDkyNl8xNzg0NTc1MDM5OjE3ODQ1Nzg2MzlfVjM)
+
+### 3、借助DFM软件
+
+这里以嘉立创DFM软件为例介绍，你也可以使用其它类似DFM软件
+
+下载安装DFM软件。必须下载安装客户端，网页版实测功能不全
+
+https://www.jlc-dfm.com/
+
+我们找到PCB订单，选择**查看生产稿**
+
+![图片展示了PCB订单页面，位于“获取拼板偏移量”步骤中。页面右上角有“查看生产稿”等操作按钮，其中“查看生产稿”按钮被红色箭头指向突出显示。该图片与上下文紧密相关，上下文提到必须下载安装客户端，网页版实测功能不全，且需找到PCB订单后选择“查看生产稿”，此图直观呈现了“查看生产稿”按钮的位置，帮助用户明确操作位置。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MmM4N2QzNjRiOWEwYmI4YTBlZjZiYjBkMzBjMWQ5MzlfNGNlYmYwNTdiMWJiNTdiOGIzZDc1MGZkMTIyZWRmMTVfSUQ6NzY2MzgyMzc0NzgxMTU0NDI5OV8xNzg0NTc1MDM5OjE3ODQ1Nzg2MzlfVjM)
+
+选择DFM客户端看图，会直接调用我们上面安装的DFM软件，自动导入，我们选择测量->元素中心点
+
+选取两个封装，软件会自动给出距离也就是拼板的偏移量
+
+![图片展示了PCB订单查看生产稿时，选择DFM客户端看图的操作界面。左侧为PCB生产图，标注有“6935526A P1 V-CUT-drawing”等信息，右上角有“测量”按钮。右侧为PCB生产图的放大图，同样标注有“6935526A P1 V-CUT-drawing”等信息，右上角“测量”按钮处有红色框标注。该图片与上下文紧密相关，直观呈现了选择DFM客户端看图并测量元素中心点的操作场景，辅助说明获取拼板偏移量的步骤。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MDdmYjkxMDQ3YTZiZjlhYzk2ZTE5ZjIzYzY1NGIwNmNfOWU0M2I1NzdiOTRlODU4NDUyMWZiYmMzYjE4NmVkZjVfSUQ6NzY2MzgyMzc1MTM5MzM0ODU4NF8xNzg0NTc1MDM5OjE3ODQ1Nzg2MzlfVjM)
+
+如果说你不是嘉立创生产的，就没法想上面一键查看。那就需要下载gerber工程生成文件（注意是拼板之后的生产文件）
+
+依旧以嘉立创为例，找到工程，并下载工程文件
+
+如果是别家生产，可以找厂家要，一般都给，注意是拼板后的文件
+
+![图片展示了嘉立创PCB设计平台中下载PCB文件的界面。界面中红框突出显示了“工装板（拼板图纸文件）”和“feedermbos(底单)”两个文件，下方有“下载文件”按钮。该图片与上下文紧密相关，上下文提到在获取拼板偏移量时，需下载拼板之后的生产文件，此图即为在嘉立创平台下载该文件的操作界面，直观呈现了文件下载位置及文件名称，帮助用户明确操作步骤。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=Nzk3Mzg0YzVjODY1YjVkY2QwM2Y5NzM5ZjBkNmNlM2VfMTk4MTE0MTQ4MmY4Zjg2NjNmNGYwZDcwYWU4ZGQ5YjRfSUQ6NzY2MzgyMzc1MjM2NjU1ODM4N18xNzg0NTc1MDM5OjE3ODQ1Nzg2MzlfVjM)
+
+解压缩，找到ok文件夹（这里根据自己工作经验，不同pcb板厂好像都是这个文件夹格式，都是在ok文件夹下面）
+
+如下图红框部分就是我们需要的文件
+
+<grid>
+<column width-ratio="0.500000">
+![图片展示了嘉立创工程文件夹中的内容。红框突出显示了“ok”文件夹，其修改日期为2026年7月18日13:54，类型为文件夹。该图片与上下文紧密相关，上下文提到在下载拼板之后的生产文件后，解压缩找到“ok”文件夹，此图直观呈现了“ok”文件夹在文件夹中的位置，帮助理解获取拼板偏移量时在文件夹中找到“ok”文件夹的操作步骤。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZjA2NDNkNmFhNjY5MmZkMTY1ZjhiYTgzNzk1MzFlNGZfNTQxNDJhNGM4YzhhMzUzMjcyOTA2Y2NiZDcwOWM3YWRfSUQ6NzY2MzgyMzc1Mzg3MjM0NjM3MV8xNzg0NTc1MDM5OjE3ODQ1Nzg2MzlfVjM)
+</column>
+<column width-ratio="0.500000">
+![图片展示了嘉立创工程文件解压缩后的“ok”文件夹内容。红框内列出了多个文件，其中“6935526a_p1.tgz”文件被高亮显示，其类型为360压缩，大小为1,650 KB。该图片与获取拼板偏移量的教程上下文相关，用于说明在找到工程文件并解压缩后，需在“ok”文件夹下找到名为“6935526a_p1.tgz”的文件，此文件是后续在DFM软件中打开文件夹选择的文件，以获取拼板偏移量。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NjllOTEwNjc0YjNiM2M3MTIzZmYwMzg5NjYxYWE5YTRfOGMzZWQ2NWRiNDdkYjdjYzVkZWQyMzJjYjlmM2ZjOWRfSUQ6NzY2MzgyMzc1NTkzNTg3ODQxNl8xNzg0NTc1MDM5OjE3ODQ1Nzg2MzlfVjM)
+</column>
+</grid>
+
+回到DFM软件，选择打开文件夹，选择ok目录。后面操作就和上面一样，使用测量工具测量偏移量即可
+
+![图片展示了嘉立创DFM软件界面，用于获取拼板偏移量。界面左侧有多个选项卡，其中“拼板”选项被红框突出显示。右侧是文件夹选择区域，红框内标注“ok”，表明需选择此文件夹。下方“文件夹”输入框内显示“ok”，右侧有“选择文件夹”按钮。该图片与上文获取拼板偏移量的步骤相关，是选择文件夹操作的示例，帮助用户明确操作位置。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZTM4MzYyOTQwMjY1M2QzZTY0NjU4YTBiMTlmOTA1NzhfZmY5NDllMTg1ZjBjNDkzN2Q0Nzc0ODM2OTNmNDdiZWJfSUQ6NzY2MzgyMzc1ODk2ODI3ODI1NV8xNzg0NTc1MDM5OjE3ODQ1Nzg2MzlfVjM)
+
+这里测试华秋DFM也可以，注意右下角单位改成mm，距离显示在界面正下方中间
+
+![图片展示的是华秋DFM软件界面，用于获取拼板偏移量。画面中红框突出显示了“点 - 点”选项，表明可在此处进行点对点测量。画面右下角显示单位为mm，距离显示在界面正下方中间。此外，画面中还标注了“6935526A_P1 V-CUT - drawing”等信息，以及红框标注的“2.04 + 0.015mm”等数据，这些数据与获取拼板偏移量相关。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZTBlZDI0MGI2NWExMzgzZTQ3ZGNmN2I0NzNlM2UyYTVfZTI5MmE1MjJhYzlhNzg0NmYxY2M3YmI1Y2IxYjJkMTRfSUQ6NzY2MzgyMzc1NzE2NDk0MDU4NF8xNzg0NTc1MDM5OjE3ODQ1Nzg2MzlfVjM)
+
+## 三、Openpnp拼板
+
+新建单板，导入pos文件，将mark点类型修改为Fiducial。然后保存单板文件。
+
+这里单板新建不会的，可以查看入门教程的 [电路板验证](https://tcnyw794ws3e.feishu.cn/wiki/CZeDwwKk2iP50akOABxcjTt0nOe?larkTabName=space#Xl08dGDCjobSu1x2FYMcU6z7nxd)
+
+![图片展示了Openpnp软件中新建拼板的操作界面。界面左侧有“拼板”选项卡被红色框突出显示。右侧是单板文件列表，其中“leader_dual_board.sld”被红色框标出。下方是贴片列表，显示了各元件的名称、坐标等信息，其中“Fiducia”被红色框标出。该图片与上下文关系紧密，直观呈现了新建拼板时软件界面的布局及关键操作位置，辅助说明了在Openpnp软件中新建拼板、添加子板等操作步骤。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MDJkMTBiOWEyNWM4MzliNjM5NDM1ZDQ3YzdmMThlYzRfMDg4ZWQ5MzViNmYxZWRhZDM0MzhhNmU0ZDlmMmY4YzJfSUQ6NzY2MzgyMzc2MTgzNzI0Nzc1N18xNzg0NTc1MDM5OjE3ODQ1Nzg2MzlfVjM)
+
+新建拼板。
+
+![图片展示了Openpnp软件中拼板操作界面。画面中“拼板”选项被红色框突出显示，其下有“新建拼板...”和“新增一张拼板”选项，其中“新建拼板...”也被红色框圈出。该图片对应文档中“添加子板，选择我们之前新建的单板文件”步骤之后的内容，用于指导用户在软件中进行拼板操作，明确新建拼板的入口位置，帮助后续进行子板添加等操作。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YzlhZDhmNmFlNjliZmFkNWYxZmYyZjRjNmI5ZGJhNjBfNWRiMjgwNjYzNzE2ODI0ODI5MDdlZWNkNWYyYjU2NzlfSUQ6NzY2MzgyMzc2NTA1ODQyNDA3NV8xNzg0NTc1MDM5OjE3ODQ1Nzg2MzlfVjM)
+
+添加子板，选择我们之前新建的单板文件
+
+![图片展示了Openpnp软件中拼板设置界面。画面左侧有“拼板”标签，下方有“拼板列表”和“拼板选项”区域，其中“拼板选项”区域有“+”号标识，点击后弹出下拉菜单，红色框突出显示“添加现有的单板”选项。该图片与上下文紧密相关，上下文提到在添加子板后，选中子板并单击子板拼板图标，可根据拼板情况设置参数，此图直观呈现了添加现有单板的操作位置，辅助理解拼板设置流程。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MmI5NWE2YzQxMGY0ZDAzMWVmZjNiYjk4ZmNlYTU3ZmRfN2FlZjI4YWYxZWMzNDNiOWMzN2ViOGU1NjQxYmI5MjBfSUQ6NzY2MzgyMzc2NjQ2OTM0ODYyN18xNzg0NTc1MDM5OjE3ODQ1Nzg2MzlfVjM)
+
+选中子板，然后单击子板拼板图标
+
+![图片展示了Openpnp软件中拼板界面。上方显示拼板名称为“feeder_dual_panel.cml”，并有横向长度和纵向宽度数值。下方拼板定义区域，有“子板选项”部分，左侧有“+”和“-”按钮，右侧有“+”和“-”按钮，其中“+”按钮被红色箭头指向突出显示。该图片与上下文关系紧密，上下文提到添加子板选择新建单板文件，选中子板后单击子板拼板图标，此图直观呈现了拼板定义中子板选项的操作位置。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YzU4Y2RjYzRiM2JlZGIxMDViNjFiMzQ3N2FmNTcxNTRfZjVhYzIzZTBmMDNlN2YyYmIzZjI1OGM5NWJiNWQzMDRfSUQ6NzY2MzgyMzc2NTk2NDU5MDMwMF8xNzg0NTc1MDM5OjE3ODQ1Nzg2MzlfVjM)
+
+根据自己拼板情况，设置参数，建议右侧勾选所有视图便于查看。
+
+- 阵列分布还可以选择环形阵列，根据实际选择
+
+![图片展示了Openpnp拼板时的阵列分布设置界面。左侧“阵列分布类型”为“呈直角分布”，可设置列、行数量及宽度。右侧“当前查看”选项中，勾选了“阵线”“单板/拼板位置”“重焦点”“单片位”等，可显示拼板或单板。界面下方有坐标轴及网格，显示了多个红色“+”标记点。该图与上下文关系紧密，直观呈现了设置参数时的界面布局及可查看内容，帮助用户了解拼板设置的具体操作。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YTQwNDVmMGFmOTgzMWEwMGE5NWZjZmZmOTlhOWZlNzdfOTU1NGVhNjIwZGVjYmE3OTcyMTYzYjNkZjYxYWMyNGFfSUQ6NzY2MzgyMzc2NzQwNzQ0NzIzOV8xNzg0NTc1MDM5OjE3ODQ1Nzg2MzlfVjM)
+
+至于下面两个选项，可以看下面对比图，再自己研究吧
+
+![图片展示了Openpnp拼板时设置参数的对比图。左侧为默认设置，中间为行间距设置为10，右侧为行间距设置为5。各图中均显示了行数、列数、行间距、列间距等参数设置，以及对应行、列的坐标值。图片与上下文的关系是，用于说明在设置参数时，行间距不同对拼板位置的影响，帮助用户根据实际需求选择合适的行间距设置。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OTY1NDE0NDliNDAyYWU4NDMwYTUwMWIzNTkwZmM0OTBfNzE2OGIxY2U3NjcxNmNiYzdiOTc2NmE3OTFjMjZhNTRfSUQ6NzY2MzgyMzc3MDMxNDE5Nzk0NV8xNzg0NTc1MDM5OjE3ODQ1Nzg2MzlfVjM)
+
+设置之后，软件就会自动在第一个子板下面自动新建出其它板子，实际就是软件根据你的设置将第一个单板复制多多份，并设置他们的xy原点坐标值（自动计算）
+
+如果我们后续发现拼板偏移值不对，需要在这里除了第一个子板，删除全部其它的子板。然后按照上面教程重新设置参数新建子板
+
+![图片展示了PCB设计软件中拼板设置界面。界面中有“拼板名称”“横向长度”“纵向宽度”等参数设置区域，其中“Brd1”和“Brd2”被红色框突出显示。Brd1的X、Y坐标均为0.000，Brd2的X坐标为53.560，Y坐标为0.000。该图片与上下文关系紧密，是对上文提到的设置拼板参数后软件自动在第一个子板下新建其它板子，且自动计算xy原点坐标值的直观呈现，帮助理解拼板设置的具体数值情况。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZWZlNTA0NGUwOWE0YzI0ZmRiZTlhZDRkNGIyMjU4MDNfNTQxMzAxNzg0YTVlMjlmNTQxODc2Mzk3NTMwNTcxY2FfSUQ6NzY2MzgyMzc3NTE1NDE0NjUxM18xNzg0NTc1MDM5OjE3ODQ1Nzg2MzlfVjM)
+
+然后设置拼板即大板的基准点，我们自动选择即可，然后ok确认
+
+<callout emoji="❗">
+注意这里蓝色背景行才是选中，最左侧那个启用勾选不是选中的意思。
+</callout>
+
+<callout emoji="❗">
+如果这里没有自动显示基准点列表(空的)，那就是前面新建单板的时候没有将mark点类型修改为Fiducial。
+</callout>
+
+![该图片展示的是Openpnp拼板操作时的软件界面，核心是拼板基准点设置页面的相关内容。其中明确标注了自动选择按钮，还有多个类型为Fiducial的基准点条目，界面中通过红色箭头引导操作提示，还能看到拼板相关的设置选项。该图片是拼板页面设置好的最终状态示例，对应教程中关于基准点设置、选择拼板基准点的操作要求，用于辅助说明拼板时基准点设置及确认的相关操作流程，帮助使用者理解如何设置和选择拼板的基准点以完成操作。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MmFlZTVhNzYwNmM0ZGVkNzA2MDIxMmQ1YjIxM2ViMmVfNWFlZDY0OGE5ZTdiY2QxN2ZkNjQ2ZWFkYWVjZGE0YWNfSUQ6NzY2MzgyMzc3Nzg3MjAyMjgxMV8xNzg0NTc1MDM5OjE3ODQ1Nzg2MzlfVjM)
+
+下图是拼板页面设置好的最终样子
+
+![图片展示的是Openpnp软件中拼板页面设置好的最终样子。上方显示拼板名称为“Index - Dual panel top”，并有“新建”“删除”等操作按钮。中间部分是拼板定义，显示了子板信息，如子板名称、位置、尺寸等，其中“Bn41”子板的X、Y、Z位置分别为0.000、0.000、Top，尺寸为54.000。下方是拼板基准点配置，列出了各基准点的名称、ID、坐标等信息。该图片与上文设置拼板基准点的内容对应，直观呈现了设置好的拼板页面状态。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MjcyNWI0NDk0YmZmZDk0NmE5ZTM1NTVkYjE1MDg0OWNfZmZmMDI0MjdkOTJjYmI4NGVkNTdhOGE0ZTg5MDIxZTdfSUQ6NzY2MzgyMzc4MDcwNzMzOTU1MV8xNzg0NTc1MDM5OjE3ODQ1Nzg2MzlfVjM)
+
+任务，新建，选择现有的拼板，也就是我们上面刚新建的拼板
+
+![图片展示了Openpnp软件中拼板设置界面。界面左侧有“任务”“单板”等选项卡，当前选中“任务”选项卡。右侧是拼板列表，显示了“feeders_dual_panel”和“feeders_dual_board”两个拼板。列表下方有“新建单板...”“新建拼板...”等操作按钮，其中“新建拼板...”按钮被红色框突出显示。该图片与上下文关系紧密，直观呈现了新建拼板的操作位置，是设置拼板前新建拼板步骤的示例图。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZmYyNGI5NTdhMDA4YWUzODRiOGM0N2Q3Y2JlZDdkZDFfNWNmYmVmZDA1Mzg4MmM3ODNiMWFmNTJiNTZiYjM5MmNfSUQ6NzY2MzgyMzc4MjE3NTM5NTEwM18xNzg0NTc1MDM5OjE3ODQ1Nzg2MzlfVjM)
+
+勾选拼板大板的巡视基准点，这样贴装前都会进行mark点识别
+
+你也可以每个子板都勾选，这样就都会识别，也就是大板识别完了，小板子也会挨个识别一次（不推荐，板子多太慢了，识别拼板大板的基准点就可以了）
+
+![图片展示了Openpnp软件中贴片机拼板设置界面。画面中列出了“Pnfeeder - dual panel .xml”等拼板文件，各文件对应名称、横向长度、纵向宽度、板层、X、Y、Z坐标、角度、启用、巡检基准点等信息。其中，“巡检基准点？”列有勾选标识。该图片与上下文紧密相关，上下文提到在拼板设置中，需勾选“巡检基准点？”以完成拼板识别，此图直观呈现了勾选操作的位置。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZDUzNGViZDkwNzliZTRhNjRiN2NiNWVmMzMyMmM3MGNfZDIzMWQwNTdhNTVkZTFhYTk5OTI0YzlkYzhiODg1OTNfSUQ6NzY2MzgyMzc4MTE5ODMwMjUwOF8xNzg0NTc1MDM5OjE3ODQ1Nzg2MzlfVjM)
+
+之后和单板类似的，我们定位大板子的原点也就是第一块板子的原点位置
+
+<callout emoji="❗">
+注意这里原点是我们单板的原点（一般都在左下角），是不含拼板的工艺边的，所以你定位的时候，也请忽略工艺边
+</callout>
+
+![图片展示了Openpnp软件中拼板贴片任务设置界面。画面中红色框突出显示了“拼板”选项卡，以及拼板列表中“X”“Y”“Z”坐标值为20.000、20.000、0.000的记录。该图片与上下文紧密相关，上下文提到在拼板识别完大板后，需定位大板子的原点，即第一块板子的原点位置，此图直观呈现了拼板列表中相关坐标值，帮助操作者准确设置原点位置。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NDFkNGJlNzYzY2IyNDZhZjUxOWYwMmM4Mzc5OTBmNmJfZmJhYjI5OGQyZjFmZTMxNjA2ZDlkNDIzMDc3ZWI2MDlfSUQ6NzY2MzgyMzc4NDQ5NjU4MTU4NF8xNzg0NTc1MDM5OjE3ODQ1Nzg2MzlfVjM)
+
+之后我们选择每一个子板，然后选择任意元器件，移动顶部相机查看定位。
+
+看看有没有偏移，特别关注其它板子的，如果有偏移，我们可能要修改板子的偏移值（前面新建子板时候的拼板参数设置）
+
+后面就和单板一样了
+
+![图片展示的是Openpnp软件界面中拼板贴片设置部分。界面中有多个参数设置项，如X偏移、Y偏移、Z偏移等，部分参数值被红色框突出显示。其中，X偏移、Y偏移、Z偏移的值分别为0.000、0.000、29.000。此外，还有“是否拼板”“拼板基准点”等设置项，其中“是否拼板”被红色框突出显示。该图片与文档中拼板贴片教程上下文相关，用于说明拼板贴片时的参数设置情况。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NmQyNTczYzNhNzRmMTYxZjgyZjI1ZGE2OTkzMjU5ZTBfZDQzNTQ1MDMxMDU2MzU5MmU5NDQyNmI1Y2I5YTBmMzJfSUQ6NzY2MzgyMzc4NTQ0MzAzNjM1OV8xNzg0NTc1MDM5OjE3ODQ1Nzg2MzlfVjM)
+
+如果你要批量设置不贴的元器件，在单板这里设置，这样就全部都修改了。
+
+如果是每个板子不贴的设置不一样，就需要在任务界面单独选择每个板子设置即可。
+
+![图片展示了Openpnp软件界面中任务界面的设置情况。界面顶部有“任务”“单板”“拼板”等选项卡，其中“单板”选项被红色框突出显示。下方表格中列出了多个任务，如“_A_2021_2421_Motor-01a”等，每行任务包含任务名称、任务ID、状态、坐标、类型、类型说明、Rank、自定义注释等信息，部分任务状态为“Stop”。该图片与上下文关系紧密，直观呈现了在Openpnp软件中任务界面的设置情况，为后续操作提供参考。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZGFlOTJjNzA3NzIyNWU2ZDk1MGRkOGVhY2Y2OTYwMzBfY2E1MGU4ZmM2NzViZmM2MThmMDZlYzRkNTk5NTkxYzNfSUQ6NzY2MzgyMzc4OTU1MzI0MTMwOF8xNzg0NTc1MDM5OjE3ODQ1Nzg2MzlfVjM)

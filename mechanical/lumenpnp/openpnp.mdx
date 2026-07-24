@@ -1,0 +1,196 @@
+---
+title: "OpenPnP安装调试"
+description: "OpenPnP 是一款开源软件，旨在控制贴片机。它支持多种机器，具有高端商业软件中的许多功能。您可以在此处了解更多信息。"
+---
+
+<title>OpenPnP安装调试</title>
+
+OpenPnP 是一款开源软件，旨在控制贴片机。它支持多种机器，具有高端商业软件中的许多功能。您可以[在此处](https://openpnp.org/)了解更多信息。
+
+# 推荐硬件和系统
+
+OpenPnP 旨在运行在许多不同类型的主机计算机上。但是，USB 驱动程序和内部 USB 集线器带宽可能因计算机而异。我们建议使用运行 Ubuntu 20.04 LTS 或 Ubuntu 22.04 LTS 的具有三个以上usb端口的计算机上，以便与相机、曝光控制和串行通信实现已知良好的连接。
+
+<callout emoji="❗">
+这里推荐使用Ubuntu 22.04 版本，已经接到多起使用24及更新版本的ubuntu有问题的反馈。
+</callout>
+
+# 安装OpenPnP
+
+
+
+
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MzM1MTk1Zjc0ZTJjYTBmMGY2M2Q4ZWE0N2NhNTA2M2RfNDFjYmMxMzQ4YjQ0ZWYwYzE3MTQ2ZjgxNjMzYWM2ZTZfSUQ6NzY2MzgyNzgwMjIwNjA2MzkxMl8xNzg0NTc1MDQzOjE3ODQ1Nzg2NDNfVjM)
+
+我们支持最新的稳定版OpenPnP V2.6，建议安装该版本。下载链接如下：
+
+---
+
+## **Linux（Ubuntu）**
+
+<callout emoji="💡">
+**推荐使用 Linux**
+Ubuntu Linux 提供与 LumenPnP 和摄像头的可靠 USB 通信。也是本文档测试的平台。
+</callout>
+
+1. **下载Linux版OpenPnP**
+
+如果你还没有安装Ubuntu（建议安装Ubuntu 22.04 LTS版本），请按照官方指南操作：[安装Ubuntu Desktop。](https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview)
+
+之后下载OpenPnP安装包
+
+<figure view-type="Card"><source href="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MWRkZjRlYTJlNjUyNDcyYzFlNDFlZWI1ODRjOTIxZDdfZmNiYjI0MzcxMTgxMTIyNDY1NzNkZjU3Njg5NjM4YzFfSUQ6NzY2MzgyNzgwMDg4NTAyMTk5NF8xNzg0NTc1MDQzOjE3ODQ1Nzg2NDNfVjM" token="HlmRb2o9CoJ8VlxsX4ccZgAtnod"/></figure>
+
+<figure view-type="Card"><source href="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NTI2N2YxNDNhNjM4ODE0MWEwZjg5NzY0OWE2YWNlNDlfMTEwMmY3MjYzMTQyNjllOWNmMjE2Mzk5ZDQ0MzVjOTdfSUQ6NzY2MzgyNzgwMzk3MTk2NDE0MF8xNzg0NTc1MDQzOjE3ODQ1Nzg2NDNfVjM" mime="application/x-gzip" token="R8ombY2CdogOw4xdemWcG6O5nDh"/></figure>
+
+要正确在linux上运行 OpenPnP，需要提前做以下配置：
+
+1. 安装Java
+2. OpenPnP 需要 Java 运行：
+
+```Plain Text
+sudo apt-get install openjdk-17-jdk
+```
+
+把你的用户添加到拨号组
+
+1. 这使得 OpenPnP 能够与机器通信：
+
+```Plain Text
+    sudo adduser [USERNAME] dialout
+```
+
+把[USERNAME]替换成你的Linux用户名，然后重启电脑。
+
+<callout emoji="💡">
+**启动与关闭 OpenPnP**
+为了让OpenPnP生成后面教程所需的文件和文件夹，重启电脑后，我们必须先启动一次OpenPnP。然后，我们必须再次关闭程序，才能再之后修改配置文件。
+</callout>
+
+---
+
+## **Windows**
+
+（支持但不推荐）
+
+1. **下载Windows版OpenPnP**
+
+选择对应版本安装
+
+<figure view-type="Card"><source href="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZGNmZmJlMWY3NjU5MmViNmQwNWUxMmY1MmZjNzkxOTVfOGNkNDA3Mzg5NTI1M2Q5NmU5MGViODllZWE4NjFhMThfSUQ6NzY2MzgyNzgwMzY0OTA1MTkyN18xNzg0NTc1MDQzOjE3ODQ1Nzg2NDNfVjM" mime="application/x-msdownload" token="NuX6br5RboA7Lsxq7rZckNtUnsc"/></figure>
+
+<figure view-type="Card"><source href="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YWNiZTM5ODI5MTg2NTBmYTNmZGVlN2FlNmY2NzMyNGZfMDk0OTY0YjI5ODBlNjQ2MzJmYzljMzYyY2M4ODRhM2JfSUQ6NzY2MzgyNzgwNjkyMDUxMDczM18xNzg0NTc1MDQzOjE3ODQ1Nzg2NDNfVjM" mime="application/x-msdownload" token="SnNDbrP9noVDdCxSeo1cJwMInwh"/></figure>
+
+<callout emoji="💡">
+**启动与关闭 OpenPnP**
+为了让OpenPnP生成后面教程所需的文件和文件夹，重启电脑后，我们必须先启动一次OpenPnP。然后，我们必须再次关闭程序，才能再之后修改配置文件。
+</callout>
+
+---
+
+<callout emoji="✅">
+**推荐的计算机和操作系统**
+为了保证相机连接和曝光控制，我们建议使用运行Ubuntu 22.04 LTS的笔记本或台式机。
+</callout>
+
+---
+
+## MacOS（旧版本 OpenPnP（2023-04-05 版本）)
+
+<callout emoji="💡">
+**不支持 MacOS**
+</callout>
+
+OpenPnP的最新版本 已不再支持 MacOS。如果你现在用的是Mac，你需要切换到Linux或Windows。或使用以下的旧版本 。
+
+1. 下载并安装适用于 Mac 的 OpenPnP。使用此处的版本以确保 OpenPnP 与 LumenPnP Feeders 兼容：
+
+   <figure view-type="Card"><source href="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OTc1MDFkZTc4ZWE0NGI5MDJkYmMwODNlNWFlNWMxNWFfOWUzZmQ5MWJhNGVkMzY4OTdiYjU3MGYxNmEzZDQ3YjNfSUQ6NzY2MzgyNzgwODA2Mjk1MDU3OV8xNzg0NTc1MDQzOjE3ODQ1Nzg2NDNfVjM" mime="application/x-zip-compressed" token="Mj3Sbj6HooNzgzxaqs2cT9i5nff"/></figure>
+
+由于[OpenPnP 对其发行版的签名方式存在错误](https://github.com/openpnp/openpnp/issues/1559)，使用 ARM 处理器的 Mac 用户可能会在启动时遇到崩溃，或者无法访问摄像头。您仍然可以通过导航到`Applications -> OpenPnP`OpenPnP 应用程序并右键单击并选择“显示包内容”来运行 OpenPnP： 
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MzQwN2UxMzFhYmUzNDcyYTM1ZWEzNmZiN2VlMmZkMzBfZTExMDYwYzY1ODUyYTg4MWQyMGYzYjUxNmU0N2VmOTRfSUQ6NzY2MzgyNzgwNjQ4MDMwNTM5MV8xNzg0NTc1MDQzOjE3ODQ1Nzg2NDNfVjM)
+
+ 然后导航到`Contents -> MacOS`并双击`JavaApplicationStub`以运行 OpenPnP。 
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OTk1MWRjOGQwN2U1MDcxZTQ3NjI5ZDY3OGQyMTJmZmZfNmI4NmNhYTk3MTA5NWYxZWYzNWM4MmFkYTIzN2NkZDhfSUQ6NzY2MzgyNzgwODg4NzcyMTIyNl8xNzg0NTc1MDQzOjE3ODQ1Nzg2NDNfVjM)
+
+1. 打开 OpenPnP 并确保它完全加载。这样做将确保 OpenPnP 在您的计算机上放置一个配置文件夹，我们将在下一步中需要它。
+2. OpenPnP 可能会提示您下载新版本。单击`Cancel`，然后`Exit`关闭此提示。
+3. 关闭 OpenPnP。
+
+# 导入 V4 配置文件
+
+**为了正确使用 OpenPnP 和 LumenPnP V4**，您需要根据机器的规格（例如尺寸、摄像头设置和其他基本设置）配置软件。为了简化操作，我们提供了一组预配置文件。请按照以下步骤正确导入它们。
+
+---
+
+## 一般说明
+
+我们将针对您选择的操作系统执行以下步骤。
+
+- **确保 OpenPnP 已完全关闭**，然后再继续。
+- 从软件更新页面下载最新的 V4 配置文件。
+- 将下载的 .zip 文件的内容解压到您可以轻松访问的位置。
+- 在替换当前配置文件之前，请先备份它们。
+- 按照以下特定于操作系统的说明来查找和替换必要的配置文件。
+
+---
+
+## Linux 说明
+
+1. 在继续之前，**必须确保 OpenPnP 未运行**且完全关闭。
+2. 下载压缩的 OpenPnP V4 配置文件。
+
+   <figure view-type="Card"><source href="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YWJlMGMyNmI1Yjk2ZmZlMzkyMjg1ZWI0MjRhMGU3MjhfNGI0N2M5NGU0MDZhM2YzMDEyMTljZmYyMDlhNDIzNGZfSUQ6NzY2MzgyNzgxMDAyODY1MzgzNV8xNzg0NTc1MDQzOjE3ODQ1Nzg2NDNfVjM" mime="application/x-zip-compressed" token="PtTeb4Yg3oQwCNxZrZlcqTI1nyb"/></figure>
+3. 将 V4 配置文件解压到您能记住的位置，同时确认它包含`machine.xml`和`vision-settings.xml`两个文件。
+4. 找到 OpenPnP 的隐藏配置文件夹 (.openpnp2)
+
+   - 打开 Ubuntu 的文件管理器，名为**（Nautilus）**
+   - 导航到 /home/[用户名]/（根据您的设置，您可能没有 /[用户名]/ 文件夹。在这种情况下，请留在 /home/）
+   - 按`CTRL`+`H`显示隐藏文件夹。（或者，进入`View`菜单并**选择“显示隐藏文件”**。）
+   - 现在，您正在查看的文件夹中应该可以看到其他文件夹和文件。
+   - 找到并打开`.openpnp2`。
+5. 在`.openpnp2`文件夹中，将现有文件`machine.xml`、`packages.xml`、`parts.xml`和`vision-settings.xml`复制（不是删除）到安全位置进行备份。
+6. 用之前解压的新文件**替换`.openpnp2`**文件夹中的`machine.xml`和`vision-settings.xml`文件。
+
+---
+
+## Windows 说明
+
+1. 在继续之前，**必须确保 OpenPnP 未运行**且完全关闭。
+2. 下载压缩的 OpenPnP V4 配置文件。
+
+   <figure view-type="Card"><source href="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NDkwMDljZGU5Nzg2ZGNiZmNhODY5YzE0ZjUxZGE0NjhfZDU2ODdiNGVlODYwYmYwZDFjYTExY2RhZWZhMTc0MzFfSUQ6NzY2MzgyNzgxMDgwNDY4MTk3OV8xNzg0NTc1MDQzOjE3ODQ1Nzg2NDNfVjM" mime="application/x-zip-compressed" token="UKEibtvkqot1S5xOOn1cdjrqnoe"/></figure>
+3. 将 V4 配置文件解压到您能记住的位置，同时确认它包含`machine.xml`和`vision-settings.xml`两个文件。
+4. 找到 OpenPnP 的隐藏配置文件夹 (.openpnp2)
+
+   - 按照[这些说明](https://support.microsoft.com/en-us/windows/show-hidden-files-0320fe58-0117-fd59-6851-9b7f9840fdb2)**启用隐藏文件**。
+   - 导航至：
+   
+     - Windows Vista 或更高版本：`C:\Users\[username]\.openpnp2`
+     - Windows XP 或更早版本：`C:\Documents and Settings\[username]\.openpnp2`
+   - 找到并打开`.openpnp2`现在可见的文件夹。
+5. 在文件夹`.openpnp2`，将现有文件`machine.xml`、`packages.xml`、`parts.xml`和`vision-settings.xml`复制到安全位置进行备份。
+6. 用之前解压的新文件**替换`.openpnp2`**文件夹中的`machine.xml`和`vision-settings.xml`文件。
+
+---
+
+## MacOS 说明
+
+1. 在继续之前，**必须确保 OpenPnP 未运行**且完全关闭。
+2. 下载压缩的 OpenPnP V4 配置文件。
+
+   <figure view-type="Card"><source href="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NDAzN2U2YjNjOGY0Yzc1Zjg2ZTRmNGEyYThiMDNkYTJfYzlhMjhjMmNkMzNkYTQ0YjFlMTkwZTJmYzY3YmE4YjhfSUQ6NzY2MzgyNzgxMDc3OTQxNzc4NV8xNzg0NTc1MDQzOjE3ODQ1Nzg2NDNfVjM" mime="application/x-zip-compressed" token="AmgAbAsMCoN5G9xBmHYcB3AYnPe"/></figure>
+3. 将 V4 配置文件解压到您能记住的位置，同时确认它包含`machine.xml`和`vision-settings.xml`两个文件。
+4. 找到 OpenPnP 的隐藏配置文件夹 (.openpnp2)
+
+   - 打开 Finder 并导航到 /Users/[用户名]/。
+   - 按照[这些说明](https://www.macworld.com/article/671158/how-to-show-hidden-files-on-a-mac.html)显示隐藏文件。
+   - 现在，您正在查看的文件夹中应该可以看到其他文件夹和文件。
+   - 找到并打开`.openpnp2`现在可见的文件夹。
+5. 在文件夹`.openpnp2`，将现有文件`machine.xml`、`packages.xml`、`parts.xml`和`vision-settings.xml`复制到安全位置进行备份。
+6. 用之前解压的新文件**替换`.openpnp2`**文件夹中的`machine.xml`和`vision-settings.xml`文件。
+
+ 下一步，开始进行 [LumenPnP v4校准->](https://tcnyw794ws3e.feishu.cn/wiki/NOXOwWqPMiEWKgkVSRjc5QGtnZN)

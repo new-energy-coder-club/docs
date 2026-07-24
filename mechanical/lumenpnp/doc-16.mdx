@@ -1,0 +1,225 @@
+---
+title: "编带散料飞达"
+description: "编带散料飞达也叫做散料飞达，是针对短编带物料的供料器，也适用于少量物料贴装的场景。"
+---
+
+<title>编带散料飞达</title>
+
+# 编带散料飞达设定
+
+编带散料飞达也叫做散料飞达，是针对短编带物料的供料器，也适用于少量物料贴装的场景。
+
+
+
+LumenPnP 附带的入门套件中包含一个  8mm 编带散料飞达。
+
+## 安装编带散料飞达
+
+1. **收集所需材料**。
+
+   - 从您的入门套件中找到 8mm 编带散料飞达和安装配件。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=Y2M2MjcwYjdjNzlkNmRkMTliOWQ5MWYxNmQ5YzVmNzhfN2MxMGZhNDY1MTQxYjNjNDQ4MzdiOTZhZjlhZDY4NGZfSUQ6NzY2MzgyMzI2MDUxMzE0NDA5OV8xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+
+1. **正确放置飞达**。
+
+   - 将编带散料飞达放在暂存板上，使其与第 14、15 和 16 列标号对齐。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZTc1MmZmNDcwOTI4YjBjMmU5NjdlNTJiMTA0ZWU4YzVfYTgyZjVhYjA1YzY4NTY1YmYzYTBmNThmMTRjN2QyOGFfSUQ6NzY2MzgyMzI2NTU5MjM2NDI3Ml8xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+
+1. **固定好飞达**。
+
+   - 使用 2 个 M3 x 10mm 平头螺丝和 M3 蝶形螺母将编带散料飞达安装到工作台的`A15 和 G15` 孔中。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MDAwYmYxMGViOGIxNDU1ZWU4NTJhMWJmZTRkZGNmZjVfYTdkNzY2ZThhZDEyYTk2ZGYzMDkyZDJkYzRkZTc1YmFfSUQ6NzY2MzgyMzI2ODE4MDM4MDg3MV8xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MGIwNGQ0OTJmNGU3NzU3NWVmYWUxNTIwYjYzMDhjYTNfYjc2MWU1ZWFmMGEyZDJmNDUyYmI0MTM3Y2FhNjQ1YjNfSUQ6NzY2MzgyMzI3MzExMjY2OTE1Ml8xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+
+1. **加载电阻**。
+
+   - 将提供的电阻插入最左侧的卡槽中，确保编带上的孔位于左侧。暂时不要撕掉透明保护胶带；它可以确保元件固定到位。
+
+<grid>
+<column width-ratio="0.500000">
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NDljYzE2MTA1ZDg2MDZmOTA3ZjVlNTg3NGYxZjViODFfODQ4YzQyNzgzNTdhYjQ3MGIwNzY2NTE3OGRiMWJhMWZfSUQ6NzY2MzgyMzI3NDY0NzgzMzgyMF8xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+</column>
+<column width-ratio="0.500000">
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZWE3NTM4MDIyM2JlOTBhNjUwYmFiODJjNTI0NjI2NzdfMWZhMWIzZGRmM2NlM2NkZWMwODM2MjdhZDFlZjQ0MmZfSUQ6NzY2MzgyMzI3ODg3OTg1Mzg1N18xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+</column>
+</grid>
+
+1. **准备 OpenPnP**。
+
+   - 在 OpenPnP 中，连接到您的 LumenPnP，确认两个吸嘴都不会碰到障碍物，然后回零机器以设定其起始位置。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MDA1OWZlNmM1NjBlZjFlNjc3MjJiZTg3ZjUwNGIwZmJfNjljMDA5MjYzYmY2MjQ1ZjE5NTY0MGJmZjUxZjY2OGFfSUQ6NzY2MzgyMzI3ODc2NjczODYzOV8xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+
+## 在 OpenPnP 中添加飞达
+
+飞达物理安装完毕后，需要在 OpenPnP 中进行配置，以便机器知道在哪里以及如何拾取元件。
+
+1. **打开`Feeders`标签页**。
+
+   - 它位于右上角面板中。您可以在此处添加和配置新的飞达。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MDM1YmMxYzZmYjMwZGJiNjQ4ZjMxY2Q2ZDFmNWM1M2RfMjFmZTk4Y2RjYTJmOWRkZDMyMmNiYjYyMjE0MDYwYjJfSUQ6NzY2MzgyMzI4MDcyOTY1NjU2Ml8xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+
+1. **添加一个新的**飞达。
+
+   - 点击 “Add Feeder”绿色 （+）图标按钮。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YzhiM2JkZjkwNWQzZWU3ZDIyOTFjYzMwMDBjNzJmMmVfMGY4ZjM2NmM0ZWQ3MGNkMDViNWI4NGMyMzAxMGViMWRfSUQ6NzY2MzgyMzI4Mjc3MjQzMDAwNV8xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+
+1. **选择正确的飞达类型**。
+
+   - 选择`ReferenceTrayFeeder`并点击`Accept`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YzRjNjAzMTgwZjc4MGNjNDFjY2FiYzkyODJjMzFiOWRfMzhhMzllNTNjMzIyNjY5NzAxMDFkMzkyNzJhMjA0YTJfSUQ6NzY2MzgyMzI4MzM3MjIzMTg2MV8xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+
+1. **分配正确的元件**。
+
+- 在`Configuration`选项卡中，将`Part`字段设置为`R_0603_1608Metric-R_Small`
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=N2MzNDAwODcyYjM4NjU4NmQ1ZGIyZTIxM2FkYjczNDNfZGYzNmFhMDY4YjM2MGY3NmZhYjZiODA1N2EwMWYyZjdfSUQ6NzY2MzgyMzI4NzY2NzAwMjY2NF8xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+
+1. **定义飞达间距**。
+
+   - 将 `Y Offset`间距设置为`-4,`与编带上元件之间的间距相匹配(±表示拾取元器件的方向)。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YTFlMGI2YmE4NzU3MTNmOGYwNmNkNGM0Y2RiMDBhZWZfYjQ0Zjk4MDdjNzAyOTc0YTg4YjkyNzQ5MDhiMzRlMDNfSUQ6NzY2MzgyMzI5MDQzOTQ3MDAzNF8xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+
+1. **设置飞达容量**。
+
+   - 在 `Y Tray Count`输入 `30`，表示可用的电阻数量。用完后，我们就需要手动更换新的编带。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZGUxYjExZTYwODE4ZjM0YjE1YWM3ZDI3MDc2OTg3YzJfMjVjM2RiOTRjNjZiYTQ3ZmI0NzNmNzZhYjRmZDE2YmRfSUQ6NzY2MzgyMzI5MzUxODA1NjcxN18xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+
+1. **定义拾取位置**。
+
+   - 将初始拾取位置设置为`X=130`, `Y=205`,`Z=20`作为起点。这些值用作初始参考，稍后可以进行微调。
+
+<callout emoji="💡">
+**Z设置为20！20！20！**这个非常重要，不然会撞机。以后添加每一个飞达，都要先设置成20！！！
+</callout>
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=Y2I3MzcwMWFlMTI1NGY2MjE1OGE2OTQ1MTA2YmQzMWNfZTNjYWYwODViOTU4NzAwYWE0NjUwMjFhOGMzZDQyZWNfSUQ6NzY2MzgyMzI5MjYwODA0MDIxN18xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+
+1. **根据需要调整旋转角度。**
+
+   - 如果元件贴装方向不正确，请以 90 度为增量修改Rotation旋转值，直到贴装方向正确为止。
+2. **将摄像头对准飞达**。
+
+   - 使用`Position Camera`按钮将顶部摄像头大致移动到左侧飞达上方。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=Njc5ZDdmNDc3MzJhZGQ5N2I5NmQyMjUwNzFmNGUyNDNfZDEzMDFkNWE2ZmM2Y2JhODY3NWMyZTJiMGJjNzk4OGNfSUQ6NzY2MzgyMzI5NDkxNDc0MzQ5NV8xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+
+1. **微调对准。**
+
+   - 将顶部摄像头画面中心*精确*对准托盘中最上方电阻槽的中心。您可以拖动摄像头画面中的十字线，或使用微调按钮。请记住，您需要对准的是整个槽口中心位置，而不是电阻本身中心。 
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MGMzY2E0M2MzZDFlYjQ2MWEyNGRmYTM4ODI3ZjlhNGZfMDFhMTM1NDhjMmY3YzQ4YmYyNzdhNDQ3NThjMzQ3YTdfSUQ6NzY2MzgyMzI5NjkzNjUxMjc5MV8xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=Mjc3NjY3ZWYyYzYxNmM4MmU0OGViZGY2YWVhMjgzYTNfNGI1ZWEyMzMzOTQ5N2ViMDI5MDhhZTc4NDcyMzkwYTlfSUQ6NzY2MzgyMzMwMDMwMDI5NTE0OV8xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+
+1. **保存飞达位置**。
+
+- 点击“Capture Camera Location捕获相机位置”图标按钮，锁定飞达起始点的 XY 位置。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZWJlZmFmNDc3M2E0MTU2MzZkYzhhODZkOGM1NTY1ODVfMmM0N2JkYjIyYWIzMTgyNDE2ZDRiNTQ2ZjNhOTRlNGRfSUQ6NzY2MzgyMzMwMTIyNzMzNDkxNV8xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+
+1. **应用并启用飞达**。
+
+   - 点击`Apply`保存飞达设置
+
+   ![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ODY1MzE5NzgzY2YwYWUzMTc4NjM0YTgxNDQxNzAxNWZfYjhlN2JkZmFiYzJiMWNiNDkwZThiNTZjZWNjM2ZiZTNfSUQ6NzY2MzgyMzMwNTk3MDkxMjIxOF8xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+
+   - 点击飞达列表中的`Enabled`复选框启用当前飞达。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZGRkNzA2M2Q5NDcwZTBiZTc4ZTAzYjY4Mzc3MGJhMmJfNjBhYTc5YmQ3OWVmNWNlZDZmN2JiOGZjMTc1OWE3NWZfSUQ6NzY2MzgyMzMwNjI2NDc1OTI0M18xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+
+## 微调飞达高度
+
+1. **选择吸嘴**。
+
+   - 在`Machine Controls`下拉菜单中选择`Nozzle: N1`。请确认该吸嘴上已安装 N045 吸嘴。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZjlmOWQ5MjBmZmQ5N2IzMGZlY2RkYWZkYTUyYzM3MDZfM2ZhOTExODVmYzlhNjAxNGZlMTlkY2JiODkwODhkOTVfSUQ6NzY2MzgyMzMwODE5NDI1NDA2MF8xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+
+1. **将N1 吸嘴定位到飞达上方**。
+
+   - 在`Feeders`选项卡中，选择您刚刚创建的飞达，然后单击`Position Nozzle`图标按钮将吸嘴移到飞达上方。
+   - 在`Machine Controls`内，使用微调控制降低 Z 轴，直到吸嘴接触到塑料胶带的表面。
+
+<grid>
+<column width-ratio="0.500000">
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YzZiYWZmMzU3ZDZlNmEzN2U5ZGEwODNlNTg3MzgzOTBfODJiYjA5YWI4OTMwYTAxMWM4OGYxNTZlMTQyYjc4NTJfSUQ6NzY2MzgyMzMxMzM2OTY2NDY5OF8xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+</column>
+<column width-ratio="0.500000">
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NTZjMjQ5YTZkYTg0MWUxYjVhM2I2YTQ2ZjJlYTM5OWJfYTczM2U5NzAxOTkzNzYyZjFjMzlmMThiMjY1NzlhNzRfSUQ6NzY2MzgyMzMxMTczMzk2ODE1OV8xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+</column>
+</grid>
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NTgwMWJkNWUyOTQ2NWJhMDljZjYwNzY4NTEzZjFiNjBfYjU4NGViMWZhMTgxMTAwZDgyOWRlOTAwZDMzODQ1MDFfSUQ6NzY2MzgyMzMxMzQ0MTEzMTY5OV8xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NWQ2Yzc4ZDM1YWE5MTE3MmViZjY1YTIxZDM3ZmViOTRfYTYxOGUzNGNlNWNjZjBhMzQ2MzQ2Yzk2OGM0ZDgwZTJfSUQ6NzY2MzgyMzMxNjk0MzI5MzY3MF8xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+
+1. **捕获Z轴高度**。
+
+   - 点击`Capture Nozzle`图标按钮保存新的飞达 Z 轴高度值。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NzI5ODExNjhlOTViZDU0YmNmOTk3MTFkOThjYTllYzRfOGEwNWYwOTcxZDM0NTM3NTRhMjg4ZGMyYjQxZDQxYmFfSUQ6NzY2MzgyMzMyMTcyMDQ0MjE0MV8xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+
+1. **应用并保存并**。
+
+   - 单击`Apply`以保存对飞达 Z 轴高度的更改。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MDYyN2FlYTQ4YjdjZWExODY1YWZiMzc3MDVhOTkzMDNfOWJkYTVkMWY4MjNjOWI3YjQwOTA5ZTg1NmJkNjhlZjBfSUQ6NzY2MzgyMzMxOTEyNDI5ODk5MV8xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+
+
+
+- 立即保存您的 OpenPnP 配置`File > Save Configuration`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NzUxNzJlMzU4NGJkZWUzMmY1MzU1ODQ2OTMxYjI0ZTFfM2U3MDc3YmFmN2I2MzhhNDM5MGM3MDFmNzBkODc2ZGJfSUQ6NzY2MzgyMzMyNDI0NTU0NDEzNV8xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+
+1. **抬起吸嘴以避免碰撞**。
+
+   - 点击在Machine Controls上下箭头之间的**`“`**`P`**`”`**字母，将吸嘴“**停放”在安全高度，以防止意外碰撞。**
+   - 使用图中的箭头将吸嘴向远离飞达的方向轻轻移动。移至何处并不重要。。这将为我们下一步测试元件拾取做好准备。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NGQyNDYzYTI3MDE4MmZjM2E4NjdhZWM1OWI1MDVlZGNfNmMyZmU2MWVmNWFiZDlhYjhmMGU5ZDRhYjM2M2I5MTlfSUQ6NzY2MzgyMzMyNTE4OTIyOTg2OV8xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+
+1. **测试拾取一个元件**。
+
+   - 撕掉编带上的透明保护膜。
+   - 点击下图所示的`Pick`图标按钮，让 LumenPnP 尝试从飞达中拾取元件。
+   - 如果元件被正确拾取，则 Z 轴高度设置是正确的。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=Mzk5YTQ2YTZkMjU2MjE4N2Y5MDIwYzBjYmY0NTc5MzlfNzE5YjA0NDUxODQ5NDVhNDZlZTIzYzNkOGE1ZjIyMDhfSUQ6NzY2MzgyMzMyNzkxMTI4MzkwMF8xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+
+- 如果失败：
+
+  - 将飞达的 Z 轴高度降低`0.1mm`
+  - 按`Apply`保存更改
+  - 机器回零
+  - 重新拾取
+
+<callout emoji="💡">
+**有效安全 Z 坐标错误**
+如果您收到如下所示的“有效安全 Z 坐标”错误，请确保 Parts 选项卡中的元件高度设置正确且不为0。
+</callout>
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MzZlNjlhNGIwNjVlZmU2OTJjMDM4NTBjNDI5ODU1ZTdfNGViZjI0NjRhOWZhOWU0MzdkOTBmZjg3Yzg0NzdiYjNfSUQ6NzY2MzgyMzMyNzE5NDIzODIyNF8xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+
+1. **回收测试元件**。
+
+   - 拾取成功后，切换到`Machine Controls` 面板中的`Special` 选项卡。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZDcwNGNjNWY4YjE1YjYzNzIyNTViNDYyN2EwMzNiOThfN2I3MTRlNzY3ZWI3MDcxMDY0NjgyMjRmODdmM2VmZTJfSUQ6NzY2MzgyMzMzMjE3MjY0NzYyN18xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+
+1. 单击`Recycle`按钮，即可指示 LumenPnP 将拾取的元件放回飞达中的原始位置。这样可以确认元件的拾取和放置功能是否正常，而不会造成元件浪费。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MjkyZWRmMWI4NzRmNGRkZTk3NTIyMmViYWY5M2E4NzFfZjBkZWE5OTg3ZGJhYTI2YWJlMzgzYjU5NzNhYzk5MzNfSUQ6NzY2MzgyMzMzMjk2MTI0MjMyMl8xNzg0NTc1MDMyOjE3ODQ1Nzg2MzJfVjM)
+
+## 下一步
+
+现在，飞达已经成功添加并能够直接使用了。请跳转回 [验证校准](https://tcnyw794ws3e.feishu.cn/wiki/CZeDwwKk2iP50akOABxcjTt0nOe?larkTabName=space#K0cudhYDXoG8n9xRaDMciR11nJd) 继续完成校准

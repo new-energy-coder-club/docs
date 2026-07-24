@@ -1,0 +1,1669 @@
+---
+title: "LumenPnP V4 校准"
+description: "LumenPnP V4 校准"
+---
+
+<title>LumenPnP V4 校准</title>
+
+# 介绍
+
+## 您将学到什么
+
+本指南主要介绍如何对 LumenPnP 进行基本校准。具体来说，它将测试运动系统并校准摄像头，以便它们能够识别物体并将偏移量应用于贴装头，从而实现精确的零件拾取和放置。这些步骤通常仅在首次设置 LumenPnP 时才需要执行（如果后期没有移动机器则不需要再次校准）。
+
+贴片机器非常复杂，需要大量校准才能正常工作。此外，OpenPnP 是一款大型软件，需要花费一些时间来学习。请注意，学习软件和校准机器的过程可能需要花费数小时，这段时间应该用来磨练一切。
+
+我们提供这些文档、演示视频和默认配置文件，以使流程尽可能简单，但如果您注意到我们可以做些什么来使流程更容易，请随时通过QQ群告知我们。
+
+<callout emoji="❗">
+**重要的**
+**按顺序**完成这些校准步骤非常重要。每个校准步骤都依赖于之前的步骤，因此必须按照我们列出的顺序完成它们。
+</callout>
+
+## 保存设置
+
+校准的每个步骤完成后，请保存您的设置。如果您在未保存的情况下关闭应用程序，OpenPnP 可能不会记住您的设置，因此请确保每次调整校准时都进行保存。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MDhkZTQ0OTIxYWRmMzNlMGNkMGNhYWRiMGRhYmUxMDlfYjE2MWJiMDZmYmE3YjAyODlkZTY1ODU0NmUxZGVlZWNfSUQ6NzY2NDUwMzE1NTgwODM1NzU5NF8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+## 不同的校准方法
+
+OpenPnP 具有一项名为“校准任务识别”的功能`Issues and Solutions`，用于尝试识别需要执行的校准任务。一些用户报告称使用此工具取得了成功，但这与其余校准步骤和提供的配置文件不符。本文档明确旨在配合提供的配置文件使用。我们强烈建议您使用提供的配置文件并遵循本文档。如果您选择使用该`Issues and Solutions`工具，我们建议您参考[OpenPnP Wiki](https://github.com/openpnp/openpnp/wiki)。
+
+如果您想从零开始搭建系统，社区成员 Qwertymodo 发布了一个[非常有用的视频，](https://www.youtube.com/watch?v=vuFalyzcCZA)展示了他从头开始在机器上进行校准的过程。虽然这个视频有些过时，但仍然可以帮助您了解 OpenPnP 的工作原理。
+
+## 你需要什么
+
+- 已完成机械和电气组装的 LumenPnP。
+- 光滑、平坦的表面，方便操作机器。LumenPnP 应**始终**在平坦的表面上操作。
+
+# 接到您的 LumenPnP 并配置底部摄像头
+
+**现在 OpenPnP 已安装完毕，LumenPnP 配置文件也已放置在隐藏的系统文件夹中，OpenPnP 可以使用一些基本的预配置设置启动。下一步是连接您的 LumenPnP 并熟悉 OpenPnP 的用户界面**。
+
+**然后，我们将安装 N045 和 N24 喷嘴头，以帮助我们进行校准**。
+
+**最后，我们将通过建立连接并设置正确的曝光来配置您的底部摄像头**。
+
+## 准备连接
+
+**启动 OpenPnP 之前，请遵循以下准则以确保连接顺畅**：
+
+<callout emoji="❗">
+**USB连接顺序很重要！**
+启动 OpenPnP 之前，请务必先插入 LumenPnP 的 USB 连接线。
+如果 OpenPnP 已经打开，请先将其关闭，然后再连接 USB 连接线。
+</callout>
+
+<callout emoji="❗">
+**相机USB接口**
+**使用独立的 USB 端口将相机直接连接到电脑**。  
+  
+避免使用 USB 集线器，因为它们可能无法为相机提供足够的带宽。相机需要大量的 USB 带宽，而许多 USB 集线器无法满足这一需求。为了获得最佳效果，请确保每台相机都连接到电脑上不同的 USB 端口，最好使用不同的内置 USB 集线器端口**。**
+</callout>
+
+## 连接到您的 LumenPnP V4
+
+请按以下步骤操作：
+
+1. **请确保 OpenPnP 已关闭**。
+2. 将电源线插入圆筒形插孔即可**为 LumenPnP 供电。**
+3. 使用随附的 USB 数据线**将 LumenPnP 连接到您的计算机。**
+4. 使用 USB 数据线**连接两台相机。**
+5. **启动 OpenPnP**。现在您应该可以看到 OpenPnP 用户界面：
+
+![图片展示的是OpenPnP用户界面。界面上方有“File”“Edit”“Job”“Machine”等菜单选项。左侧有“Cameras”“Job”“Panel”“Board”等标签，其中“Cameras”标签下显示两台相机的图像，相机图像上有红色“X”标记。右侧是“Boards”“Placements”等板块，显示了板子ID、名称、尺寸等信息。该图与文档中“连接到您的LumenPnP V4”步骤后的提示内容相关，表明已成功启动OpenPnP并看到用户界面。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OWJmNTU5ZWIzMzc1YTEyNmRkODVkMTVmNWIxMWYxYjNfNTU3MGIxYmE2YzQ2YTYwZGJjYTgwMzk2ODNjYzRjNzVfSUQ6NzY2NDUwMzE2OTU1Njg5Mjk2M18xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+<callout emoji="❗">
+！！！后续如果出现联接失败时，必须先关闭openpnp软件，然后按RESET复位主控板或者重新插拔DC电源线，然后再联接USB线，再打开openpnp软件！！！
+</callout>
+
+## 串行端口配置
+
+1. 单击`Machine Setup`选项卡。
+
+![图片展示了OpenPnP软件界面中“Machine Setup”选项卡。界面上方有“Machine Setup”标签被红色箭头指向。左侧是“Show All Horizontal”选项，下方有“Machine Controls”区域，显示了Nozzle N1 - No Nozzle Tip (Heat: H1)等信息。右侧是“Machine Setup”窗格，包含Axes、Feeder、Nozzle Tips、Cameras等类别。该图片与文档中配置底部摄像头的上下文相关，用于说明在展开配置树后，选择“Machine Setup”选项卡的操作步骤。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YjIwOTdkMzAzMmUyNDE1ODMyZWYzNTQzZmQxY2FjZjJfMDUxYWYzZWRjNGQ4NDVhNWU2YjcxYjZmMTllMzVlNTVfSUQ6NzY2NDUwMzE4Mjk4NzExOTgxMF8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+1. **展开配置树**
+
+- 选中OpenPnP 右上角的`Expand`复选框，即可显示所有机器配置选项。
+- 这将展开`Machine Setup`窗格中的所有类别和子类别，您需要滚动才能看到下面提到的所有选项。
+
+![图片展示了OpenPnP软件界面，用于配置底部摄像头。界面左侧有“Show All Horizontal”选项，下方是“Machine”类别，列出了“ReferenceMachine”下的“Axes”“ReferenceControllerAxes”“ReferenceMappedAxes”等项。右侧有“Expand Search”按钮，用红色箭头突出显示。该图片与文档中“选择正确的端口”步骤相关，用于辅助说明在“Configuration”选项卡中选择正确端口的操作，即从下拉菜单中选择“Port”格式为“ttyACM#”的选项。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MzUwM2ZkNTI4M2E5OTRjM2MyMTNkYzAxNjYyMWY3NmJfNjhjM2VkMWFjODczZWUyMWVjNWI4NTM2NmY5MGYxMWZfSUQ6NzY2NDUwMzE5NjM1ODQ3OTA3OF8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+1. **选择 G 代码驱动程序**
+
+- 在上方窗格中，找到新展开的`Drivers`类别，然后单击`GcodeDriver`
+
+![图片展示了OpenPnP软件界面中串行端口配置的相关设置。在“Drivers”类别下，选中“GcodeDriver”，其下方“Properties”区域显示了“Name”为“GcodeDriver”等信息。界面左侧有相机监控区域，显示了不同视角的图像。该图片与文档中“选择G代码驱动程序”步骤对应，直观呈现了在OpenPnP软件中选择G代码驱动程序的操作界面及部分设置情况。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OGRhZmQxZWJkZWVhZGVjMWE0NmE1YjM2MjI4OGYwYWFfM2VkOGExNWMwZDA4YmQwNjNlMjYyYTNkZTVkMWE3YzdfSUQ6NzY2NDUwMzIwODM1MDA1OTgwM18xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+1. **选择正确的端口**
+
+- 在`Configuration`选项卡中的 `Serial Port` 部分，从下拉菜单中选择正确的`Port`选项：
+
+  - **Linux**：选择`Port`格式为`ttyACM#`. *（例如 ttyACM0、ttyACM1、ttyACM2 等）。*
+- **Windows**：端口`Port`将被标记为`COM#`. *（例如 COM1、COM2、COM3 等）。*
+- **Mac**：查找`Port`格式为 的`cu.usbmodemXXXX`，其中`XXXX`是一系列数字。
+
+1. **应用和保存配置**
+
+- 点击`Apply`右下角保存更改。
+
+![图片展示的是OpenPnP软件界面，处于“Machine Setup”标签页下。界面左侧有相机视图，显示了红色和蓝色的线条。右侧是Gcode Driver相关设置，包括Name、Sync Initial Location、Communications method等选项。界面右下角有“Reset”和“Apply”按钮，其中“Apply”按钮被红色箭头指向，提示用户点击该按钮以应用并保存配置更改。该图片与文档中“串行端口配置”部分的“应用和保存配置”步骤对应，指导用户完成配置后保存更改。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MzVlMGQzNjNjMmQ2MzNlM2E2NDM4ZmI4OGU0YWJkYjlfMWE5MjVhZjI2YzU4YTVhZjBlODJiNjYwYTYyOTYxNWZfSUQ6NzY2NDUwMzIxOTc4NDM4Nzg3MF8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+- 保存您的 OpenPnP 配置`File > Save Configuration`：
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NDJmZTM5NGU1ZTNlMjhiNzMzMmQ5ZGU1ZmQ0MzhhNzJfM2M0NjBmZjJmYmRiODczMjUzNmZmNWMyNzU0ODM3ODRfSUQ6NzY2NDUwMzIzODEwODAwNzY0Ml8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+<callout emoji="❗">
+**未找到端口**
+如果您的机器的端口未显示在下拉菜单中，请检查您的 USB 电缆是否已插入计算机和 LumenPnP。还要检查主板是否已通电。如果仍然找不到端口，请尝试按下主板上的重置按钮并关闭并重新打开 OpenPnP。
+</callout>
+
+## 建立串行连接
+
+1. 单击 UI 的机器控制部分中的绿色电源按钮以连接到您的机器。
+
+![图片展示的是LumenPnP V4校准中建立串行连接后的界面。界面上方有“OpenPnP”等菜单选项，中间部分显示“Job”“Panels”等标签，当前选中“Machine Setup”。画面左侧有“Cameras”“Machine”“Script”“Window”“Help”等选项。画面右侧有“Job Processes”“Vision”等设置区域，其中“Job Processes”下有“GcodeDriver”选项被选中。该图片与上文建立串行连接后确认连接成功的内容相关，直观呈现了连接后的软件界面状态。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZDFhMTk1ZGI0ZTU1MjI5MGQ4NWE1M2NhNGQ0NDQ2NTRfYTM1MjU1YjVjY2ZjZTJlZTkxYjMyODNjYmEwZTQwMDNfSUQ6NzY2NDUwMzI1MjQ1NjcyMTcwOF8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+1. **确认连接**
+
+- 如果连接成功，绿色**电源按钮将变为红色**。这表示 OpenPnP 已成功连接到您的机器。
+- 如果失败，请检查您的[串口连接](https://www.yuque.com/lonlypan/td6smc/eoweg88fmm7zgqd8#30e60561)。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZWI2MjY4YzUwNzVlNGU0OGM5YzAzNzkxY2M1Mzk1M2NfZjVjNzkzMTFlYjIzMThlNTQ4ZTU3ZTFjNmU1N2M0MWZfSUQ6NzY2NDUwMzI2MjE3NjEwMzY2M18xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+1. 打开机器的环形灯。点击`Machine Controls`下的`Actuators`选项卡下`LED`的按钮。在弹出窗口中点击`On`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NGI0MzI3ZDBlNmQwMzFiZjhmYjFmNjM2NjNmYzczMDJfMzY5OGMyNThiNjAxYTE0NzgzNmQ4NmIxNjBhYjc2YThfSUQ6NzY2NDUwMzI3Nzg4MzExNjgwOV8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+- 关闭LED窗口。
+- 切换回`Jog`选项卡，以便您可以在以下步骤中移动喷嘴。
+
+<callout emoji="❗">
+**保持环形灯亮着**
+在校准的剩余时间内保持环形灯亮着。所有校准都应以环形灯的照明为基础。
+在运行作业时，环形灯会在回零时自动打开，因此正常运行时无需手动打开它们。
+</callout>
+
+## 准备回零
+
+1. **回零前请调平喷嘴**。
+
+<callout emoji="❗">
+**🚨重要警告：回零前请先调平喷嘴🚨**
+**在按下回零按钮之前**（现在以及以后每次都是如此） ，**您必须确保喷嘴处于水平状态**。⚠️  
+  
+否则**可能会导致崩溃，并可能损坏您的机器。OpenPnP不会**记住上次回零序列中的喷嘴位置，这意味着它**无法根据之前的对准情况调整运动**。如果回零前喷嘴未处于水平状态，它们可能会与机器发生碰撞，导致错位或严重的硬件损坏。
+</callout>
+
+![图片展示的是LumenPnP机器的喷嘴部分。机器主体为黑色，喷嘴位于画面中央偏下位置，其上有橙色、蓝色等多根线缆连接。背景为红砖墙，墙上有白色斑驳痕迹。图片与上下文的关系是，上下文强调在按下回零按钮前，需确保喷嘴处于水平状态，否则可能损坏机器，此图直观呈现了喷嘴的外观及连接情况，辅助理解回零操作时喷嘴位置的重要性。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YWQ0ODk0YjY5NTZmOTgyMWJhYWQwOWVkY2YyNGNjMDRfYjM0NWI1YjdmM2JkMWM0ZjFiYTkyNmI4MWY0OWQ2NjhfSUQ6NzY2NDUwMzI5MDgxMzU5OTAxOF8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+1. ⚠️在将 LumenPnP 放回原位之前，务必检查以下三个设置是否已禁用。
+
+   - **首先要检查的设置：**转到`Machine Setup > Heads > ReferenceHead H1`。找到`Homing Method`并确保它已设置为`None` 。
+   - 点击`Apply`应用此更改。然后前往`File > Save Configuration`. 保存您的配置文件。
+   - **第二个要检查的设置：**转到`Machine Setup > Nozzle Tips >N045 > Calibration Tab`。
+   - 找到`Auto Recalibration`该字段，并确保它设置为`Manual`。
+   - 点击`Apply`。然后`save your config file`，否则更改将不会生效。
+   - **最后要检查的设置：**转到`Machine Setup > Nozzle Tips >N24 > Calibration Tab`。
+   - 找到该`Auto Recalibration`字段，并确保它设置为`Manual`。
+   - 点击`Apply`。然后`save your config file`，否则更改将不会生效。
+2. 确认回零方法设置为`None`，吸嘴尖端设置为`Manual`后，单击**“回零”按钮**执行粗略的回零任务。
+
+   - 吸嘴将移动到 X、Y 和 Z 零位**（LumenPnP 的左前角）**并停在那里。
+   - 如果 LumenPnP 没有停留在机器的左前角，请返回上一步并确保设置是否已经保存。
+
+![图片展示了LumenPnP机器的机械结构，吸嘴位于机器左前角。画面左下角有控制界面，显示“Machine Not Homed”等信息，吸嘴位置在X、Y、Z轴上均有数值显示。该图片与文档中“确认回零方法设置为None，吸嘴尖端设置为Manual后，单击‘回零’按钮执行粗略的回零任务”的内容相关，直观呈现了回零操作前LumenPnP机器及吸嘴的位置状态。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZDIwNmRmN2I5MjZhYWQ1ZjQ0MTIyZWI5YWJhMDJmMGZfNTc3OWJhYWI5M2Q4ODlmNWRkYzNkZGRhZGZlMDljMmFfSUQ6NzY2NDUwMzMwMTk4MzgzMzMyNF8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+### 安装吸嘴
+
+1. **找到您的吸嘴和SuperLube润滑剂管**。
+
+- 找到并取出LumenPnP v4 包装盒内吸嘴架上的`N045`和`N24`吸嘴头。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MWYwYmVlOTc2ODM4MzcwZTJhMTZkYzA1MTllOGFhNThfNTA4MjdiYzk3NGI2NDJiY2ZmN2EzNmU1N2UwZGQzNjVfSUQ6NzY2NDUwMzMxNzU5NDQ0Mjk1NF8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+- 取出LumenPnP V4 纸盒工具包中的`SuperLube`**润滑剂**。
+
+1. **润滑两个黄铜吸嘴**。
+
+- 在黄铜吸嘴上涂抹少量**SuperLube润滑剂**。这样可以防止安装吸嘴头时损坏橡胶O型圈。我们在发货前已经预先润滑过吸嘴，但额外涂抹润滑剂可以确保其使用寿命更长。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/MBnyb7opSoSgC2xfMfdcwrAWnBg.webp)
+
+<callout emoji="💡">
+**自动吸嘴更换**
+OpenPnP 支持自动吸嘴更换，但由于性能不稳定，我们目前不建议使用此功能。此功能将在未来的更新中得到改进，吸嘴架将安装在工作台上。大多数作业都可以使用一个`N045`吸嘴搭配另一个`N24`吸嘴完成。
+</callout>
+
+1. **将`N045`吸嘴安装到N1吸嘴杆上：**。
+
+- 在 OpenPnP 中，导航至`Machine Setup > Heads > ReferenceHead H1 > Nozzles > ReferenceNozzle N1`.
+- 选择`Nozzle Tips`标签页，然后选中`N045`该行的`Loaded?`复选框。
+- **您的机器会将打印头移动到机器的前面，**以便轻松装载打印头。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ODU1ZGVlZDI2YzI2ZjM2MmEzYmZkZDdjMTgwYjg4MmNfOGYyNTczOWI2NDk5Mzc0YjFhYmM5OWI2Y2JiNDkzM2JfSUQ6NzY2NDUwMzM0MzI5NzIxOTc3Ml8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+- 屏幕上会弹出**“任务已中断：”**窗口。这**不是**错误！OpenPnP 只是在通知您，如果某个任务正在运行，则该任务已被停止。这是正常现象，可以忽略。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MmI5ZWVhOWRiMmQ4YWQ4ZTQ5NTQxNzQ4Y2NlYmJjNjZfNDQzYzY2MzY1ZjRkNzBlZDdjODAzZjQ0ZGExZjJkNzRfSUQ6NzY2NDUwMzM1NTI1MTAwMjU2OF8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+- 将**N045 吸嘴头**（开口较小的那个）滑到**左侧吸嘴**上。安装时旋转吸嘴头，使润滑剂均匀分布在 O 形圈周围。安装到位后，吸嘴头应该可以顺畅地滑入和滑出。 
+
+![图片展示了LumenPnP机器底部安装吸嘴后的状态。吸嘴头安装到位，可顺畅滑入和滑出。吸嘴尖端安装有N24吸嘴，其尖端部分清晰可见。背景为红砖墙，机器下方有金属工作台，台面上有黑色物体。该图片与文档中“安装吸嘴”步骤相关，直观呈现了吸嘴安装后的外观情况，辅助说明吸嘴安装到位的标准。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NGEzMWU4OGJlZjZmOTRlMDlmOGI4ZjVmZjdjMzM4MzVfOWYyOTMxOTg1YTlmYzdmZTA4ODA4MTBmYjE4MmRkNTNfSUQ6NzY2NDUwMzM2NjI2NjAxNDk2N18xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+1. **将`N24`吸嘴尖端安装到吸嘴上：N2**。
+
+   - 在 OpenPnP 中，导航至`Machine Setup > Heads > ReferenceHead H1 > Nozzles > ReferenceNozzle N2`.
+   - 选择`Nozzle Tips`标签页，然后选中`N24`该行的复选框`Loaded?`。
+   - **别忘了。**它会切换到第二个吸嘴，你会再次看到**“任务中断：”**弹出窗口。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YzM3MjU5NDEwZWE1M2Q5Mjc1NDdhYmEyYTYzNGQ2Y2FfMjQwNzhiOGViOTFkOThmMTFjZGU2ZTlmOWZjNDk0NGNfSUQ6NzY2NDUwMzM4MDY0Nzk4ODUxMV8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+- 将 N24 吸嘴头（开口较大的那个）滑到**右侧吸嘴**上。安装到黄铜支架上时，旋转吸嘴头，确保润滑脂渗入吸嘴头并包裹住 O 形圈。安装到位后，吸嘴头应该可以轻松滑入和滑出。
+
+![图片展示的是LumenPnP V4校准中安装吸嘴的步骤。画面中，吸嘴头被安装到黄铜支架上，旋转吸嘴头，确保润滑脂渗入吸嘴头并包裹住O形圈。安装到位后，吸嘴头应能轻松滑入和滑出。该图片与文档中“安装吸嘴”部分内容对应，直观呈现了安装吸嘴的操作步骤，帮助用户正确安装吸嘴，确保其正常工作。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ODRiYTYyZjI0YjAxOTFmZTE1MTY1MTgzZTk0MzUwODVfZjdhNDEyYTNjZDZiZjQ1YzQyMTAzOTI1M2QwYjAzYzRfSUQ6NzY2NDUwMzM5MjA0MDE5MzIyNF8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+<callout emoji="🙋">
+**为什么选择这些吸嘴？**
+N045和**N24吸嘴头**足以满足绝大多数元件的**贴装需求，无需更换**。我们强烈建议您将它们设为默认吸嘴头，仅在绝对必要时（例如，加工非常重的零件）才进行更换。
+</callout>
+
+## 配置底部摄像头
+
+校准开始前，必须正确设置底部摄像头和曝光参数。**我们需要安装一个吸嘴并将其放置在底部摄像头上方，以便正确调整曝光**。
+
+<callout emoji="❓">
+**我应该使用哪种瞄准镜？**
+以下步骤中，我们将使用“标尺”十字线。如果您希望使用与我们相同的十字线样式，请右键单击顶部或底部摄像头画面，然后选择`Reticle`“ `Ruler`”，以更好地匹配我们文档中的照片。
+</callout>
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=N2E5Y2ZkYTYwOWU2MDgzYjI3OWRkNmEwZWJiNDE2ZWJfMGVlYzYzNzQzZTc4NmQ0NGFmNTAxODI5ZjYxODg4MTVfSUQ6NzY2NDUwMzQwNjQwMTI0NDQxMV8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+1. **🚨取下相机镜头盖🚨**
+
+   - ⚠️ 请确保两个相机的镜头盖的镜头盖已取下。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NmM2ZTZmYjE5MWM2NTYyMGY1OGVjYzE0MGFiNWFkMmZfNDFhMDMwOWE2MDMyMjkyYTM5NDhhNTEzOTA5M2I4OTBfSUQ6NzY2NDUwMzQyMjA5OTc4NzAxMV8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+1. **在 OpenPnP 中，导航至底部摄像头的“设备设置”选项卡。**
+
+- 导航至`Machine Setup > Cameras > OpenPnpCaptureCamera Bottom > Device Settings tab`。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/YHQjbxd2mom1Qdxt7NBcHDa2ndg.webp)
+
+1. **选择正确的相机设备**
+
+- 在`Device Settings`选项卡中，从下拉菜单`Device`中选择`LumenPnP Bottom`。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/Dyy3bsAntoXyFjxRurjce2UWn7b.webp)
+
+如果你是自己买的摄像头，名字会不一样呢，需要自行判断选择。可以尝试插拔摄像头线确认那个是底部摄像头。插拔摄像头需要重启openpnp。
+
+<callout emoji="💡">
+**找不到LumePnP Top或者LumenPnP Bottom**
+该问题只针对windows系统。
+如果你是windows系统，可能只看到LumePnP Top或者LumenPnP Bottom其中一个，并且有两个LumePnP Top或者LumenPnP Bottom。请按这个链接方法解决：[摄像头同名](https://tcnyw794ws3e.feishu.cn/wiki/K3jJwIn7wi9jBhkb9onceTHlnqu?larkTabName=space#ZKVgd65rAoBbTQx38Lmc9X0Enye)
+</callout>
+
+<callout emoji="💡">
+**摄影机名称重复**
+该问题针对所有系统，这是 OpenPnP 的一个 bug。
+这里的重复和上面问题不同，你可以看到LumePnP Top和LumenPnP Bottom两个。但还会有一个LumePnP Top或者LumenPnP Bottom，也就是看到三个或以上LumePnP 摄像头。这是由于 OpenPnP 的一个错误，如果您选择的第一个不正确，请使用同名的另一个选项。
+</callout>
+
+1. **设置分辨率和帧速率**
+
+- 在`Format`下拉菜单中选择`1920x1080 30fps MJPG`。
+
+![图片展示的是LumenPnP软件界面，用于配置底部摄像头。界面左侧有相机预览窗口，显示黑白图像。右侧“设备配置”区域中，“Device”下拉菜单选中“LumenPnP Bottom: LumenPnP Bottom”，“Capture FPS”下拉菜单选中“30 FPS, MJPG”，“Properties”下拉菜单选中“1920x1080, 30 FPS, MJPG”。该图片与文档中“设置分辨率和帧速率”步骤对应，直观呈现了设置分辨率和帧速率的操作界面及参数选择情况。](https://cdn.newenergycoder.club/images/lumenpnp/B3eHbMzQHoYNgAx8ryjcduFknMd.webp)
+
+如果你使用usb集线器或者电脑usb端口性能弱，无法同时驱动两个相机。也可以选择 1920x1080 5fps YUYV , *低帧速率对于避免带宽/性能问题至关重要*。但这样的你的相机识别速度就会同比下降。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/YtpDbUSCZoHN9SxrXSgceNrtnQe.gif)
+
+**保存并验证**
+
+- 点击`Apply`保存**底部摄像**头设置。摄像头画面中的一个红色“X”应该会消失。图像可能完全是黑色的，但我们会在后续步骤中解决这个问题。
+- 保存您的 OpenPnP 配置，以便 OpenPnP 在下次打开时能够记住这些配置`File > Save Configuration`。
+
+![图片展示的是LumenPnP V4校准中配置底部摄像头时的OpenPnP界面。画面左侧显示了底部摄像头的实时画面，画面中有红色“X”标识。右侧是摄像头设置区域，包括General Configuration、Camera Setting等选项卡，当前选中的是Camera Setting，可设置Device、Format、Capture FPS等参数。该图片与上文配置底部摄像头的内容相关，直观呈现了设置界面及关键操作位置。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MjQ1ZmRlMjA2NTMyZmRhZWU4ZmRlMjA3ZGE1ZGMxZGZfY2VmY2I3NDFkMzk3YWM0NjdiMWQxOGQ4Y2M3NDM0OGRfSUQ6NzY2NDUwMzQ5MTYyMDA5NzIyNF8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+### 调整相机方向
+
+- 导航至`Machine Setup > Cameras > OpenPnpCaptureCamera Bottom > image Transforms`。
+- 图像调整这里，仅勾选**水平翻转。**
+
+![这张图片展示了LumenPnP V4贴片机校准流程中，配置底部摄像头的「贴片机配置」界面内容。界面左侧的设备列表中，选中了「底部相机」下的「OpenPnPCaptureCamera Bottom」选项，界面上方的功能选项卡中，「图像转换」选项被红框标注，红框内的红色箭头指向了界面下方「图像调整」区域里的「水平翻转？」复选框，该复选框已被勾选，对应配置参数为Rotation、X偏移量、Y偏移量均为0，该配置用于调整底部相机的画面方向。](https://cdn.newenergycoder.club/images/lumenpnp/KYl3bAB0borhWexhUEWc7jM3n0c.webp)
+
+<callout emoji="💡">
+如果你是自己购买的其他相机，请按下列方法调整：
+- 请先将左边吸嘴移动到底部相机中心位置，适当降低吸嘴高度，直至能看清吸嘴。
+- 在十字线中心，鼠标左键单击不放，向右上角拖动鼠标，最后释放。此时机器移动，**吸嘴尖端**应和您指示方向相反。然后再次从十字线中线拖动将鼠标准心放置在吸嘴尖端中心，释放，机器移动，吸嘴应大致回到图像中心位置。
+- 如果移动的方向不对，尝试在 *图像转换 中*，修改垂直和水平反转，直到方向正确。
+目前还没有进行像素值校准，所以你的移动距离不是精确的，这里只要移动方向是正确的就可以。
+下图是正确的动图显示。请仔细对比。
+</callout>
+
+![图片展示的是LumenPnP V4校准中配置底部摄像头的界面。画面中显示了十字线和吸嘴图像，吸嘴尖端中心位置有数字标识。界面右侧有“Camera”设置区域，包括General Configuration、Camera Setting等选项卡，当前选中的是Image Transforms选项卡。该图片与上文提到的从十字线中线拖动鼠标准心放置在吸嘴尖端中心，释放后机器移动，吸嘴大致回到图像中心位置的操作相关，用于辅助理解操作时的图像显示情况。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NTMzODgxOWRmMjZmMTJlMDk2ZmE3Yzc3M2Q1YjZiNzJfZWU0OGQ1ZjQ3N2U0MmYzOTU4NmU0MGNjOGNkYThmNTJfSUQ6NzY2NDUwMzUxODI5NjY3MzUzMV8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+### 调整相机曝光
+
+<callout emoji="💡">
+**其他相机设置**
+在接下来的步骤中，除了**Exposure**和**Brightness** 设置外，请勿修改任何其他相机设置。默认值应保持不变。
+**其他参数一律不要修改，不要动，不要改！！！**否则摄像头会死机，帧率将为0。如果你不小心改了，请按照这个链接解决：[摄像头帧率突然下降为0](https://tcnyw794ws3e.feishu.cn/wiki/K3jJwIn7wi9jBhkb9onceTHlnqu#C1URdJROwoWnEVxKHhBcrqYonSg)
+</callout>
+
+1. **选择吸嘴：N1**。
+
+   - 从`Machine Controls`下拉菜单中选择`Nozzle: N1 - N045 (Head:H1)`。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/PpKTbGfBJoCbxmxyCwicw8wzn3P.gif)
+
+1. **将“吸嘴：N1”定位在底部摄像头上方**
+
+- 使用`Machine Controls`微调`Nozzle: N1`，使之大致**位于基准板正上方**中心位置。
+- 如果发现您的机器没有移动，请将滑块`Distance`设置为 `1`或  `10`。
+- 当您需要更精确的移动时，请将滑块`Distance`设置为 `0.1`或  `0.01`。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/CTUybOTkpozU1OxJSwacNRNHn1C.gif)
+
+- 使用控制装置降低`Nozzle: N1`吸嘴`Z-高度`，直至吸嘴尖端*几乎*接触基准板。（基准板边缘便于观察吸嘴与基准板的接近程度）。将吸嘴降低到与基准板相同的高度，可确保在校准前吸嘴处于正确的 Z 轴高度。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/JyCUbSTO3oXjYJxLjYAcou4SnUf.webp)
+
+- **保持 Z 轴高度不变，微调`Nozzle: N1`使其居中对准底部摄像机画面**。
+
+![图片展示的是LumenPnP V4校准中配置底部摄像头时的场景。画面中，吸嘴尖端几乎接触基准板，基准板边缘便于观察吸嘴与基准板的接近程度。吸嘴处于正确的Z轴高度，且居中对准底部摄像机画面。背景为红砖墙，右侧有电脑屏幕。此图与文档中“保持Z轴高度不变，微调`Nozzle:N1`使其居中对准底部摄像机画面”的操作步骤对应，直观呈现了操作后的状态。](https://cdn.newenergycoder.club/images/lumenpnp/MLZWbgqLgoTLbdxg5EBcwMhhnWb.webp)
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/OMLFbUhoOorjrMxdyG0cxr55nqb.webp)
+
+1. **调整底部摄像头曝光**。
+
+- 返回`Machine Setup > Cameras > OpenPnpCaptureCamera Bottom`调整曝光设置。这将有助于我们完成剩余的校准步骤。
+- 🚨**保持其他所有相机设置不变，只调整Exposure和Brightness 滑块**。
+- 返回`OpenPnpCaptureCamera Bottom`标签页`Device Settings`。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/WuKBb3Y6EoXPRUxEFegco118nBb.webp)
+
+- 找到`Exposure`滑块并点击勾选“Exposure”的`Auto`复选框。相机将尝试找到正确的曝光设置。
+- 然后，**取消选中**该`Auto`复选框，以确保我们现在处于“**手动调整**”模式。
+
+![这张图是LumenPnP V4校准过程中配置底部摄像头的操作界面，核心是相机设置相关内容。左侧显示了底部摄像头的画面，带有红色的十字定位线与红色叉号标识；右侧的属性设置区域中，Exposure（曝光）参数对应数值为8，Auto（自动）复选框处于勾选状态，而该步骤需取消勾选Auto复选框以切换到手动调整模式，界面还包含Brightness、Contrast等其他相机参数调节选项，属于校准过程中调整相机曝光步骤的操作界面截图。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MmNkYmJjNjIyZTI4Zjg4N2E4MjdiZjNhYjhlZTk4YWJfNmJhOTI3YTAzMzMxYjZjNDYwNGFjZTRjM2E2NDEwNTlfSUQ6NzY2NDUwMzYwODc4MDA2NTk3OF8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+- 使用微调旋钮，将吸嘴尖端位置精确地调整到下方摄像头的十字线正上方。您可以使用鼠标滚轮放大画面，以获得更高的精度。
+
+![图片展示的是LumenPnP V4校准中配置底部摄像头时的界面。画面左上角有红色“X”标识，左下角是底部摄像头的实时画面，画面中吸嘴尖端位于十字线正上方。右侧是设备设置界面，包括亮度、对比度、曝光、聚焦等参数设置，以及相机设置、设备设置等选项卡。该图片与上文提到的使用微调旋钮调整吸嘴尖端位置到十字线正上方的操作相关，直观呈现了操作时的界面情况。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OGNkNTEyMTBjMzBiZjgzZTRlZmZhMGM3MTZlZmVkMWNfMzRiNWFhMDYwODVkODY0ZjU0YjVjZjI0NDE5ZTZjMDlfSUQ6NzY2NDUwMzYxOTk3OTA4NzA1M18xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+- 右键单击底部摄像头画面，选择`Show Image Info?`启用图像信息卡。这将显示图像的亮度直方图。
+
+![图片展示的是LumenPnP V4校准中配置底部摄像头时的界面。画面中有一个红色“X”标记的相机视图，下方是相机的俯视图，有红色十字线。界面右侧有“General Configuration”等设置选项，其中“Exposure”（曝光）设置为1，且有“Auto”（自动）选项。该图片与上文提到的“调整相机曝光”内容相关，直观呈现了调整曝光设置的操作界面。](https://cdn.newenergycoder.club/images/lumenpnp/Imf1b1zqroNgjCxOZovcLTkpnEb.webp)
+
+- 请将直方图作为一般参考，而非精确测量。它虽然是一个有用的工具，但并不精确。为了获得最佳效果，请参考下方的对比照片，这些照片展示了“过亮”、“过暗”和“曝光良好”的示例，以帮助您在使用直方图后微调设置。
+- 下一步，我们的目标是**在直方图的右侧形成一个尖锐的峰值，并在左侧形成**一个较大的聚集区域。请参考下图。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/X1LDbFwZwoITh0xEGIzcbSaAn9d.webp)
+
+<callout emoji="💡">
+**🚨重要🚨**
+上面的参考图像只是一个示例。根据光照条件、相机位置和其他环境因素，**您的直方图可能会有很大不同。不要试图完全复制它。**相反，您应该专注于实现关键特征：右侧有一个明显的峰值，左侧有一个明显的聚集或峰值。逐步调整，直到图像清晰且曝光良好。
+</callout>
+
+1. **找到正确的曝光量**。
+
+- 调整Exposure和Brightness 滑块或手动输入不同的曝光值，以确保相机能够清晰地检测到吸嘴尖端的暗孔，从而进行校准。曝光应保持平衡，即既要足够明亮以区分吸嘴尖端和背景，又不能太亮以至于难以辨认暗孔。目标是使最亮的区域清晰可见但不至于完全变成白色，同时较暗的区域也保持轮廓分明。请参考以下图片调整曝光：
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NWY2ODc4MDY4OWFmYjlmNmI3NDhlZjM5MjI1YTg2ZjZfOWZiNTQxOTZiMzY0ZDAwMjU1Y2UyNzI1MjdkNmY2MWFfSUQ6NzY2NDUwMzY2MzA1MDI4MDIxMV8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=Zjc2Mzg0NTFhNTZmNTJkMzJiNDc4Y2FjNjczNDNlMGRfN2MxZjY2Y2Q0Y2RkOTM2ZmMxZDY5MmY5OGRlYzQ4OWFfSUQ6NzY2NDUwMzY3ODQxOTYzNTQ0Ml8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZjM2N2EwNDgzMzg5NjI2NWM0NDQzNDY2ZmZiZjAzMzRfZDgxMmJkM2VkOTMyNGZlMmE0MGQyMzI3OTkwMjg5MzhfSUQ6NzY2NDUwMzY4ODY0NDY3NjgxOF8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+<callout emoji="💡">
+**修改LED亮度值**
+**如果你的Exposure和Brightness 已经是最小值了，但画面仍然很亮（过曝）**
+1. **可以尝试降低环境光亮度，降低房间吸顶灯亮度或者关闭它改为使用较暗光源（台灯，远离机器）**
+2. **如下修改LED亮度值，降低补光灯的亮度值（注意这会同时修改上下补光灯的亮度值，如果你在后面的顶部曝光校准中再次修改了LED亮度值，请返回来重新修改Exposure和Brightness值，取得一个平衡值）**
+</callout>
+
+转至 `Machine Setup`> `Drivers`> `GcodeDrivers`> `Gcode Tab`> `Head Mountable`：  `Actuator [No Head] LED`> `Setting`： `ACTUATE_BOOLEAN_COMMAND`
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MmQ2YzJmNjA1ZTUxYWE0ZGYxYmZmNzRkOGM4YmU0MDBfYTE3NjJkNTMyMmQyN2QzYjQxNWViYjI0NTRmYzlmZGFfSUQ6NzY2NDUwMzcwMzI2OTk2OTExOF8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+您应该会看到类似 .`{True:M150 P255 R255 U255 B255}{False:M150 P0}` 指令
+
+- `P255`= 亮度值，在 0 到 255 之间调整此值以更改 LED 输出的亮度
+- `R255`= 红色值，将此值从 0 调整到 255 以更改 LED 中的红色量
+- `U255`= 绿色值，将此值从 0 调整到 255 以更改 LED 中的绿色量
+- `B255`= 蓝色值，在 0 到 255 之间调整此值以更改 LED 中的蓝色量
+
+在 `ACTUATE_BOOLEAN_COMMAND`中调整这些值以改变 LED 输出，然后点击`Apply`保存 。
+
+然后请重新关闭再打开LED，才能看到修改后的效果。
+
+极端情况你可能会将 P亮度值 设置到 **P10，**这具体取决于你的环境光亮度
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=Mjc1YTY2MTdmZmU1MzE3ZjM5YTEwNDg5YjA3NmVhYmNfNGU0YjEwOTM1OGQxNmJiYWMxODViZDExZDdiZDM3ZTRfSUQ6NzY2NDUwMzcyMDMxNTAxNDM1NV8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+查看 Marlin 的 [M150 命令文档](https://marlinfw.org/docs/gcode/M150.html)以获取更多信息。
+
+- 使用完毕后，请关闭直方图窗口。
+
+<callout emoji="💡">
+**底部摄像头画面里什么都没看到？**
+如果在调整底部摄像头曝光后仍然看不到任何画面，请确保底部摄像头的镜头盖已取下。
+</callout>
+
+<callout emoji="💡">
+**适用于 Mac 用户**
+在某些 Mac 电脑上，如果 OpenPnP 不允许调整曝光，请使用开源工具[CameraController](https://github.com/Itaybre/CameraController)。
+</callout>
+
+1. **记录底部摄像头曝光值**
+
+- OpenPnP 重启后可能无法保留您的相机曝光设置。**请将曝光值记录并保存**到文本文件中或用笔写下来。
+- 这意味着每次启动 OpenPnP 时，您都必须：
+
+  - 手动关闭**自动曝光模式** 。（这会将相机切换到手动曝光模式）
+  - **在滑块旁边的曝光字段中输入您记录的曝光值**。
+
+1. **应用并保存**
+
+- 请点击`Apply`右下角保存更改。*（OpenPnP 中该按钮可能显示为灰色，这没关系。）*
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NzI0YzVmYjBkM2RlY2UxYTA1ZmU5NTJhZjgzMDdmODlfZDhlYWVlZjY3OWY2NjYxOTAwMjllN2ZjNTc0ZmM2ZDFfSUQ6NzY2NDUwMzczMjczMDUzMTAwNF8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+
+
+
+
+- 立即保存您的 OpenPnP 配置`File > Save Configuration`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZDQ3MTlkODE4NzY2ZThlZWQyOTAxOTRlZTg0Njg0MTJfMmYxYjJkY2YxMGRhNzhkOTA5NjIyYzdhNDk4NDljZWRfSUQ6NzY2NDUwMzc1MDY4OTczNzkzOV8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+---
+
+# 配置顶部摄像头和回零基准点
+
+首先，我们将与顶部摄像头建立连接，就像我们与底部摄像头建立连接一样。
+
+接下来，我们可以设置**基准板的位置**，这是回零序列的关键步骤。基准板上的中心点称为**“回零基准点”**，它是微调机器 X/Y 轴位置的关键校准点，并**能补偿限位开关精度上的微小偏差**。配置回零基准点可确保LumenPnP实现**精确且可重复的回零。**
+
+最后，我们将回过头来微调顶部摄像头的曝光设置，以便进行正确的回零校准。**我们将使用对准基准板回零基准点的顶部摄像头来正确调整曝光**。
+
+## 配置顶部摄像头
+
+现在底部摄像头的曝光已经调整完毕，接下来需要对顶部摄像头进行同样的调整。我们将在此步骤中连接到顶部摄像头并调整曝光。
+
+🚨**定位基准点**是位于基准板中心附近、Opulo 标志中心的 1 毫米圆点。🚨
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZjU4NmJhYmJiMGY1OThhNDVkOGYwY2NiMjczNGZmZGFfMDliZTllNmJiNzdmMzdjMWFmOTQ0NzRkZDU2ZTYwNjdfSUQ6NzY2NDUwMzc2NTY5Mjg5NDM4OV8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+1. **在 OpenPnP 中选择顶部摄像头**
+
+- 导航至`Machine Setup > Heads > ReferenceHead H1 > Cameras > OpenPnpCaptureCamera Top > Device Settings tab`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MWNhY2I4NjViOGFmZDBhYmVlMjk5ZGM5OTU1MTMyOWZfNmNhMjIwNmYyZDJlNTExNTU2MWJmNTk3ZWI4MDRhNGJfSUQ6NzY2NDUwMzc3OTQzODQzMTUwMl8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+1. **选择正确的相机设备**
+
+- 在`Device Settings`选项卡中，从`Device`下拉菜单中选择`LumenPnP Top`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=Njk4YTgwYjgyNGVjOWI1Zjg0OGRhMDE0YmQwMzVlOTdfMTQ2ZWUyYzI0NzgwMDUwZTM3NTlkNWIwZGM2MDQyNDBfSUQ6NzY2NDUwMzc5MjUzMzAxNTc0MF8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+1. **设置分辨率和帧速率**
+
+- 在`Format`下拉菜单中选择`1920x1080 30fps MJPG`。
+
+![图片展示的是LumenPnP V4校准配置顶部摄像头时的界面。左侧是相机预览画面，显示了目标点和坐标轴。右侧是设备设置界面，Device下拉菜单中已选择“LumenPnP Top”。在Format下拉菜单中，当前选中“1920x1080 30FPS MJPG”，还有其他分辨率和帧速率选项。该图片与上文配置顶部摄像头时选择正确相机设备、设置分辨率和帧速率的内容对应，直观呈现了操作界面和设置选项。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YmIzMzU0MTE4ODhjODA5NDUzYjhiNzIyYzc2NWEzYTFfNWEzMmM2OTgwZTA5OTVhYTcxZmNjNTMzMDMxMTU0MmVfSUQ6NzY2NDUwMzgxMDI4NjQ3MjQ4M18xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+如果你使用usb集线器或者电脑usb端口性能弱，无法同时驱动两个相机。也可以选择 1920x1080 5fps YUYV , *低帧速率对于避免带宽/性能问题至关重要*。但这样的你的相机识别速度就会同比下降。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/OXm0bkEoIoJrLHxNHltcm5YznDf.webp)
+
+1. **应用修改**
+
+- 点击`Apply`保存**顶部摄像头设置**。摄像头画面中的一个红色“X”应该会消失。图像可能完全是黑色的，但我们将在后续步骤中解决这个问题。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/KMfvbmd0ro0mUoxQhLHcYddtnCd.webp)
+
+1. **保存您的配置**
+
+- 立即保存您的 OpenPnP 配置`File > Save Configuration`。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/XKDAbwrACocdBvxOb7gcHbobnuf.webp)
+
+## 调整相机方向
+
+- 导航至`Machine Setup > Cameras > OpenPnpCaptureCamera Bottom > image Transforms`。
+- 图像调整这里，**水平翻转和垂直翻转均不勾选。**
+
+![图片展示了LumenPnP V4校准配置顶部摄像头和回零基准点时的界面。画面中“OpenPnpCaptureCamera Top”被红色框突出显示，其下有“通用配置”“相机稳定策略”“设备配置”“白平衡”“定位位置”“镜头校准”“图像转换”“高级校准”等选项卡。在“图像转换”选项卡下，有“Rotation”“X偏移量”“Y偏移量”等参数设置，其中“垂直翻转？”和“水平翻转？”选项未勾选。该图片与上文提到的导航至“Machine Setup>Cameras>OpenPnpCaptureCamera Bottom>image Transforms”并调整图像方向的内容相关。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NmM2NTRkMjNhNjczY2ViZDY1MGFhMDY5ZDU2YmNmZTNfMDZmMTgwYjUxYWY1NDQxNTkzN2RmZGFkMzI5NTJmYzNfSUQ6NzY2NDUwMzg2NTk0OTgwMTY2Nl8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+
+
+<callout emoji="💡">
+如果你是自己购买的其他相机，请按下列方法调整：
+- 请先将顶部相机移动到基准版中心位置。
+- 在十字线中心，鼠标左键单击不放，向右上角拖动鼠标，最后释放。此时机器移动，十字线中心应该移动到你刚刚在基准板上指示的位置。
+- 如果移动的方向不对，尝试在 *图像转换 中*，修改垂直和水平反转，直到方向正确。
+目前还没有进行像素值校准，所以你的移动距离不是精确的，这里只要移动方向是正确的就可以。
+下图是动图显示。请仔细对比。
+</callout>
+
+![图片展示的是LumenPnP V4校准配置顶部摄像头和回零基准点时的界面。画面中显示了十字线中心，以及机器移动后的十字线位置。界面左侧有相机控制区域，右侧是机器设置部分，包括Actuators、General Configuration等选项。右下角有X/Y、Jog等操作按钮。该图片与上下文关系紧密，用于辅助说明在十字线中心单击并拖动鼠标调整相机方向的操作，以及在图像转换中修改垂直和水平反转以使方向正确的步骤。](https://cdn.newenergycoder.club/images/lumenpnp/B6atbaaTYo7FrWxo31ScvVUTnJb.webp)
+
+## 准备回零
+
+1. 在对 LumenPnP 进行回零之前，和前面底部相机配置前一样，请确认以下设置。
+2. **首先要检查的设置：**转到`Machine Setup > Heads > ReferenceHead H1`。找到`Homing Method`并确保它已设置为`None` 。
+3. **第二个要检查的设置：**转到`Machine Setup > Nozzle Tips >N045 > Calibration Tab`。找到`Auto Recalibration`该字段，并确保它设置为`Manual`。
+4. **最后要检查的设置：**转到`Machine Setup > Nozzle Tips >N24 > Calibration Tab`。找到该`Auto Recalibration`字段，并确保它设置为`Manual`。
+5. **回零前请调平吸嘴**。
+
+<callout emoji="❗">
+**🚨重要警告：回零前请先调平吸嘴🚨**
+**在按下回零按钮之前**（现在以及以后每次都是如此） ，**您必须确保吸嘴处于水平状态**。⚠️ 否则**可能会导致崩溃，并可能损坏您的机器。OpenPnP不会**记住上次回零序列中的吸嘴位置，这意味着它**无法根据之前的对准情况调整运动**。如果回零前吸嘴未处于水平状态，它们可能会与机器发生碰撞，导致错位或严重的硬件损坏。
+</callout>
+
+![图片展示了LumenPnP机器的顶部摄像头区域。机器主体为黑色，带有银色金属杆，摄像头位于机器右侧，连接着多根电线。背景是红砖墙，砖缝间有白色痕迹。该图片与文档中“准备回零”部分内容相关，用于直观呈现回零操作前机器的外观状态，帮助用户了解回零时机器的摆放位置及摄像头等部件的布局情况。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NTc3NDNmODBkNTFhMTExMmM4NWU4M2Q0NGFmZjQ2MjlfODc0MDA0ZGQwNmExOTkwYjE5YmMyZDIwYzQ3ZDQzMmZfSUQ6NzY2NDUwMzg5NDMyMDA1NzUzMl8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+
+
+1. 确认回零方法设置为`None`，吸嘴尖端设置为`Manual`后，单击**“回零”按钮**执行粗略的回零任务。
+
+- 吸嘴将移动到 X、Y 和 Z 零位**（LumenPnP 的左前角）**并停在那里。
+
+![图片展示了LumenPnP V4校准中准备回零时的机器状态。画面中机器吸嘴位于X、Y和Z零位（LumenPnP的左前角），并停在那里。吸嘴尖端设置为手动，回零方法设置为None。画面左下角有机器控制界面，显示了机器状态、坐标系、吸嘴位置等信息。该图片与上文内容紧密相关，直观呈现了执行粗略回零任务后吸嘴的位置状态，帮助理解回零操作后的机器情况。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YTU4M2FmZGJmMjcwMWY0MDBlNWFmZWJhY2Q4OWJmNmJfOWM4MWU0OGU1ZDYwODY1M2RiMWE3MzM0NTg2ZDY2Y2ZfSUQ6NzY2NDUwMzkwOTA2MzE4MzU5NV8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+## 设置回零基准位置
+
+1. 导航至 `Machine Setup > Heads > ReferenceHead H1`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZjU1ZDA4M2I2N2RiYzk4ODQ0MjQzMWFmNTVmYWI4MjVfMjZlYWZmNTA4Y2RiMjZiY2I0OGIxY2NiMGVkYTUzOTRfSUQ6NzY2NDUwMzkyNDYwNjUyMDU2N18xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+1. 在**“配置”选项卡**中，将**“回零方式”**更改为`ResetToFiducialLocation`。
+
+- 这样就设置了**回零序列**，使其始终以**扫描基准点**结束，这有助于纠正限位开关造成的任何轻微误差。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZWY3MTJiYjY2NjgyMzkxZDAwM2U3NzlkMjQ4MTg3ZDVfMTM5ZTZjZDQxYTk4ZTVlNDNmNDY4MjNhZGI3ZDkzNjJfSUQ6NzY2NDUwMzkzMzQyNDA3ODExM18xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+1. 应用并保存
+
+- 点击`Apply`右下角保存更改。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/WiEhbGQa5oFfaIxwOGgcVFyFnBg.gif)
+
+
+
+
+
+- 立即保存您的 OpenPnP 配置`File > Save Configuration`。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/PlOwbnFlzovjqsx9NsBcIHyPnDe.webp)
+
+
+
+
+
+<callout emoji="❗">
+**警告**
+在按照下一节中的说明微调回零基准位置之前，**请勿**再次单击**回零按钮。**
+</callout>
+
+1. 点击下方所示的**“将相机定位到目标位置”**图标按钮。
+
+- 这样就将**顶部摄像头**移动到基准板上方**的大致位置。**
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/DzJAbMZqpoOfipx7fHicCoEFnEd.webp)
+
+1. 请确保**LED指示灯**仍然亮着：
+
+   - 请确保**顶部和底部环形灯**仍设置为开启状态`On`。如果不是，请返回OpenPnP 左下角的**“机器控制”**`Actuators tab > LED > On`部分，然后关闭执行器窗口。
+2. 导航至`Machine Setup > Heads > ReferenceHead H1 > Cameras > OpenPnPCaptureCamera Top`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=N2IzYmUyOTdlMDI3MzVhNTEwZDA2ZjkxMTQ4YmZmODJfY2Y3YzUyMmE3NmU5OWM1MzMwYzg3NmYzZWNjMmEwYTRfSUQ6NzY2NDUwMzk5MjI5ODU3MzA3NV8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+1. 在下方的`Device Settings`详细信息窗格中，如果您尚未切换到该选项卡，请切换到该选项卡。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/VtAkbXSHMox3w8xD92CcW3BBnAf.webp)
+
+1. 找到`Exposure`滑块并**勾选**标有“曝光补偿”的`Auto`复选框。相机将尝试找到正确的曝光设置。
+2. 然后，**取消选中**该`Auto`复选框，以确保我们现在处于“**手动调整**”模式。
+
+![图片展示的是LumenPnP V4校准配置顶部摄像头和回零基准点时的OpenPnP界面。画面中显示了顶部摄像头的准星中心，以及用于调整曝光、亮度等参数的滑块。右下角有X、Y、Z轴的微调按钮，可进行位置微调。左下角有Jog、Special Controls、Safety等控制按钮。该图片与上下文紧密相关，用于指导用户在设置回零基准位置时，通过调整顶部摄像头的准星中心对准Opulo标志正中心的回零基准点，以及在OpenPnP中进行相关参数设置。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NDkxZmIzZGUyNjBjN2NkOTIyMjc4MDRlNmRlOGQ2ZDBfNzc2Y2Q1NWJiYzY1ZWZmOWM4ZTY3ZjBkMGRlZjQ1M2JfSUQ6NzY2NDUwNDAxODI2OTczNjE3OF8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+1. 如果图像仍然难以看清，请稍微调整曝光，直到基准板清晰可见。设置回零基准点位置后，还会将对此再次进行微调。
+
+- 🚨**保持其他所有相机设置不变，只调整Exposure和Brightness 滑块**。
+
+1. 返回到`Machine Controls`（OpenPnP 的左下角），以便我们可以微调回零基准位置。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/KEP7boPCeooCPwxLXAMcANp3nAc.webp)
+
+1. 调整顶部摄像头：
+
+- 在 OpenPnP 的右下角，**使用微调控件**将**准星中心**直接对准**Opulo 标志**正中心的**回零基准**点。根据需要调整滑块。`Distance`
+
+![图片展示的是LumenPnP V4校准配置顶部摄像头和回零基准点时的界面。画面中显示了“Machine Setup>Heads>ReferenceHead H1”下的“Configurations”设置，包括“Locations”和“Calibration”部分。其中，“Locations”下有“Homing Fiducial”和“Secondary Fiducial”等设置项，且有“Visual Test”和“Visual Home”按钮。在“Calibration”部分，有“Primary Fiducial”和“Secondary Fiducial”位置设置，以及“Z Probe”相关设置。该图与上下文介绍的保存回零基准点位置操作相关，直观呈现了操作界面。](https://cdn.newenergycoder.club/images/lumenpnp/CyBsbepDYo4y34xY3q0cFNKnnGc.webp)
+
+
+
+1. 现在我们已经**完全对准**了回零基准点，我们需要将此位置保存到**两个**不同的地方。
+
+- 返回 `Machine Setup > Heads > ReferenceHead H1`。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/EoLsbRULEo0fzsxRwt5c8IConvd.webp)
+
+- **第一个位置**：点击`Capture Camera Location`按钮保存回零**基准点**的位置。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/GzwUbhf9to9hsLxMrPEcJ2q0nVh.webp)
+
+- **第二位置**：向下滚动到**校准装置**部分，然后单击**主基准**字段旁边的`Capture Camera Location`按钮。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/WSnobyPg8obR3QxQGWhcUT5tngd.webp)
+
+1. 应用并保存
+
+- 点击`Apply`右下角保存更改。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/BhLmbzKIDoOKx5x9eddceq0gnUg.webp)
+
+
+
+
+
+- 立即保存您的 OpenPnP 配置`File > Save Configuration`。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/FE7xbbzKcoy2qCxIFb9c3XZqnrd.webp)
+
+## 微调相机曝光
+
+<callout emoji="❗">
+**其他相机设置**
+在接下来的步骤中，除了Exposure和Brightness 设置外，请勿修改任何其他相机设置。默认值应保持不变。
+其他参数一律不要修改，不要动，不要改！！！否则摄像头会死机，帧率将为0。如果你不小心改了，请按照这个链接解决：[摄像头帧率突然下降为0](https://tcnyw794ws3e.feishu.cn/wiki/K3jJwIn7wi9jBhkb9onceTHlnqu#C1URdJROwoWnEVxKHhBcrqYonSg)
+</callout>
+
+为了使 OpenPnP 能够可靠地检测到 LumenPnP 的回零基准点，我们需要正确**设置顶部摄像头的曝光和相机设置**。
+
+1. 导航至`Machine Setup > Heads > ReferenceHead H1 > Cameras > OpenPnPCaptureCamera Top`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OTM1YmI5MWQyOTAxYTAwNjQxOGViMTI0NTQxNjdhMmRfYjY1OTExYTgyZDdmYWVkNTgwNThjZTkxNDVhZGE1NjNfSUQ6NzY2NDUwNDEzNDgzNzUyMTYxMF8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+1. 在下方详细信息窗格中，切换到`Device Settings`该选项卡。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NDc5ODQ4MjI1MjYxYzc1OWI1YThmMTQ2YTUwYjk3ZDBfYzg0ZTE5NGQ3OGE3MmIwMTZmY2EzNjEyYjY1ZWVlMGZfSUQ6NzY2NDUwNDE0OTM4NzY3Njg5N18xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+1. 右键单击顶部摄像头画面，选择`Show Image Info?`启用图像信息卡。这将显示图像的亮度直方图。
+
+- 请将直方图作为一般参考，而非精确测量。它虽然是一个有用的工具，但并不精确。为了获得最佳效果，请参考下方的对比照片，这些照片展示了“过亮”、“过暗”和“曝光良好”的示例，以帮助您在使用直方图后微调设置。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MTJjMmIxYTcxNmQ5MWVkNDNhYTVhNTAwYjc5ODM5NWVfYzZmZGI2NWZmM2VkNDg5ZTRjNjNlMTRkNmUwODdjMjNfSUQ6NzY2NDUwNDE2MDA1MTEzNzgzN18xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+1. 使用滑块或输入曝光值来调整顶部摄像头的曝光。
+
+- 🚨**保持其他所有相机设置不变，只调整曝光滑块**。
+- 目标是**在直方图的右侧形成一个尖锐的峰值，并在左侧形成**一个较大的聚集区域。请参考下图。
+
+<callout emoji="❗">
+**🚨重要🚨**
+下图仅为示例。您的直方图可能因光照条件、相机位置和其他环境因素**而大相径庭。请勿尝试完全复制示例。**相反，请专注于实现关键特征：右侧明显的峰值和左侧明显的聚集区域。逐步调整，直至图像清晰且曝光良好。
+</callout>
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=N2Q3NTljMjI3ZDg5ZjIzZmZiNWUxMGQ3ZmYxOWI1YjFfNDJiMjUxMmYxN2UyYTA3ZWU5YTNiMGI0NDI0ZGZkZWFfSUQ6NzY2NDUwNDE3NTc3NDQyMDI3MF8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+- 找到并调整`Exposure`滑块，或手动输入不同的曝光值，直到基准板清晰可见。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/UOyRbD0GXogl24x2HoWciQf5nIf.gif)
+
+
+
+
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/Ofx1bs67yo1iZIxEdQ4cUzpHnec.webp)
+
+
+
+
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MDQ1MDQwNGM3NDZmODBiOTRmOGJhOWZhYzE5N2UxYWRfYzVkZDc5NGM3YTQyZGIyZDVjMDUwNTNiYjJiNWY4ZTBfSUQ6NzY2NDUwNDIxOTQyODc1MjU5NF8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+<callout emoji="💡">
+**修改LED亮度值**
+**如果你的Exposure和Brightness 已经是最小值了，但画面仍然很亮（过曝）**
+1. **可以尝试降低环境光亮度，降低房间吸顶灯亮度或者关闭它改为使用较暗光源（台灯，远离机器）**
+2. **如下修改LED亮度值，降低补光灯的亮度值（注意这会同时修改上下补光灯的亮度值，你可能修改返回重新修改底部相机的Exposure和Brightness值，取得一个平衡值）**
+</callout>
+
+转至 `Machine Setup`> `Drivers`> `GcodeDrivers`> `Gcode Tab`> `Head Mountable`：  `Actuator [No Head] LED`> `Setting`： `ACTUATE_BOOLEAN_COMMAND`
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YmM2NDE5MmI2YjY2OTlmNGZlOTljZDQ2MzgyZDkxN2VfMTk0YWM2NDJhMDMyZmY2YjkwODJmNWJlZDJkMjAyNWVfSUQ6NzY2NDUwNDIzMzI2NjAyMzcyMl8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+您应该会看到类似 .`{True:M150 P255 R255 U255 B255}{False:M150 P0}` 指令
+
+- `P255`= 亮度值，在 0 到 255 之间调整此值以更改 LED 输出的亮度
+- `R255`= 红色值，将此值从 0 调整到 255 以更改 LED 中的红色量
+- `U255`= 绿色值，将此值从 0 调整到 255 以更改 LED 中的绿色量
+- `B255`= 蓝色值，在 0 到 255 之间调整此值以更改 LED 中的蓝色量
+
+在 `ACTUATE_BOOLEAN_COMMAND`中调整这些值以改变 LED 输出，然后点击`Apply`保存 。
+
+然后请重新关闭再打开LED，才能看到修改后的效果。
+
+极端情况你可能会将 P亮度值 设置到 **P10，**这具体取决于你的环境光亮度
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZGY0Zjc4YmVlNjg3Y2I2NDg4NDc3ZWRkMjE5ZDViYjVfYWMzZjU4ZTVjYjlmNWZlNDM5N2NiOTk4NThjMzg3YjJfSUQ6NzY2NDUwNDI1MTAzMjM5MDg3MV8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+查看 Marlin 的 [M150 命令文档](https://marlinfw.org/docs/gcode/M150.html)以获取更多信息。
+
+- 使用完毕后，请关闭直方图窗口。
+- 用打开直方图视图的相同方法将其关闭。
+
+<callout emoji="💡">
+**顶部摄像头画面里什么都没看到？**
+请确保顶部摄像头的镜头盖已取下。
+</callout>
+
+1. 找到合适的曝光值后，**请将其记录下来**，保存到文本文件中或用笔写下来：
+
+   - OpenPnP 重启后可能无法保留您的相机曝光设置。**请将曝光值记录并保存**到文本文件中或用笔写下来。
+   - 这意味着每次启动 OpenPnP 时，您都必须：
+   
+     - 然后切换**自动曝光模式** 。（这会将相机切换到手动曝光模式）`onoff`
+     - **在滑块旁边的曝光字段中输入您记录的曝光值**。
+2. 应用并保存
+
+- 点击`Apply`右下角保存更改。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YmNmMDhlZTM4NWYxN2RjZjIzMDk4M2EzYjc5YTZjY2NfMDAzNmFlOTQ1YjNlYmRkZjhhYmRiMzkyOGY3MTFhODVfSUQ6NzY2NDUwNDI2NDAxMDE5MDA5M18xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+
+
+
+
+- 立即保存您的 OpenPnP 配置`File > Save Configuration`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YjI2NDdmMzQwNzRjM2NiOGViYTFkYzE4ODkzOWQ1ZTJfZjIyMGIzZTgwZjQ2YmY5ODA5Mjc1NzJhNTQzYTZlOGFfSUQ6NzY2NDUwNDI3ODU1NTc3NDIzMV8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+## 测试基准回零
+
+1. 点击`Machine Controls Pane > Jog Tab`中的“回零”**按钮**，观察机器如何利用限位开关返回原位，然后将顶部摄像头移动到回零标记上方，找到其确切位置。当摄像头扫描到标记时，会呈现红色，表示正在扫描标记的圆圈。
+
+![图片展示的是LumenPnP V4校准配置顶部摄像头和回零基准点时的场景。画面中，一台带有摄像头的机械臂正在操作，下方的平台上放置着带有网格的金属板。右侧电脑屏幕上显示了摄像头拍摄的图像，图像中有一个红色圆圈，表示正在扫描标记。该图片与文档中测试基准回零的内容相关，直观呈现了当摄像头扫描到标记时的场景，辅助说明了标记扫描情况。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=Yjc2YWMyZTIxOTAwZTNlMzIyM2VjMmJjZjM1OWYwNGRfMDEwMjMyNjg5NWY2Y2VkZWE2M2MxMjQwMzg5MjQ3YmFfSUQ6NzY2NDUwNDI5MzE2MDE2MDQ3OF8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+1. 如果您收到此错误`FIDUCIAL-HOME no matches found`，则表示 OpenPnP 无法找到您的回零基准点。您需要调整[回零基准点管道](https://www.yuque.com/lonlypan/td6smc/hrewkqfg89f9u8dw#homing-fiducial-pipeline-video-guide)。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MTlmNzM5ZjhkYTVmZGNhNTIyNjI3OWQ2NTk2NTEyMzZfOTc3NGI4YTA2YjAyNDkyZDJjYmE1MmNmZGYxMTRmYWNfSUQ6NzY2NDUwNDMwNzAwMTY5MTQyM18xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+# 毫米/像素校准
+
+## 顶部摄像头 MM/像素校准
+
+**在此步骤中，我们将校准顶部摄像头**的毫米/像素值。这需要我们设置尺寸，并使用虚拟边界框勾勒并测量基准板上的一个正方形（称为黄金分割线正方形）。这样可以校准**顶部摄像头的每像素单位**，从而获得精确的顶部摄像头运动数据。
+
+1. **选择顶部摄像头**。
+
+   - 确认你的`Top Camera`仍然以`Homing Fiducial`为中心
+   - 导航至`Machine Setup > Heads > ReferenceHeadH1 > Cameras > OpenPnPCaptureCamera Top`。
+2. **点击标签`General Configuration`页**。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NTgyMzJmOWE0ZWMxNDJkNTE4YjY4MmYzZDgxMGUyZmNfYjlhZTM3YzIxNWViYTcwMzkxMWUwNGE5MzI1M2ZhODhfSUQ6NzY2NDUwNDMyMjQyNzg5OTE2M18xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+
+
+
+
+1. **向下滚动到**`Units Per Pixel`**标签**。
+
+   - **找到X**和**Y**的对象维度字段。
+2. **设置对象尺寸**。
+
+   - **在X**对象尺寸字段中，输入`5`.
+   - **在Y**对象尺寸字段中，输入`5`.
+   - 在继续操作之前，请仔细检查**X 和 Y**是否都已正确设置。
+3. **找到待测量的校准方格**。
+
+   - 调整机器，直到顶部摄像头视图中完全显示一个**金色参考线方框**。该方框应大致位于摄像头准星的中心。整个方框必须可见。如有必要，请使用滚轮缩小视图，确保整个方框都可见。
+   - 在 中`Machine Controls`，您可以调整 ，`Distance Slider`以便在定位黄金参考线正方形时以更大或更小的增量进行微调。
+4. **对齐和测量**。
+
+   - 找到并点击`Measure`按钮。
+   - 在相机视图中点击并拖动以创建一个边界框。将其与黄金分割线正方形的中心对齐，使其与正方形边缘的线条对齐。该正方形的尺寸为 5 毫米 x 5 毫米。
+
+**方形度**
+
+如果盒子的正方形与相机图像没有完全对齐，请不要担心。任何轻微的偏差都会在基准校准过程中进行调整。
+
+1. **完成校准**。
+
+   - 勾勒出完美轮廓后，再次单击`Measure`按钮更新每像素单位值。
+   - 点击`Apply`右下角保存更改。
+   - 立即保存您的 OpenPnP 配置`File > Save Configuration`。
+
+---
+
+### 验证顶部摄像头 MM/像素校准
+
+让我们验证一下顶部摄像头的校准是否成功。这将确保顶部摄像头的每像素毫米数准确，从而使其能够根据给定的指令移动正确的距离。
+
+1. 请确保顶部摄像头的视角已完全缩小。
+
+   - 将鼠标悬停在顶部摄像头的视频画面上，然后滚动鼠标滚轮或触控板，即可完全缩小画面。
+2. 确认顶部摄像头已正确校准。
+
+   - 单击并拖动中心十字线（位于摄像机画面中心）到黄金分割线正方形的一个角上。
+   - 如果毫米/像素校准正确，**顶部摄像头**将移动到您选择的角落正上方。 
+
+![图片展示的是LumenPnP V4校准中顶部摄像头的MM/像素校准界面。画面中显示了顶部摄像头的视频画面，画面中有中心十字线和黄金分割线正方形。画面左下角有X/Y、Jog、Special Controls、Safety等控制按钮。右下角有X、Y、Z轴的数值显示。右上角有“Image Calibration”选项卡，其中“Units Per Pixel”数值为0.031866557和0.01901703。该图片与上下文介绍的顶部摄像头校准操作相关，用于辅助校准操作。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZTZjZTg2YmUxOGNkNzNiNDJkYTk1NDg5NDk2ZjlkYWNfNTgxNDgxNWQ2ZWE2YWExMjNlNGIzYmE3NmQ2NzY3NmZfSUQ6NzY2NDUwNDMzMzYzMTI5NDY2Nl8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+---
+
+## 底部摄像头毫米/像素校准
+
+以下步骤将校准**底部摄像头**的毫米/像素值。这需要我们设置尺寸并使用虚拟边界框勾勒出吸嘴尖端的轮廓。这样可以校准**底部摄像头的每像素单位**，从而实现精确的底部摄像头运动。
+
+1. **使用“主页”按钮将机器返回原位**。
+
+   - LumenPnP 将执行回零过程，并将顶部摄像头定位到回零基准点上方。在后续步骤中，回零序列在校准回零基准点后还会扫描吸嘴尖端，但目前，它应该只会扫描回零基准点。
+2. **选择底部摄像头**。
+
+   - 导航至`Machine Setup > Cameras > OpenPnPCaptureCamera Bottom`
+   - 在`Machine Controls`下拉菜单中，选择`Nozzle: N2 - N24 (Head: H1)`控制右侧的吸嘴。这样，对于我们运行的任何吸嘴命令，OpenPnP 都知道要基于“吸嘴：N2”而**不是**其他吸嘴。
+3. **手动调整吸嘴，使其位于底部摄像头上方**。
+
+   - 使用 OpenPnP 左下角的控件，将`Nozzle: N2`（右侧工具头）移动到基准板的大致中心位置，并将其定位在靠近底部摄像头的边缘附近。
+   - 将吸嘴**`Nozzle: N2`向下移动，使其刚好接触基准板的顶面**，就像我们在之前的步骤中处理第一个吸嘴头时一样。将吸嘴头放在基准板边缘，可以更方便地观察吸嘴头在下降过程中与基准板的距离。
+   - **将吸嘴保持在 Z 轴高度**，并小心地使用微调控制将其移动**到底部摄像机十字线的中心**上方。
+
+<callout emoji="💡">
+**微调焦点**
+底部摄像头的对焦在出厂前已预先调整，但您可以根据需要进行微调。镜头涂抹了摩擦润滑脂固定，因此请轻轻按压并旋转镜头顶部，直至图像清晰。切勿用力过猛。
+</callout>
+
+1. **转到该`General Configuration`选项卡**。
+
+   - 导航至`Machine Setup > Cameras > OpenPnPCaptureCamera Bottom`
+   - 选择`General Configuration`标签页。
+2. **向下滚动到**`Units Per Pixel`**部分**。
+
+   - **找到X**和**Y**的对象维度字段。
+3. **设置对象尺寸**
+
+   - **在X**对象尺寸字段中，输入`4`.
+   - **在Y**对象尺寸字段中，输入`4`.
+   - 在继续操作之前，请仔细检查**X 和 Y**是否都已正确设置。
+4. **对齐和测量**
+
+   - 找到并点击`Measure`按钮。
+   - 在相机视图中点击并拖动以创建一个边界框。将其与吸嘴尖端的中心对齐，使其**与边缘完全相切，**如图所示。
+5. **完成底部摄像头校准**
+
+   - 勾勒出完美轮廓后，再次单击`Measure`按钮更新每像素单位值。
+   - 点击`Apply`右下角保存更改。
+   - 立即保存您的 OpenPnP 配置`File > Save Configuration`。
+
+---
+
+### 验证底部摄像头毫米/像素校准
+
+让我们验证一下底部摄像头的校准是否成功。这将确保底部摄像头的每像素毫米数准确，从而使其能够根据给定的指令移动正确的距离。
+
+1. 请确保底部摄像头的视角已完全缩小。
+
+   - 将鼠标悬停在顶部摄像头画面上，然后滚动鼠标滚轮或触控板，即可完全缩小画面。
+2. 确认底部摄像头MM/Pixel校准正确。
+
+   - 单击并拖动中心十字线（位于摄像头画面中间）到吸嘴尖端边缘，然后再拖回尖端中心。
+   - 底部**摄像头**现在应该再次对准吸嘴尖端了。
+
+![图片展示的是LumenPnP V4校准中底部摄像头毫米/像素校准的界面。画面中显示了吸嘴尖端的图像，吸嘴尖端位于画面中心。界面左侧有X/Y坐标轴控制区域，右侧有“3D Calibration？”区域，其中X、Y值分别为0.00000000、0.00000000。该图片与上下文紧密相关，用于辅助说明在底部摄像头校准过程中，确认中心十字线对准吸嘴尖端的操作，以及校准是否准确。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YjEzMjU1NWY4MzVhZTA3OWFmNWY2Y2YwZWE2YTk5ZDVfZDc3NDJhMzY3MGQ5NWIzMzVkZjZkNjdkNTE4MjcxZTBfSUQ6NzY2NDUwNDM0NzY2NTMyMTE0MF8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+
+
+
+
+- 如果校准不准确，请重复底部相机校准，并确认您正在使用吸嘴：N2（右侧工具头）上的较大 N24 吸嘴头。
+
+---
+
+# 顶部摄像头到吸嘴的偏移
+
+通过校准顶部摄像头与吸嘴尖端的偏移量，可以确保吸嘴尖端与顶部摄像头之间的精确对准。此过程包括获取吸嘴尖端的精确位置，并将顶部摄像头对准同一参考点。校准对于精确放置组件至关重要，必须谨慎操作。
+
+顶部摄像头到吸嘴尖端的校准（本页所示）和底部摄像头位置的校准（下一页所示）是迄今为止最重要的校准，因为几乎所有其他校准都以此作为计算的基准。因此，务必在完成顶部摄像头到吸嘴尖端偏移校准后立即设置底部摄像头位置。
+
+本指南将校准两个吸嘴，确保它们与基准板、元件和 PCB 共享同一焦平面。
+
+在上一节中，您验证了吸嘴 N2 的毫米/像素校准。现在我们将切换回吸嘴 N1 开始校准。
+
+## 吸嘴：N1 偏移（左侧工具头）
+
+<callout emoji="❗">
+**🚨重要警告：回零前请先调平吸嘴🚨**
+**在按下回零按钮之前**（现在以及以后每次都是如此） ，**您必须确保吸嘴处于水平状态**。⚠️ 否则**可能会导致崩溃，并可能损坏您的机器。OpenPnP不会**记住上次回零序列中的吸嘴位置，这意味着它**无法根据之前的对准情况调整运动**。如果回零前吸嘴未处于水平状态，它们可能会与机器发生碰撞，导致错位或严重的硬件损坏。
+</callout>
+
+![图片展示了LumenPnP V4机器的吸嘴部分。吸嘴尖端位于画面中央偏下位置，其上方连接着黑色的机械臂，机械臂上还有橙色、蓝色等颜色的线缆。背景为红砖墙，墙上有黑色的金属轨道。该图片与文档中“吸嘴：N1偏移（左侧工具头）”部分内容相关，用于直观呈现吸嘴在机器上的位置及外观，帮助理解吸嘴校准操作时的参考对象。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NjNhYmE0YzU4ZGQzMzQ5ZDdiNzA1YzZjN2NlMGU5OGNfMDg4MTQ5MDYzNTA4Nzg2OTE0NTViZDJlMWQ3MTg5MTZfSUQ6NzY2NDUwNDM2MjY5MzgwNzM4N18xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+1. **选择要控制的正确吸嘴**。
+
+   - 在 OpenPnP 的左下角，从**机器控制**下拉菜单中进行选择`Nozzle: N1 - N045 (Head:H1)`。这样可以确保所有移动和调整都应用于配备吸嘴尖端的**左侧**`N045`吸嘴。
+2. **确认已安装正确的吸嘴头**。
+
+   - 确认`N045`吸嘴尖端已牢固地连接到**吸嘴：N1（左侧工具头）**。
+
+### 设置吸嘴 N1 的主 Z 轴高度
+
+我们将获取正确的 Z 轴高度值，并将其输入到主基准点的 Z 轴高度中。这个值非常重要，必须确保其正确，因为它设定了焦平面高度的标准，焦平面高度与基准板顶部高度相同。
+
+<callout emoji="💡">
+**笔记**
+在整个测试过程中，吸嘴 N1 必须保持相同的旋转方向，这一点至关重要，因为吸嘴的径向跳动尚未配置。摄像机的十字准星代表吸嘴的旋转角度。请尽量保持十字准星在整个测试过程中保持不变。
+</callout>
+
+1. **停止吸嘴旋转**。
+
+   - 在“机器控制”（OpenPnP 左下角）中，找到旋转控制按钮，它位于主方向箭头下方。旋转控制按钮标记为“C”，其左右箭头之间有一个“P”按钮。该按钮用于调整旋转角度。
+   - 按下 P 按钮即可停止旋转，此时线条应该会完全垂直于地面，就像一个加号。
+2. **定位吸嘴：N1 在回零基准点上**。
+
+- 微调吸嘴：使用 N1（左侧工具头），使**吸嘴尖端*刚好*接触基准板**，并完全位于回零基准点的中心。**微调吸嘴尖端时避免碰撞**。
+- 利用吸嘴尖端周围可见的标记物光亮边缘来确定正确的中心位置。此处的精度对于实现精确定位至关重要，因此请务必耐心操作，并从多个角度检查，确保标记物完全居中，注意不要晃动机器。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OWJlY2Q2NjIzZTYxNGJiNTVkMTNlYzdmYTVjZjBiZmVfOWFkODM3NTZjMzMwZjRlMWY4NGE1N2Y5ODgxZTVkNzJfSUQ6NzY2NDUwNDM3NDA4OTk3NzExOF8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+- **🚨重要！🚨 ⚠️ 当吸嘴接触基准板顶部时，请记录绿色数字读数 (DRO) 显示的 Z 轴高度值 ⚠️**。该数值位于 OpenPnP 界面的右下角。在本例中，吸嘴 N1 的数值为 5.2，但您的数值可能不同，这没关系。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YTIyNmMxN2JkZmYxYjdhMDhiMTFjNzJmNGQxM2ZkMTdfMWJjNzhhNzA5MWFiNDBlZDM0NTQ2NjYxMzc3Y2Y3YzRfSUQ6NzY2NDUwNDM4ODQyNTU4MzgzMV8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+- *（如果DRO是蓝色的，点击它将其更改为绿色）（您的坐标，包括z轴高度，可能与您在此图中看到的有所不同）*
+
+1. **将捕获的 Z 值应用于主基准点的 Z 高度**
+
+- 使用上一步中从 DRO 获取的 Z 轴高度，并转到`Machine Setup > Heads > ReferenceHead H1 and locate the Primary Fiducial`
+- 找到主基准点中的`Z`值字段，并将捕获的 z 高度输入到该字段中。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=Y2ZmMmI0MjgxOGM1NmJlMTYwNzFjMzAzOTdkOTg1MThfMjUyZTZiZTE5NmViZDdkMDA2YjdiMDk3ZDU0NTQ5OWNfSUQ6NzY2NDUwNDM5OTgxNzg4Njk5MF8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+- 这个 Z 轴高度非常重要，因为它将作为其他校准的关键值，并且几乎所有需要与焦平面保持水平的物体（焦平面与基准板处于同一高度）都将以此为基准。
+
+### 校准吸嘴 N1 的 X/Y 偏移
+
+现在吸嘴 N1 的 Z 轴高度已经正确设置，我们可以直接开始计算该吸嘴的 X/Y 轴偏移量。
+
+1. **打开吸嘴：N1 设置**。
+
+   - 点击以下路径：`Machine Setup > Heads > ReferenceHead H1 > Nozzles > ReferenceNozzle N1`。
+2. **打开偏移向导选项卡**。
+
+   - 导航至该`Offset Wizard`选项卡，将在该选项卡中执行吸嘴偏移校准过程。
+3. **请勿选中“包含 Z？”复选框**。
+
+   - 请确保该`Include Z?`复选框**未被选中**。前面您应该已经从数字读数中手动获取了吸嘴 N1 的正确 Z 轴高度，因此我们无需对其进行 Z 轴偏移。
+4. **捕获吸嘴：N1 的位置**。
+
+   - 单击**“偏移向导”**选项卡中的`Store nozzle mark position`按钮，以捕获吸嘴：N1 的位置，用于校准目的。
+   - 在执行以下步骤以获取吸嘴偏移量时，请勿离开**“偏移向导”选项卡。**
+5. **抬起吸嘴：N1 离开基准板**。
+
+- 点击Z 上下箭头之间的`P`字母，将吸嘴“**停放”在安全高度。这样可以防止在移动顶部摄像头到位时发生碰撞。**
+
+![图片展示了LumenPnP V4校准过程中顶部摄像头到吸嘴偏移的吸嘴N1偏移（左侧工具头）状态。吸嘴N1位于黑色机械臂前端，其下方有金属触点，触点连接着蓝色和黄色的电线。背景为红砖墙，右侧有黑色链条。该图片与文档中“吸嘴N1偏移（左侧工具头）”校准步骤相关，用于直观呈现吸嘴N1在执行偏移操作时的外观状态。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ODczZjU5NjUyMWY2ZTA3MTIzOTkwOTgyYzEwMjUyNWFfNmYxMzA3NjEwYTA0NjI2ZjhiOGQyMGU1NjFiMTY5YTdfSUQ6NzY2NDUwNDQxNDkyMTM2MjY1MF8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+
+
+
+
+1. **将顶部摄像头对准回零基准点**。
+
+- 调整**X**轴和**Y**轴，使顶部摄像头正好位于上一步中使用的回零基准点上方，使其位于摄像头画面的正中心。**请勿切换到“偏移向导”选项卡以外的任何位置**。OpenPnP**将不会保存**吸嘴标记位置。
+
+<callout emoji="❗">
+下图中有一处错误，实际不要勾选`Include Z?`。
+</callout>
+
+![图片展示的是LumenPnP V4校准软件界面，处于“Machine Setup”标签下。左侧显示顶部摄像头视图，有网格和定位标记。右侧是吸嘴N1偏移设置区域，包含Configuration、Nozzle Tips、Vacuum、Tool Changer、Offset Wizard等选项。其中Offset Wizard下有“Show nozzle mark position”按钮，下方有X、Y、Z坐标值，以及“Store nozzle mark position”和“Calculate nozzle offset”按钮。该图与文档中校准吸嘴N1的X/Y偏移步骤相关，用于计算吸嘴偏移量。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MGNlYTljMjYzN2EzZTFkODY5ZTcyZGExMzIxNjRiYjlfMDc0OWI3OGZiZGI2OGM4YmVmYThlMjMwOTkyNDQyZThfSUQ6NzY2NDUwNDQzMDA0NjE3MDMwMF8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+1. **计算吸嘴偏移量**。
+
+- 确保 `Include Z?`不勾选。
+- 当定位标记位于顶部摄像头视图的中心位置后，单击`Calculate nozzle offset`。这将根据记录的位置确定吸嘴和顶部摄像头之间的偏移距离。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YTA5OWQyZGQ1NjQwMzJhYjVmMDA0ODEwYjVjODU4NWNfODFkZmJjNGI0N2EwYTM2MmIwODM1MGJhNzUyZWEwMzFfSUQ6NzY2NDUwNDQ0NDI5NzkyMzc2OV8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+1. **应用并保存吸嘴偏移量**。
+
+- 点击`Apply`右下角以保存计算出的左侧 N045 吸嘴尖端的偏移量。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NGI3ZGFkYzNlZWY3NzRmN2E4Yzc5ZmI0OGYyZmU2ZWZfZDNmNjc4YjlmZTA5OTRlMjc0NmM1NWM5ZjJlNTI3NzRfSUQ6NzY2NDUwNDQ1OTA0OTMwNzM1NF8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+- 立即保存您的 OpenPnP 配置`File > Save Configuration`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MTMzOWI4ZDZmYmQ1ODA1MThkYzllNDNjZDg3MzVlOGRfMjk4MjVjZTYzZmJkZDg4MWZiNmIzZjQwOTBjZWU2OTdfSUQ6NzY2NDUwNDQ3NTM2NDk4NjA3NF8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+---
+
+### 验证吸嘴 N1 的偏移量
+
+完成第一个吸嘴的顶部摄像头到吸嘴尖端的偏移校准后，需要验证对准是否准确，然后再继续校准第二个吸嘴。这可以确保摄像头和吸嘴尖端都与回零基准点正确对准，然后再继续校准。
+
+**开始之前，请确保您已在`Control Center`中选择了`Nozzle N1`**
+
+1. **确认相机对准**
+
+- 前往`Machine Setup > Heads > ReferenceHead H1 > Primary Fiducial`
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OGM4MDNkNWI5MjZkNDcwMGExOTEyNDYyOWZhMjc0YjFfNjRkNWRhOTVkN2EzYzA1Njk1YTQwZGNhZmY2ZTQwZDJfSUQ6NzY2NDUwNDQ4ODA5MTMzOTk3OF8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+- 点击按钮将顶部摄像头对准回零基准点。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YjNkOGZkZWY3MGUyOTU5OTJmNTJkNWUzODZlZjVmZDdfMDc3MjFjMmU2MjA3MDA5MDU3ZjlkMzY1YmMxNjc3ZGVfSUQ6NzY2NDUwNDUwMjQ2OTI2NjcxN18xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+- 检查摄像头画面：定位标记应位于画面正中心。
+- ❌ 如果未居中，请重新开始相机到基准点的校准。
+- ✅ 请勿继续操作，直到基准点准确显示在摄像机画面中心。
+
+1. **检查吸嘴尖端对准情况**
+
+- 单击按钮将选定的吸嘴尖端放置在回零基准点上。它位于步骤 1 中用于相机的按钮旁边。
+
+[[IMG:GEuLbir5XomfN2xtmD0cTzz1nhc:GEuLbir5XomfN2xtmD0cTzz1nhc.webp]]
+
+- 机器应将吸嘴尖端移动到计算出的位置。
+- 目视检查吸嘴尖端。
+- ✅ 如果吸嘴尖端正好位于基准点上，则无需校正。继续校准吸嘴 N2 的偏移量。
+- ❌ 如果失灵，**请注意它是在回零标记的左侧、右侧、前方还是后方**。
+
+1. **必要时调整吸嘴偏移量**
+
+   - 当吸嘴尖端没有完全落在基准点上时，调整其偏移量。
+   - 请转到`Machine Setup > Heads > ReferenceHead H1 > Nozzles > ReferenceNozzle N1`该页面并找到偏移值。
+   - 吸嘴 N1 的 Z 轴偏移值不要更改，应保持在 0.000。
+   - 先对 X 和 Y 字段的小数部分进行微调，这样就可以逐步调整偏移量。这有助于了解需要调整多少才能达到精确值。
+   - 谈到数值**增加**，通常指的是给这个数加上一个正值。也就是说，一个负数（-）会越来越接近于零。
+   - 谈到数值**减小**，通常意味着我们在数值上加上负值。也就是说，负数（-）会离零越来越远。
+   - 例如：如果吸嘴尖端位于回零基准点的右侧，则将 x 值偏移 -24.360 更改为 -24.330，这将增加该值，因此吸嘴将向左移动。
+   - 需要记住的关键点：
+   - 增加某个值将使吸嘴 N1 向左 (X) 或向前 (Y) 移动。
+   - 减小某个值会使吸嘴 N1 向右 (X) 或向后 (Y) 移动。
+   - 无论数值是正数还是负数，你仍然需要“增加”或“减少”才能朝着正确的方向移动。
+2. **视觉辅助**
+
+   - 使用下表决定如何更改该值。
+   - 红色箭头表示吸嘴相对于基准点的方向。
+   - 蓝色箭头表示当给定的轴值升高或降低时，吸嘴将向哪个方向移动。
+3. 调整至准确无误后，在继续之前请最后验证一次。
+
+- 点击按钮将顶部摄像头对准回零基准点，并确认其仍然准确。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MDBkMDBhNmE5MmRkZjQwNmNhMTYzYjgwMDc2NzkwMWZfMGEzOGQxM2Q1ZDBiY2RlZDY0ODdhZjNhZDRjN2FkZGRfSUQ6NzY2NDUwNDUxNjAyOTE4OTM5OV8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+- 单击按钮将选定的吸嘴尖端放置到我们新调整的回零基准点上的位置，并确认它仍然有效。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YjU0ODIwNDdlNDEzNjUyMjc5YzNkYmE1YWY0ZjM0N2NfNDFjY2I5ZTQ3YmE5MTVkZDExMmM2ZWMxM2M1YjY4OTRfSUQ6NzY2NDUwNDUzMTkxMjYyNTQxNF8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+- 如果两项都准确无误，则进行下一步。
+
+1. **应用并保存调整后的吸嘴偏移量**。
+
+- 点击`Apply`右下角以保存计算出的左侧吸嘴偏移量。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NjcxZDAzMDE3YzM2YmZjMDcyMTJkYTFlMjYzMGQ3NmVfNDJlMzAyYWY4ZWJkMTdjMmNjMDcyOWNkNTNhZTJhNmFfSUQ6NzY2NDUwNDU0NzY3NTAwMDA4OV8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+- 立即保存您的 OpenPnP 配置`File > Save Configuration`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YmRlNjQyMjkxYmRmZjdiMTljMmVkZDJhYzlmMmQzMDZfNzkwNmE3YmU0OWFmYmM3OTVmZWQ2MGMyYWViYmMxYTJfSUQ6NzY2NDUwNDU2NDc5MTc0MTY2Ml8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+---
+
+## 吸嘴：N2 偏移（右侧工具头）
+
+<callout emoji="❗">
+**🚨重要警告：回零前请先调平吸嘴🚨**
+**在按下回零按钮之前**（现在以及以后每次都是如此） ，**您必须确保吸嘴处于水平状态**。⚠️ 否则**可能会导致崩溃，并可能损坏您的机器。OpenPnP不会**记住上次回零序列中的吸嘴位置，这意味着它**无法根据之前的对准情况调整运动**。如果回零前吸嘴未处于水平状态，它们可能会与机器发生碰撞，导致错位或严重的硬件损坏。
+</callout>
+
+![图片展示了LumenPnP V4机器的吸嘴区域。吸嘴为黑色，尖端连接着黄色的线缆，线缆上还有蓝色和橙色的线。吸嘴下方有黑色的机械臂结构，背景是红砖墙。该图片与文档中“吸嘴：N2偏移（右侧工具头）”部分内容相关，用于直观呈现吸嘴的安装及连接情况，辅助说明确认已安装正确吸嘴的操作步骤。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MWI4NjkxYjdlODQ4NWNjNmJjNjk2MWZlZGZmZGQzN2NfMTNkOTM5ODdlOGU0NDJiNDE0ZWM3N2FjNzc3YzQzMmZfSUQ6NzY2NDUwNDU4MDE1OTc1MzUwMl8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+1. **确认已安装正确的吸嘴**。
+
+   - 确认`N24`吸嘴尖端仍然牢固地连接到**吸嘴：N2（右侧工具头）**。
+2. **选择要控制的正确吸嘴**。
+
+   - 在 OpenPnP 的左下角，从**机器控制**下拉菜单中选择`Nozzle: N2 - N24 (Head:H2)`。这样可以确保所有移动和调整都应用于配备吸嘴尖端的**右侧**`N24`吸嘴。
+3. **将吸嘴对准回零基准点**。
+
+   - 轻轻移动`Nozzle: N2`（右侧工具头），使其完全对准回零基准点，同时*轻轻*接触基准板（就像我们移动第一个吸嘴时一样）。**移动吸嘴尖端时避免碰撞**。
+   - 这个吸嘴头比上一个大，没关系。我们将使用回零基准点外侧的圆圈来判断您是否已正确对准中心。请务必仔细操作，确保它完全位于中心。
+
+### 校准吸嘴 N2 的 X、Y 和 Z 轴偏移
+
+1. **打开偏移向导选项卡**。
+
+   - 导航至该`Offset Wizard`选项卡。
+2. **点击“include Z？”复选框**。
+
+   - 为了确保吸嘴 N2 的 Z 轴高度与主基准点的 Z 轴高度值相同，我们必须确保在校准这些偏移量时包含 Z 轴。
+   - 要校准 Z2 偏移量，请确保**`Include Z?`选中该复选框（前面N1不勾选，这里N2要勾选）**。系统将计算主基准点的 Z 轴高度值与吸嘴 N2 的 Z 轴高度值之间的差值，然后将相应的偏移量加到吸嘴 N2 的 Z 轴高度值上。
+3. **捕获吸嘴：N2 的位置**。
+
+   - 单击**“偏移向导”**`Store nozzle mark position`选项卡中的按钮，以捕获吸嘴：N2 的位置，用于校准目的。
+   - 在执行以下步骤以获取吸嘴偏移量时，请勿离开**“偏移向导”选项卡。**
+4. **抬起吸嘴：N2 离开基准板**。
+
+- 点击Z 上下箭头之间的`P`字母，将吸嘴“**停放”在安全高度。这样可以防止在移动顶部摄像头到位时发生碰撞。**
+
+![图片展示了LumenPnP V4校准过程中吸嘴N2停放安全高度的场景。吸嘴N2位于黑色机械臂末端，其下方有黄色部件，背景为红砖墙。吸嘴N2停放时，可能不完全水平，但不影响后续操作。该图片与文档中“抬起吸嘴：N2离开基准板，点击Z上下箭头之间的`P`字母，将吸嘴停放安全高度”的步骤对应，直观呈现了停放吸嘴N2后的状态。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MTZjMGYzOGZkZjc5NWUzN2EwMTg1N2QyZGFhNTI1NzBfM2JkMWM2YTMzZDU5MWZjNGU4NmVkOWFlMjVhNjM3YzlfSUQ6NzY2NDUwNDU5MjIwMjIyMjg3NF8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+<callout emoji="💡">
+**笔记**
+按下“停车”按钮时，吸嘴可能不水平，这没关系。吸嘴只需要移动到“安全区域”附近，然后停止。
+</callout>
+
+1. **将顶部摄像头对准回零基准点**。
+
+- 调整顶部摄像头，使其正好位于回零标记的正上方，使其位于摄像头画面的正中心。**请勿切换到“偏移向导”选项卡之外的其他选项卡**。否则，OpenPnP**将无法保存**吸嘴标记位置。
+
+![图片展示的是LumenPnP V4校准中顶部摄像头到吸嘴偏移的吸嘴N2偏移（右侧工具头）校准界面。画面左侧有顶部摄像头视图，显示了中心定位标记。右侧是吸嘴N2偏移设置区域，包含Configuration、Nozzle Tips、Vacuum、Tool Changer、Offset Wizard等选项，当前Offset Wizard选项被选中。下方有步骤说明及坐标输入框，如X、Y、Z轴坐标分别为241.499、291.614、5.400等，还有“Store nozzle mark position”按钮及“Calculate nozzle offset”按钮。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZjBjMDE0MDRhMWQ0YWZhNzU3YmVjM2E1YjUyYTBiYTFfZDkwMDdlNDUwMTU3ZGY2NDQwMWEzZTIzMjk3YWUyZWZfSUQ6NzY2NDUwNDYwNzUxNTM5NzM0NV8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+1. **计算吸嘴偏移量**。
+
+   - 当定位标记位于顶部摄像头视图的中心位置后，单击`Calculate nozzle offset`。这将根据记录的位置确定吸嘴和顶部摄像头之间的偏移距离。
+2. **应用并保存吸嘴偏移量**。
+
+- 点击`Apply`右下角以保存计算出的右侧 N24 吸嘴尖端的偏移量。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NTY3OWQzYWQ1OWQyMjc1YWRkNTE0ZDk3N2MyOTQ1ZTVfODRjMGEwNjU1MTdkNWZjZjIxNWFjMGQ5M2E5MmJlMWFfSUQ6NzY2NDUwNDYyMjc2NTk4NTA2OV8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+- 立即保存您的 OpenPnP 配置`File > Save Configuration`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZWM3ZTI1ZDNkOTM0YTY3NmUyNjMxZTdlZTA2ZGVkZTlfNjZkOGExYTk4ZjRjY2M1YzE3NTA2NDU5ZDZhNDE3NzJfSUQ6NzY2NDUwNDYzNjM5NzA3OTgxOV8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+---
+
+### 验证吸嘴 N2 的偏移量
+
+完成第二个吸嘴的顶部摄像头到吸嘴尖端偏移校准后，需要验证对准是否准确，然后再进行下一步校准。这可以确保摄像头和吸嘴尖端都与回零基准点正确对齐，然后再继续生产。
+
+**开始之前，请确保您已在`Control Center`选择了 `Nozzle N2`**
+
+1. **确认相机对准**
+
+- 前往`Machine Setup > Heads > ReferenceHead H1 > Primary Fiducial`
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NTgyYTM1OTMzMmQwOTNjMzAyNWVjOWI0ZGM0MTQ1M2ZfYTM3YzE3ZTlkMjRkNmM3ZjZiMjA1MjI2Y2E3OGViZjRfSUQ6NzY2NDUwNDY1MTEzNjE3NTM5MV8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+- 点击按钮将顶部摄像头对准回零基准点。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MTAwMjkwYjJlYjRlYjJiZWI1MmQzODZkNjk4MGE3M2ZfODZkYjVmNWZiZWRhZWRiZThmNDEwMDFiNjBjNzY1ZWFfSUQ6NzY2NDUwNDY2Mjg5MzAyMjQ4N18xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+- 检查摄像头画面：定位标记应位于画面正中心。
+- ❌ 如果未居中，请重新开始相机到基准点的校准。
+- ✅ 请勿继续操作，直到基准点准确显示在摄像机画面中心。
+
+1. **检查吸嘴尖端对准情况**
+
+- 单击按钮将选定的吸嘴尖端放置在回零基准点上。它位于步骤 1 中用于相机的按钮旁边。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YjYxOGM3YTVjNmRiM2M5MWE4ZTZjOGJjNGQ1ZTM2MzNfOWE1ODAwNGNmNGJkODNlZmI4NzkxZDI4OGY3NTJjMmZfSUQ6NzY2NDUwNDY3NjY5Mzc4OTk0M18xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+- 机器应将吸嘴尖端移动到计算出的位置。
+- 目视检查吸嘴尖端。
+- ✅ 如果吸嘴尖端直接位于基准点上，则无需校正，两个吸嘴尖端均已验证通过。请继续下一节。
+- ❌ 如果失灵，**请注意它是在回零标记的左侧、右侧、前方还是后方**。
+
+1. **正确的吸嘴偏移量**
+
+   - 当吸嘴尖端没有完全落在基准点上时，调整其偏移量。
+   - 请转到`Machine Setup > Heads > ReferenceHead H1 > Nozzles > ReferenceNozzle N2`该页面并找到偏移值。
+   - 先对小数部分进行微调，以便逐步调整偏移量。这有助于了解需要调整多少才能达到精确定位。例如：如果吸嘴尖端位于回零基准点的右侧，则将虚拟 X 值偏移量 23.350 更改为 23.380，这将增加该值，从而使吸嘴向左移动。
+   - 需要记住的关键点：
+   - 增加某个值会使吸嘴 N2 向左 (X) 或向前 (Y) 移动。
+   - 减小某个值会使吸嘴 N2 向右 (X) 或向后 (Y) 移动。
+   - 无论数值是正数还是负数，你仍然需要“增加”或“减少”才能朝着正确的方向移动。
+2. **视觉辅助**
+
+   - 使用下表决定如何更改该值。
+   - 红色箭头表示吸嘴相对于基准点的方向。
+   - 蓝色箭头表示当给定的轴值升高或降低时，吸嘴将向哪个方向移动。
+3. 调整至准确无误后，在继续之前请最后验证一次。
+
+- 点击按钮将顶部摄像头对准回零基准点，并确认其仍然准确。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YzcxZGY2ZmIyNGFmM2QzMjEwNTA0NDg5YTRjYWFiYmNfMWFlN2RmZDE0ZTFmNGU1MzYzMGU3MDg4M2NhNTZiMTNfSUQ6NzY2NDUwNDY5MzU0NDA0NTc0OV8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+
+
+
+
+- 单击按钮将选定的吸嘴尖端放置到我们新调整的回零基准点上的位置，并确认它仍然有效。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YzhkN2Q3OTJiN2YzZjE5Y2JhMjIwNjBjMTU1YzFmNDRfNDYxNWY5N2FlNjA5N2E1YjI0YTc3YTBlZGViNDJiZmNfSUQ6NzY2NDUwNDcwNTAwNzg0ODczMF8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+- 如果两项都准确无误，则进行下一步。
+
+1. **应用并保存调整后的吸嘴偏移量**。
+
+- 点击`Apply`右下角以保存新调整的右侧吸嘴偏移量。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MTk4YTRjNWFmY2UzYzY2NGE4YzQxZDIyYTAwOWI1YTNfYzU1NTc0MDM4YTNhZjVhZTg2NGQ0NDRhMWQ5ZWVkMzdfSUQ6NzY2NDUwNDcyMTA0MjgwMzkxNV8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+- 立即保存您的 OpenPnP 配置`File > Save Configuration`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZDEwMjJmOGE3YjY0NzUyNzMzYWYxOGI5MDU0ZTkxZjFfOGMyN2YwNGU3NjlmOTBmNjM0MzU3MGQ1NjNmZGJjZWVfSUQ6NzY2NDUwNDc0MzQ4MTgzODc5MV8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+---
+
+## 后续步骤
+
+<callout emoji="💡">
+**在当前这一步和接下来要设置底部摄像头位置之间，请勿将机器复位！**
+**顶部摄像头到吸嘴尖端的偏移量调整必须在设置底部摄像头位置之前完成。如果在这两个步骤之间进行机器回零操作，可能会破坏您之前所做的精确校准。**  
+  
+如果您已确认顶部摄像头和吸嘴尖端的位置完全准确，则**必须**立即设置底部摄像头位置，这是下一部分内容。至关重要的是，必须在顶部摄像头到吸嘴尖端的偏移量完全对齐之后再设置底部摄像头位置，因为这可以确保底部摄像头位置的精度达到 100%。  
+  
+所有其他校准都基于底部摄像头的精确位置，因此必须按此顺序执行此步骤。
+</callout>
+
+# 底部摄像头位置
+
+既然您已经确认顶部摄像头和吸嘴尖端的位置完全对齐，**您必须立即按照以下步骤设置底部摄像头的位置**。
+
+此时请勿进行机器回零操作。如果您已经进行了回零操作，请返回之前的步骤，重新验证顶部摄像头到吸嘴尖端的偏移量是否仍然100%准确，然后再继续**。**
+
+**至关重要的是，必须在顶部摄像头到吸嘴尖端的偏移量完全且精确校准之后，立即设置底部摄像头的位置**。这样才能确保底部摄像头的位置本身是正确的。
+
+后续所有校准都依赖于底部摄像头位于正确位置。因此，此步骤必须按此顺序执行，并且底部摄像头位置一旦设置好就不应再进行调整。
+
+---
+
+1. **选择吸嘴：N1**。
+
+- 从机器控制下拉菜单中选择`Nozzle: N1 - N045 (Head:H1)`。这将确保使用左侧吸嘴进行定位。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NTA2ZmJmNmM5MGMxMmQ0MzVjNGQxMzM4NWJkY2RmZWVfZDI0ZmEwZTlmZmY2NjExZDUzZDU5ZWExMjZhMjZjODNfSUQ6NzY2NDUwNDc1ODA5MDUxNzgwNl8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+1. **吸嘴位置：N1 位于基准板高度**。
+
+- 前往`Machine Setup > Heads > ReferenceHead H1 > Primary Fiducial`
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OTA2N2U2MGUwNDE5ZWVmZDRjZDYwM2EzMGI1NGI4MWVfNDhlMzBkYjcxNzA0MTlmN2I2YzgwZDE3YmY4MDkwYTJfSUQ6NzY2NDUwNDc3MTk2NjI0MjAyMl8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+- 单击按钮，将**N1 吸嘴尖端**移动到回零基准点的位置。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YTM2NDFiM2MwNzA0ZWIxZTk4YTA2Mjg1YWFlYzAyNmJfYzgyYjk4NzdmOTUwZjU1MmQyZWRlZjY4YjgxYzAwOGRfSUQ6NzY2NDUwNDc4NDM2NDM3NTI3NV8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+1. **将吸嘴尖端对准底部摄像头**。
+
+   - 在不改变 Z 轴高度或吸嘴旋转的情况下，将吸嘴：N1（左侧工具头）移动到底部摄像头，并使用机器控制将吸嘴尖端置于图像中心。
+
+<callout emoji="💡">
+**微调焦点**
+底部摄像头的对焦在出厂前已预先调整，但您可以根据需要进行微调。镜头用摩擦润滑脂固定，因此请轻轻按压并旋转镜头侧面的上部，直到图像清晰为止。切勿用力过猛。重要的是，要确保底部摄像头的对焦高度与主参考点的 Z 轴高度相同。
+</callout>
+
+1. **打开底部相机设置**。
+
+- 导航至`Machine Setup > Cameras > OpenPnpCaptureCamera Bottom`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MGQ4N2U0ZDJiMmVlYmQxMzM0YzExYTU0MDU4NDBkODRfMTFhMDgzNjA0MWY1ODhkNmY2N2UzODdjMWM4OWE4NDFfSUQ6NzY2NDUwNDc5OTM1ODczMzU5NV8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+1. **进入“Position”选项卡**。
+
+   - 点击`Position tab`开始设置底部摄像头的位置。
+2. **捕捉底部摄像头位置**。
+
+   - 吸嘴尖端调整至锐利且居中后，点击`Capture Toolhead Location`按钮保存位置。请注意，**这是非常重要的校准步骤，务必确保正确记录**。
+
+<callout emoji="💡">
+**模糊还是像素化？**
+如果将画面放大到吸嘴尖端附近，看到的模糊区域实际上可能是像素化。尝试缩小画面，看看是否是这种情况。
+</callout>
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OGU4OTY4OGE4ZTk1NWZmMmMwMzc3NmIxNzJlODFlNzFfNTA4M2E5OWEzMmMwMjhjNmNhYzMzNzBlZTY5MjFkOTFfSUQ6NzY2NDUwNDgxNzM4MTAxODkyM18xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+1. **应用并保存捕获的吸嘴位置**
+
+- 点击`Apply`右下角，将底部摄像头位置保存到 OpenPnP 中。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ODY0NGI5YjQ5NzUzYjQ3M2U3NGEzMzU3NTM5NDZiN2VfZjJiNjczNWUwYzYyMjgxMTg3YWQ4MDc4MzA1ZDEwNTRfSUQ6NzY2NDUwNDgyOTkzMDcyMDUzNV8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+- 立即保存您的 OpenPnP 配置`File > Save Configuration`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZTdlOWNjMWRhZjQxOTNlNWViZTU0MzJmMDQ3ZDEyZjNfYWYzMDFkNGY2ODc3YzE3ZmZhNmE2ODJmZWQ0ODhlNWFfSUQ6NzY2NDUwNDg0NDU2OTE4NTU0Ml8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+---
+
+<callout emoji="💡">
+**提醒：请勿更改底部摄像头位置。**
+底部摄像头位置设置完成后，不应再更改。
+所有其他校准都基于底部摄像头的精确位置，因此，在将顶部摄像头校准到吸嘴尖端之后，必须立即执行此步骤。如果吸嘴发生碰撞，请务必在继续操作之前确保底部摄像头保存的坐标仍然准确。
+</callout>
+
+---
+
+# 吸嘴尖端跳动补偿
+
+吸嘴尖端跳动补偿功能用于测量吸嘴旋转时吸嘴尖端位置的偏移量。该偏移量由底部摄像头检测。补偿算法可校正任何偏差，确保更精确的定位。此过程可消除由跳动引起的误差，跳动可能来自吸嘴尖端或吸嘴本身。校准系统会自动补偿这些因素的任何组合。本节将引导您完成吸嘴`N045`尖端`N24`的校准。
+
+**为了更直观地理解吸嘴尖端跳动及其补偿作用，以下是一个示例**：
+
+- **无**补偿：
+
+![图片展示的是吸嘴尖端跳动补偿示例中的无补偿情况。画面中有一个蓝色背景，中间有同心圆标识，外圈为红色，内圈为蓝色，中心有一个白色圆点。画面左下角有“0°”标识。该图与上下文紧密相关，用于直观呈现吸嘴尖端跳动补偿前的状态，帮助理解跳动可能带来的误差，为后续补偿操作提供参考。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZjM5MzEyOTc0NDNmOTI1MTM4ZTdmYThmYThmMTVlYTVfNGE4ZTc3OWVlOWI2YTBlMjE0OTZkNTk5ODMzZDA4ZjFfSUQ6NzY2NDUwNDg2MjQxOTQwNjEyNV8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+
+
+
+
+
+
+- **附带**补偿：
+
+![图片展示的是吸嘴尖端跳动补偿示例中的“附带补偿”情况。画面中有一个蓝色圆圈，其内有同心圆标识，圆圈中心有“0°”标注。圆圈周围有多个蓝色圆环，其中两个蓝色圆环被红色虚线框突出显示。该图片与上下文紧密相关，用于直观呈现吸嘴尖端跳动补偿效果，帮助理解跳动可能来自吸嘴尖端或吸嘴本身，校准系统会自动补偿这些因素的任何组合。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NjljMDI2ODExNjU0OWM2NjBmOGI3Y2JkMGEzNzY1MTBfYjgwYzg2ZjhiOWJkYzIwMGU0ZDhjOWY5NTgzZTkyZjZfSUQ6NzY2NDUwNDg3MzIyMTM3NzMxNV8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+**笔记**
+
+吸嘴跳动可能源于吸嘴尖端或其所连接的吸嘴本身。校准系统会自动处理这两种情况。
+
+---
+
+## 吸嘴尖端跳动补偿（吸嘴：N1（左侧工具头））
+
+<callout emoji="💡">
+**🚨重要！🚨如果您要继续执行之前的步骤，请阅读此内容。**
+如果您刚刚完成前面的步骤，**吸嘴：N1 应该已经位于底部摄像头的正上方**。  
+  
+**请勿移动吸嘴位置**。  
+  
+跳至步骤 4 继续。
+</callout>
+
+1. **选择吸嘴：N1**。
+
+- 如果`Nozzle: N1`已经位于底部摄像头正上方，则跳至`Step 4`。
+- 从`Machine Controls`下拉菜单中选择`Nozzle: N1 - N045 (Head:H1)`。
+
+1. **打开底部的相机设置**。
+
+- 导航至`Machine Setup > Cameras > OpenPnPCaptureCamera Bottom`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=M2VkOWMyOTM0ZTM5Y2EzNGM2NmYzMDhkZDc0ZjVkZTVfODAwODM3MTEyMTVlODkzZDlmNjZhMDZjN2NiYmJmMzBfSUQ6NzY2NDUwNDg4ODc0MjkzOTg1M18xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+1. **吸嘴位置：N1 位于底部摄像头上方**。
+
+- 打开**“位置”**选项卡，然后单击`Position the tool over the center of the location`按钮。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZjcwNmMxNGEzYzY0YmYzNTU3MzM2NjAzNjNkNTc3ZTVfYTU1YWViNTU1YTJhOTZlNGQ3MWM2MWZmMDg3Njk3MWFfSUQ6NzY2NDUwNDkwMTA3MDUyMzY5NF8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+1. **校准 N045 吸嘴尖端跳动量**。
+
+- 导航至`Machine Setup > Nozzle Tips > N045 > Calibration`，然后单击`Calibrate`按钮。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OWIyZTE1Y2M0NWE0MTAwNDZjY2JhNmZiNDgyY2U1YzFfNTRiZThlM2JjNWY2ZTU4MjI0ZTI2MGE4MzI1NGI2MjhfSUQ6NzY2NDUwNDkxNTIyMjMxODI1OV8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+- 🚨 密切观察吸嘴跳动校准至关重要。吸嘴旋转时，检测必须始终跟踪吸嘴尖端，而不应锁定在随机的圆形或明显不属于吸嘴的特征上。如果跳动校准不准确，零件将无法正确放置。
+
+![图片展示的是LumenPnP V4校准界面中吸嘴尖端跳动补偿的操作界面。界面左侧有相机预览窗口，显示吸嘴尖端图像。右侧“Machine Setup”标签下，选中“Calibration”选项卡，其中“Enable”开关处于开启状态，下方有“Calibration”“Reset”“Calibrate Camera Position and Rotation”等按钮。该界面与文档中吸嘴尖端跳动补偿操作的上下文相关，用于进行吸嘴尖端视觉校准等设置。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NmRhM2YzMTkzNWQ3M2ZjMzUwZWRmNDg1M2U4NzU2MWNfNTQzMzJiNDJiMDgxMDliMGJmYjVkMGU4MWI4ZTFmZTVfSUQ6NzY2NDUwNDkzMDY4MjM3NTQ2NF8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+<callout emoji="💡">
+**警告**
+如果校准失败并显示错误消息“...视觉误检过多...”，请单击“管道”`Edit`按钮[调整吸嘴尖端 N045 的吸嘴尖端视觉管道](https://tcnyw794ws3e.feishu.cn/wiki/VOXawwCRbikLHRk8wTKcWsrXnrf#SsrKdCCZ1oZZRpxSqLGcfofGn60)，然后重新测试。 
+</callout>
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZjdkZjY5MDg3MjFmZjM5ZDNmMGQwMWEyOWNkYzA4ZTBfMDJkNjk3ZGFiOTViZmRjOGY4MWRiYWQ0NWFkZWVmMDdfSUQ6NzY2NDUwNDk0NjM1MTk1MTA1NV8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YmU4ZTJkMmNhOTBhMTg5MjNkNWEzMTQyYzU4ODllYzRfNjU2NWNmZTcxODc2M2YzZGYwMDQxNWMzNWZiYTM2NjVfSUQ6NzY2NDUwNDk2MDEzMDc0NzYwM18xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+1. **设置自动重新校准**。
+
+- 校准成功后，应将“自动重新校准”设置为`NozzleTipChange`。这样可以确保 OpenPnP 在回零或更换吸嘴后自动重新校准所有已加载的`N045`吸嘴。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MGJlOTk4YzM1ZTgwYzhiYThkMTdjMjIwMmIxNDg1NTNfNjU1NjE5MTY2ZWM1YjUwNjM5MzUwMmFjZmViMmNkYTNfSUQ6NzY2NDUwNDk3NDYwMTIxMTA2MF8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+1. **确认吸嘴 N1 的最终曝光设置**。
+
+- 如果需要进一步调整曝光，请更新吸嘴的已保存曝光值。重启 OpenPnP 时`N1`需要用到该值。
+
+1. **应用并保存**
+
+- 点击`Apply`右下角保存更改。*（`Apply`可能显示为灰色，没关系，继续保存配置即可）*。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NzFmMWRiYzg4NjhiYjdjMDQzNjY3NzNjNzU0MTc3YjhfMWRmMTU4ZWFjZWM1NjVlNGIwNGI4YjFkMTRlNmYzYzdfSUQ6NzY2NDUwNDk5MjE3OTE2MjI5M18xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+- 立即保存您的 OpenPnP 配置`File > Save Configuration`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MjY5ZmI5MDEzMWFiZWMxY2FkMTI0ZjYxNDA2ZTIwYWVfMWVlYjcxNjFjMTkxNWI4MWZlZDM1ZDFlMGNkYjFhNTRfSUQ6NzY2NDUwNTAwNzUyMTY2NDI5OV8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+---
+
+## 吸嘴尖端跳动补偿（吸嘴：N2（右侧工具头））
+
+1. **选择吸嘴：N2**。
+
+- 从`Machine Controls`下拉菜单中选择`Nozzle: N2 - N24 (Head:H2)`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NjVhOWI1MjFiYjEzZGNhN2RmZGJjZjNiMjUxYjZmMTBfOTI3YjkxN2RkYzdiNmRlN2Q2ZWQzODVmMWQzOWI2MzZfSUQ6NzY2NDUwNTAyNTA5MzI0MjA2NV8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+1. **打开底部的相机设置**。
+
+- 导航至`Machine Setup > Cameras > OpenPnPCaptureCamera Bottom`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZDljNTYyMzUxNGQ5MjMxYTJhMjFiZWE2MDZmNDE3MGFfM2M4NDhlYmNjZmYzNjQwYWY3MTUwMTFmOWEzNzhlMmVfSUQ6NzY2NDUwNTA0MTI5ODMxMjQ2NF8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+1. **吸嘴位置：N2位于底部摄像头上方**。
+
+- 打开**“位置”**选项卡，然后单击`Position the tool over the center of the location`按钮。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YjUyNWU0ZmMxZDAwNTAxYTFhNDk0ZmQ2YjcwZTc2MTFfOWI1NmM4YWI3NWJiMmI2OTg0MjMwMzEzNjMxZTZhYWNfSUQ6NzY2NDUwNTA1NTg5OTAxMjM3OV8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+1. **确认曝光正确**。
+
+- 第一个吸嘴的曝光设置应可以直接用于吸嘴尖端`N24`所需的设置。如果需要进行微调，将在后续步骤中针对`N24`吸嘴尖端的**视觉流程进行优化。**
+
+1. **校准 N24 吸嘴尖端跳动量**。
+
+- 导航至`Machine Setup > Nozzle Tips > N24 > Calibration`，然后单击`Calibrate`按钮。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OWVlNTEwM2FlMWMwZjljZTkzOGEwYjk2MjAwNmQzN2FfYTFlOTNhMzM3OTVkNGYwNzFjODg2ZDEyMGY1NDBmNDZfSUQ6NzY2NDUwNTA3MTMwNjA2NzIwOV8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+- 🚨 密切观察吸嘴跳动校准至关重要。吸嘴旋转时，检测必须始终跟踪吸嘴尖端，而不应锁定在随机的圆形或明显不属于吸嘴的特征上。如果跳动校准不准确，零件将无法正确放置。
+
+![图片展示的是LumenPnP V4校准界面中吸嘴尖端跳动补偿操作的设置画面。画面中“Machine Setup”标签被选中，显示了吸嘴尖端跳动补偿的相关参数设置，如“Enable?”开关处于开启状态，Calibration下拉菜单选中“Calibration”，还有Auto Recalibration、Nozzle Tip、Circle Dimensions等参数设置项。该图片与文档中吸嘴尖端跳动补偿操作的上下文对应，直观呈现了操作界面及参数设置情况。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MGE1ZWVlOGQ2OGE2YzU0Yjg3MTQ4NjI4MTlhMjMzMjRfZjAxOTg1NTVkMTAwZDlmYTQzYzIzMTg5MTY0MDdhYmJfSUQ6NzY2NDUwNTA4NjU3NjI1MDE0MV8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+<callout emoji="💡">
+**警告**
+如果校准失败并显示错误消息“...视觉误检过多...”，请单击“管道”`Edit`按钮[调整吸嘴尖端 N24 的吸嘴尖端视觉管道](https://tcnyw794ws3e.feishu.cn/wiki/VOXawwCRbikLHRk8wTKcWsrXnrf#SsrKdCCZ1oZZRpxSqLGcfofGn60)，然后重新测试。 
+</callout>
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YWIyYjQ3OTQwYWQ0YmE3NGE4MzE3N2FiMmQ0ZjkwZmZfZTZkZTI4NTYzNjU3ZDEyZDRhYzI2YmUyNGUxZTExNmFfSUQ6NzY2NDUwNTEwMzMyMzk5MTI0NV8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YTk4ZmRhYTA5YWE3ZTE5Y2JlMjFlMWE1NjFlY2QxYmFfZmU1MWYxZTJiMGY5ZTUyOTg2NGMwNzI3ZTU1NDBlNmVfSUQ6NzY2NDUwNTExNzc4MjE5OTUzNV8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+1. **设置自动重新校准**。
+
+- 校准成功后，应将“自动重新校准”设置为“是`NozzleTipChange`”。这样可以确保 OpenPnP 在回零或更换吸嘴后自动重新校准所有已加载的`N24`吸嘴。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NWU2ZjYxNDQyMjFiOWYyMTllZDEyOGExZGUyZWRiZThfOTM1MDlmNTliMzExNzExN2U0YjQyMmQyMDc1Mzc5MTVfSUQ6NzY2NDUwNTEzNTIwNDM3MTY4Nl8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+1. **应用并保存**
+
+- 点击`Apply`右下角保存更改。*（`Apply`可能显示为灰色，没关系，继续保存配置即可）*。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZTI3MjU2ZDlkMjhkNmM4YjBmNjhiMmFmYWMxNjAxMDhfOTQ3MGIxOWM1MWY3NTQzYTQ5MDYwMjZmMGYyNDRlNzlfSUQ6NzY2NDUwNTE0Njc5MzgwNzAyOF8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+- 立即保存您的 OpenPnP 配置`File > Save Configuration`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZjY4YzFmMWRhODAwNTRkNGYyYTYxZDM1NmYyOWMwMzJfOTY2ZTY0ZDRlZGU0MTA5NmU4MjYwMTZmODcwNGZhYzZfSUQ6NzY2NDUwNTE2MTEwODYyMjU0MV8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+---
+
+## 最终检查
+
+<callout emoji="💡">
+**🚨重要警告：回零前请先调平吸嘴🚨**
+⚠️**您必须确保吸嘴水平**。  
+  
+**否则可能导致碰撞并损坏机器。**  
+  
+使用Z 轴上下箭头之间的“`P`”按钮，确保吸嘴尖端不会妨碍其他物体。“`P`”按钮用于将吸嘴**停放**在安全高度，避免与任何物体发生碰撞。
+</callout>
+
+![图片展示了LumenPnP V4校准过程中吸嘴尖端的安装状态。吸嘴尖端位于黑色机械臂前端，其下方有黄色部件。背景为红砖墙，机械臂上方有黑色链条。该图片与文档中“吸嘴尖端跳动补偿”部分相关，用于直观呈现吸嘴尖端在机械臂上的安装情况，辅助理解吸嘴尖端跳动补偿的操作背景。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OTRmZjQ1ZDFlOTlmODBmZTM2MmIxODFiMDc0MDdjNTVfZjRmMjY5ZDQwMDcwMGRkY2M1MDc4ZmM1N2VlNTFmNWZfSUQ6NzY2NDUwNTE3NjQ0NzgxNDg3MV8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+
+
+1. **重新测试 N045 校准**。
+
+- 如果在校准`N2`吸嘴时对底部相机曝光设置进行了任何更改，**请重新测试**`N045`**吸嘴校准**，以确保设置兼容并且校准适用于新的曝光。 
+
+1. **LumenPnP 的主页**。
+
+   - 在回零之前，调整吸嘴水平以防止碰撞。
+   - 对 LumenPnP 进行回零，以确保基准检测和吸嘴尖端校准能够成功完成，`N1`且`N2`无任何错误。
+   - 回零程序将首先扫描回零基准点，然后继续扫描和校准两个吸嘴尖端。
+2. **更新吸嘴 N2 的已保存曝光设置（如果需要）**。
+
+- 如果您需要更改底部摄像头的已保存曝光值才能成功完成吸嘴尖端的跳动校准，**请记录新的曝光值。重启 OpenPnP 时需要用到它**。我们建议将这些值保存到文本文件中，并将其存储在方便取用的位置。
+
+# 真空部件检测
+
+使用 LumenPnP 拾取零件时，务必确认零件已成功拾取。虽然底部摄像头也能进行视觉确认，但使用 LumenPnP 的真空传感器可以更快地检测拾取是否成功，无需先将零件移动到底部摄像头前进行检测。由于底部摄像头也会检查零件（即使速度稍慢），您可以放心地禁用真空零件检测功能，仍然可以放置零件。
+
+---
+
+## 真空部件检测的工作原理
+
+当零件被拾取时，它会封闭喷嘴开口，导致气动管路内的真空压力升高。真空传感器会测量这种压力变化，OpenPnP 利用这些数据来判断零件是否被成功拾取。在喷嘴尖端被覆盖的情况下，**如果真空传感器的读数落在真空范围的低值和高值之间，OpenPnP 则认为零件已被“拾取”**。
+
+由于喷嘴尖端尺寸的差异，每个喷嘴的真空读数都不同。**只要您了解如何正确设置高低真空值并进行相应的调整，具体的数值并不重要**。
+
+<callout emoji="💡">
+如果你在贴片过程中需要更换吸嘴，建议不要启用真空检测。不同吸嘴真空值不同，你需要将每个吸嘴都标定才能使用，这相对来说有些繁琐。
+</callout>
+
+<callout emoji="💡">
+**禁用真空检测是一个选项**
+**使用 LumenPnP 时无需启用真空零件检测功能，**因为底部摄像头会在放置零件前自动进行检测。如果您想禁用此功能，只需在`Machine Setup > Nozzle Tips > Reference Nozzle Tip N## > Part detection tab > Measurement Method > None`相应的喷嘴设置中将“**测量方法**”设置为“**None”即可。请务必`Apply`在继续操作前保存您的设置和配置**。
+</callout>
+
+![图片展示的是LumenPnP软件中“Machine Setup”界面下的“Part Detection”选项卡。画面中列出了多个参考喷嘴，如“ReferenceNozzleTip N045”等。在“Part On Vacuum Sensing”部分，测量方法为“Absolute”，“Establish Level”和“Perform Checks”选项均被勾选，真空范围设置为170.000 - 201.000。该图片与文档中关于禁用真空检测功能的内容相关，直观呈现了相关设置界面。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ODcyNDg3ODk4ZGE0NDYwNmUxNmExYTIyZDc3ODY1ZGVfNmZiMjNjYTQ5MjkwN2ZkNzdmMmYyMjljNjA4ZDE4ZTRfSUQ6NzY2NDUwNTE5MDMxODMyOTEyMl8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+---
+
+## 设置喷嘴真空部件检测：N1
+
+1. **选择要控制的正确喷嘴**。
+
+- 在 OpenPnP 的左下角，从**机器控制**下拉菜单中选择`Nozzle: N1 - N045 (Head:H1)`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MzZlMWNmMzFiYjViYjFiYmVkMDFmODVjNTJmNDYyNzJfOWY5YWU5NGYzOGJjMjE4OWY1MDU4N2YwZjA0MDI4MTlfSUQ6NzY2NDUwNTIwNjgzNTY0NTY0OV8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+1. **确认已安装正确的喷嘴头**。
+
+   - 确保`N045`喷嘴尖端牢固地连接到**喷嘴：N1（左侧工具头）**。
+2. **喷嘴位置：N1 用于精确读数**。
+
+   - 导航至`Machine Setup > Cameras > OpenPnPCaptureCamera Bottom > Position tab`
+   - 点击`Position the tool over the center of the location`按钮。
+   - 这样`nozzle: N1`就**与基准板的 Z 轴高度相同**，从而确保后续步骤的读数更加一致。
+3. **打开部件检测设置**。
+
+   - 导航至`Machine Setup > Nozzle Tips > ReferenceNozzleTip N045 > Part Detection`。
+4. **打开时测量真空压力**。
+
+   - 导航到`Machine Controls`选项卡中`Actuators`。
+   - 选择`H1:VAC1`打开真空压力窗口。
+   - 点击`On`启动气泵和阀门。
+   - 点击`Read`。屏幕上`Read Value `将显示一个值。这表示喷嘴 N1**打开**时的真空压力。
+   - **请记下这个号码**，我们稍后会用到。
+5. **测量覆盖状态下的真空压力**。
+
+   - **从 LumenPnP 套件附带的元件条中取出一个元件**，或者从物料清单 (BOM) 中取出一个尺寸适合此喷嘴的元件，并将**其靠近喷嘴尖端**。真空压力应该能够自行吸起并固定住该元件。（不要用手，只会导致细小碎屑堵住吸嘴口）
+   - 再点击一下Read。这代表拾取或“**覆盖**”零件时的真空压力。
+   - **请记下这个新值**。我们稍后还会用到它。
+   - 点击`Off`即可停用泵和阀门。
+   - 关闭`H1:VAC1`真空压力窗口。
+
+<callout emoji="💡">
+**如果盖住吸嘴，气压值没有变化：**
+1. 请先检查气路是否连接好，是否存在漏气，着重看各接口位置有没有插到位
+2. 按照链接中办法增大PWM值：[没有吸力，电磁阀无法启动](https://tcnyw794ws3e.feishu.cn/wiki/K3jJwIn7wi9jBhkb9onceTHlnqu#BlEmdAy0FoyVMRxRIrFcZFycnbf)
+</callout>
+
+1. **计算检测阈值**。
+
+- **找出未覆盖值和已覆盖值的中点**。例如：
+
+  - **未覆盖**：**220**
+  - **已覆盖**：**200**
+  - **中间值**：**210** → 在`High Value`中填入此值。
+- 确认低值
+
+  - **已覆盖**：**200**
+  - **未覆盖**：**220**
+  - **差值**：**220-200=20**
+  - **中间值**：**210**
+  - **最低值**：**中间值 - 差值 = 190，**→ 在`Low Value`中填入此值。如果有必要，可以继续降低该值，例如180。
+
+<callout emoji="💡">
+**警告**
+未覆盖和已覆盖状态下的读数差异可能很小，但**即使是个位数的变化也可能表明拾取成功**。喷嘴尺寸会影响这些读数，因此不同喷嘴之间的读数会有差异。
+</callout>
+
+1. **应用并保存**
+
+- 点击`Apply`右下角保存对**N045**喷嘴尖端的更改。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ODJmYTUwZmFmZmE5ZGZkOWQwYjA3MjljYzU3NDAwZmVfNjY3ZGVkOWM3MjRjYTZmZWY0MTFjYWUwMGYxYzY2YzhfSUQ6NzY2NDUwNTIyMzQ0ODg0MTQyNl8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+- 立即保存您的 OpenPnP 配置`File > Save Configuration`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MGFhZjg4Yjk2OGY4YWYwODQ1MjU4NzA2MjNjNzRmNmVfMTRiYmQwMzAzMmJkMjNjYmNjY2QxZGFlNTE2ODZjYjFfSUQ6NzY2NDUwNTI0MDM0MzE1Mzk2MF8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+---
+
+## 设置喷嘴真空部件检测：N2
+
+1. **选择要控制的正确喷嘴**。
+
+- 在 OpenPnP 的左下角，从**机器控制**下拉菜单中选择`Nozzle: N2 - N24 (Head:H1)`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YTZlZDhmNGE1ODQ3MTZhYmFiNWUyM2Q1NTJmNzQwMDZfNTdhZjExM2FhZmY0YmRkNDk1NDE1NmZkYzY0NjMwMGNfSUQ6NzY2NDUwNTI1MzY0ODA5MjQzOV8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+1. **确认已安装正确的喷嘴头**。
+
+- 确保`N24`喷嘴尖端牢固地连接到**喷嘴：N2（右侧工具头）**。
+
+1. **定位喷嘴：N2 用于精确读数**。
+
+- 导航至`Machine Setup > Cameras > OpenPnPCaptureCamera Bottom > Position tab`
+- 点击`Position the tool over the center of the location`按钮。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NWFiODNhNDRmNTQzZjAyNTVjZDA2MDRjMmRkZDk5ZWRfNDY5MmZiZGQ0NGI5ZTIzOWE5NDQ1MDE0ODc0NTgzMGFfSUQ6NzY2NDUwNTI3MDU2Nzk2MzgzNF8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+- 这样就**与基准板的 Z 轴高度相同**`Nozzle: N2`，从而确保后续步骤的读数更加一致。
+
+1. **打开“零件检测”选项卡**。
+
+   - 导航至`Machine Setup > Nozzle Tips > ReferenceNozzleTip N24 > Part Detection`。
+2. **测量真空压力**。
+
+   - 导航到`Machine Controls`选项卡`Actuators`中。
+   - 选择`H1:VAC2`打开真空压力窗口。
+   - 点击`On`启动气泵和阀门。
+   - 点击`Read`。屏幕上将显示一个数值。这表示喷嘴：N2**未遮盖**`Read Value box`时的真空压力。
+   - **请记下这个号码**，我们稍后会用到。
+3. **使用密封喷嘴测量真空压力**。
+
+- 从物料清单中选择一个尺寸合适的**零件，并将其靠近喷嘴**。真空压力应该能够自动吸起并固定住零件。
+- 再点击一下Read。这代表拾取或“**覆盖**”零件时的真空压力。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MGI1MGQwZjkwMDU3ODkyZGRhZGJkZjk2ZjhlMGMyZjdfMGJiNzQ0NzQwMDljZGM1MjkxNmM2YWNhZDFiOTRhMDNfSUQ6NzY2NDUwNTI5MDQxOTc1MjIxMV8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+- **请记下这个新值**。我们稍后还会用到它。
+- 点击`Off`即可停用泵和阀门。
+- 关闭`H1:VAC2`真空压力窗口。
+
+<callout emoji="💡">
+**如果盖住吸嘴，气压值没有变化：**
+1. 请先检查气路是否连接好，是否存在漏气，着重看各接口位置有没有插到位
+2. 按照链接中办法增大PWM值：[没有吸力，电磁阀无法启动](https://tcnyw794ws3e.feishu.cn/wiki/K3jJwIn7wi9jBhkb9onceTHlnqu#BlEmdAy0FoyVMRxRIrFcZFycnbf)
+</callout>
+
+1. **计算检测阈值**。
+
+   1. **找出未覆盖值和已覆盖值的中点**。例如：
+
+   - **未覆盖**：**230**
+   - **已覆盖**：**200**
+   - **中间值**：**215** → 在`High Value`中填入此值。
+
+   1. 确认低值
+
+   - **已覆盖**：**230**
+   - **未覆盖**：**200**
+   - **差值**：**30**
+   - **中间值**：**215**
+   - **最低值**：**中间值 - 差值 = 185，**→ 在`Low Value`中填入此值。如果有必要，可以继续降低该值，例如180。
+
+**别忘了**
+
+未覆盖和已覆盖状态下的读数差异可能很小，但**即使是个位数的变化也可能表明拾取成功**。喷嘴尺寸会影响这些读数，因此不同喷嘴之间的读数会有差异。
+
+1. **应用并保存**
+
+- 点击`Apply`右下角保存对**N24**喷嘴尖端的更改。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OTJlMmYyODYxYjc2OWZkY2Q4MmQ4ZWE5MDk5MjJiMzJfNjAxMWJlMWQxZDdmYmMyNjQ1NGM1NmU0ZGVjNGNkODdfSUQ6NzY2NDUwNTMwODY1NTczMzk5MF8xNzg0NTc1MDQ2OjE3ODQ1Nzg2NDZfVjM)
+
+- 立即保存您的 OpenPnP 配置`File > Save Configuration`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NmMyZDRjYmVjZWQ0NTgwMjhmMTEwMjg1MzM3MTA0MzZfMThhZTYwZjQyMjE3MWZmMmFhN2ZkMzA1NmM2M2E5MjNfSUQ6NzY2NDUwNTMyMjMzODYzNTA1MF8xNzg0NTc1MDQ1OjE3ODQ1Nzg2NDVfVjM)
+
+# FTP首次贴片
+
+祝贺你，你已经完成了校准任务。下面就开始第一次实战吧：[验证校准](https://tcnyw794ws3e.feishu.cn/wiki/CZeDwwKk2iP50akOABxcjTt0nOe)

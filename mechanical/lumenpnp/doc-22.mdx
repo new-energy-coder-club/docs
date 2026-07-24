@@ -1,0 +1,152 @@
+---
+title: "视觉合成（大封装视觉识别）"
+description: "什么是 Vision Compositing（视觉合成）？"
+---
+
+# 视觉合成（大封装视觉识别）
+
+## 什么是 Vision Compositing（视觉合成）？
+
+
+
+简单说，就是**用多次拍照（多次底部相机拍摄）来拼凑出整个元件的位置和角度**，而不是只拍一张照片就完事。
+
+![图片展示了一块芯片，其表面有红色和蓝色的网格线。芯片的引脚部分被红色网格线框住，中间有一个黑色圆圈，圆圈内有白色线条。芯片整体呈菱形，引脚排列整齐。该图片与文档中介绍视觉合成的内容相关，直观呈现了视觉合成中多次拍照拼凑元件位置和角度的原理，即通过多次底部相机拍摄来获取元件的完整信息。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YTk4YmMzZDAxNmFjZmRlMmE0ZWJlYjY5NTY0Y2QxNzlfY2MxNWE4NzNiYzZiZGFlNTc3MTE4ZmEyNTczNGNlNmJfSUQ6NzY2MzgyMzY5MDcwMTkwMDc1MF8xNzg0NTc1MDM4OjE3ODQ1Nzg2MzhfVjM)
+
+它主要解决几个实际问题：
+
+- 元件太大，相机一次拍不全（比如大芯片）。
+- 元件不是标准长方形，形状怪怪的。
+- 想提高精度 —— 把要检测的特征（比如引脚、焊盘角）移到相机正中央拍，这样拍出来的角度最正，误差最小（因为镜头边缘会有畸变，侧面看也会有偏差）。
+- 对于“内凹”的焊盘（比如有些元件外面不对称，或者太大拍不到外角），也能通过拍内部拐角来定位。
+- 支持在“管线编辑器”里逐张查看每一张照片。
+
+---
+
+## 为什么要搞这个功能？
+
+### 相机选型的纠结
+
+贴片机的底部相机，如果分辨率太高，处理慢、帧率低、灯光要求高；如果视野太大，镜头往往很广角，广角镜头拍出来的东西边缘变形大，影响精度。  
+
+大部分元件其实都是小个的，为了偶尔一两个大芯片去妥协相机，不划算。
+
+
+
+有了 Vision Compositing，你就可以把相机调成**适合日常小元件的配置**（中等分辨率、高帧率、焦距稍长、畸变小），碰到大元件时，多拍几张拼起来就行了。代价就是多花点时间拍照，但换来整体精度和效率的提升。
+
+### 提高精度
+
+特别是对很大的元件，多张合成能明显降低误差。比如吸嘴有点歪，或者相机镜头广角导致边缘偏移，如果只拍一张，误差会很大；但如果把要检测的角分别移到相机正中心拍，正中心是最准的，而且左右对称的误差会互相抵消。
+
+![这张图展示了视觉合成用于大元件检测的原理，对应文档中“提高精度”的相关内容。图中可见待检测的元件倾斜放置，底部有标记为“Bottom Camera Focal Plane”的绿色基准线，底部有三个摄像头，分别对准元件的三个检测点；上方标注“Z”的部件与元件中心的红色区域对应，箭头线条显示三个摄像头的拍摄方向均指向元件的检测位置。该图直观呈现了将待检测元件的各待检测角移至相机正中心分别拍摄、利用左右对称误差抵消来降低检测误差的核心逻辑，契合文档中视觉合成提升检测精度的说明。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OWJlZDNjY2Q2M2FhMDViNDk0ZGIwY2VmYzhiYzMzMmZfZGU5NzMxNzc2NjNkNGQ3NmU0NDZjY2QzY2EwZjRkZTRfSUQ6NzY2MzgyMzY5NTY1MTA2NDc5MF8xNzg0NTc1MDM4OjE3ODQ1Nzg2MzhfVjM)
+
+### 对付异形元件
+
+有些元件不是标准矩形（比如有缺角、凸起等），多张合成也能搞定。
+
+
+
+---
+
+## 怎么用？
+
+### 设置“相机漫游半径”（Camera Roaming Radius）
+
+- 默认是 **0**，表示不使用合成功能。
+- 如果你给一个大于 0 的值，就开启了合成。这个半径的意思是：**吸嘴带着元件可以在相机中心周围这个半径范围内自由移动（不需要先抬升 Z 轴）**，以便把元件的不同部位挪到相机正下方拍照。
+- 但这个半径不是软件限制，你得自己确保机械上不撞到东西（比如相机底座周围的避让区域、周围障碍物）。
+
+![图片展示的是视觉合成软件中“Machine Setup”下的“Camera Setting”界面。界面中列出了Signalers、Feeder、Heads、Nozzle Tips、Cameras、Actuators等类别，其中“Cameras”下有“OpenPnpCaptureCamera Up looking”选项被蓝色边框突出显示。下方“Location”区域显示X、Y、Z坐标分别为298.096、152.500、-46.278，Rotation为180.000，“Roaming Radius”为30.000。该图片与上下文介绍的“相机漫游半径”设置相关，直观呈现了设置界面及参数。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MzkwZTI3Yjk4MmM0NGMyMDA3NWFlYzBmYjI1MjVjOGFfNzFkZWEzZTMwMGY0YjllNjk4OTJjODQ3ODQ0ZGNiMDRfSUQ6NzY2MzgyMzY5NzMyODg2ODY0M18xNzg0NTc1MDM4OjE3ODQ1Nzg2MzhfVjM)
+
+这个半径必须大于等于“元件最远的点到吸嘴中心的距离 + 吸嘴本身偏离相机中心的距离”。因为合成时要把元件的角移到中心，所以半径要足够大。比如一个 LQFP-144 芯片，可能需要 30mm 的半径。
+
+![图片展示了视觉合成中元件的角移到中心时的示意图。画面中有一个黑色的矩形区域，代表元件，其角部被黄色圆圈标注。矩形区域外有红色虚线圆弧，表示相机漫游半径。该图与文档中设置“相机漫游半径”的内容相关，用于说明半径必须大于等于元件最远点到吸嘴中心距离+吸嘴偏离相机中心距离，以确保合成时元件角能移到中心。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NDlkMTNmYWQwYzAzN2M3M2YyYTk0YWQxMzE4MGY4MjdfYzQ2MmEzZjhkMzlmNDY3M2I4Y2I0YTg1NGMyNTkzZmFfSUQ6NzY2MzgyMzY5ODAzNzg2OTg2OV8xNzg0NTc1MDM4OjE3ODQ1Nzg2MzhfVjM)
+
+**注意**：你的相机底座周围的避让区域必须能让吸嘴带着元件在这个范围内自由移动，且不会碰到任何东西。
+
+
+
+---
+
+### 其他准备工作
+
+- 建议开启吸嘴设置里的 **“Align with Part?”（对齐到元件）** 选项。这样拍完后，十字线和坐标显示都会跟着元件的角度转，方便你肉眼观察。
+- 重新检查你的 **Nozzle Tip（吸嘴）配置**，特别是“最大元件直径”和“最大取料偏差”，这些会影响合成的计算。
+
+![这张图片是OpenPnP软件的操作界面，对应文档中吸嘴配置的相关内容。界面顶部的菜单包含Job、Parts等多个选项卡，当前选中的是Log选项卡。左侧列表显示了Feeders、Heads等分类，其中Heads分类下的ContactProbeNozzle N1处于选中状态。下方的Configuration栏切换至Contact Probe选项页，Properties区域标注了该吸嘴的名称为N1，Coordinate System区域显示了X、Y、Z、Rotation等坐标参数，Rotation Mode设置为AbsolutePartAngle，“Align with Part?”选项已勾选。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NzdkMzFiMjdmMzJhMzIyYjVhZDljZTNjYjE2NjY5OWJfNmNmYzJjZWYyNzYyMjgyOTU3ZDI0ZDY0M2NkZWUwMjNfSUQ6NzY2MzgyMzY5OTc0MDY1ODk3MF8xNzg0NTc1MDM4OjE3ODQ1Nzg2MzhfVjM)
+
+---
+
+### 元件的“封装外形”（Footprint）
+
+为了让合成能工作，你必须定义好元件的焊盘形状和位置。OpenPnP 里内置了“封装生成器”，输入几个参数就能生成常见封装。如果你从 Eagle 导入，也能自动带过来。
+
+![图片展示了STM32F405xx、STM32F407xx的LQFP144 - 144-pin 20 x 20 mm低剖面四边形扁平封装推荐焊盘形状，包含尺寸标注。右侧是OpenPnP界面，显示了该封装的Package Information，包括ID、Description、Tape Specification等信息，还列出了Nozzle Tip Settings、Footprint、Vision Compositing、Bottom Vision Settings、Fiducial Vision Settings等设置选项，以及Pads参数列表。该图与文档中介绍元件封装外形的内容相关，直观呈现了封装焊盘形状及OpenPnP中封装信息设置界面。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YmJjZmZkNjIwYWM5ZDI3MGI2ZGQwMDdhMjk3Zjc5NGNfYWZmNDRiYTA0ZWY2NjE3MGZkYjZkYjhjNWZjYWVmOWJfSUQ6NzY2MzgyMzcwMjA3MjY5MTg5MV8xNzg0NTc1MDM4OjE3ODQ1Nzg2MzhfVjM)
+
+---
+
+### 封装合成界面
+
+在“Vision Compositing”标签页里，你可以预览这个封装会被怎么拍。鼠标悬停时，会显示每个拍摄点的位置（用角标和圆圈表示）。红色的虚线大圆就是“漫游半径”，相机视野矩形也会显示。你还可以点鼠标看焊盘怎么合并成“块”，只有这些块的外角才能作为拍摄目标。
+
+![图片展示的是封装合成界面中“Vision Compositing”标签页。界面中有“Method”下拉菜单，当前选中“Restricted”。下方有“Extra Shots”“Max. Pick Tolerance”“Min. Angle Leverage”等参数设置，以及“Allow inside corner”复选框。下方显示解决方案为“Square”，最小拍摄次数2，最大拍摄次数4，计算时间为0.00ms。界面底部有“Compute”按钮。该图与上文介绍的在“Vision Compositing”标签页预览封装拍摄位置等内容相关，直观呈现了相关设置情况。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NWNmMDA4ZmI4ODk5NGJiYjg1YTcwMzVkYzA5MTEzMzNfYmJkYWNmNmE1Y2RkODg1YTU5YTM0ODE4YjdkNjRmYzJfSUQ6NzY2MzgyMzcwNTU5NTkyMzM5Ml8xNzg0NTc1MDM4OjE3ODQ1Nzg2MzhfVjM)
+
+---
+
+### 合成方式（Method）
+
+下拉菜单有几种：
+
+- **None（不用）**：强制只拍一张，就算元件很大也只用一张。可以用于个别不想合成的元件。
+- **Restricted（受限，默认）**：如果元件能一次拍全（在相机中心视野内），就只拍一张；拍不全了才用多张。同时，如果元件形状不规则，也会自动启用多张。
+- **Automatic（自动）**：如果元件能一次拍全且形状是规则的矩形，就拍一张；否则自动用多张。可能会把两个角合并成一个“组合”来拍。
+- **SingleCorners（单独角）**：每个角都单独拍一次，精度最高。因为相机中心最准，拍的次数多还能平均随机误差。
+
+![图片展示了视觉合成中“Method”参数的下拉菜单。菜单中有“Restricted”“None”“Automatic”“SingleCorners”四个选项，其中“Restricted”选项被高亮选中。该图片与上下文紧密相关，上下文在介绍视觉合成时，提到“Method”参数可设置为“Restricted”“None”“Automatic”“SingleCorners”，此图直观呈现了这些选项，帮助用户了解和选择不同的方法。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MzAyOTVhOWNmZjBlYjhhNzIzNDAyZDA3ZDA3YWQyZWFfNDYwMzgyOGZmNWRhNmRkMDE5ZmEwNmIyNzVhZjEwYTlfSUQ6NzY2MzgyMzcwODMyMjEzOTQxNV8xNzg0NTc1MDM4OjE3ODQ1Nzg2MzhfVjM)
+
+---
+
+### 额外拍摄次数（Extra Shots）
+
+系统会根据几何形状自动算出最少需要拍几个角。比如方形元件两个对角就够了，但你可以额外增加，比如拍四个角，提高精度。
+
+---
+
+### 最大取料偏差（Max. Pick Tolerance）
+
+这个值越大，表示允许吸嘴取料时偏得越多。偏得越多，拍摄时各个角就越难被“单独”拍到（因为可能会和其他角重叠或超出相机视野）。如果设太大，可能找不到合适的拍摄方案。你可以直接设 0，就使用吸嘴自己的设定值。
+
+---
+
+### 最小角度杠杆（Min. Angle Leverage）
+
+用来决定两个被拍到的角之间必须隔多远，才能可靠地算出元件的旋转角度。比如设为 0.5，表示两个角至少要隔着元件宽度或高度的一半。
+
+---
+
+### 允许内角？（Allow inside corner?）
+
+对于超大元件，连漫游半径都不够拍到外角时，可以启用这个选项，去拍大焊盘的**内角**（比如大芯片中间有镂空或凹槽），靠内角来推算位置。
+
+![这张图展示了带镂空结构的超大元件局部，对应最小角度杠杆的应用场景，图中深色交叉线条划分出四个区域，中心交叉处设置了两组标识，红色圆圈标识的是需拍摄的大焊盘内角，蓝色圆圈为辅助标识，该示意图直观呈现了最小角度杠杆功能针对超大元件的作用对象，即这类带有镂空或凹槽的大芯片，帮助使用者理解启用该选项时需要定位和拍摄的目标位置，以此推算元件的位置，解决超大元件因漫游半径不足无法拍摄外角的问题。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NDE2ZWJkNjBhZWIwZWRkYTBlODgzYzBmYWJlODkzYTdfNzRkNDRhMTU3YzJjNTgwMTk2ZjQ0NDdkZGMyNGUzNzZfSUQ6NzY2MzgyMzcxMTczNjI4NjQxN18xNzg0NTc1MDM4OjE3ODQ1Nzg2MzhfVjM)
+
+---
+
+### 在管线编辑器（Pipeline Editor）里
+
+如果你的合成有多个拍摄点，点“Step”按钮可以逐张查看每一张照片。注意，所有拍摄共用同一个管线配置，你可以调整处理步骤，但改动会影响全部照片，所以要确保每一步对所有照片都有效。
+
+![图片展示的是Bottom Vision Pipeline界面。左侧为管线编辑器，显示多个处理步骤，如ImageCapture、MaskCircle等，其中“deb1”步骤被选中。右侧是拍摄的芯片图像，画面中有一条红色对角线。该图片与文档中介绍在管线编辑器里查看合成照片的内容相关，直观呈现了管线编辑器的操作界面及拍摄照片的展示情况。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ODU1NjkxYzQ5OWFkMWYwYjY5ZWQ4NWRmMTAzYWVjZjBfYTFiNWM4YjU3ZGI3MWQ1ZWE1MTRlMTA3MzBhODg1NjdfSUQ6NzY2MzgyMzcxMjY2NzUwMzkwN18xNzg0NTc1MDM4OjE3ODQ1Nzg2MzhfVjM)
+
+
+
+---
+
+## 总结大白话
+
+- **Vision Compositing** 就是“多拍几张，拼出完整位置”。
+- 让相机可以专心做好小元件，大元件多花点时间拍几次。
+- 精度更高，因为每张都把关键特征放在相机最中心拍。
+- 设置好“漫游半径”、选好“合成方式”，剩下的自动完成。
+- 可以预览、调试，非常灵活。

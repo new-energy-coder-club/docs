@@ -1,0 +1,247 @@
+---
+title: "常用软件的坐标文件导出和导入"
+description: "常用软件的坐标文件导出和导入"
+---
+
+<title>常用软件的坐标文件导出和导入</title>
+
+# **嘉立创EDA（专业版）**
+
+## 将 画布原点 置于PCB板的左下角 
+
+放置-画布原点-从光标
+
+![图片展示了嘉立创EDA（专业版）软件界面，用于说明将画布原点置于PCB板左下角的操作。界面左侧为项目文件夹，中间是PCB板视图，右下角有坐标显示。画面上方工具栏中“放置”选项被红色框突出显示，其下“画布原点”选项也被红色框标注。该图片与上下文紧密相关，直观呈现了将画布原点置于PCB板左下角的操作位置，辅助理解相关操作步骤。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YmE1MzYzZWE1YmI5OTgwZDI1Y2RlMTQ0MDc4Njg4NTFfYmQ3ZTZjYTY1YzNhNWQ4ZjMyZWQxMDhlMjU5ZWIzY2NfSUQ6NzY2MzgyMzQ0MjI3NzQ1Mjc4M18xNzg0NTc1MDM1OjE3ODQ1Nzg2MzVfVjM)
+
+将坐标原点置于板子左下角（顶层视角），辅助线和板框相切。必须、只能左下角，这是openpnp软件的规定
+
+<grid>
+<column width-ratio="0.500000">
+![图片展示了嘉立创EDA（专业版）中放置画布原点的操作示例。画面中，画布原点以绿色框标识，位于PCB板的左下角，辅助线和板框相切。画布原点处有坐标显示，X -2903，Y -1463。画布原点处还标注了“U1”和“ECHOES Core”，并有“GND”和“POWER”字样。该图片与上下文紧密相关，直观呈现了将画布原点置于PCB板左下角的操作结果，辅助说明了操作的正确位置。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YzhhZmQ5YTQ1YzFkYWEyNWYyNzQxYmVlNmY3ZDNkNTJfNmFhMWM2ODNhMDQwYWVmODAwMjk0ZjkxYWQ4ZGNiYmFfSUQ6NzY2MzgyMzQ0NDcyNjkxMDIyNl8xNzg0NTc1MDM1OjE3ODQ1Nzg2MzVfVjM)
+</column>
+<column width-ratio="0.500000">
+![图片展示的是嘉立创EDA（专业版）软件中PCB板的顶层视角。画面中，板子左下角有辅助线与板框相切，辅助线为绿色，板框为黑色。板子上有多个绿色标注的引脚，如“VIN”“GND”等，还有蓝色的“ECHOEAR Core”字样。画面底部有“GND”“POWER”等标签，以及“顶层丝印”“顶层丝印层”等选项。该图片与上下文关系紧密，直观呈现了将坐标原点置于PCB板左下角（顶层视角）时的辅助线和板框位置。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NGE4ZThiNTFlZWU1NDlkN2E2OTM5YjJmMGQ4YWJhMDFfOTIzMjEzYWYzYzY0YzJmMGVlZmZkZDU3ZTI0N2VhMDNfSUQ6NzY2MzgyMzQ0NjMyNDkyMzYyOF8xNzg0NTc1MDM1OjE3ODQ1Nzg2MzVfVjM)
+</column>
+</grid>
+
+对于不规则的板子图形，可以假想出正四边形，将板子容纳在四边形以内，同样也是在顶层的左下角。
+
+<callout emoji="💡">
+这里定义的坐标原点的视角和方向，就是你在贴片机平台实际放置电路板的方向和视角，一定要保持一致。
+</callout>
+
+![图片展示了不同形状PCB板的坐标系示意图。图中蓝色区域代表PCB板，红色箭头表示X轴方向，蓝色箭头表示Y轴方向，黑色箭头表示Z轴方向。图中分别呈现了三角形、星形、椭圆形、倒三角形、倒星形、倒椭圆形PCB板的坐标系，标注了Top（顶部）和Bottom（底部）。该图与文档中“将画布原点置于PCB板的左下角”](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OWEwODBhNTgyOTRmOWNjMzhhZmE5YjA5MmRiZmNkZjJfZmJjNTkzMzdmZjY2NzRhNjNkZjMyZTM5NTA0MzJjZDRfSUQ6NzY2MzgyMzQ0NzEyNjA4NDgwMl8xNzg0NTc1MDM1OjE3ODQ1Nzg2MzVfVjM)
+
+## 坐标文件导出
+
+顶部菜单-导出-坐标文件
+
+![图片展示了嘉立创EDA（专业版）软件中“导出”菜单的下拉选项。在“导出”菜单下，有多个选项，其中“坐标文件(CPL)”被红色框和箭头突出显示。该图片与文档中“坐标文件导出”部分内容相关，用于说明在顶部菜单“导出”下选择“坐标文件(CPL)”这一操作步骤，是导出坐标文件操作流程中的关键步骤展示。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MGU0ZGMzZjAxNGY3NWFiYWQxMTM2ZDQwNTk1ZTUxOTZfZjQ2NThiMDRmNDJiYWEwNjMzOGUwOThjODFlOWQ3NGRfSUQ6NzY2MzgyMzQ1MTc3MzI0MjU5MF8xNzg0NTc1MDM1OjE3ODQ1Nzg2MzVfVjM)
+
+1. 文件类型：选择csv
+2. 分隔符：选择逗号
+3. 单位：mm
+4. 其它选项：都不勾选
+5. 统计：取消勾选贴片期间，引脚数
+6. 最后手动排序：严格按照图示顺序排序
+
+为了后续操作简便，你可以在左下角保存导出配置（当前的设置），下次在导出时，直接左下角导入设置即可，上面的设置就自动配置好了，然后直接导出。
+
+<callout emoji="❗">
+在导出的文件中，请检查列标题，必须和下图红框中一致！！！
+</callout>
+
+<callout emoji="💡">
+嘉立创导出顶底是在同一个文件里的，如果不想贴其中一面，只能在openpnp导入位置文件后，手动禁止。
+</callout>
+
+![图片展示了嘉立创EDA（专业版）中导出坐标文件的设置界面。界面中，文件类型选择为CSV，分隔符为Tab，单位为mm。在“其他选项”中勾选了“确定Y坐标”和“确定X坐标”。右侧是坐标文件的统计、贴片件、元件属性等信息，其中“贴片件”选项被红色框突出显示。该图片与上下文紧密相关，直观呈现了导出坐标文件时的设置步骤和关键选项，帮助用户正确配置导出参数。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MmI4NjY3OTM0ZWI4YmM3NjU3N2I2NTM3YzY5YmUzNTlfZjRmYzg0MmZmZWEyMGE3YTQ3MDAzY2NhMDlhOThhOGFfSUQ6NzY2MzgyMzQ1MzAzMTU1MDE2MV8xNzg0NTc1MDM1OjE3ODQ1Nzg2MzVfVjM)
+
+嘉立创导出的坐标文件无法直接使用，必须转换一下
+
+如果使用wps
+
+- 文件类型必须选择：逗号分隔
+
+![图片展示了在WPS中保存导出的坐标文件时的文件类型选择界面。界面中“文件类型”下拉框被红色框线突出显示，其内容为“CSV (逗号分隔)(*.csv)”。该图片与文档中“嘉立创导出的坐标文件无法直接使用，必须转换一下”部分内容相关，用于说明在使用WPS保存导出的坐标文件时，文件类型必须选择“逗号分隔”这一操作步骤。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OWQxZDdmZDFmZmIyNDA5M2M3ZTRmNGFlZjgzYjA1NDFfZDQ4NjZmZGI0MTlkMTdiY2QzYWMxMDY3OTFmOTgzZjRfSUQ6NzY2MzgyMzQ1MzgxMTcyMzQ5NF8xNzg0NTc1MDM1OjE3ODQ1Nzg2MzVfVjM)
+
+此时会弹窗警告，我们仍然选择保存
+
+后续导入和贴装工作，和 FTP示例 一致，可继续参考示例文档。
+
+![图片展示的是WPS表格弹窗警告界面，提示继续保存为当前格式可能会丢失一些不兼容数据，若要保留这些数据，建议另存为xlsx格式。界面中有“了解详情”链接，下方有“本次打开不再显示”选项，右下角有“另存为xlsx”和“保存”两个按钮，其中“保存”按钮被红色框突出显示。该图片与文档中将嘉立创导出的坐标文件转换为Excel格式后另存为csv文件的操作步骤相关，用于说明后续保存操作。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZWJjMjMwMzBiODJiMTE3YjQ1YjhlNWE5NGVhYWFjZTRfMDBkYzhkNTdiYTVjMGRiZDFlMzNiZTY4NTRhM2I2ZmZfSUQ6NzY2MzgyMzQ1MzM1ODk1MTYyM18xNzg0NTc1MDM1OjE3ODQ1Nzg2MzVfVjM)
+
+如果你是excel，打开导出的csv文件，然后另存为
+
+- 选择UTF-8或UTF16开头的编码，逗号分隔，进行另存。
+
+![图片展示了在Excel中另存为CSV文件的界面。文件名为“2.csv”，保存类型为“CSV UTF-8 (逗号分隔) (*.csv)”。该图片与文档中将嘉立创导出的坐标文件转换为Excel格式的内容相关，说明在Excel中另存为CSV文件时，需选择UTF-8或UTF16开头的编码，且文件类型为逗号分隔，以确保后续导入和贴装工作与FTP示例一致。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NWNhN2Y5N2E0MWUxZDYyMjY0YTE2OTQzNTNmMTVkODNfZWYyNmRlNjhkMjg0OWIxNTk2YTI1ZTY3Mzg1ZDc0YTdfSUQ6NzY2MzgyMzQ1NzgxMzEyMjMxM18xNzg0NTc1MDM1OjE3ODQ1Nzg2MzVfVjM)
+
+# KiCad
+
+阅读本文章需具备kicad绘制pcb和制板的能力
+
+## 放置坐标原点
+
+![图片展示了KiCad软件界面，左侧为菜单栏，其中“放置”选项被红框突出显示。右侧是PCB编辑界面，显示了电路板布局，有多个标注为“GND”的圆圈标识。该图片与文档中“放置坐标原点”内容相关，用于说明在KiCad软件中进行坐标原点设置的操作位置，即在“放置”选项下进行相关设置，以确保坐标原点置于板子左下角，与实际贴片机平台放置电路板的方向和视角保持一致。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YzkxOTM4OGEzZWMzNjY5NjY3OGNkZTc1ZDhkNmNiZDNfMThjYTUxMjExNmYyNGY5OGNlNzM2MmJkZGI2ZDc5MzVfSUQ6NzY2MzgyMzQ1NzMwNTc3NTA5Ml8xNzg0NTc1MDM1OjE3ODQ1Nzg2MzVfVjM)
+
+将坐标原点置于板子左下角（顶层视角）。必须、只能左下角，这是openpnp软件的规定
+
+![图片展示了KiCad绘制PCB时放置坐标原点的示例。画面中，板子左下角标注有“0”作为坐标原点，周围有多个“Fiducial”标识的红色圆圈，以及“MountingHole_Pad”标识的圆孔。画面右下角有红色的“GND”标识，还有“Plated along this flat edge”等文字标注。该图与上下文紧密相关，直观呈现了将坐标原点置于板子左下角（顶层视角）的操作示例，帮助理解实际放置电路板方向和视角的定义。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZTc5NDY4ZGU1ZTVlZWZmY2MwNDBjZWM0OTE5ZTkyODFfZTRkYjRlMWQ3OGJjMGU1MThlODlhZWFkMGE1ZTcwZjRfSUQ6NzY2MzgyMzQ2MzczNTM2NDUzOF8xNzg0NTc1MDM1OjE3ODQ1Nzg2MzVfVjM)
+
+对于不规则的板子图形，可以假想出正四边形，将板子容纳在四边形以内，同样也是在顶层的左下角。下图示意：
+
+<callout emoji="💡">
+这里定义的坐标原点的视角和方向，就是你在贴片机平台实际放置电路板的方向和视角，一定要保持一致。
+</callout>
+
+
+
+![图片展示了不同形状电路板的坐标原点视角和方向示意图。图中蓝色区域代表电路板，红色箭头表示+X方向，蓝色箭头表示+Y方向。电路板形状有三角形、星形、椭圆形等，板子的宽度标注在底部。板子的原点位置在左下角，与实际贴片机平台放置电路板的方向和视角保持一致。此图与文档中关于电路板坐标原点定义的内容相关，直观呈现了不同形状电路板的坐标原点视角和方向。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MDMwMDZmMmFmZTYzZmNiYjI1ZmRlMWE2N2NlMmQ4MWVfNjIyNDdkNWMwMTYxYzE4MjkzNjQ0ODJkNWE4MmYzYTVfSUQ6NzY2MzgyMzQ2Mzk3ODc2NTI5MV8xNzg0NTc1MDM1OjE3ODQ1Nzg2MzVfVjM)
+
+## 坐标文件导出
+
+制造输出-元件位置文件
+
+![图片展示了KiCad软件中“制造输出”下“元件布置文件（pos，.gbr）...”选项的界面。在KiCad软件的“制造输出”菜单下，有多个选项，其中“元件布置文件（pos，.gbr）...”被红色箭头指向，该选项位于“元件布置文件（pos，.gbr）...”和“封装报告（.rpt）...”之间。此图片与文档中“坐标文件导出”部分内容相关，用于说明在KiCad软件中导出元件布置文件的操作位置。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MTY5NDMwYWU4YTRkN2MzZDhiOWVhZGQ4NGExZTkwZTRfYThiMzdiNzZiM2E0NWUwNTRlMTNiMmUxNGUzYjBhOTRfSUQ6NzY2MzgyMzQ2NDI3MjQ5Nzg4OV8xNzg0NTc1MDM1OjE3ODQ1Nzg2MzVfVjM)
+
+- 1、2、3一定要设置对。
+- 4根据自己需要选择，默认必须勾选使用定位原点。
+
+  - 其它默认即可，也可以自己尝试
+
+![图片展示了KiCad软件中生成布置文件的设置界面。界面中输出目录为“ves\\OpuloEngineering\\drawing\\PCB\\feeder-mobo-ott_PCA-0028\\00\\REV00”。格式为ASCII，单位为毫米。下方有多个选项，其中“仅包含贴片封装”“使用钻孔/定位文件原点”“对底层的封装使用负X坐标”“生成包含正面和背面定位的单个文件”被红色框突出显示，对应数字序号1、2、3、4。该图片与上下文介绍的KiCad坐标文件导出设置内容相关，直观呈现了设置界面及关键选项。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MzBlYzczODQ2NjlkZGQwM2RmMjlmMjE5NjM1Nzk5NDhfZTExMjA3MDg2YTQ2N2M2MzQ3YWRkNzExYjQ5NjU1ZjBfSUQ6NzY2MzgyMzQ2ODU5NjcyNzA1OV8xNzg0NTc1MDM1OjE3ODQ1Nzg2MzVfVjM)
+
+# **AD软件**
+
+## 坐标原点
+
+![图片展示了Altium Designer软件界面中“原点”选项的下拉菜单。在“文件”菜单下，点击“原点”，弹出“设置”和“复位”两个选项。该图片与文档中“AD软件坐标原点”部分内容相关，用于说明在AD软件中设置坐标原点的操作位置，辅助用户理解如何在软件中进行坐标原点相关设置。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NjBhY2YwNzg0MmFjMTdlYmVmYTZmOGFmNDVmNzgwNzNfMWJlMmY3MTcxNTQ5NTQ0NjFkYTJlZGE2MGZjOWZmNzlfSUQ6NzY2MzgyMzQ3MTU2Nzk5ODE0MF8xNzg0NTc1MDM1OjE3ODQ1Nzg2MzVfVjM)
+
+## 导出
+
+**文件→装配输出→Generates pick and place files，**导出后的坐标文件与制板文件处在同一目录中。
+
+参考下图进行导出，注意选项设定以及**手动排序**。
+
+![图片展示的是AD软件中放置文件导出界面。界面左侧为列标题，如Designator、Footprint等。右侧是元件信息列表，包含Pad X、Pad Y、Ref - X、Ref - Y等坐标数据。界面中有“格式”下拉框，当前选中“CSV”格式。下方有“不包含过时脚位”“包含被替换元件”“包含标签（元器件）条目”“屏蔽底层层”等选项，其中“屏蔽底层层”未勾选。该图与上文提到的AD软件坐标文件导出内容相关，展示了导出时的界面及设置选项。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YzFjZDg0MjM2NzMyNzkxYzI0NWQyMDkzNmYyMTA1OTdfYzVmY2FhYzIxMDhjOGRlNDk2MmRiMTJiNzA3ZWU2OWNfSUQ6NzY2MzgyMzQ3Mzc2ODI4NzIxNV8xNzg0NTc1MDM1OjE3ODQ1Nzg2MzVfVjM)
+
+> 补充：
+> 
+> AD用户在导出时，请勾选 **显示单位** 选项，避免因AD自身版本原因导致坐标数值被放大十倍的情况发生。
+> 
+> 如果您已确定，导出的坐标数值不存在上述问题，不勾选上图的 **显示单位** ，会更方便一些。
+
+上文提到过，关于所用的封装基准点如果在Pin1中心的情况。
+
+即，上图界面中，如果发现某些元件的Pad X(mm),Pad Y(mm)与Ref-X(mm),Ref-Y(mm)的数据是相等的，那么这些元件的参考基准中心使用的是Pin1脚的中心坐标。
+
+在坐标文件导出后，请借助Excel将Center-X(mm),Center-Y(mm)整列的值复制并替换给 Ref-X(mm),Ref-Y(mm)，保证提供给OpenPnP的参考基准中心坐标是元件的中心坐标。
+
+最后另存为即可，如下动图所示：
+
+前12行的无用信息可删可不删，并不影响坐标文件的导入。
+
+![这是一张Microsoft Excel的操作界面截图，对应文档中坐标文件导出后的编辑操作场景。表格内包含Altium Designer Pick and Place Locations相关的坐标数据，可见“Designator”“Footprint”“Center-X(mm)”“Ref-X(mm)”等列标题，还展示了对应元件的坐标、旋转角度等信息。该截图用于辅助说明将导出的坐标文件中Center-X、Center-Y的数值，复制替换到Ref-X、Ref-Y，以适配OpenPnP参考基准中心的操作，符合文档中坐标文件处理的内容要求。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MTU2NThhN2ExYTE4ZTUwYTMwNGZjOGRhMjkyZjlmNjBfYjQ1NDY4NDkyNjI2NzVkOWNjMmQ5ZWUzMGM2NGQxZjZfSUQ6NzY2MzgyMzQ3OTU5ODIyMjYwNV8xNzg0NTc1MDM1OjE3ODQ1Nzg2MzVfVjM)
+
+---
+
+# 坐标文件的信息处理 （可选）
+
+导出的坐标文件，还需要做进一步的处理：
+
+> 1、删除非贴片元件的条目；
+> 
+> 2、检查是否存在Mark点信息；
+> 
+> 3、处理条目中存在的汉字及其他特殊符号，例如 Ω 等；
+
+## 关于乱码
+
+由于OpenPnP软件中元件库和封装库所用字体的局限，在导入过程中，会导致汉字以及某些符号呈现乱码。
+
+乱码的出现，虽然不影响软件的实际使用，但是因其的非可读性，会严重干扰识别。
+
+对于Ω符号，由于会经常出现，我一般会用R字母来替换：10KΩ变为10KR，10Ω变为10R等；
+
+---
+
+## **精简信息**
+
+坐标文件导入OpenPnP后，元件库里的元件ID会以：**“Footprint-Comment”合并**的形式出现，即**“封装类型 - 元件描述”。**
+
+例如坐标文件如下：
+
+```Plain Text
+"Designator","Footprint","Mid X","Mid Y","Ref X","Ref Y","Pad X","Pad Y","Layer","Rotation","Comment"
+"C1","NICHICON_A","58.674mm","7.2263mm","58.674mm","7.239mm","58.674mm","8.7376mm","T","90.00","10uF"
+```
+
+导入后，
+
+元件库里的ID为：**NICHICON_A-10uF**；
+
+封装库里的ID为：**NICHICON_A**；
+
+所以，请关注Footprint的封装列和Comment的描述列，合理压缩字符数量，精简其信息，做到不失真且易于查找。
+
+而且今后，由其他电路板导出的坐标文件，尽量尝试保持Footprint的封装名称和Comment的描述名称一致，省去后续的重复配置。
+
+> 特别提示：
+> 
+> 嘉立创EDA里的封装名特别的长，会让生成的元件的ID和封装库的ID， 很长很难看。
+
+例如：
+
+```Plain Text
+"Designator","Footprint",…………,"Comment"
+"D1","SOD-123FL_L2.8-W1.8-LS3.8-RD"…………,"SMF30A_C2891491"
+"D2","SOD-123FL_L2.8-W1.8-LS3.8-RD123"…………,"SMF150A_C2891499"
+```
+
+D1和D2使用的封装相同，导入后，这两个元件的ID会变成：
+
+```Plain Text
+SOD-123FL_L2.8-W1.8-LS3.8-RD-SMF30A_C2891491
+SOD-123FL_L2.8-W1.8-LS3.8-RD-SMF150A_C2891499
+```
+
+软件中的默认的单元格宽度，未必能呈现这么多的字符。后续定义飞达或其他操作中，太长的ID会让查找和检索元件，变的特别麻烦。
+
+可以改成：
+
+```Plain Text
+"D1","SOD-123"…………,"SMF30A"
+"D2","SOD-123"…………,"SMF150A"
+```
+
+这样两个元件的ID会变成：
+
+```Plain Text
+SOD-123-SMF30A
+SOD-123-SMF150A
+```
+
+一目了然，甘爽许多！！
+
+---
+
+参考资料：https://wiki.alandesign.cn/zh/openpnp/How_to_SMT/02_Exporting_Centroid_Data
+
+
+
+# 坐标文件导入
+
+按照教程文件：[验证校准](https://tcnyw794ws3e.feishu.cn/wiki/CZeDwwKk2iP50akOABxcjTt0nOe) 导入坐标文件（不同的pcb软件，他们的坐标文件导入方法是一样的）。
+
+如果导入是成功且没有问题的，那么在 ***单板*** 标签页面下的贴片列表，打开单板查看器，是可以看到每一个贴片元件位置预览的（每个十字准心就是一个贴片元件，十字准心一般位于贴片元件中心位置即组后贴装的位置）
+
+这可以一定程度提前检验你的贴片文件是否正确
+
+可以切换视角看顶层和底层。
+
+![图片展示的是单板查看器界面，用于导入坐标文件后查看贴片元件位置。界面左下角有“切换视角”按钮，点击可切换视角看顶层和底层。右上角有“当前视角：顶层”选项。画面中显示了坐标文件“lc.board.xml”，画面右侧有网格线，画面中红点代表贴片元件位置，每个红点即为一个十字准心，准心一般位于贴片元件中心位置。该图与上文提到的导入坐标文件后在单板标签页面下查看贴片元件位置预览的内容相关，可帮助检验贴片文件是否正确。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MzFmOTM2ZWZiMDdhN2VmOWFhMTdiODFhY2U5MDMyZWFfZWFhZThlMGJmMjhlY2FhYjBhM2M3OTBmNzJhNjY2YzBfSUQ6NzY2MzgyMzQ4MTUyNzYzNTIyOV8xNzg0NTc1MDM1OjE3ODQ1Nzg2MzVfVjM)
+
+这是实物顶层视图，可以和上图仔细对比看看
+
+![图片展示的是实物顶层视图的电路板。电路板上有多个标识，如RST、SPK、Touch、MIC、GND、5V3、TX、RX、BOOT、+、BAT等，各标识旁有对应元件。电路板上有多个黄色的元件，部分元件有引脚，还有黑色的导线连接各元件。该图与文档中介绍坐标文件导入后可查看贴片元件位置预览的内容相关，可与导入后的贴片列表中单板查看器的预览图对比，以检验贴片文件是否正确。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NDNjNDI5YjlmYjdlODRmZWMwZjVmNTA2YTE1ZTRkMGFfMzc5Y2ExY2M3MTY0ZDk1MDhjZDllY2E2MDZkOGQzZTRfSUQ6NzY2MzgyMzQ4MTUxNTExNzg2Nl8xNzg0NTc1MDM1OjE3ODQ1Nzg2MzVfVjM)

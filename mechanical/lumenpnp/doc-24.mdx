@@ -1,0 +1,150 @@
+---
+title: "自动换吸嘴教程"
+description: "几乎所有可以在 LumenPnP 上运行的作业，只需在第一个吸嘴杆上安装一个 吸嘴头，在第二个吸嘴杆上安装另一个 吸嘴头即可完成。这意味着极少需要更换吸嘴头。"
+---
+
+<title>自动换吸嘴教程</title>
+
+# 自动换吸嘴校准
+
+几乎所有可以在 LumenPnP 上运行的作业，只需在第一个吸嘴杆上安装一个`N045`吸嘴头，在第二个吸嘴杆上安装另一个`N24`吸嘴头即可完成。这意味着极少需要更换吸嘴头。
+
+如果您的作业需要三个以上的吸嘴，OpenPnP 默认会暂停作业，等待您手动更换吸嘴。OpenPnP 也提供自动换刀选项。对于您需要切换的每个吸嘴，请执行以下可选步骤。我们建议您同时阅读[OpenPnP Wiki 上的相关页面。](https://github.com/openpnp/openpnp/wiki/Nozzle-Tip-Changer)
+
+<callout emoji="❗">
+**警告**
+此操作步骤繁琐且容易出错。请确保使用随附的润滑剂充分润滑黄铜吸嘴杆，并将插入和取出吸嘴的速度调至非常低。我们强烈建议您仅使用两个吸嘴进行操作，或者仅在绝对必要时手动更换吸嘴。
+</callout>
+
+<callout emoji="❗">
+对于因自动换吸嘴导致的设备损坏，不提供质保服务。
+</callout>
+
+1. 将吸嘴头插入支架上相应标有标签的插槽中。
+2. 使用吸嘴随附的润滑剂包，在吸嘴座末端涂抹一些润滑剂。这对于确保吸嘴能够反复完全安装到位，同时避免损坏吸嘴座周围的橡胶 O 形圈至关重要。 
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZTk5OTk3ZGVjM2YzNGViOWIyZDBlMmRkM2UyYTUwYjNfZjkyODRkNGM3ZTg5MWU0YzMwMGFhNmMwNDNkZDYzMjlfSUQ6NzY2MzgyMzgxMjM2MTk0ODM3MF8xNzg0NTc1MDQwOjE3ODQ1Nzg2NDBfVjM)
+
+1. 点击右上角窗格中的`Machine Setup`选项卡。 
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZGNkMjg4MTFlN2MzM2Y2YTE2YzZiZjAxODZlM2MwNjFfZWQyMTUzNTAzNDQzOWExYzhiNWRhMTZkYmM3ZTI1NWNfSUQ6NzY2MzgyMzgxNTkyMzEyNTIxMF8xNzg0NTc1MDQwOjE3ODQ1Nzg2NDBfVjM)
+
+1. 点击“展开”复选框，即可打开有关您机器的所有功能。 
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZmY2OTc2YTUyOTg1NmJhY2ZjOTg2ZWQ2MzM5MmJmM2RfOGE0ODNlN2M4ZTgyNDcwZDU4YTkxNGIwMDRiYTdiNGZfSUQ6NzY2MzgyMzgxOTA5NzgyMDQwMF8xNzg0NTc1MDQwOjE3ODQ1Nzg2NDBfVjM)
+
+1. 选择您正在使用的吸嘴。例如：`Nozzle Tips > ReferenceNozzleTipN045`
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZGE0ZDg0YjBjMmI3NDA4ZTQ5YjMxMWU3ZDhiNjE1MzFfNjQ3ZjU0YTU5NTY1MzJiODkyN2M1ZjE0YmVmNmMwZmVfSUQ6NzY2MzgyMzgxODk0Njk4OTM0MV8xNzg0NTc1MDQwOjE3ODQ1Nzg2NDBfVjM)
+
+1. 选择`Tool Changer`标签页。 
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MzExZDUyZjI3ZWI3MjkwODNlOWVjNDE3MzYyNjM4NzFfMzAyMTg4ZmNlY2Q2OTYyMzM2NjEwNjAzMTQwZWEyMmRfSUQ6NzY2MzgyMzgyMzgzNzM4Mzk2MV8xNzg0NTc1MDQwOjE3ODQ1Nzg2NDBfVjM)
+
+## 获取位置
+
+现在我们可以开始采集位置信息了。自动换嘴的工作原理是向前或向后重复执行四个位置指令，分别用于加载或卸载吸嘴。我们将从最后一个位置开始，因为这样最容易确保 Z 轴高度的准确性。请注意，以下说明适用于 N045 吸嘴，但您应该使用您正在设置的任何吸嘴。
+
+<callout emoji="❗">
+**警告**
+务必小心，避免吸嘴或工具头撞击工作台上的任何部件，尤其是吸嘴支架。如果反向间隙补偿值较高，则更要格外小心，因为这会导致工具头在通过点动来消除反向间隙时朝意想不到的方向移动。同时，也要注意机床的 Z 轴安全设置，因为这些设置可能会导致工具头在移动过程中抬起以避免碰撞，而这在某些情况下可能反而不利。
+</callout>
+
+1. 用手将 N045 吸嘴安装到工具头上。 
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ODhhNzY0MWRiODc0OThmMTlmYTM0NTc3YjRlZTljMmVfOWFhZTY0YTcyMTczODA1YjhhNjdkODA2MGQ0NzRlNGRfSUQ6NzY2MzgyMzgyNDIzMTc2MzE0N18xNzg0NTc1MDQwOjE3ODQ1Nzg2NDBfVjM)
+
+1. 轻轻移动吸嘴，直到它正好位于换刀器中的 N045 插槽前面。 
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZWJhZDk0N2I5OTIyNTMyY2M2YzEwYTY3ZjdiZTFjMDhfMzExNGJhMDhjMmIxOThiZTU1NjgxMmZiOTlhYTVmMDlfSUQ6NzY2MzgyMzgyNzA3NTQ4NDkzMV8xNzg0NTc1MDQwOjE3ODQ1Nzg2NDBfVjM)
+
+1. 调整 Z 轴高度，直到它能顺利滑入吸嘴架为止。 
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NDcyM2EwZWNkZjNjNzhiYmQyYTlhNjBjMmZhMmVhZDRfMjQ2MjMyYjdlMzdkZDg4MDlkOWYxODU4MmVhZWVhYzJfSUQ6NzY2MzgyMzgyOTIzNTU2NzU3OF8xNzg0NTc1MDQwOjE3ODQ1Nzg2NDBfVjM)
+
+1. 再次确认工具头是否与 Y 轴方向的槽口对齐，这样只需沿 X 轴移动即可将其卡入到位。建议先沿 X 轴进行微调，将吸嘴试装到槽口中。
+2. 捕获吸嘴位置`Last Location` （这是第一个位置，吸嘴在吸嘴架外侧）。 
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NGViM2YwNzcwNjBmZjM3NDFiZTgzN2NiODM5NTQzMzFfMjg5YTFhM2E2NWZmZmYxMzU1ZGJiMGE5YjY4YmM5MzBfSUQ6NzY2MzgyMzgzMTA2ODQ2MjA0Ml8xNzg0NTc1MDQwOjE3ODQ1Nzg2NDBfVjM)
+
+1. 沿 X 轴以 0.1 毫米为增量移动吸嘴，将其送入槽内。尽量确保吸嘴支架在 Y 轴方向上没有横向应力。重复此操作，直至吸嘴完全插入吸嘴支架。 
+
+   1. 不要修改Y坐标，如果修改了，请同步修改上面第一个点的坐标
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZjEzYjFkYjM3M2U1MGEyZTRjMDMzYTNiODY4OTFlZmNfZmU3YjE0NjRkYjU1ZTYyZWIzNjUxN2VkMjBiNWVmMjdfSUQ6NzY2MzgyMzgzNTIxMjQxODM0OF8xNzg0NTc1MDQwOjE3ODQ1Nzg2NDBfVjM)
+
+1. 记录`Third Location`吸嘴位置。 
+
+   1. 图中数据不对，Y坐标所有点都是一样的
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NTQzMTk0YmRkMzc2NGNjOTkzZmVjNzI5MzBmYzZmYzRfZjdiYzEyMTgyYjI2MzAyN2MwNDQ4M2RhMWU5MjYzYTlfSUQ6NzY2MzgyMzgzNzAxNzUyNTIwMV8xNzg0NTc1MDQwOjE3ODQ1Nzg2NDBfVjM)
+
+1. 下一步是为了确保吸嘴尖端在插入过程中完全卡入 CP40 夹具中。将 Z 轴向下移动约两毫米。CP40 夹具中的弹簧会吸收这几毫米的移动，以避免损坏工具头。您可能会发现移动幅度更大或更小也能使吸嘴尖端完全卡入到位，因此请随意尝试。 
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=Mjg0ZTk2M2ZhNmM4ZmE4NTViMGRiZjk1MTA3NjdjNjRfNDBiZmQ2Zjc3MTM2MDllZGUyYjRlNDYyNTJhOTcxZjlfSUQ6NzY2MzgyMzgzNzU0NDUxNjgwN18xNzg0NTc1MDQwOjE3ODQ1Nzg2NDBfVjM)
+
+1. 记录`Second Location`吸嘴位置。 
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=M2EzZGQzODEyMTVlYTJjOTk2NDNiYmYyYzcyYTYxYWFfNjFiNzk0YTU2MGFlZGJhMGQ0MjZkZWRjMWY5ZDMzOTFfSUQ6NzY2MzgyMzg0MTAxMzA3NTIwOV8xNzg0NTc1MDQwOjE3ODQ1Nzg2NDBfVjM)
+
+1. 现在将 Z 轴向上移动 30 毫米。这是吸嘴座准备下压的间隙位置。 
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YzhlZGVkZDllNDFmZDQ2NGFmMzQ1NmQ0MmU1Y2QxYzNfNjY2YzdmOGE4NWJkMGM5NzRiMDNiZTIwZTk5ZDM0ZmVfSUQ6NzY2MzgyMzg0MDU3NzA4MDUyMl8xNzg0NTc1MDQwOjE3ODQ1Nzg2NDBfVjM)
+
+1. 记录`First Location`吸嘴位置。 
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NzA4MWI2MTQ2YmEzM2M5YzE0OTkyYmUyMGRiYTU4NGJfYjM1YzdmYWRjOGIzODA1MTcwM2I3Yjc1YWM5NWYzNDlfSUQ6NzY2MzgyMzg0NTIxOTkyOTMwNl8xNzg0NTc1MDQwOjE3ODQ1Nzg2NDBfVjM)
+
+1. 现在，您可以依次点击“将吸嘴移动到指定位置”按钮来尝试不同的位置。根据需要调整各字段中的数值，以确保吸嘴插入干净利落、笔直。 
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZjYwMTA2M2Y5Y2E4NzE1MjM3MGRmMmFiNzQ5NzBlNjFfMGNlYzFjNzI1NTAyMGEyMzJiY2ExZDMyNmE4MDQzZmVfSUQ6NzY2MzgyMzg0NDExNjk0MjEyNV8xNzg0NTc1MDQwOjE3ODQ1Nzg2NDBfVjM)
+
+1. 将更改应用到换刀位置。 
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZGRmNDZhNjY3NmY5ZTZhNzk4MjQyNDQ4OWQ1MzQ5NGNfZDBkYzc2MTE2NjIzMThlMjQ3NmQ3YTc0Y2E5YzdmZjNfSUQ6NzY2MzgyMzg0NzQzNDcwMTc1NV8xNzg0NTc1MDQwOjE3ODQ1Nzg2NDBfVjM)
+
+1. 对每个吸嘴重复上述步骤。另请参阅[OpenPnP 文档中的“克隆设置”部分](https://github.com/openpnp/openpnp/wiki/Nozzle-Tip-Changer#cloning-settings)。
+
+## 启用自动换刀功能
+
+现在你的位置已经设置好了，你可以在 OpenPnP 中启用自动换刀功能。
+
+1. 点击`Machine Setup`右上角窗格中的选项卡。 
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OTYyYjI2MmI4M2Y1MjYxMDYxMzY5Mzg2NDgzZDY1OGNfMzQzMjRhOWFjOTZlOWE4MDBmZmVkOWE3NTE3YjU1OGJfSUQ6NzY2MzgyMzg1MDk1MzYwODQ1OF8xNzg0NTc1MDQwOjE3ODQ1Nzg2NDBfVjM)
+
+1. 如有必要，请点击“展开”复选框。 
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZTYxNzRjNGY4ZjY2YmExNGRlZDAxMzAxMDViZmExNGNfMTI3MDNlODU2ZDc0MWQ3YzIzMTYxNGQxYzdhNjg1YzZfSUQ6NzY2MzgyMzg1MDAwMTY5Nzk3OF8xNzg0NTc1MDQwOjE3ODQ1Nzg2NDBfVjM)
+
+1. 选择`Heads > ReferenceHead H1 > Nozzles > ReferenceNozzle N1`。 
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MGViZGRjMGZiYjcxZDBjODNhN2NkZDg0ZmI3ODg2NjBfZWUzNzgxODg0MWE5YmUzYzAzOTBlYzc1OGFiZjQ3NTZfSUQ6NzY2MzgyMzg1NDQwMTQwODE5NF8xNzg0NTc1MDQwOjE3ODQ1Nzg2NDBfVjM)
+
+1. 切换到`Tool Changer`标签页。 
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YTUxODM5OTk1ZDk5ODkyZDM3MjhhM2Q1YzVhNzljOWFfYmZjNjU3MDI4ZGZjOGRhZWFjZjk0MmE2OGEyMzg5YjFfSUQ6NzY2MzgyMzg1ODAxNDE5NDg2N18xNzg0NTc1MDQwOjE3ODQ1Nzg2NDBfVjM)
+
+1. 勾选此`Automatic Tool Changer Enabled?`框。 
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MGIwMTMwMDRiZDMxMmUxOTQxMGQ3NzM4YmY0ODNkZDlfMTMwOGQ3MTc2NDczY2FiMTRhNzViMTRhMzk2NGNiMTZfSUQ6NzY2MzgyMzg1OTYyNzM3OTk5N18xNzg0NTc1MDQwOjE3ODQ1Nzg2NDBfVjM)
+
+1. 点击`Apply`保存更改。 
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OGJlN2FiZTVmYjVmM2E0MmM2NjUyNTNkZmRkNGM3MjZfZThiZDVhNzA0NGFmMGNiMDNkOWUzZGU1YmM1NGU5YzBfSUQ6NzY2MzgyMzg1Nzg3MDE5NTkxMl8xNzg0NTc1MDQwOjE3ODQ1Nzg2NDBfVjM)
+
+1. 选择`Heads > ReferenceHead H2 > Nozzles > ReferenceNozzle N2`。 
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OWEyZjkyZmZmYzE0MDkxMmNlNzRjYmIyZmFjODczMDNfMzM4NDM3OTc3OWMzNjA4ODg0YWZkNjU1YTYyNzkyYWRfSUQ6NzY2MzgyMzg2MTQ4OTgxNDczOF8xNzg0NTc1MDQwOjE3ODQ1Nzg2NDBfVjM)
+
+1. 切换到`Tool Changer`标签页。 
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=Zjc0YTUxMzAxZWYwOWNhZDRlNjdmOTQzZTIxMThlOWJfYTkzNzg5MzMxMWU2NjEwY2I5NmVmYmY1YTBmMTgzOGVfSUQ6NzY2MzgyMzg2NDEzNjM3MTQ4Ml8xNzg0NTc1MDQwOjE3ODQ1Nzg2NDBfVjM)
+
+1. 勾选此`Automatic Tool Changer Enabled?`框。 
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OTBhOTMyODVmODk0M2I5YjZhNzhiOTE0MzVlNWRjZTVfNGYxNzM2MTZiMmEwMDY5YjY2MTBmMWZkZDc3MDJlYjNfSUQ6NzY2MzgyMzg2ODA3NDcyNDYzOF8xNzg0NTc1MDQwOjE3ODQ1Nzg2NDBfVjM)
+
+1. 点击`Apply`保存更改。 
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MDcxZmU2MWNkY2M1YWNlZmEyNzU2NzE0ZDJkYTc0NThfOGViZGQ0M2M4MjNjZDZkY2E2NWFjMTMwZmNhODc0NWRfSUQ6NzY2MzgyMzg2NjQ2MDA4MTM1N18xNzg0NTc1MDQwOjE3ODQ1Nzg2NDBfVjM)

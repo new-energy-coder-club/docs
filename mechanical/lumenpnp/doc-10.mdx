@@ -1,0 +1,321 @@
+---
+title: "验证校准"
+description: "首先使用 FTP 测试板进行验证"
+---
+
+<title>验证校准</title>
+
+# 简介
+
+## 首先使用 FTP 测试板进行验证
+
+在组装您自己的设计之前，我们将使用我们提供的FTP测试板、元件及贴装文件运行一项验证校准测试。
+
+可以把它想象成打印机的测试页。打印重要文档之前，你会先打印测试页。FTP 测试板的作用也是如此。
+
+![图片展示的是Opulo的FTP测试板，板子上有多个元件标识，如R1至R40、D1至D24等，还有5V和GND电源标识。板子边缘有三个圆形孔，板子中间有一个十字准星图案。底部标注“Functional Test Placement REV00”及“docs.opulo.io”。该图片位于介绍FTP测试板功能的上下文部分，用于直观呈现FTP测试板的外观及元件分布情况，辅助说明其作为公认可靠参考标准的功能。](https://cdn.newenergycoder.club/images/lumenpnp/J8rLbeA0uonnskxfpSCcCx3pnme.webp)
+
+### 为什么不先用自己的板子试试呢？
+
+**您的个性化设计引入了额外的变量**：
+
+- 自定义的板子坐标原点
+- 贴装角度差异
+- 位置文件格式
+- 层对齐
+- 元件库的定义
+
+**如果出现问题，将难以判断根源是：**
+
+- 机器校准
+- 文件格式化
+- CAD导出设置
+- 元件定义
+
+### FTP测试板的功能
+
+FTP 测试板是一个公认的可靠参考标准。
+
+**我们提供**：
+
+- PCB实物
+- 板子文件
+- 位置文件
+- 元件
+
+这使我们能够将机器行为与设计变量分离，控制变量，快速验证机器。
+
+**如P4.10-视觉归位**
+
+---
+
+## 验证成功
+
+**成功完成FTP测试任务后，您会看到：**
+
+- 元件与对应焊盘对齐良好
+- 元件中心位置正确、角度准确
+- 贴装具备可重复性
+
+在此阶段如果发现任何异常，我们希望能在变量可控的情况下及时处理。
+
+---
+
+## 验证之后
+
+**一旦FTP测试板成功完成，您就可以：**
+
+- 导入您自己的电路板
+- 加载您自己的位置文件
+- 开始贴装你的设计
+
+这样做的好处是，你不再需要猜测是不是机器或者校准有问题，而是从一个经过验证和校准的起点出发。
+
+---
+
+下一步
+
+现在，我们开始在平台底板上放置FTP板吧。
+
+# 电路板验证
+
+---
+
+FTP PCB 的第一步是将 FTP PCB 实际安装到 LumenPnP 的平台底板上。
+
+---
+
+## 安装FTP PCB
+
+1. **将通用安装组件松松地拧到暂存板上的以下位置**。
+
+   - 静态板安装座呈对角线位置，用螺丝固定到 B26 上
+   - 动态电路板安装座垂直放置，用螺丝固定到 D26 上
+   - 动态电路板安装座水平放置，
+   - 用螺丝固定到 B28 上
+   - 电路板支撑放置在 E29
+
+   <callout emoji="💡">
+   **金属平台底板没有丝印**
+   使用金属板替代官方PCB底板的，没有以上丝印。请通过孔的左右、上下与底板侧边距离定位
+   </callout>
+
+   ![](https://cdn.newenergycoder.club/images/lumenpnp/P9XGbatWEoiSNcx3EJXclbLcnDf.webp)
+2. **将双面胶带贴到FTP PCB上**。
+
+   - 在FTP板上的两条白色水平线之间贴上双面胶（群主这里购买的已经贴好）。
+   - 避免遮盖FID基准标记（用于校准）。
+   - 胶带可以将元件固定在PCB板上，无需使用焊膏，从而简化了测试过程。
+
+   ![](https://cdn.newenergycoder.club/images/lumenpnp/FSNOb1znjo6wV1xUooJcjwBjngc.webp)
+3. **将PCB板放入安装座中**。
+
+   - 将 FTP 板放入板夹中，并推紧板夹，使其紧贴板的侧面。
+   - 板子的顶部边缘应与动态板卡固定座卡扣上的凸脊对齐。
+   - 轻轻将板子推向固定座，同时稍微向后掰动态固定座的卡扣。这样可以让PCB滑过卡扣的凸起，从而卡入到位。
+   - 安装到位后，板材应该紧密贴合，不会有明显的移动或晃动。
+
+   ![](https://cdn.newenergycoder.club/images/lumenpnp/QWvObSO6QoNTstx8dHncGZ2unKc.webp)
+4. **拧紧蝶形螺丝**。
+
+   - 电路板就位后，拧紧固定**蝶形**螺丝。除非按压动态电路板固定卡扣，否则您应该无法轻易移动电路板。
+
+---
+
+## 导入位置文件
+
+1. **下载FTP电路板位置文件**。
+
+<figure view-type="Card"><source href="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MDEzMzQ4YTQ3OTBjYzdmMjQyYmNiYWUyNmRjMTcyZDhfYWU0ZTc4YWQ4NDE5MWU2MGJiYmU2NzcwOGRjMjc0NjBfSUQ6NzY2MzgyNzQ5MDU4NjEzNTg1MF8xNzg0NTc1MDIxOjE3ODQ1Nzg2MjFfVjM" token="Bxveb4H8UoRaKsx1YRRcp555nrc"/></figure>
+
+1. **在 OpenPnP 中创建一个新电路板**。
+
+   - 导航至该`Boards`选项卡。
+   - 点击绿色 “加号（+）” 图标，然后选择“创建新电路板”。
+
+   ![](https://cdn.newenergycoder.club/images/lumenpnp/AuNYbpUiwobo9VxC1nscmKExnPg.webp)
+
+   - 当保存窗口弹出时，将其命名为 ftp.board.xml 保存在您的计算机上。
+
+   ![](https://cdn.newenergycoder.club/images/lumenpnp/UaXzbGoTUoZO27xAoztciYXmnof.webp)
+2. **导入位置数据**。
+
+   - 在“Boards”选项卡中，选择刚才新建的电路板，然后单击`File > Import Placements > KiCAD .pos`
+
+   ![](https://cdn.newenergycoder.club/images/lumenpnp/FSKbbUjjOooLK6xkvc4cXl1Vndh.webp)
+
+   - 选择您之前下载的`ftp-top.pos`文件作为“Top File (.pos) ”。
+   - 勾选“Assign Parts”复选框。
+   - 勾选“Create Missing Parts”复选框。
+   - 点击`Import`加载元件贴装数据。
+
+   ![](https://cdn.newenergycoder.club/images/lumenpnp/ZuJCbkA0ZooVJkxG3fUcN7t4nSh.webp)
+3. 设置所属封装将导入文件中元件封装度对应到系统里已有封装，这样就不用重复设置了，实现复用
+
+   ![图片展示的是OpenPnP软件界面中“元件库”标签页下的“R_0603_1608_Metric - Small”元件列表。列表中显示了元件ID、自定义描述、元件高度、透穿深度、所属封装等信息，其中“R_0603_1608_Metric - Small”元件的“Height”值为0.500毫米。下方“设置”区域有“底部视觉配置”和“基准视觉配置”选项，以及“取料重试次数”设置为0。该图片与文档中设置零件高度的操作步骤相关，直观呈现了操作前的界面状态。](https://cdn.newenergycoder.club/images/lumenpnp/Bo2cbHDYxoRq3pxTOTVcFzUFnXd.webp)
+4. **设置零件高度**。
+
+   - 我们需要告诉 OpenPnP 元件的高度，以便它在吸取该元件时能够考虑到这一点。
+   - 在`Parts` 标签页中，找到`R_0603_1608_Metric-R_Small`。
+   - 找到`Height` 该列，双击单元格，将高度值从`0.0` 毫米更改为`0.5` 毫米。
+   - 如果未设置零件高度，在尝试吸取元件时会弹出错误，因此请确保完成后应用并保存您的更改。
+
+   ![](https://cdn.newenergycoder.club/images/lumenpnp/PRMDb3XR9oVGQWx5UMycwwRDnfg.webp)
+5. **保存您的作业文件**。
+
+   - 请前往`File > Save Job As`并保存您的FTP作业。
+   - 此时会弹出一个窗口，询问您是否要保存对 ftp.board.xml 的更改。选择“`Yes`”保存 。
+
+   ![](https://cdn.newenergycoder.club/images/lumenpnp/IadUbYPowoQpgrx5WnXcU45InRf.webp)
+
+---
+
+## 查找 FTP 板的位置
+
+接下来，OpenPnP 需要知道电路板的确切位置。我们将查找并设置FTP板的物理位置。
+
+1. **将电路板添加到任务中**。
+
+   - 导航至右上角窗格中的`Job`选项卡。
+
+   ![](https://cdn.newenergycoder.club/images/lumenpnp/UHtgbInbjoLpN8xp81mcEEYBnde.webp)
+
+   - 点击绿色“加号（+）”图标
+   - 选择“Existing board**现有板**”，然后选择之前创建的名为 ftp.board.xml 的板。
+   - 单击`OK`，将 ftp.board.xml 添加到**“Job任务”**选项卡。
+2. **识别基准点**。
+
+   - 在右下角的面板中，您会看到`Placements`面板。在其中找到基准点`FID1`、`FID2`和`FID3`。您可以通过按`Part`排序方式对列表进行排序，以便轻松找到它们。
+   - 将它们的类型从`Placement`更改为`Fiducial`，以便 OpenPnP 将它们识别为参考点而不是实际元件。
+
+   ![](https://cdn.newenergycoder.club/images/lumenpnp/Szcyb54mBo16yTxQQc2cIE81nWe.webp)
+
+   ![](https://cdn.newenergycoder.club/images/lumenpnp/AtFlb48zwodJIbxZUYEcX1Ygn1c.webp)
+3. **回零 LumenPnP** 。
+
+   - 在回零之前，**调整喷嘴水平以防止碰撞**。
+   - 对 LumenPnP 进行回零，确保基准点检测以及 N1 和 N2 吸嘴的吸嘴尖端校准能够成功完成，且不报错。
+4. **设置电路板原点**。
+
+   - 移动顶部摄像头，使其中心位置对准 PCB 左下角。
+
+   ![](https://cdn.newenergycoder.club/images/lumenpnp/Y8HxbWbeIoPPgOxkRhocXXncnqe.webp)
+
+   - 在`Job` 选项卡中选择**电路板**，然后单击`Capture Camera Position`以保存当前相机位置并设置电路板的原点。
+5. **设置电路板高度**。
+
+   - 微调 N1 吸嘴位置和高度，使其刚好接触 FTP PCB 的顶面。
+   - 将当前 Z 轴位置（显示在用户界面右下角的绿色条中）输入到电路板的`Z position`字段中。
+   - 在机器控制中，单击Z 向上/向下箭头之间的`P`字母，将喷嘴“**停放”**在安全高度，以防止意外碰撞。
+
+   ![](https://cdn.newenergycoder.club/images/lumenpnp/IbhRboF9KoYLiVxqs9RcVdwKnwc.webp)
+6. **运行基准点扫描**。
+
+   - 点击`Fiducial Scan` 按钮即可自动对齐电路板。机器将移动到基准点位置，并使用摄像头识别基准点的中心。然后，它会计算并调整任何角度偏差。
+
+   ![](https://cdn.newenergycoder.club/images/lumenpnp/Iv2ybXOE1oLMfRxfkF8clDmIn6f.webp)
+
+   - 如果基准点检查因任何原因失败，请查看我们关于调整[PCB 基准点视觉通道的](https://tcnyw794ws3e.feishu.cn/wiki/VOXawwCRbikLHRk8wTKcWsrXnrf?larkTabName=space#VP1DdMLI9oNXP0xtX3DcH1konTg)说明。
+7. **验证对齐情况**。
+
+   - 要确认基准点校准是否成功，请在`Placements`表格中选择任意位置，然后点击`jog camera to position`按钮。如果相机中心对准元件封装中心，则说明基准点校准成功。
+
+   ![](https://cdn.newenergycoder.club/images/lumenpnp/R4hDbGxGmoxXTTxAeHIc5zE3njf.webp)
+
+---
+
+## 在任务中禁用LED元件
+
+在 OpenPnP 中，禁用电路板上的元件是一项非常有用的功能，尤其适用于 DNP（请勿焊接）元件、替代元件或其他特殊情况。在本示例中，我们将禁用 LED 为例。
+
+1. **禁用元件的步骤**。
+
+   - 在“Job 任务”选项卡中单击第一个 LED 元件。
+
+   ![](https://cdn.newenergycoder.club/images/lumenpnp/PBBzbvH3Not0c5x1OUzcYxaRnwh.webp)
+
+   - 向下滚动找到最后一个LED 元件。按住 SHIFT 键并选择最后一个 LED 元件的位置，即可选中所有 LED 元件。
+
+   ![](https://cdn.newenergycoder.club/images/lumenpnp/BXuNbDvVyo6CuyxrOFAcIOFMnIh.webp)
+2. **禁用LED灯**。
+
+   - 右键单击选定的元件，然后选择`Set Enabled > Disabled`。
+   - 这些元件将不再在此任务中被贴装。
+
+   ![](https://cdn.newenergycoder.club/images/lumenpnp/GBbebnZRXoCtQwxNstgc5zz2n3f.webp)
+
+---
+
+下一步
+
+现在双面胶带已经贴好，FTP 板也已安装到工作台上，我们可以开始设置飞达以供拾取。
+
+# 飞达安装和测试
+
+选择并安装好飞达
+
+[飞达使用教程](https://tcnyw794ws3e.feishu.cn/wiki/MB7GwzTu0iWvH4kZQWfcNBURneh)
+
+# 任务验证
+
+---
+
+在运行作业之前，您需要测试底部视觉通道，该通道使用底部摄像头来对齐组件，以便更准确地放置组件。
+
+---
+
+## 底部视觉测试
+
+1. **拾取一个元件**。
+
+   - 在`Feeders`选项卡中，选择飞达，然后单击下图所示的`Feed and pick`按钮。这样机器就会拾取一个电阻器。
+
+   ![图片展示了OpenDHPL软件界面，用于验证校准任务。界面左侧有“Top”和“Bottom”摄像头画面，显示元件图像。右侧是“Parts”选项卡，选中“ReferenceTrajFeeder”选项，其下方有“Part”下拉菜单，显示“R_9663_060Metric_4_Small”等信息。画面中红色箭头指向“ReferenceTrajFeeder”选项，突出显示。该图片与文档中“测试对齐”步骤相关，用于说明在切换到“Parts”选项卡后，选择拾取的零件的操作位置。](https://cdn.newenergycoder.club/images/lumenpnp/L8CfbRZE9obXO6xpwrEc49LCnuf.webp)
+2. **测试对齐**。
+
+   - 切换到`Parts`选项卡，选择您刚刚拾取的零件，然后单击“Test Alignment测试对齐”按钮。
+
+   ![](https://cdn.newenergycoder.club/images/lumenpnp/R2PVbRKW4oqPD3x55HVci23nnON.webp)
+3. **验证底部视觉输出**。
+
+   - 观察底部摄像头画面。红色矩形框应完美勾勒出元件轮廓，并在元件检测完毕后消失。
+   - 如果元件上的矩形未对齐，请在继续操作之前调整[零件识别通道](https://tcnyw794ws3e.feishu.cn/wiki/VOXawwCRbikLHRk8wTKcWsrXnrf?larkTabName=space#BjmPduA1goGx6gxnBH8ckzIpnZb)。
+
+   ![](https://cdn.newenergycoder.club/images/lumenpnp/CrWjbrqJcoS4fIxDEancYYBxnne.webp)
+4. **回收元件**。
+
+   - 确认元件识别功能正常后，切换到 Machine Controls 面板中的`Special`选项卡。
+
+   ![](https://cdn.newenergycoder.club/images/lumenpnp/Bxveb4H8UoRaKsx1YRRcp555nrc.png)
+
+   - 单击`Recycle`按钮指示 LumenPnP 回收已拾取的元件。
+
+   <callout emoji="💡">
+   电动飞达不支持回收，只能Discard抛料。散料编带可以Recycle回收。
+   </callout>
+
+   ![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YTIwNmQ2Yjc4YjRlNWRkOTZlNzlhZmJlZDdlNDc2ZTFfODQ2MDc4YjlhODg4YzQ0MTFiNmY0NDkyYjE0YTE1ZGJfSUQ6NzY2MzgyNzU0NjM1Mzc0OTI5NF8xNzg0NTc1MDIxOjE3ODQ1Nzg2MjFfVjM)
+
+---
+
+## 逐步执行任务
+
+**回零您的机器**
+
+在开始每个任务之前，回零您的 LumenPnP 至关重要。LumenPnP 中的步进电机在闲置一段时间后会断电并丢失位置。重新回零可确保再次准确贴装。
+
+1. **开始贴装组件**。
+
+   - 在继续之前，请确保 Job 选项卡中的“Check Fids?”复选框已勾选。
+   - 点击绿色`Play`按钮。这将启动基准点校准。**基准点检查完成后，点击`Pause`**。
+   - 现在，您可以使用位于 Play 按钮旁边的黄色 Single job step 按钮，一步一步地执行任务，以确保一切顺利。
+   - LumenPnP 将逐步完成拾取元件、使用底部相机对准元件并将其贴装到板上的过程。
+   - 逐步完成，直到贴装几个元件。
+
+   ![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YjYxMGVjYzA0NTIxNmE3NWFhOWEwYTkxZDI3ZWRhMDNfMTc5YjE4ZTM0MDMzMGIwM2M5ODU1NjkyOWJhMzI2ZmFfSUQ6NzY2MzgyNzU0ODAzNTU5OTU5MF8xNzg0NTc1MDIxOjE3ODQ1Nzg2MjFfVjM)
+
+---
+
+## 后续步骤
+
+- **恭喜！**您的飞达已配置完毕，成功贴装，LumenPnP 现在可以投入使用了！如果贴装看起来准确，您可以继续完成电路板的贴装。但是，如果元件错位或无法正确拾取，请参阅[**错误汇总**](https://tcnyw794ws3e.feishu.cn/wiki/K3jJwIn7wi9jBhkb9onceTHlnqu)以优化校准。调试将帮助您诊断需要微调的参数，并指导您调整其他关键参数，从而确保贴装的一致性和可靠性。

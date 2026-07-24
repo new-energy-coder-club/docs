@@ -1,0 +1,1341 @@
+---
+title: "问题与解决方案"
+description: "配置文件中已经关闭了以下步骤，不需要自己再操作了。"
+---
+
+<title>问题与解决方案</title>
+
+# 问题与解决方案概述
+
+**问题与解决方案 “建议” 关闭的步骤** ：
+
+配置文件中已经关闭了以下步骤，不需要自己再操作了。
+
+- Dynamic Safe Z for N1（N1 动态安全 Z) - 关闭它并刷新列表
+- Dynamic Safe Z for N2（N2 动态安全 Z）- 关闭它并刷新列表
+- Set the low side soft limit and capture（设置低侧软限制并捕获）——关闭并刷新列表
+- Set the high side soft limit and capture（设置高侧软限制并捕获）——关闭并刷新列表
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZDMwNDA0MGJiMDQzNzNkNTQ5MDhmODRhZDE4NTRmODdfNGIyZDFmNjY2OGYxZDhhODEyOGMyNmRiYTQxNDY1NDJfSUQ6NzY2MzgyNDYyMjI1NjgxOTQwOV8xNzg0NTc1MDIwOjE3ODQ1Nzg2MjBfVjM)
+
+问题与解决方案标签位于OpenPnP最顶部
+
+`Find Issues and Solutions`按钮是刷新步骤并了解下一步需要做什么的
+
+`Severity` 列它有三种类型：
+
+- **Fundamental基础**（根本性问题，必须完成）
+- **Suggestion建议**（建议，但非必需。可以有一定的优化提升。但谨慎操作。）
+- **Error错误**（这表明存在问题，需要修复。校准时，先忽略出现的那些错误直到你完成全部的校准流程）
+
+`State` 列它有三种类型：
+
+- **Open打开（**白色 - 未完成）
+- **Solved已解决**（绿色 - 完成步骤）
+- **Dismissed被驳回**（灰色 - 被驳回步骤）
+
+每个校准步骤显示两个内容：
+
+- Issue问题（需要面对的问题的是什么）
+- Solution解决方案（需要做什么来解决）
+
+---
+
+<callout emoji="💡">
+为了简化操作
+- 使用鼠标或触控板滚动相机预览窗口来放大或缩小图像。
+- 右键单击并选择十字线，然后选择标尺。这有助于校准。
+</callout>
+
+# 基本任务
+
+## 回零归位 To continue, the machine must be enabled and homed.
+
+<callout emoji="❗">
+在完成所有校准任务之前，不要再次归位。只允许校准前执行这一次归位操作。
+</callout>
+
+---
+
+**Issus问题**
+
+校准前，先回零 
+
+**Solution解决方案**
+
+立即回零。
+
+<callout emoji="❗">
+在完成所有校准任务之前，不要再次归位。只允许校准前执行这一次归位操作。
+</callout>
+
+---
+
+### 本步骤的作用
+
+每次启动软件后，这项Issue都会出现在第一栏，其意义在于提醒用户，需要进行执行Home点的回归，为贴片机建立坐标系。
+
+---
+
+### 确认吸嘴水平
+
+**按下Home键前**，先确认吸嘴水平。
+
+<callout emoji="⛔">
+停止 如果
+如果两个吸嘴都不接近水平，就停止。手动将它们调整水平，不需要完全水平。
+如果**吸嘴错位，回零时会导致吸嘴与机架或平台底板碰撞**。 
+在继续之前，先调整吸嘴使其大致水平。
+</callout>
+
+<callout emoji="💡">
+**专业提示**
+机器Home**回零之后**，直接使用**Z Park**按钮就可以保证吸嘴尖端移动到安全高度。
+鼓励在学习操作的同时，经常练习这个习惯。 
+保持吸嘴在安全高度大大降低意外碰撞的可能性。
+“**Park**”按钮位于“机器控制”面板中，在 Z 轴高度调节上下箭头之间。
+</callout>
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/GoGpbGs2noBf9sxgoPXcOs5inug.webp)
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/BGBEbR8gvo9IuJxfhsEcH3pkn0e.webp)
+
+---
+
+### 执行回零操作
+
+1. 在`Machine Controls`面板中找到`Home`回零按钮。
+
+<callout emoji="❗">
+**按下Home键前**，先确认吸嘴水平。
+</callout>
+
+<callout emoji="❗">
+在完成所有校准任务之前，不要再次归位。只允许校准前执行这一次归位操作。
+</callout>
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/KVd6brgYNoWvUxxVJNlcMYpmnSd.webp)
+
+1. 点击 黄色的`Home回零` 图标
+
+   - 机器会把贴装头移到机器的`前左角（X0, Y0）`位置。
+   - 动作完成后，贴装头将停留该位置。
+
+### 接受校准
+
+点击：
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/DdUSbSTgDo7X4Ix8FWycGOGFnzd.webp)
+
+---
+
+### 完成校准
+
+继续点击：
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/GoGpbGs2noBf9sxgoPXcOs5inug.webp)
+
+这将刷新问题与解决方案列表，并进入下一个校准步骤。
+
+<callout emoji="❗">
+在完成所有校准任务之前，不要再次归位。只允许校准前执行这一次归位操作。
+</callout>
+
+---
+
+## 主校准板基准位置与初始相机标定Primary calibration fiducial position & initial camera calibration
+
+---
+
+**Issus问题**
+
+主校准基准位置与初始相机校准
+
+**Solution解决方案**
+
+将摄像机移到主校准基点上，捕捉其位置。
+
+---
+
+### 忽略这些不必要的步骤
+
+首先，在开始 *问题与解决方案* 校准之前，如果你发现这些不必要的步骤，请不要完成它们。
+
+**如果你使用的是我们（LumenPnP）提供的配置文件，不需要的步骤已经被设置好了。**
+
+如果你在界面上看到以下这些步骤，请直接忽略/关闭它们。
+
+**Dynamic Safe Z for N1（N1 的动态Z安全高度）**
+
+- 如果弹出这个页面，请直接关闭此步骤，不要在该页面上进行任何操作。
+- 然后，点击"查找问题与解决方案"按钮来刷新列表。
+
+**Dynamic Safe Z for N2（N2 的动态Z安全高度）**
+
+- 如果弹出这个页面，请直接关闭此步骤，不要在该页面上进行任何操作。
+- 然后，点击"查找问题与解决方案"按钮来刷新列表。
+
+---
+
+### 本步骤的作用
+
+这一步是告诉 OpenPnP ，主基准板上主基准点的位置在哪里。
+
+这个基准点后续也会用作机器的归零参考点。
+
+---
+
+### 将相机移动到基准点上方
+
+使用机器控制面板，将顶部相机移动到主基准点上方。
+
+接近中心点时，请使用较小的移动步进值。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/BGBEbR8gvo9IuJxfhsEcH3pkn0e.webp)
+
+---
+
+### 识别基准点
+
+调整 **Feature Diameter** **特征直径** 设置。
+
+你可以：
+
+- 手动调整**Feature Diameter特征直径**，输入具体数值
+
+  ![](https://cdn.newenergycoder.club/images/lumenpnp/SwwkbtDJ5oJTLWxdJ3UcMRyXn2g.png)
+- 或者使用  Auto-Detect Next 自动扫描
+
+识别过程中：
+
+- 红色虚线圆圈会逐渐变大
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/IoMTbjylcoPGAkxDj1qcDK97nT6.webp)
+
+- 如果检测到圆形，它会变为实线绿色
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/ODfmboatXoW1h4x3LeacFHumnxf.webp)
+
+- 系统会继续扫描（画面左上角的Diameter会一直递增），寻找更匹配的结果，直到扫描完成，并给出它认为最匹配的圆形
+- 扫描完成后，系统会自动填写Feature Diameter 特征直径**，绿色圆圈会消失，**我们需要再手动上下调整这个特征直径值，绿色圆形会再次显示出来，再次肉眼确认绿色圆形与主基准点吻合。
+
+<callout emoji="💡">
+**温馨提示**
+自动扫描通常能找到一个不错的起始点，但并不总是完美的。在确认之前，请用肉眼观察这个圆形是否与基准点匹配。可以自己上下微调，找到一个相对完美的匹配圆形。
+如果系统无法自动找出或者找到了别圆形，请调整曝光值和亮度值，尽量让系统自己找出来，实在不行，可以手动填写数值（但这个可能意味这后面的识别校准还会有问题，所以尽量自动识别出来）。
+</callout>
+
+以下是实际测试数据，你的数值应该和这个差不多。70-100都可以就接受。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/G7JCbam67omwNTxFhMbcr7e8nec.webp)
+
+---
+
+### 接受校准
+
+一旦圆形与基准点正确匹配，点击：
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/VFnWb7yv6oEY35xXVwWcmuUnnlg.webp)
+
+**之后，OpenPnP 会自动进行几次微小的移动测试，识别基准点，以计算其位置。**
+
+---
+
+### 完成校准
+
+当这个过程完成，并且该问题标记为"已解决"后，点击：
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/J2ngbKrQho4TNrx57oachhGInEe.webp)
+
+这将刷新问题与解决方案列表，并进入下一个校准步骤。
+
+---
+
+**下一步**
+
+你已经完成了主校准基准点的位置捕捉。现在我们对辅助校准基准点进行同样的操作。
+
+## 次级辅助校准基准点位置与初始相机标定Secondary calibration fiducial position & initial camera calibration
+
+---
+
+**Issus问题**
+
+辅助校准基准点位置与初始相机校准
+
+**Solution解决方案**
+
+将相机移动到辅助校准基准点上方，并捕捉其位置。
+
+---
+
+### 本步骤的作用
+
+这一步是记录平台底板上辅助基准点的位置。
+
+通过测量两个已知的基准点（主基准和辅助基准），OpenPnP 可以确定平台底板相对于机器的**方向和比例**。
+
+---
+
+### 将相机移动到辅助基准点上方
+
+使用机器控制面板，将顶部相机移动到辅助基准点上方。
+
+接近中心点时，请使用较小的移动步进值。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/GKwgbpjmloCPRvxW2CncQA5OnjA.webp)
+
+---
+
+### 识别基准点
+
+调整 "**Feature Diameter 特征直径**" 设置。
+
+你可以：
+
+- 手动调整直径
+- 输入具体数值
+- 使用自动扫描工具
+
+辅助基准点可能略微失焦，但也应该整个圆点都是模糊的。下图中间的基准点效果良好，右侧的基准点效果不佳。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/IzVrb6gicoawi2xbHIicEMchnsh.webp)
+
+在扫描过程中：
+
+- **红色虚线圆圈**从小开始
+
+  ![](https://cdn.newenergycoder.club/images/lumenpnp/Qholbdu3NolGB3x22QqcvJsinQb.webp)
+- 圆圈会逐渐变大
+- 当检测到圆形时，它会变为**实线绿色**
+
+  ![](https://cdn.newenergycoder.club/images/lumenpnp/OiEKby2YvoayiYxxA0EcorTJnSg.webp)
+- 系统会继续扫描，寻找更匹配的结果，直到扫描完成，并给出它认为最匹配的圆形
+- 上下调整特征直径，确认这个圆形与辅助基准点吻合。
+
+---
+
+<callout emoji="💡">
+温馨提示
+自动扫描通常能找到一个不错的起始点，但偶尔也会检测到错误的圆形。在继续之前，请务必用肉眼观察确认绿色圆圈与基准点匹配。
+</callout>
+
+以下是实测数据
+
+辅助校准点实际看不清楚的，有光晕，只识别其中明显白色部分圆形即可。你也可以识别最外圆。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/JdIfb9DQ8oTPx0xGZ0jcITHtnj0.webp)
+
+
+
+---
+
+### 接受校准
+
+一旦圆形与基准点正确匹配，点击：
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/HtoUb309uogwdrxgz9pcPVZCnWd.webp)
+
+OpenPnP 会围绕基准点短暂移动，以计算其位置。
+
+---
+
+### 完成校准
+
+当这个过程完成，并且该问题标记为"已解决"后，点击：
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/ER7xbMFf9oknSixOsFXc90ZHnTg.webp)
+
+这将进入下一个校准步骤。
+
+---
+
+**下一步**
+
+你已经完成了辅助校准基准点（以及主校准基准点）的位置捕捉。接下来我们将校准 N1 号吸嘴相对于顶部相机（相机画面的中心点）的偏移量。
+
+## 主基准点的 N1 吸嘴偏移Nozzle N1 offsets for the primary fiducial
+
+---
+
+**Issus问题**
+
+主基准点的 N1 吸嘴偏移。
+
+**Solution解决方案**
+
+将 N1 吸嘴移动到主校准基准点，并捕捉其偏移量。
+
+---
+
+### 本步骤的作用
+
+这一步是测量 N1 号吸嘴相对于顶部相机的位置，即N1吸嘴中心和顶部相机的视觉中心的XYZ方向的偏移 。
+
+通过使用吸嘴捕捉主基准点的中心，OpenPnP 可以了解吸嘴相对于相机的位置关系。
+
+这种位置关系使得机器后续能够精确地贴装元件。
+
+---
+
+### 将 N1 吸嘴移动到主基准点上方
+
+使用机器控制面板，将 N1 号吸嘴移动到主校准基准点上方。
+
+请确保在机器控制面板中选中了 N1 吸嘴。
+
+接近基准点中心时，请使用较小的移动步进值。
+
+---
+
+### 将吸嘴对准基准点中心
+
+将吸嘴尖端直接对准主基准点的正中心。
+
+使用较小的移动步进值，例如：
+
+- 1 毫米
+- 0.1 毫米
+- 0.01 毫米
+
+这将帮助你精确对准吸嘴。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/PgiVbLUdGo6VEExVBVXcvu5gn4r.webp)
+
+这是一项非常重要的校准。值得花时间确保其精确性。
+
+**√记录你的 Z 轴高度坐标**
+
+当吸嘴接触到主基准点时，记下此时的 Z 轴高度。
+
+位置显示位于 OpenPnP 界面的最右下角。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/MWqGbtXlyoeUlmxk6cic2bk8nWf.webp)
+
+请记下这个 Z 轴高度。在后续的底部相机校准中你会用到它。
+
+---
+
+<callout emoji="💡">
+温馨提示
+当吸嘴对准中心时，吸嘴尖端本身会遮挡住基准点。请从正面和侧面观察，调整吸嘴位置，使基准点均匀地露在吸嘴尖端周围。
+</callout>
+
+---
+
+### 捕捉偏移量
+
+一旦吸嘴对准基准点中心，点击：
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/AGzcbUGQloUbzsx93BgcX3nYnbh.webp)
+
+OpenPnP 将记录吸嘴相对于相机的偏移量。
+
+P 齐平Z
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/JguObaoE7oL0XAxUnydcLyIDnze.webp)
+
+
+
+---
+
+### 完成校准
+
+当这个过程完成，并且该问题标记为 "**Solved已解决**"后，点击：
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/V3pcbqjXrouGpxxVYONciWPenwh.webp)
+
+这将进入下一个校准步骤。
+
+---
+
+**下一步**
+
+顶部相机到吸嘴尖端的偏移量已经通过主基准点校准完成。接下来，让我们用 N1 吸嘴校准辅助基准点。
+
+## 辅助校准基准点的N1吸嘴偏移Secondary calibration fiducial position & initial camera calibration
+
+---
+
+**Issus问题**
+
+N1 吸嘴的辅助基准点偏移。
+
+**Solution解决方案**
+
+将 N1 吸嘴移动到辅助校准基准点，并捕捉其偏移量。
+
+---
+
+### 本步骤的作用
+
+这一步是测量 N1 吸嘴相对于辅助基准点的位置。
+
+使用两个基准点有助于 OpenPnP 构建更精确的机器和平台底板的空间位置模型。
+
+---
+
+<callout emoji="⛔">
+### 如果你找不到这个步骤：
+这个步骤需要先完成 "[辅助校准基准点位置与初始相机校准](https://tcnyw794ws3e.feishu.cn/wiki/MydWwYC8NibsWVkfRH3cnyK5nOg?larkTabName=space#QeXQd7B1ioMB9xx8hTgcfa28nkd)" 的问题与解决方案步骤，才会出现。
+一旦该步骤完成，点击"查找问题与解决方案"按钮，系统会自动显示这个任务。
+</callout>
+
+---
+
+### 将 N1 吸嘴移动到辅助基准点上方
+
+1. 使用机器控制面板的移动控制，将 N1 号吸嘴移动到辅助校准基准点上方。
+2. 确保在机器控制面板中选中了 N1。
+3. 接近中心点时，请使用较小的移动步进值。
+
+---
+
+### 将吸嘴对准基准点中心
+
+1. 将吸嘴尖端直接对准辅助基准点的正中心。
+2. 建议用于精细对准的移动步进值：
+
+   - 1 毫米
+   - 0.1 毫米
+   - 0.01 毫米
+3. 调整位置，使吸嘴尖接触到辅助基准板，同时处于中心点位置。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/DiHVbHrlzoBji3xnGR1cDOyBnRd.webp)
+
+
+
+---
+
+### 捕捉偏移量
+
+一旦吸嘴对准中心，点击：
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/Jbg1bbBK3oSKAdxQDwWchIsOnEg.webp)
+
+OpenPnP 将记录 N1 吸嘴相对于辅助基准点的偏移量。
+
+P 齐平Z
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/T8p4bNyZ9oKzbMxsgSCcvmHSnCh.webp)
+
+
+
+---
+
+### 完成校准
+
+当这个过程完成，并且该问题标记为"已解决"后，点击：
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/Zc2KbXMUPoAWJYxQYyncAAE9nOh.webp)
+
+这将进入下一个校准步骤。
+
+---
+
+**下一步**
+
+顶部相机到吸嘴尖端的偏移量已经在 N1 吸嘴上针对主基准点和辅助基准点校准完成。接下来我们继续校准 N2 吸嘴的偏移量。
+
+## 主基准点的 N2 吸嘴偏移Nozzle N2 offsets for the primary fiducial
+
+---
+
+**Issus问题**
+
+主基准点的 N2 吸嘴偏移。
+
+**Solution解决方案**
+
+将 N2 吸嘴移动到主校准基准点，并捕捉其偏移量。
+
+---
+
+### 此步骤的作用
+
+**此步骤测量吸嘴 N2 相对于顶部摄像头**的位置偏移。
+
+OpenPnP 通过吸嘴尖端捕捉主基准点的中心，从而了解第二个吸嘴相对于相机的位置。
+
+这使得 LumenPnP 可以使用N1和N2任一吸嘴精确放置零件。
+
+---
+
+### 选择吸嘴 N2
+
+1. 在机器控制面板中，将选定的吸嘴更改为**N2**。
+2. 一旦选中，点动控制将移动吸嘴 N2 而不是吸嘴 N1。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/JxO1bGce6ooVsRxmfwbcICJ9nBc.webp)
+
+---
+
+### 将吸嘴 N2 移动到主基准点上方
+
+1. 使用机器控制面板，使吸嘴 N2移动到主校准基准点上方。
+2. 接近基准点中心时，使用更小的移动间距。
+
+---
+
+### 将吸嘴对准基准点
+
+将吸嘴尖端直接对准主基准点的中心。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/GzZBbdULwoeLD3xGR9TcJKO7nQJ.webp)
+
+这将有助于您精确对准吸嘴。
+
+这是一项非常重要的校准工作，值得花时间确保其精确性。
+
+---
+
+### 捕捉偏移量
+
+吸嘴对准基准点后，点击：
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/MgYQbXNu6oOUAmxfFRbcEpXsnDd.webp)
+
+OpenPnP 将记录**吸嘴 N2**的偏移量。
+
+---
+
+通过获取两个吸嘴的偏移量，OpenPnP 现在可以了解吸嘴与顶部摄像头的关系。
+
+P 齐平Z
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/DKOmbBoChoIY2jxKINPcludvn2g.webp)
+
+
+
+---
+
+### 完成校准
+
+流程完成后，问题将被标记为**“已解决”**，请点击：
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/QKohb3AUzohifVxZHFJckQDznYc.webp)
+
+这将进入下一个校准步骤。
+
+---
+
+**下一步**
+
+所有吸嘴偏移量均已校准。现在我们来设置底部摄像头的位置。
+
+## 确定向上拍摄的摄像机底部位置并进行初始校准Determine the up-looking camera Bottom position & initial calibration
+
+---
+
+**问题**
+
+确定向上拍摄的摄像机底部位置和初始校准。
+
+**解决方案**
+
+将吸嘴 N1 移动到向上拍摄的底部摄像头上方并捕获位置。
+
+---
+
+### 此步骤的作用
+
+这一步骤告诉 OpenPnP**底部（向上看）摄像头**在空间中的位置。
+
+OpenPnP 通过底部摄像头检测吸嘴尖端的中心，从而了解摄像头如何与系统对齐。
+
+---
+
+### 更换吸嘴 N1 的吸嘴头
+
+此步骤我们将使用**N08 吸嘴**。
+
+您可以在 N045 吸嘴槽旁边的吸嘴头支架中找到它。
+
+导航至：Machine Setup → Heads → ReferenceHead H1 → Nozzles → ReferenceNozzle N1 → Nozzle Tips
+
+1. **在“Loaded 已加载？** ”列中：
+
+   - 取消勾选**N045**
+   - 勾选**N08**
+2. 取消勾选 N045 吸嘴时：
+
+   - 机器将移动到吸嘴装载位置
+   - 将会弹出一个窗口
+   - 弹出窗口看起来像个错误提示，但这是**预期之内的**。直接关闭弹窗即可
+3. 拆下**N045 吸嘴**，安装**N08 吸嘴**。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/JEEFbZgV1oEM7dxjXzic8s9Cnjf.webp)
+
+---
+
+### 使用与主基准点相同的 Z 轴高度
+
+对于此校准步骤，吸嘴必须使用与前面 [*主基准点的 N1 吸嘴偏移*](https://tcnyw794ws3e.feishu.cn/wiki/MydWwYC8NibsWVkfRH3cnyK5nOg?larkTabName=space#share-GF1ed5FJQokxITxTDkZcVnannDb) 步骤中的**相同的 Z 高度**。
+
+这和基准板顶面的高度相同。
+
+两台摄像机都聚焦在这个高度(焦点在这里)，因此它必须保持为参考平面。
+
+您可以让 N1 吸嘴再次接触基准板，或者使用在主基准点坐标中找到的 Z 高度。
+
+Machine Setup > Heads > ReferenceHeads H1 > Primary Fiducial Coordinates > Z
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/FSlab3jYIo9ok2xLfyHcoX9FnIe.webp)
+
+
+
+<callout emoji="💡">
+**在执行此校准步骤之前**
+在开始校准之前，您必须选择 Z 轴高度将用于哪种校准方式。
+您可能需要向下滚动才能看到该选项。
+</callout>
+
+您有两个选项可供选择：
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/Ila9bsYfPoAqjsxzoE5cPewMnsh.webp)
+
+请选择
+
+- “**使用吸嘴 Z 轴位置**” 选项。
+
+不要选择
+
+- **“ 使用自动对焦**” 选项。
+
+---
+
+<callout emoji="💡">
+小提示
+在主基准点校准期间记录的 Z 轴高度代表了两个相机的正确焦平面。使用相同的 Z 轴高度可确保底部相机校准的准确性。您可以通过依次进入“机器设置”>“打印头”>“参考打印头 H1”来查看该值。在“参考打印头 H1”中，找到“主基准点坐标”。然后，记住 Z 轴高度的设置值。
+</callout>
+
+### 将吸嘴 N1 移至底部摄像头上方
+
+1. 使用**机器控制装置**，将装有 N08 吸嘴头的**N1 吸嘴**移动到底部摄像头上方。
+2. 接近目标位置时，再次确认吸嘴的 Z 轴高度是否已降低到底部摄像头上方的正确高度，方法是确认右下角的绿色 DRO（数字读数）读取的 Z 轴高度与主基准点的 Z 轴高度坐标相同。
+3. 吸嘴尖端应位于底部摄像头视野中心正上方。
+4. 接近中心时，使用更小的移动幅度。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/BLbrbUmlqoswu3xb2iVcTkMLnmd.webp)
+
+---
+
+### 检测吸嘴尖端开口
+
+调整**特征直径**，使圆与**吸嘴尖端的开口**相匹配。
+
+最准确的检测圆圈是吸嘴尖端的**内暗圆圈。**
+
+如果难以检测，可能需要稍微调整**相机曝光，**直到更容易检测到圆圈为止。
+
+目标是使吸嘴尖端易于与吸嘴的其他部分区分开来。
+
+此图显示了正确的圆形检测结果。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/AUsCbJKOEoKARHxVKkNcyzEan0g.webp)
+
+---
+
+正确检测示例
+
+确保检测到的绿色圆圈与吸嘴尖端的内开口对齐，而不是与尖端的外边缘对齐。 
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/OXm0bkEoIoJrLHxNHltcm5YznDf.webp)
+
+**误报/检测错误示例**
+
+这些设置是错误的，会导致校准失败。
+
+下面的第一张图看起来可能很像是对的，但却是错误的。它应该位于尖端的内圆上，而不是外边缘。 
+
+<grid>
+<column width-ratio="0.500000">
+![](https://cdn.newenergycoder.club/images/lumenpnp/KMfvbmd0ro0mUoxQhLHcYddtnCd.webp)
+</column>
+<column width-ratio="0.500000">
+![](https://cdn.newenergycoder.club/images/lumenpnp/XKDAbwrACocdBvxOb7gcHbobnuf.webp)
+</column>
+</grid>
+
+---
+
+### 采集校准数据
+
+当圆圈与吸嘴开口完全吻合后，点击：
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/B6atbaaTYo7FrWxo31ScvVUTnJb.webp)
+
+OpenPnP 会在测量摄像头位置的同时，让吸嘴在底部摄像头视野范围内移动。
+
+当吸嘴远离中心时，观察检测圈，确保吸嘴开口持续被正确检测。
+
+<callout emoji="💡">
+重要的！
+有时，反光、光线变化或其他视觉干扰可能会导致 OpenPnP 在校准过程中检测到错误的圆。如果在此过程中检测到错误，您可能需要重新打开此步骤并重复校准。
+</callout>
+
+---
+
+#### 如果校准失败
+
+我们使用的吸嘴尖端非常小，而底部摄像头的镜头非常广。当校准进行到边缘区域时，其他物体或光照可能会影响摄像头准确识别吸嘴尖端的能力。
+
+如果您不小心为本次校准选择了自动对焦，即使重新进入当前步骤并重新进行校准，虽然这种情况很少见，但有时也会导致严重的问题，需要您完全重新开始校准。
+
+---
+
+### 完成校准
+
+流程完成后，问题将被标记为**“已解决”**，请点击：
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/WiEhbGQa5oFfaIxwOGgcVFyFnBg.gif)
+
+这将进入下一个校准步骤。
+
+---
+
+下一步
+
+现在底部相机位置已经校准完毕，我们可以继续进行 X 轴和 Y 轴的反向间隙补偿。
+
+## 校准 X 轴的反向间隙补偿Calibrate backlash compensation for axis x
+
+<callout emoji="💡">
+**知识补充**
+反向间隙，也叫做：回差。由于齿轮或皮带啮合的间隙（这个值很小，比如0.05mm）存在，正转时主动轮贴着齿面A带动负载；反转时，主动轮必须先“空转”过这段间隙，直到贴上齿面B，负载才会开始反向运动。这段空行程就是反向间隙。
+</callout>
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/PlOwbnFlzovjqsx9NsBcIHyPnDe.webp)
+
+---
+
+**问题**
+
+校准 x 轴反向间隙补偿。
+
+**解决方案**
+
+使用主校准基准自动校准 x 的反向间隙补偿。
+
+---
+
+### 此步骤的作用
+
+此步骤测量**X 轴方向**的间隙，并允许 OpenPnP 自动进行补偿。
+
+配置完成后，这有助于提高机器改变方向时的定位精度。
+
+---
+
+### 开始反冲校准
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/DzJAbMZqpoOfipx7fHicCoEFnEd.webp)
+
+点击“接受”开始校准。
+
+OpenPnP 将自动将机器移动到正确的位置，并开始测量**X 轴**的反向间隙。
+
+机器将以小幅度和不同的速度来回移动，同时测量基准点的位置。
+
+桌子越不稳定，完成这一步所需的时间就越长。
+
+X 的反冲补偿完成后，OpenPnP 将自动计算反冲值。
+
+这里的Tolerance是误差精度，不建议修改。意味着反冲误差最大0.03mm，这个精度还是可以的
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/VtAkbXSHMox3w8xD92CcW3BBnAf.webp)
+
+
+
+---
+
+<callout emoji="💡">
+小提示
+在此步骤中，机器可能会沿 X 轴以小增量反复移动。
+这是正常现象，可以让 OpenPnP 测量系统中的机械间隙。
+请注意，这可能需要很长时间才能完成。
+</callout>
+
+---
+
+### 完成校准
+
+流程完成后，问题将被标记为**“已解决”**，请点击：
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/UOyRbD0GXogl24x2HoWciQf5nIf.gif)
+
+这将进入下一个校准步骤。
+
+---
+
+下一步
+
+现在 X 轴的反向间隙补偿已经校准完毕，让我们来校准 Y 轴的反向间隙补偿。
+
+## 校准 Y 轴的反向间隙补偿Calibrate backlash compensation for axis y
+
+---
+
+**问题**
+
+校准 y 轴的反向间隙补偿。
+
+**解决方案**
+
+使用主校准基准自动校准 y 的反向间隙补偿。
+
+---
+
+### 此步骤的作用
+
+此步骤测量Y 轴的间隙，并允许 OpenPnP 自动补偿它。
+
+配置完成后，这有助于提高机器改变方向时的定位精度。
+
+---
+
+### 开始反向建议校准
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/Ofx1bs67yo1iZIxEdQ4cUzpHnec.webp)
+
+点击“接受”开始校准。
+
+OpenPnP 将自动把机器移动到正确的位置，并开始测量**Y 轴**的反向间隙。
+
+机器将以小幅度和不同的速度来回移动，同时测量基准点的位置。
+
+桌子越不稳定，完成这一步所需的时间就越长。
+
+一旦 Y 的反冲补偿完成，OpenPnP 将自动计算反冲值。
+
+---
+
+<callout emoji="💡">
+小提示
+在此步骤中，机器可能会沿 Y 轴以小增量反复移动。
+这是正常现象，可以让 OpenPnP 测量系统中的机械间隙。
+请注意，这可能需要很长时间才能完成。
+</callout>
+
+---
+
+### 完成校准
+
+流程完成后，问题将被标记为**“已解决”**，请点击：
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MzkwMTkzNDc4MDg5MmFmOWNiNTFjMWEwZTJkMzEzNmVfYmRhODUyNzRjNjE3NGYxYTYyNTdlYTMxY2QwZDY2ZTNfSUQ6NzY2MzgyNDczNzk4MTc2MjgzMl8xNzg0NTc1MDIwOjE3ODQ1Nzg2MjBfVjM)
+
+这将进入下一个校准步骤。
+
+---
+
+下一步
+
+反向间隙补偿已经校准完毕，我们可以继续进行精确的顶部摄像头到吸嘴尖端偏移校准。
+
+## 校准精确的相机↔吸嘴N1偏移量（可选）Calibrate precise camera ↔ nozzle N1 offsets
+
+---
+
+**问题**
+
+精确校准相机↔吸嘴N1偏移量。
+
+**解决方案**
+
+使用测试对象进行精密相机↔吸嘴N1偏移校准。
+
+---
+
+### 此步骤的作用
+
+此步骤**精确测量顶部摄像头与吸嘴 N1**之间的关系。
+
+OpenPnP 拾取打孔参考点（直径6mm的圆形纸片，使用打孔器制作），旋转吸嘴，然后将其放回原位，同时用摄像头观察。通过测量从不同角度看到的圆的形状，OpenPnP 可以计算出吸嘴的精确偏移量和旋转角度。
+
+---
+
+小提示
+
+精确的相机↔吸嘴N1和N2偏移步长对于操作来说并非强制性的，但可以考虑。
+
+---
+
+### 放置打孔片参考
+
+找到工具包中附带的**打孔片。**
+
+将打孔片直接放在**主要基准点**上，尽可能遮盖 Opulo 标志。
+
+打孔片可以形成一个干净利落的圆形图案，相机可以轻松识别。
+
+<callout emoji="❗">
+ 这里实测，由于同心度问题（目前无法做到吸嘴和电机轴的绝对同心），打孔片在校准过程中会有较大的移动，导致底部的Opulo 原点标志暴露，影响到校准。
+个人建议，在pcb和打孔片之间垫一张黑色**薄（薄！薄！薄!普通打印纸厚度）**纸片，盖住主校准版上的图案，同时胶带固定住黑色薄纸片（太轻会被吸附）。然后再校准。
+</callout>
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YjZlMGMwZjg1ZWEzZTczY2JjNDdjMjFhZTU0NDJiZTNfN2E1ZDc5YWU5Y2ZiM2IxYTlkZWY3M2QyNWUyOGQ1MzhfSUQ6NzY2MzgyNDc0MDA3NDczNjkxNF8xNzg0NTc1MDIwOjE3ODQ1Nzg2MjBfVjM)
+
+---
+
+### 将摄像头对准打孔片中心
+
+使用jog机器控制面板**，使顶部摄像**头移动到打孔片上方。
+
+将相机对准中心，使圆形打孔片清晰可见。
+
+---
+
+### 检测圆圈
+
+调整**特征直径**，使圆与打孔片相匹配。
+
+您可以使用**自动检测功能**来查找起始值，但务必目视确认检测到的圆与打孔片匹配。
+
+<callout emoji="❗">
+这里实测，自动检测无法检测超过400以上的圆（可能是我自己电脑性能问题），所以请手动输入值，直接输入以下值就能用。
+</callout>
+
+我们校准过程中的一个示例：
+
+```Plain Text
+Feature Diameter: 540
+Score: 7.72
+```
+
+您的值可能略有不同。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OGJlNDdlNDc4ODE1YzVhNDgxMWQ1ZTUyYzQ5YmQ4MzNfM2ZjZGMwZjI1OGVlMWNiYzk0YmI2MmE2Nzg1MWQyYThfSUQ6NzY2MzgyNDczODkyNTgyNTMyNF8xNzg0NTc1MDIwOjE3ODQ1Nzg2MjBfVjM)
+
+有时很难看清圆圈。使用绿色十字准星可以帮助识别圆圈的位置。
+
+例如：下图乍一看可能不像是有绿色圆圈的，但仔细观察后会发现并非如此。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MGI3NWVmOGYxNjIzYzg0NzZlYzFlMDMwMTIyMDBiOTFfMzZjOTNiN2RjYmJlYTI1YzM1YjE3ZmUzYjJlYzZhN2NfSUQ6NzY2MzgyNDc0NDg0MzU5NDk3N18xNzg0NTc1MDIwOjE3ODQ1Nzg2MjBfVjM)
+
+---
+
+<callout emoji="💡">
+小提示
+自动检测通常能找到一个不错的起点，但在继续之前，务必确认检测到的圆与打孔片匹配。
+</callout>
+
+---
+
+### 开始校准
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NWY0ODllNGFmN2VkNjQ5ODRhODFiNjk5ZjQ5OTljYmVfMjZlNjc2MzU3NjlkYzY5MzYxMzA0ZTM2MzBlNzhiNWFfSUQ6NzY2MzgyNDc0NzA0OTc5ODg5Ml8xNzg0NTc1MDIwOjE3ODQ1Nzg2MjBfVjM)
+
+点击“接受”开始校准。
+
+OpenPnP 将：
+
+- **使用吸嘴 N1**拿起打孔片。
+- 旋转吸嘴
+- 将打孔片放置好。
+- 测量每次运动之间的差异
+
+这使得 OpenPnP 能够确定摄像头与吸嘴之间的精确关系。
+
+---
+
+### 完成校准
+
+流程完成后，问题将被标记为**“已解决”**，请点击：
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=M2E1OWI5MTIyMGVmYzZlMmJjMTk3NjlkZTI1MTIwMzFfMTJlNDM2YTkxNmI0NjcxMWUzNmQwN2FiZjRhMmRiZGZfSUQ6NzY2MzgyNDc0NzE2NzMyMTMwNl8xNzg0NTc1MDIwOjE3ODQ1Nzg2MjBfVjM)
+
+这将进入下一个校准步骤。
+
+---
+
+**下一步**
+
+对 N1 吸嘴尖端进行精确的顶部摄像头到吸嘴尖端偏移校准后，我们将对 N2 吸嘴进行同样的校准。
+
+## 校准精确的相机↔吸嘴N2偏移Calibrate precise camera ↔ nozzle N2 offsets
+
+---
+
+**问题**
+
+校准精确的相机↔吸嘴N2偏移量。
+
+**解决方案**
+
+使用测试对象进行精密相机↔吸嘴N2偏移校准。
+
+---
+
+### 此步骤的作用
+
+此步骤**精确测量顶部摄像头与吸嘴 N2**之间的关系。
+
+OpenPnP 拾取打孔片，旋转吸嘴，然后将其放回原位，同时用摄像头观察。通过测量从不同角度看到的圆的形状，OpenPnP 可以计算出吸嘴的精确偏移量和旋转角度。
+
+---
+
+### 放置打孔片参考
+
+找到工具包中附带**的打孔片。**
+
+将打孔片直接放在**主要基准点**上，尽可能遮盖 Opulo 标志。
+
+打孔片可以形成一个干净利落的圆形图案，相机可以轻松识别。
+
+<callout emoji="❗">
+ 这里实测，由于同心度问题（目前无法做到吸嘴和电机轴的绝对同心），打孔片在校准过程中会有较大的移动，导致底部的Opulo 原点标志暴露，影响到校准。
+个人建议，在pcb和打孔片之间垫一张黑色**薄（薄！薄！薄!普通打印纸厚度）**纸片，盖住主校准版上的图案，同时胶带固定住黑色薄纸片（太轻会被吸附）。然后再校准。
+</callout>
+
+---
+
+### 将摄像头对准打孔片中心
+
+使用**机器控制面板，使顶部摄像**头在打孔片上方移动。
+
+将相机对准中心，使圆形打孔片清晰可见。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ODgyZmIyYjI0YTZjNDc1YjYzMGJkNGFmYjM2ZmJhMWZfM2Y2ODM3NDQ1NmJkNDlkYzI1NjVjODJhNTlmMjhmNDNfSUQ6NzY2MzgyNDc1MDQzMDQyNDMzM18xNzg0NTc1MDIwOjE3ODQ1Nzg2MjBfVjM)
+
+---
+
+### 检测圆圈
+
+调整**特征直径**，使圆与打孔片相匹配。
+
+你可以以之前的打孔片特征直径作为起点，结果应该与之前的读数非常接近。
+
+您可以使用**自动检测功能**来查找起始值，但务必目视确认检测到的圆与打孔片匹配。
+
+<callout emoji="❗">
+这里实测，自动检测无法检测超过400以上的圆（可能是我自己电脑性能问题），所以请手动输入值，直接输入以下值就能用。
+</callout>
+
+我们校准过程中的一个示例：
+
+```Plain Text
+Feature Diameter: 540
+Score: 7.40
+```
+
+您的值可能略有不同。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MWJiYzVkYWRiNzk1M2Q3NmQ0MjcyNDNhYjk0N2M1MjFfNzE3MTM3NTVhOTBjNTU5ZmMxY2E2MWU4YjhhNDQzNzBfSUQ6NzY2MzgyNDc0ODk3NTI2MzAxOF8xNzg0NTc1MDIwOjE3ODQ1Nzg2MjBfVjM)
+
+有时很难看清圆圈。使用绿色十字准星可以帮助识别圆圈的位置。
+
+---
+
+<callout emoji="💡">
+小提示
+自动检测通常能找到一个不错的起点，但在继续之前，务必确认检测到的圆与打孔片匹配。
+</callout>
+
+
+
+---
+
+### 开始校准
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZDg5OGEwODg3MDNkZTI4ZDQ3YTQzMThlZDEzYWIxZTlfYTFiY2U2NmY5YzBkN2U3OGY3YzBiNmZlN2Y3Y2ZkNzZfSUQ6NzY2MzgyNDc1MzUyMTY0MjY4NF8xNzg0NTc1MDIwOjE3ODQ1Nzg2MjBfVjM)
+
+点击“接受”开始校准。
+
+OpenPnP 将：
+
+- **使用N2 吸嘴**拿起打孔片
+- 旋转吸嘴
+- 将打孔片放置好。
+- 测量每次运动之间的差异
+
+这使得 OpenPnP 能够确定摄像头与吸嘴之间的精确关系。
+
+---
+
+### 完成校准
+
+流程完成后，问题将被标记为**“已解决”**，请点击：
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MzA1OTYxMzlkODE4MzgxNzgxOTViMmIwMDk0ZTlkYjBfNDAxNWFhYjdmZWVmYjI5NDJlNmE2ZDZjNTBmOThkNjVfSUQ6NzY2MzgyNDc1NDMzNTUxNzY2Ml8xNzg0NTc1MDIwOjE3ODQ1Nzg2MjBfVjM)
+
+---
+
+下一步
+
+精确校准了相机到吸嘴尖端的偏移量后，我们将继续校准顶部相机的自适应相机稳定方法。
+
+
+
+## 吸嘴单元选择
+
+这一步官方教程没有，但是我测试多次都会遇到
+
+这里直接选择拒绝，跳过！
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YzE1MzQ4Y2E0Y2I5NTdkMWM1ODVlNDQ2NzQ0MWQ4YWVfNTA0NTliZWNhZTAwMjJlYTQ3YWE5YzNiMGFhNDgzYWNfSUQ6NzY2MzgyNDc1Njc5NzQ0MzA1MF8xNzg0NTc1MDIwOjE3ODQ1Nzg2MjBfVjM)
+
+
+
+## 使用自适应（顶部）相机稳定方法（可选）Use an adaptive (top) camera settling method
+
+---
+
+**问题**
+
+采用自适应相机稳定方法（顶部相机）。
+
+**解决方案**
+
+自动设置合适的相机稳定方法。
+
+---
+
+### 此步骤的作用
+
+机器移动时，轻微的震动会导致相机图像在稳定之前略微偏移。
+
+自适应稳定功能使 OpenPnP 能够在拍摄图像之前自动确定相机图像何时稳定下来。
+
+这提高了检测精度，有助于防止出现模糊或不一致的视觉结果。
+
+---
+
+### 启用自适应设置
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=Y2EyMjIyZTAxY2VjOTNhNDNmOWIyZmEyYzVmOWZhYTdfYjNjNjNmZjhlN2M0MTg4ZmY3YjE1MTVmYzJlMDdjMmRfSUQ6NzY2MzgyNDc2NjgyMTkxMTQ5N18xNzg0NTc1MDIwOjE3ODQ1Nzg2MjBfVjM)
+
+点击“接受”以应用推荐配置。
+
+OpenPnP 将为顶部摄像头启用**自适应摄像头选择功能。**
+
+无需手动调整。
+
+---
+
+### 完成校准
+
+流程完成后，问题将被标记为**“已解决”**，请点击：
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZjVjZTQzYWQzZDAxNzc2Y2I5NjI3NjBiODljYzYwZGRfYTM4ZDY0MWJkYjZkZjZjMWZkYWI4OTA3ZTc4MWYxMTBfSUQ6NzY2MzgyNDc2NzM1NDgzNDIwMl8xNzg0NTc1MDIwOjE3ODQ1Nzg2MjBfVjM)
+
+---
+
+下一步
+
+计算出顶部摄像头的稳定状态后，我们将继续校准底部摄像头的自适应摄像头稳定方法。
+
+## 使用自适应（底部）相机稳定方法Use an adaptive (bottom) camera settling method
+
+---
+
+**问题**
+
+使用自适应相机稳定方法（底部相机）。
+
+**解决方案**
+
+自动设置合适的相机稳定方法。
+
+---
+
+### 此步骤的作用
+
+机器移动时，轻微的震动会导致相机图像在稳定之前略微偏移。
+
+自适应稳定功能使 OpenPnP 能够在拍摄图像之前自动确定相机图像何时稳定下来。
+
+这提高了检测精度，有助于防止出现模糊或不一致的视觉结果。
+
+---
+
+### 启用自适应设置
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NmM1OTRmNzAwMWVhN2QyYTAzYWRiMjVhZTg0OGQyYjdfODEyMTYzYmRkZTVlZjhhM2YyOThkY2FmYTkyMTJmZDRfSUQ6NzY2MzgyNDc3MTkxMzcxNDg3M18xNzg0NTc1MDIwOjE3ODQ1Nzg2MjBfVjM)
+
+点击“接受”以应用推荐配置。
+
+OpenPnP 将为顶部摄像头启用**自适应摄像头选择功能。**
+
+无需手动调整。
+
+---
+
+### 完成校准
+
+流程完成后，问题将被标记为**“已解决”**，请点击：
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MzFkODFjN2FkYjQ4MjY5NGQ0YjQxZDJkM2Q1YzgwMmFfNjVlMjYwODg5MmEzOWM1YjIzMDkxMzFhOGNkMzBiNzhfSUQ6NzY2MzgyNDc3MDYxMzU3OTAzNV8xNzg0NTc1MDIwOjE3ODQ1Nzg2MjBfVjM)
+
+---
+
+您已完成精准喷嘴偏移校准，初始的“问题与解决方案设置”环节现已完成。请先不要执行其他“问题与解决方案”步骤，待我们使用FTP板妥善验证后再继续。我们要确保在添加其他内容之前，先打好基础。
+
+下一步
+
+您已完成基础校准步骤！现在，我们需要验证机器是否校准正确，并确认其在受控环境下进行零件放置。我们将使用FTP板来完成此项验证。
+
+
+
+## 开启视觉归位
+
+#### 设置回零基准位置
+
+1. 导航至 `Machine Setup > Heads > ReferenceHead H1`。
+
+在**“配置”选项卡**中，将**“回零方式”**更改为`ResetToFiducialLocation`。这样就设置了**回零序列**，使其始终以**扫描基准点**结束，这有助于纠正限位开关造成的任何轻微误差。
+
+<grid>
+<column width-ratio="0.500000">
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NGY0ZTExYzFmNDk5NDg4NTAzYzU1NzkxMWQ3ZTZhMTZfMjQ1OTFhZmRkMzA1M2MzNWFmYmM4NmFhZDcxYzQwZDBfSUQ6NzY2MzgyNDc3MjA0NDAwMDQ5OF8xNzg0NTc1MDIwOjE3ODQ1Nzg2MjBfVjM)
+</column>
+<column width-ratio="0.500000">
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZGJjYTIzODQ0ZDFiY2IxNzdhZDBjODMyODhjZTgwMzRfOWQ2NzBiNzA3ZWExNTMwMDMwYTE0ZjY4MDY1ZDIwZjFfSUQ6NzY2MzgyNDc3Mzg2MDAxOTQ3MF8xNzg0NTc1MDIwOjE3ODQ1Nzg2MjBfVjM)
+</column>
+</grid>
+
+1. 应用并保存
+
+- 点击`Apply`右下角保存更改。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NTU5NDQ1ZDY4ZTY3OTU0NmU3MjE3NGU1MDE3M2NkNWZfNzhmM2VhNmRjMWZhNjE3NDExMjVmYTE0NjQ4ZGU4ZDNfSUQ6NzY2MzgyNDc3OTE5NTc2MzkxOV8xNzg0NTc1MDIwOjE3ODQ1Nzg2MjBfVjM)
+
+1. 点击下方所示的**“将相机定位到目标位置”**图标按钮。
+
+- 这样就将**顶部摄像头**移动到基准板上方**的大致位置。**
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MWQ5M2Y4YzZmYjlhZTczZWY4YTk5YTg4YjlhNmFlYjFfZmQ3OGEyMGQ3MWIyYjlkNjIzZDEzOTI1NmFjNDBkMjVfSUQ6NzY2MzgyNDc3ODc5NjU4NDIwOF8xNzg0NTc1MDIwOjE3ODQ1Nzg2MjBfVjM)
+
+1. 调整顶部摄像头：
+
+- 在 OpenPnP 的左下角，使用微调控件将**十字线中心**对准**基准点**的正中心。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NjAxYTI0Njg0MTA4ZTIwNmM0YTY5ZTBkMjJjODgwZThfOGNmYjFlZTk0YjhjODE2MGE2ZjBlMjhhMDYxODNiODlfSUQ6NzY2MzgyNDc4MTAyMzg3NDI1NV8xNzg0NTc1MDIwOjE3ODQ1Nzg2MjBfVjM)
+
+1. 现在我们已经**完全对准**了回零基准点
+
+- 返回 `Machine Setup > Heads > ReferenceHead H1`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MmU2M2FjNDM1NDliYjdjNzY3YzI1MzhjNWVhODFjOGZfYTcwNzFiYTIxYWY3ZGM2MzAzZWZkYzgyODgwMWI0MzBfSUQ6NzY2MzgyNDc4NDcxMDY2NzU2M18xNzg0NTc1MDIwOjE3ODQ1Nzg2MjBfVjM)
+
+- 点击`Capture Camera Location`按钮保存回零**基准点**的位置。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OGE1NmI2ZDc4MGU1MjUwNmMwNTlkZThhMTVhOTQ2YTNfZmE3NjA1MTgyYjNlMmY5OWI5OGQyZjAwNWVlYWRlODdfSUQ6NzY2MzgyNDc4OTA2NDE0MjAxMl8xNzg0NTc1MDIwOjE3ODQ1Nzg2MjBfVjM)
+
+1. 应用并保存
+
+- 点击`Apply`右下角保存更改。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MTI2NzliZDA1YjcwMGVkYzkwMDY4MmZmMmY1ODNjMTRfYjc4MDQzNmJjNWUyNTVhZTJmNTc0NGM4MGQ5MGIzOWNfSUQ6NzY2MzgyNDc4Nzg3MzE3MjY4N18xNzg0NTc1MDIwOjE3ODQ1Nzg2MjBfVjM)
+
+#### 测试基准回零
+
+1. 点击“回零”**按钮**，机器完成左下角的机械归位后，会继续将顶部摄像头移动到主校准板的圆点上方，并试图找到其确切位置。当摄像头扫描到标记时，会呈现红色，表示正在扫描标记的圆圈。
+
+如果扫描到远点，机器会自动再次微调位置，知道十字准心完全对准原点中心，即完成了一次精确的视觉归位。这个比简单的机械归位更准确，不会出现因机械限位不准导致归位后位置偏移的情况。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NTBhMmQyYzRjMzM2ODZjYTU0NmU5MTk5ZDFjZWUwMTJfMDI0OGU4NDUxNDg1NzdlYTNjZDMzYzExNDJkMzBjMzNfSUQ6NzY2MzgyNDc5Mzg0NTc0Njg5N18xNzg0NTc1MDIwOjE3ODQ1Nzg2MjBfVjM)
+
+1. 如果您收到此错误`FIDUCIAL-HOME no matches found`，则表示 OpenPnP 无法找到您的回零基准点。您需要调整相机曝光或者[回零基准点管道](https://www.yuque.com/lonlypan/td6smc/hrewkqfg89f9u8dw#homing-fiducial-pipeline-video-guide)。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=Zjg0OGZmNGE5ZTllOTUzNTFkYTI1MmY2MmVmNWYxZTFfNDNkMjUwNDEzOGJmOTZhMTZkODQ1MTA5OTU5ZGFmODdfSUQ6NzY2MzgyNDc5NzI0NzM0Mzg5N18xNzg0NTc1MDIwOjE3ODQ1Nzg2MjBfVjM)

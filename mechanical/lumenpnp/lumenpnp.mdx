@@ -1,0 +1,61 @@
+---
+title: "LumenPnP  组装 副本"
+description: "LumenPnP 组装 副本"
+---
+
+# LumenPnP  组装 副本
+
+在开始之前，请先仔细阅读本文文档。
+
+## 开始之前
+
+### 机器方向和术语
+
+在本指南中，我们将用“左、右、前、后、上、下”来指代机器的不同方向和方位。一般来说，这些词语指的是正对机器的典型视角，如下图所示。
+
+![图片展示了LumenPnP组装好的机器，机器主体为黑色，带有黄色和红色标识。上方有X龙门架，中间是工作平台，平台上有黄色手柄。机器两侧有黄色支撑脚，底部有黄色滚轮。图片右侧标注了“上”“下”“后”“前”方向，左侧标注了“左”“右”方向。该图与上下文关系紧密，直观呈现了LumenPnP机器的外观结构，帮助理解其方向标识，为后续操作提供参考。](https://cdn.newenergycoder.club/images/lumenpnp/Kj5JbA3S0ozl8sxF2IbcD90En7e.png)
+
+我们还将提到将机器“放回原位”。这是 LumenPnP 的一项功能，可以通过将机器前后抬起，然后让其直立在后脚上。这种方向对于将东西安装到工作平台上以及底部不限连接到主板非常有帮助。
+
+![图片展示的是LumenPnP组装好的机器。机器主体为黑色框架结构，中间有黄色齿轮状部件。左侧有一个黑色的电源模块，连接着黑色电线。右侧有一个黑色的控制面板。底部有四个黑色轮子，可方便移动。该图片与文档中“将机器放回原位”功能介绍相关，直观呈现了机器的外观结构，帮助用户了解其组装后的样子。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NmYwOTYyODYwMjM3ZDk5YmVlOGRhY2IxMzhkMTg5OTZfYjI3NTJlNDE2MzE1YjczNzk5ODZkYTY1ZTQ4ZmZlY2JfSUQ6NzY2MzgwOTgwMTQzNjIzNjczMV8xNzg0NTc1MDEzOjE3ODQ1Nzg2MTNfVjM)
+
+<callout emoji="❗">
+每次将机器放回原位前，请确保将 X 龙门架一直推到机器后部，以防止 X 龙门架在放回原位时自由落体，和反向驱动 Y 步进电机驱动器（这可能会损坏主板）。
+</callout>
+
+![图片展示了LumenPnP组装后的状态，机器主体为黑色框架，带有黄色固定件。上方有红色框线突出显示的X龙门架，其上有两个黑色电机。下方工作台上放置着一个带有孔洞的黑色垫板，垫板上还有一块带有黄色和黑色图案的垫片。该图片与上下文关系紧密，直观呈现了LumenPnP机器的组装完成情况，为后续的“放回原位”操作提供参考。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZTZjODRlNTVmMzBiNGI5N2I0NmVjMDg2NWNhODAzYTZfYjUwZTAyOTgyMDllNTM3NmZmZGFiNjg1OTg0ZGQxMTNfSUQ6NzY2MzgwOTgwMTI5MTIzODM1Ml8xNzg0NTc1MDEzOjE3ODQ1Nzg2MTNfVjM)
+
+
+
+### 存储和放置
+
+确保将 LumenPnP 存放在阴凉干燥的环境中。请勿长时间暴露在温暖的环境中或阳光直射下。请放置在平坦、稳定的平台上使用。
+
+**LumenPnP 应在光照一致的房间内使用。机器执行的机器视觉操作可能会受到环境光照变化的影响，因此请确保在整个校准和操作过程中保持光照一致。**
+
+### 帮助
+
+如果您发现本文档有任何不清楚的地方，请扫码进入QQ群，向社区成员提问。
+
+![图片展示的是LumenPnP开源贴片的群二维码。上方显示“LumenPnP开源贴片...”及群号“1037408522”，左上角有“Opulo”标志。中间是一个蓝色的二维码，底部有一个蓝色的聊天图标。该图片位于文档介绍LumenPnP组装副本所需时间及所需物品部分之后，可能是用于引导用户加入相关群组，获取更多组装信息或交流。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=M2Q1ZDVjNzI5YjcwNzQyMDE4OWYzNTJjMTdiNDk4ZjZfMWZkN2VjOWQyZTllY2ZiNjczZjNhOTBkNzM5MjJjZThfSUQ6NzY2MzgwOTgwMzAwOTMzMDEyM18xNzg0NTc1MDEzOjE3ODQ1Nzg2MTNfVjM)
+
+
+
+### 时间
+
+预计组装大约需要**90分钟**。
+
+### 你需要
+
+- 用于组装的干净、光滑、平整的桌面
+- 一台计算机
+- 能够插入三个高带宽 USB-A 端口 - 您的计算机需要与控制机器的usb数据线以及两个usb摄像头源进行通信。
+
+<callout emoji="ℹ️">
+**USB 集线器/ 扩展器**
+有的使用外部 USB 集线器联接，这个方法可能可行，有的仍然需要链接到电脑上的不同usb口，这个具体取决于你的电脑硬件，如果你发现异常，请尝试使用电脑上的usb口或者更换usb集线器。
+</callout>
+
+## 下一步
+
+让我们开始吧！第一步是[开箱](https://tcnyw794ws3e.feishu.cn/wiki/WxpBwyP2eiR66AkvbtPcQFjynqd)。

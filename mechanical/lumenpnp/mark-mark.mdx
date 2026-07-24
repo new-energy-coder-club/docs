@@ -1,0 +1,212 @@
+---
+title: "Mark点-无Mark点贴装"
+description: "Mark点-无Mark点贴装"
+---
+
+<title>Mark点-无Mark点贴装</title>
+
+# 一、Mark点的作用
+
+## Mark点及其重要
+
+拥有良好的Mark点，将极大地发挥贴片机的贴装精度，保障贴片效果的一致性。
+
+> **请大家，尽可能的在PCB设计阶段，亲自为每一张板子加入独立的Mark点，不论您的板子是单板还是拼板！！**
+
+**底层如果需要贴片，也是需要添加Mark点的！！**
+
+在PCB设计时，单纯以添加焊盘或者镂空覆铜的形式添加的Mark点，是无法直接导出坐标信息的。
+
+在OpenPnP中Mark点跟其他阻容元件一样，必须也是一种元件类型，并拥有其自身的封装定义。
+
+典型Mark点的封装尺寸：
+
+![图片展示了典型Mark点的封装尺寸示意图。图中有一个黑色圆环，内有一个黄色圆点，黑色圆环外径为2.00mm，内径为1.00mm。该图片位于文档“典型Mark点的封装尺寸”部分，是对上文提到的典型Mark点封装尺寸的直观呈现，帮助读者更清晰地了解Mark点的尺寸情况。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MzAwNWEyZDQ1NDI5NzgzMDk3YTA4NjQwNzI5ZmFmZTJfMTk0MjE4ZjkwOGM5OWNhOTEzNzYzZjgyNmEwNjkzMDVfSUQ6NzY2MzgyMzU0NjQxNzg1OTc5NF8xNzg0NTc1MDM2OjE3ODQ1Nzg2MzZfVjM)
+
+
+
+## 贴片层Mark点数量，建议  ≥ 4  个
+
+通过3个Mark点，OpenPnP可以计算出电路板的原点位置、旋转角度、X和Y方向的缩放差异等信息。
+
+当Mark点超过3个时，OpenPnP将会对所有的计算结果求“平均”，用以消除各Mark点在视觉识别过程中，因图像噪声或识别误差而产生的精度干扰。
+
+2个Mark点的情况我也用过，对角线放置的，虽然可行，但我的元件是1206封装的，可能看不出有什么误差。
+
+如果您的元件中存在小封装的话，例如0402，在电路板可容纳的前提下，尽可能多的布置Mark点，有备无患。
+
+
+
+## 3.Mark点封装的定义
+
+在OpenPnP的封装库中，正常的Mark点或虚拟Mark点，不需要对 [元件本体宽度] 和 [元件本体长度] 进行定义，请保留为 0。（见下图示意）
+
+操作：在OpenPnP封装库内相应封装的**焊盘列表**里，点击绿色+号，新增一条定义，ID随意，需要根据实际的Mark点尺寸，输入宽度、长度和%圆度即可。
+
+例如上幅图中的覆铜直径1mm的Mark点的定义如下：（虚拟Mark点同理）
+
+ X = 0、Y = 0、宽度 = 1、长度 = 1、圆度 = 100%，上方的元件本体宽度和长度保持为0。
+
+![图片展示了OpenPnP软件中Mark点封装的界面。界面中有“单位”“元件本体宽度”“元件本体长度”等参数设置区域，以及“焊盘列表”区域，其中“名称”“X”“Y”“宽度”“长度”“角度”“圆度”等列清晰可见。该图片与上下文紧密相关，用于直观呈现Mark点封装操作中在OpenPnP封装库内相应封装的焊盘列表里新增定义时，各参数的设置位置及对应列，辅助理解Mark点封装的定义操作。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NGMwNTA4ZDAwMjIyNTU5N2YwMDAxMzNiZGQ2ODFiOGNfZjY2OWQxNzIzMzViMDBkOWFiZTA0MTFlM2E0OWQ0MDJfSUQ6NzY2MzgyMzU0ODYzMjQwMzE3NF8xNzg0NTc1MDM2OjE3ODQ1Nzg2MzZfVjM)
+
+
+
+## 两种常见情况
+
+
+
+### 情况1：没有Mark点
+
+没有Mark点的电路板，可以通过挑选某些钻孔、通孔焊盘或元件的方形焊盘作为定位基准。
+
+这些挑选出来的具有类似Mark点特征的可用基准，我将它们称之为“虚拟Mark点”。
+
+在制板软件中，将已定义好的Mark点元件或某个特定名称的元件，放置于这些虚拟Mark点的中心，通过这种方式，可以将这些虚拟Mark点的坐标间接的导出来。
+
+> 虚拟Mark点，应该是具有规则的形状，具有明显的尺寸特征。
+
+后续，您还需要在OpenPnP的封装库中，把这些虚拟Mark点的实物特征和尺寸定义出来，以便让OpenPnP知道要识别的目标物长什么样子。
+
+不同尺寸和大小的目标物，需要对应不同的封装，同时，元件库中也需定义出不同的元件与之对应。
+
+我一般会选择通孔作为虚拟Mark点，由于通孔贯穿顶层和底层，也就是说，通孔相对于画布原点，在顶层和底层的坐标是一样的。
+
+
+
+### 情况2：仅在工艺边上存在Mark点
+
+工艺边上的Mark点，一般都是由板厂添加的，大概率上，不能直接获取其坐标信息。
+
+可以借助第三方软件进行测量，例如：**华秋DFM**。
+
+需要下载并使用来自板厂反馈的Gerber工程文件，而不是您上传给板厂的源文件。
+
+参考下方的操作，获得的工艺边Mark点坐标，然后手动新增到单板的贴片列表里或添加到准备导入的坐标文件中。
+
+> 板厂反馈的Gerber文件中，拼板也好，单板也好，可能画布原点的位置并不在左下角，通过**相对坐标**之间的关系，是可以通过换算得到的。
+> 
+> 这也是为何，要求尽量在单板中或拼板的单板中，主动添加Mark点的原因，避免去人工推倒某些点的坐标。
+> 
+> 其次还有中拼板情况是，根据您提供的单板文件，由板厂为您进行的拼板。这种情况就必须使用板厂反馈的Gerber文件了，测量拼板左右上下的间距，根据这些参数在OpenPnP中，使用定义好的单板，在软件中进行拼板。
+
+板厂在工艺边添加的Mark点，在顶层和底层的位置几乎都是同心的，也就是说，相对于画布原点，工艺边的Mark点在顶层和底层的坐标也是一样的。
+
+获取坐标的演示如下：
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZGM3NjZjMjA0MzQ2NGRlNTcwODZmODYxMmFjZjRjNDdfMDQxMDI3NDkxZjI4ODk5NzEwMDY5NmM4YjZkODhmNzJfSUQ6NzY2MzgyMzU1MDgzMDI1MTIxOF8xNzg0NTc1MDM2OjE3ODQ1Nzg2MzZfVjM)
+
+此外还有个小技巧：在华秋DFM上方的工具栏中，有个测距的尺子，选择“中心-中心”，可以通过不同小板子上相同元件的焊盘，测量出行距和列距。这组数据会在OpenPnP的拼板功能中使用到，还可以帮助您更改至新的板子原点位置并换算出坐标。（水平方向：向右是X+，垂直方向：向上是Y+）
+
+
+
+# 二、本章小结和经验分享
+
+1、尽可能的在PCB板设计时，亲自为每张单板，特别是拼板中的单板，**主动**添加Mark点，越多越好。Mark点对于贴片机来说是不可或缺的，对于用户也是非常受益的。
+
+2、Mark点也是一种元件。Mark点的封装是需要手动去定义的，您得告诉OpenPnP要识别的Mark点，长什么样子。
+
+3、其他非Mark点的常用元件的封装，一般不用去逐一进行封装的定义，有个名称就行，除非需要对元件进行Bodysize元件尺寸检查。
+
+4、虚拟Mark点，如果挑选的是孔，一般使用内孔直径来进行封装中的尺寸定义。
+
+5、Mark点封装定义完成后，可以在基准视觉配置中，进行手动识别，观察识别结果和重复识别的可靠性，有可能此时需要引入视觉通道-添加Maskcircle（蒙板）的操作，这个在08章节中会进行讲解。
+
+# 通用方法-只能单次使用
+
+# KICAD-焊盘做Mark点
+
+# KICAD-螺丝孔做Mark点
+
+
+
+阅读本文章需具备kicad绘制pcb和制板的能力
+
+## 放置坐标原点
+
+![这张图片展示了KiCad软件的操作界面，核心突出了两个关键操作项。界面左侧为PCB设计的相关绘图工具，右侧为红色的电路板设计区域，板上带有标注“GND”的圆形焊盘、标有序号“1”的“Fiducial”标识点等元件。顶部菜单栏的“放置”选项被红色方框标注展开，其下拉菜单中的“钻点定位 文件原点”选项也被红色方框标注。该图用于示意将坐标原点设置在电路板顶层左下角的操作步骤，与上下文提到的openpnp软件对贴装坐标原点的规定相对应，是完成Mark点设置的重要操作环节。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YTViMTQ1MTU1NTNmNjEwMTIxYzRiODI3NmRhOWY0NGJfZTlkZDM0NDYyOTg2YzliMTg3MjM5ZjUyZDYwMjcwZmJfSUQ6NzY2MzgyMzU1MjIzMTE5NzkzOF8xNzg0NTc1MDM2OjE3ODQ1Nzg2MzZfVjM)
+
+将坐标原点置于板子左下角（顶层视角）。必须、只能左下角，这是openpnp软件的规定
+
+![图片展示了KICAD电路板设计中螺丝孔的放置示例。画面中，电路板为红色，有多个标注为“GND”的螺丝孔，孔内有数字标识。电路板上还有“Fiducial”标识的定位孔，以及“MountingHole_Pad”标注的螺丝孔。画面下方有红色箭头指向的坐标原点“0”，以及标注“Plated along this flat edge”的红色线条。该图与上下文关系紧密，直观呈现了螺丝孔放置的参考位置，帮助理解坐标原点及螺丝孔在电路板上的布局。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NzA2NGRhMTY1YWRlOTNmNWFkYzdlNmIyMzEzMjhiNGRfN2E5MmQxYjdlZmI1YzMzN2NjZDFiZmIxODM1ZjEyMDBfSUQ6NzY2MzgyMzU1NzEyMTYyNTMwNl8xNzg0NTc1MDM2OjE3ODQ1Nzg2MzZfVjM)
+
+对于不规则的板子图形，可以假想出正四边形，将板子容纳在四边形以内，同样也是在顶层的左下角。下图示意：
+
+<callout emoji="💡">
+这里定义的坐标原点的视角和方向，就是你在贴片机平台实际放置电路板的方向和视角，一定要保持一致。
+</callout>
+
+
+
+![图片展示了不同形状电路板的坐标原点定义示意图。图中蓝色区域代表电路板，红色箭头表示+X方向，蓝色箭头表示+Y方向。电路板形状有三角形、星形、不规则形状等，其宽度标注在+X方向，坐标原点标注在左下角。该图与上下文关系紧密，直观呈现了坐标原点在不同电路板形状下的定义方式，帮助理解在KICAD中放置坐标原点时的视角和方向要求。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NGVlNzJmMmE1Y2JiYzZhMjQ2YzQ4YjA3MWE5MjFiNDRfM2MyNmI3ZDE0NTc1OTNhYjA0NDYxYjgzMWNmYmRmMmVfSUQ6NzY2MzgyMzU1NjY4NTUxNjAyM18xNzg0NTc1MDM2OjE3ODQ1Nzg2MzZfVjM)
+
+选择你要设置的螺丝孔，将特性，不勾选从定位文件中轻触，这样导出pos文件时，就能导出这个螺丝孔的坐标了。如果勾选则是不导出。
+
+你可以选择常见的插件焊盘孔，注意不要选择贴片焊盘孔，否则刷锡膏后无法识别。选择不会刷锡膏的
+
+尽量选择圆孔，方孔识别比较麻烦，需要改视觉通道识别，操作麻烦，默认的是圆孔，简单些。
+
+孔的选择尽量选择板子四周的，不要挨得太近，相互距离越大，最后定位相对越准
+
+![图片展示了KICAD软件中封装属性设置界面。界面中选中了“MountingHole_3.2mm_M3_Pad”封装，其坐标为X -8.6、Y -6.6、Z 0。特性下“从物料文件中删除”选项被红色框突出显示。该图片与文档中“放置坐标原点”部分内容相关，用于说明在KICAD中设置封装属性时，如何进行坐标设置及删除物料文件的操作，以配合后续的螺丝孔做Mark点等操作。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NzFkZmIwOTUxODFlZWFjYWJmZWIyNjQ5YzE3ZTBhOWJfZDJhOTg3NTQ0MTNlZTQ3NDBhNTM2MjYyZTYyYzA2NTFfSUQ6NzY2MzgyMzU1NzQ2MTU5MzI3Nl8xNzg0NTc1MDM2OjE3ODQ1Nzg2MzZfVjM)
+
+导出pos文件，这样就有了孔坐标了（一般使用三个点即可，如果是四点必须不是正四边形才可以）
+
+![图片展示的是KICAD生成的pos文件内容，用于获取螺丝孔坐标。文件中以“MountingHole 3.2mm_M3_Pad”标识螺丝孔，其坐标为PosX 8.6000、PosY 38.6000、Rot 0.0000、Side top。该图片与上文提到的“导出pos文件，这样就有了孔坐标了”相呼应，直观呈现了孔坐标的具体数值，为后续新建封装、设置视觉通道等操作提供数据支持。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NzNjMDA4MjczMTM2NGYyZTU0MTk1MTZkY2YzMDMwM2FfNDY2ZTk3YmIzYTg2MTAxNzJiZmM5ZjA3MjYwNzZkOTZfSUQ6NzY2MzgyMzU1OTgxMDM1NDM4MV8xNzg0NTc1MDM2OjE3ODQ1Nzg2MzZfVjM)
+
+新建封装，用于顶部视觉识别
+
+![图片展示的是KICAD软件中新建封装时弹出的输入框界面。界面提示“Please enter an ID for the new package.”，输入框内显示“Fiducial-M3_3_2mm-Hole”，下方有“OK”和“Cancel”两个按钮。该图片与文档中“新建封装，用于顶部视觉识别”内容相关，是新建封装时设置封装ID的示例，帮助用户了解在KICAD软件中新建封装时输入封装ID的操作界面。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OGQwNGJlMjhhZjgzNDQ4MjY4NmY3ZjYwYzRkYTM3YmJfMGE0MmI3NTkwYjdhYTRmZTA5NDA5YTgxZjMyNGYwOWZfSUQ6NzY2MzgyMzU2NDEwNTE1Nzg5OF8xNzg0NTc1MDM2OjE3ODQ1Nzg2MzZfVjM)
+
+设置视觉通道，先将顶部相机移动到螺丝孔正上方，便于视觉通道捕获图像
+
+注意时Fiducial Vision。不是Bottom Vision
+
+勾选专用于
+
+![图片展示的是KICAD中新建封装的设置界面。界面中列出了多种封装类型，如JST_FB、FPC、SMD等。在“命名”处，显示为“Fiducial_Lam_Mask3mm”。下方有“视觉管理”区域，其中“专用于”处显示为“Fiducial_Lam_Mask3mm”，“归类为”处为“Fiducial_Lam_...”，并有“恢复至默认”选项。该图片与文档中新建封装用于顶部视觉识别的内容相关，展示了新建封装设置的具体界面。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MDNiNzRhOGNiZmU3YjFmNzFiMTc2YWNkZmU5ZjNjYzNfMDc3MjkxNmM3Y2NjZGZhOGNmNjhlYWRmYzllNzQyMDZfSUQ6NzY2MzgyMzU2MzY0MzkzMTYyMl8xNzg0NTc1MDM2OjE3ODQ1Nzg2MzZfVjM)
+
+
+
+![图片展示了KICAD软件中Fiducial Vision Settings界面。界面中有多个标签，其中“Vision”标签被红色框突出显示。在“Vision”标签下，有“Fiducial Vision Settings”区域，其下方有“Edit”按钮被红色框标注。该图片与文档中设置视觉通道的内容相关，用于说明在KICAD软件中进行视觉通道设置时，如何进入Fiducial Vision Settings界面并进行编辑操作。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=M2ZiMTQxYTQ0YjY2MmQxZjJmYTk2NjFmZDA3NWVkNjBfOTkwNWFlYzUzZmVhNTk1ODA0ZDY2OGZlMWRmMDAxMDBfSUQ6NzY2MzgyMzU2ODExNDk2MTY2N18xNzg0NTc1MDM2OjE3ODQ1Nzg2MzZfVjM)
+
+分别调整
+
+- mask图像裁切，保证画面有螺丝孔
+- 设置cir，保证能识别圆（绿色圆形）。一般螺丝孔比较大，所以这里的数值也会较大，几百的值。
+
+![图片展示的是Fiducial Vision Pipeline软件界面，左侧为参数设置区域，包括Rank、Name、Image、ImageFeature、Result、ResultFile等选项，以及具体参数如searchRadius、searchWidth等。右侧是图像显示区域，呈现一个带有红色圆环的图像，图像中心有黄色星形标记。界面底部显示了检测到的圆心坐标、半径、直径等信息。该图片与文档中KICAD螺丝孔做Mark点的上下文相关，展示了在该软件中进行Mark点检测时的界面及参数设置情况。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MTNhMGE1YzUxZGUzMzlmZjVlYjY4ODRhMWY4MjE3NWVfNGEwMmY4NDEwNzgwYjgxMmYxYzc1MTExMWRjNTg4ODVfSUQ6NzY2MzgyMzU2OTk5Mzk3NzExNV8xNzg0NTc1MDM2OjE3ODQ1Nzg2MzZfVjM)
+
+新建元件，绑定封装
+
+![图片展示的是KICAD软件界面，其中“Parts”标签下弹出“FIDUCIAL - IX2 - PI...”输入框，提示“Please enter an ID for the new part.”，输入框内显示“Fiducial - W3_3_2mmHole”。界面左侧有“Job Panels”等选项卡，右侧显示元件列表，包括“FIDUCIAL - IX2”等。该图片与文档中“新建元件，绑定封装”步骤相关，用于说明在KICAD软件中新建元件时输入ID的操作界面。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=M2U4MmQ0OWRjMGFlZTFjMjUzNzQ2YjUxMTM1NTlkMGFfNDViZjkyZTA1YTE5YTkzMjExNjUyYjA4ODBiNjA5YzNfSUQ6NzY2MzgyMzU3MzAzNDc5ODA2MF8xNzg0NTc1MDM2OjE3ODQ1Nzg2MzZfVjM)
+
+![图片展示的是KICAD元件库界面，其中“Fiducial-W3_3”元件被红框突出显示。该元件的坐标值为X: -5.511、Y: -5.511，角度为0.000。界面下方还有“FIDUCIAL-1X2”元件。此图与文档中“放置坐标原点”及“新建元件，绑定封装”等内容相关，用于说明在KICAD中新建元件并设置坐标原点的操作，是后续导入修改好的pos文件、改元件类型为Fiducial等步骤的基础。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OWQxNjIzNzFkYmJkMWFmMzBhMDE0ZTcwOWMxMGJhNDZfYTM2NDdiYTA1OTQ1YTFjZDVlZDY4OTkyOGVkNGViNWFfSUQ6NzY2MzgyMzU3NDU4NjgwNTUxN18xNzg0NTc1MDM2OjE3ODQ1Nzg2MzZfVjM)
+
+最后任务里可以导入修改好的pos文件，然后将三个mark的元件改为我们上面新建的这个元件
+
+同时类型改为Fiducial
+
+![图片展示的是KICAD软件中贴片列表界面。界面中有多个元件信息，如D90D-123P-SW6007、Fusoholder_LittleHue_B等，每项显示元件名称、层、X、Y、Z、角度、启用、巡检基准点等信息。其中，Fiducial1、Fiducial2、Fiducial3元件被选中，类型均为Fiducial，状态为已贴片。该图片与文档中KICAD螺丝孔做Mark点的内容相关，用于展示在KICAD软件中元件信息的显示情况。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ODViZDQzODY2OGMwNzc0NjAzOGVjMWE3Y2Q4MmE0ZmJfMzI4YWI0ODAwN2E2YWY0NzU0OTk5MWQwYmM4ZDRiZWRfSUQ6NzY2MzgyMzU3NzIwMzk2ODk4Nl8xNzg0NTc1MDM2OjE3ODQ1Nzg2MzZfVjM)
+
+如果说你已经有工程了，不要再导入pos文件，可以新建，、
+
+然后填入xy坐标值，角度为0.然后和上面一样，绑定原件，修改类型为Fiducial。
+
+![图片展示的是KICAD软件中贴片板编辑界面。界面中显示了多个元件信息，如名称、横向长度、纵向宽度、板层等。下方弹出窗口提示“请输入新贴片项的ID”，并有“确定”和“取消”按钮。窗口下方列表中，有“Fiducial”和“Fiducial2”两个元件被选中，其X、Y坐标分别为8.600、38.000和38.600、38.000，角度均为90.000，类型均为Fiducial。该图片与文档中KICAD螺丝孔做Mark点的内容相关，展示了在软件中新建元件并设置坐标等操作。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YWJkYmVjYWQ2NGNjY2YwNzI1NmE0NDQwNTllZjcxOTFfZTEzNGQ1MjJlN2ZhNmFiN2NlNWMxM2MzZGZiYWI0OTJfSUQ6NzY2MzgyMzU4MTY5MTg1ODE1OV8xNzg0NTc1MDM2OjE3ODQ1Nzg2MzZfVjM)
+
+
+
+## 坐标文件导出
+
+
+
+制造输出-元件位置文件
+
+![图片展示了KICAD软件中“制造输出”下“元件布置文件（pos，.gbr）...”选项被红色箭头突出显示。该图片与文档中“坐标文件导出”部分内容相关，用于说明在KICAD软件中导出元件布置文件的操作步骤，即在软件主菜单“制造输出”下选择“元件布置文件（pos，.gbr）...”选项，以导出元件布置坐标文件，后续可将此文件导入到PCB编辑器中进行坐标标注。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZjY0NTA5ZTQ0MmFhNDc0YjI4M2U3OWMyODRkNDk2YmRfMzRlYWVjMGM2OTc5YmRkY2U4MzIxNjM5MDNhZWE2MWFfSUQ6NzY2MzgyMzU4MzA3NzU4NDA1M18xNzg0NTc1MDM2OjE3ODQ1Nzg2MzZfVjM)
+
+- 1、2、3一定要设置对。
+- 4根据自己需要选择，默认必须勾选使用定位原点。
+
+  - 其它默认即可，也可以自己尝试
+
+![图片展示的是KICAD生成布置文件的设置界面。输出目录为“ves\\OpuloEngineering\\drawing\\PCB\\feeder-mobo-ott_PCA-0028\\00\\REV00”。格式为ASCII，单位为毫米。界面中有多个选项，其中“仅包含贴片封装”“使用钻孔/定位文件原点”“对底层的封装使用负X坐标”“生成包含正面和背面定位的单个文件”被红色框突出显示。该图片与文档中KICAD-螺丝孔做Mark点的坐标文件导出内容相关，展示了坐标文件导出时的设置界面及部分关键选项。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=Njg0NDc5NGJiYmQwNzZkMzM0YTg0MWU1OGUyNzhmNzlfMmI4NTdiYWFhM2IyNzU2MDc5ZWRhZjA1ODRmYWU4OTVfSUQ6NzY2MzgyMzU4NTA2NDA3ODU3Nl8xNzg0NTc1MDM2OjE3ODQ1Nzg2MzZfVjM)

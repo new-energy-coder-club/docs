@@ -1,0 +1,1194 @@
+---
+title: "准备工作"
+description: "LumenPnP最近进行了更新，由V4.0.1升级到V4.1，因此请根据你机器的版本选择对应文档教程。"
+---
+
+<title>准备工作</title>
+
+# 版本检查
+
+## 视频教程
+
+<bookmark name="视频教程（嵌入视频）" href="https://player.bilibili.com/player.html?bvid=1GpRyBmEyc&amp;spm_id_from=333.1387.homepage.video_card.click&amp;vd_source=e4bcd8d920c3e18aacbc0b5bcdbd6009"></bookmark>
+
+LumenPnP最近进行了更新，由V4.0.1升级到V4.1，因此请根据你机器的版本选择对应文档教程。
+
+按照下面方法判断你的机器版本。
+
+## 查找第二辅助校准板
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/ArH3bikxSo50g4xEqkLcAlpjnfx.webp)
+
+- 第二辅助校准板位于平台底板上摄像头的下方。
+- 它位于平台底板上的主要校准板对面。
+- 它是一个中间位置有个金色小原点的方形PCB，固定在一个小型安装支架中。
+
+## 如果你看到第二辅助校准板
+
+说明你的机器是最新板，你来对了指南。继续检查：
+
+[✅ 继续进行安装和调试→](https://tcnyw794ws3e.feishu.cn/wiki/BWF1wLHv2i1d4HkF6CMcJ6z3nuf#ZxNKdaF5UoXRrlxOwmhc29K9nnc)
+
+## 如果你没有看到第二辅助校准板
+
+
+
+你很可能用的是LumenPnP V4.0（旧版）。你有两个选择：
+
+### 选项1——继续使用V4.0文档
+
+如果你更愿意保留当前配置，可以继续使用V4.0指南。
+
+请访问：[**V4.0 文档**](https://tcnyw794ws3e.feishu.cn/wiki/TNgxwY23YigCRNkqSHUchABXnif)
+
+这些文档是为你的版本制作的。
+
+
+
+### 选项2——安装第二辅助校准板进行升级（推荐）
+
+升级您的LumenPnP V4.0，之后，您可以使用最新的OpenPnP版本（V2.6-2026最新版，旧版使用2013版本），以及更好的校准方式。
+
+1. 第二辅助校准板：
+
+   - 价格不到15元
+   - 它不需要拆解机器
+   - 几分钟内安装
+   - 安装后，可以继续参考本指南，体验最佳校准方式
+2. [**查看购买第二辅助校准板升级套件→**](https://item.taobao.com/item.htm?id=1030961703121&spm=a213gs.v2success.0.0.71a44831lXYvlo)
+
+# 安装OpenPnP
+
+## 视频教程
+
+<bookmark name="视频教程（嵌入视频）" href="https://player.bilibili.com/player.html?bvid=1GHRyBEEa8&amp;spm_id_from=333.1387.homepage.video_card.click&amp;vd_source=e4bcd8d920c3e18aacbc0b5bcdbd6009"></bookmark>
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NmI0OTJjMzE2YmZiNTM4Y2UwYjQxOGZlZDI0MDNkODdfOTc2ZWVlYjA2ZGRmOTIwYjg4NmYyYjkyOWYxMWY5ZGNfSUQ6NzY2MzgyODA1NzYyMjMxODMyMF8xNzg0NTc1MDIzOjE3ODQ1Nzg2MjNfVjM)
+
+我们支持最新的稳定版OpenPnP v2.6（2026最新版），建议安装该版本。下载链接如下：
+
+---
+
+## **Linux（Ubuntu）**
+
+<callout emoji="💡">
+**推荐使用 Linux**
+Ubuntu Linux 提供与 LumenPnP 和摄像头的可靠 USB 通信。也是本文档测试的平台。
+</callout>
+
+1. **下载Linux版OpenPnP**
+
+如果你还没有安装Ubuntu（建议安装Ubuntu 22.04 LTS版本），请按照官方指南操作：[安装Ubuntu Desktop。](https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview)
+
+之后下载OpenPnP安装包
+
+<figure view-type="Card"><source href="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YzBjNzcxMTcwYjZkY2E5Y2YwYWFkOWJhYzI3NTBhZTBfZDI3MGE0NmQzYzk2MzFiZTQ0MTcwMDM3NTRmY2IxMzZfSUQ6NzY2MzgyODA1NzM3NDk2OTAxMl8xNzg0NTc1MDIyOjE3ODQ1Nzg2MjJfVjM" token="WA4nbfoHiom7WVxLJVUcYeUcnah"/></figure>
+
+<figure view-type="Card"><source href="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ODIwYzBiZDQ2MjgzNDNjYTBhYmI3OGU5NzkxYzlhMTFfZGM5NDU1NjA0NzBlNDQxODVmNzkxZjgwYWFmYTMzYzFfSUQ6NzY2MzgyODA1NTg4MTg0NTk3MV8xNzg0NTc1MDIyOjE3ODQ1Nzg2MjJfVjM" mime="application/x-gzip" token="P1EubF7s9ohMhPxf3JKcXt4ened"/></figure>
+
+
+
+要正确在linux上运行 OpenPnP，需要提前做以下配置：
+
+1. 安装Java
+2. OpenPnP 需要 Java 运行：
+
+```Plain Text
+sudo apt-get install openjdk-17-jdk
+```
+
+把你的用户添加到拨号组
+
+1. 这使得 OpenPnP 能够与机器通信：把[USERNAME]替换成你的Linux用户名，
+
+```Plain Text
+sudo adduser [USERNAME] dialout
+```
+
+在软件的下载目录打开命令终端，输入下面命令，
+
+```Plain Text
+sudo dpkg -i OpenPnP-linux-main.deb
+```
+
+然后重启电脑。
+
+<callout emoji="💡">
+**启动与关闭 OpenPnP**
+为了让OpenPnP生成后面教程所需的文件和文件夹，重启电脑后，我们必须先启动一次OpenPnP。然后，我们必须再次关闭程序，才能再之后修改配置文件。
+</callout>
+
+---
+
+## **Windows**
+
+（支持但不推荐）
+
+<bookmark name="视频教程（嵌入视频）" href="https://player.bilibili.com/player.html?bvid=1sBRyBqEnu&amp;spm_id_from=333.1387.homepage.video_card.click&amp;vd_source=e4bcd8d920c3e18aacbc0b5bcdbd6009"></bookmark>
+
+1. **下载Windows版OpenPnP**
+
+选择对应版本安装
+
+<figure view-type="Card"><source href="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZjVlODQyZTEzNjM4NjkyMzUzM2RhYjg2NjdmYmFhNWZfNmM5NTNlMzZhOTlkNGViOTNiMzI3MmE2NGYyOGUzZTZfSUQ6NzY2MzgyODA1NzgwMjg4NjM2NF8xNzg0NTc1MDIzOjE3ODQ1Nzg2MjNfVjM" mime="application/x-msdownload" token="BPadbOhGqoend6xMd7kcKqQ0n7g"/></figure>
+
+<figure view-type="Card"><source href="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MWZkMmYwMTE2Y2VlMDc1Y2RmZDI1ZGFlMzVhZWVmNTNfMDU0NGE4NGRiYTczZDk5YzM1NGYzN2Q4MWQxYzUxMTdfSUQ6NzY2MzgyODA1OTMxMjgxOTM4MF8xNzg0NTc1MDIzOjE3ODQ1Nzg2MjNfVjM" mime="application/x-msdownload" token="X26zbL2JjokgKAxZ6b2c13vpn5b"/></figure>
+
+<callout emoji="💡">
+**启动与关闭 OpenPnP**
+为了让OpenPnP生成后面教程所需的文件和文件夹，重启电脑后，我们必须先启动一次OpenPnP。然后，我们必须再次关闭程序，才能再之后修改配置文件。
+</callout>
+
+---
+
+<callout emoji="💡">
+**不支持 MacOS**
+</callout>
+
+OpenPnP的最新版本 已不再支持 MacOS。如果你现在用的是Mac，你需要切换到Linux或Windows。
+
+---
+
+<callout emoji="✅">
+**推荐的计算机和操作系统**
+为了保证相机连接和曝光控制，我们建议使用运行Ubuntu 22.04 LTS的笔记本或台式机。
+</callout>
+
+---
+
+## 下一步
+
+OpenPnP 现已安装并创建了配置文件。这意味着它已经准备好导入我们的配置文件了。点击下方继续。
+
+[导入配置文件→](https://tcnyw794ws3e.feishu.cn/wiki/BWF1wLHv2i1d4HkF6CMcJ6z3nuf#UMYrdw5W1oVObUxPfdKc2hQxn1g)
+
+# 导入配置文件
+
+## 视频教程
+
+<bookmark name="视频教程（嵌入视频）" href="https://player.bilibili.com/player.html?bvid=1tuRnBuEve&amp;spm_id_from=333.1387.homepage.video_card.click&amp;vd_source=e4bcd8d920c3e18aacbc0b5bcdbd6009"></bookmark>
+
+## 下载LumenPnP 4.1的配置文件：
+
+windows和linux共用一个配置文件，下方点击下载
+
+<callout emoji="💡">
+我们的配置文件和官方的稍有不同，主要修改是led亮度和相机方向的默认值，均是为了适配我们机器而修改了。如果你不是我们的机器，也可以继续参照下面教程，所有参数都根据自己机器配置修改。
+</callout>
+
+<figure view-type="Card"><source href="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YzI2NmMzNjhmYTU4NzJhMTI2ZWU3OTY4MDA2MjNiODNfZDYwMmUyODU0M2UxMDViYzMxZThhZDFjNDU0OTE1ODBfSUQ6NzY2MzgyODA2MjUyNTUwODg2N18xNzg0NTc1MDIyOjE3ODQ1Nzg2MjJfVjM" mime="application/zip" token="F2jzbN3nwoLZYGxvrSyciNgHnwb"/></figure>
+
+1. 解压。你应该能找到两个文件：
+
+   - `machine.xml`
+   - `vision-settings.xml`
+2. 这些配置文件将取代 OpenPnP 同名的默认配置文件。
+
+---
+
+## 完全关闭 OpenPnP
+
+<callout emoji="⛔">
+**停止**
+在接下来的步骤中，OpenPnP必须保持关闭。 在OpenPnP开启时编辑配置文件很容易损坏文件并引发未知错误。 确保OpenPnP完全关闭后再继续。
+</callout>
+
+---
+
+## 找到`.openpnp2`文件夹
+
+OpenPnP 将其配置文件存储在一个名为：`.openpnp2`的文件夹中
+
+**Linux（Ubuntu）**
+
+1. 打开你的`Home`文件夹
+2. 点击显示隐藏文件 或者 使用快捷键 `Ctrl + H`
+3. 找到并打开文件夹`.openpnp2`
+
+![图片展示了在Linux（Ubuntu）系统中找到的`.openpnp2`文件夹内容。文件夹内有多个XML文件，如`boards.xml`、`machine.xml`、`packages.xml`等，以及`log`、`scripts`、`themes`文件夹。其中`machine.xml`文件大小为52.3 KB，`packages.xml`文件大小为7.3 KB，`script-state.xml`文件大小为24 KB，`vision-settings.xml`文件大小为27 KB。该图片与上文“找到`.openpnp2`文件夹”内容对应，直观呈现了文件夹中文件和文件夹的名称及大小等信息。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZWQ1OTJiMTI2NWRiNTBiOWFhZmI0Mzc2YWExNzI1ZmJfODZkNDUyZDQxZGQ3ZTE5M2EzNWY4ZjA4MDY4OWY3YmJfSUQ6NzY2MzgyODA2MTA5OTY1ODUwMl8xNzg0NTc1MDIzOjE3ODQ1Nzg2MjNfVjM)
+
+**Windows**
+
+1. 打开文件资源管理器
+2. 点击查看
+3. 勾选 隐藏的项目
+4. 导航至：`C:\Users\[你的电脑用户名]\.openpnp2`
+
+![图片展示了Windows系统中文件资源管理器的界面。在“查看”选项卡下，有“导航窗格”“详细信息窗格”等窗格选项，以及“布局”“排序方式”“当前视图”“显示/隐藏”等设置。其中，“显示/隐藏”区域的“隐藏的项目”选项被红色框突出显示。该图片与文档中“找到`.openpnp2`文件夹”部分的Windows操作步骤相关，用于指导用户在文件资源管理器中勾选“隐藏的项目”选项，以便找到隐藏的`.openpnp2`文件夹。](https://cdn.newenergycoder.club/images/lumenpnp/MBnyb7opSoSgC2xfMfdcwrAWnBg.webp)
+
+---
+
+## 替换配置文件
+
+在 .openpnp2 文件夹中，你会发现几个 XML 文件。
+
+1. 找到这两个文件：
+
+   - machine.xml
+   - vision-settings.xml
+2. 用你前面下载的两个文件替换它们。
+
+   - 它们应该有同一个名字。
+   - 把文件复制粘贴到`.openpnp2`文件夹里
+   - 它会提示你覆盖当前文件。选择同意覆盖。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YmFkYmVlYzgyZTQ2NDRhMjAwMjgxZWU4OGUwZGVmZTlfYTU3NGM2ZjZiNmFjMDU5NDlhMjA2MDkyYTliMWEzMGFfSUQ6NzY2MzgyODA2NzgzNTU0NjgzOV8xNzg0NTc1MDIzOjE3ODQ1Nzg2MjNfVjM)
+
+<callout emoji="💡">
+**小提示**
+这些文件配置了 OpenPnP 与 LumenPnP 硬件和视觉系统之间的通信方式。 更换它们可以确保OpenPnP从正确的机器配置开始。
+</callout>
+
+---
+
+## 验证已加载的配置
+
+1. 启动OpenPnP
+
+   - 等待其完全加载运行
+   - 确认软件能够正常显示主界面
+2. 如果OpenPnP成功启动，说明配置文件是正确导入的。
+
+# 建立联接
+
+## 视频教程
+
+<bookmark name="视频教程（嵌入视频）" href="https://player.bilibili.com/player.html?bvid=1JkdAB2E5G&amp;vd_source=e4bcd8d920c3e18aacbc0b5bcdbd6009&amp;spm_id_from=333.788.videopod.sections"></bookmark>
+
+## 机器通电
+
+1. 连接前，**确保LumenPnP已通电。**
+
+   - 控制器板应该已经通过USB连接到你的电脑了。
+
+## 软件中文
+
+修改后，重启生效。本文档教程中使用的英文界面，请仔细甄别每个操作步骤。
+
+![图片展示了OpenPnP软件界面中“View”菜单下的“Language”选项及子菜单。其中“Chinese (China)”选项被红色框和箭头突出显示。这与文档中“选择串口”步骤相关，文档提到在选择可用的串口时，需在OpenPnP软件中找到“Machine Setup>Drivers>GcodeDriver>Configuration”下的“Port”下拉菜单，此处图片直观呈现了该菜单及“Chinese (China)”选项，帮助用户在软件中进行相应操作。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NGFlMjlkMDcyOGZlN2I4NjhmOTMxYTExZGFhODdhNDJfOGU1YWU3NzI4NDA1YWM3ZGQwODMzZWNjZDBiMzIwODZfSUQ6NzY2MzgyODA3MDE5MjcyOTI3Nl8xNzg0NTc1MDIzOjE3ODQ1Nzg2MjNfVjM)
+
+## 选择串口
+
+1. 启动 OpenPnP
+2. 找到`Machine Setup`标签页
+3. 在窗口中，打开`Machine Setup > Drivers > GcodeDriver > Configuration`
+4. 找到下拉菜单`Port`
+5. 选择可用的串口
+
+   - **Linux**的典型端口名称：`/dev/ttyACM0`（或除0以外的其他数字）
+   - **Windows**的典型端口名称：`COM3, COM4, COM5, etc.`
+
+<figure view-type="Preview"><source href="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZThjMGM2MjhjNDJkODg1ZjQxMDcwNjQwYmQ3NjJkNWZfN2ZiMTI4NmRlNWM2ZGZmNTMxMDlhOWM2Yzk1NjQyMjNfSUQ6NzY2MzgyODA3MjkxMjIyNzU3NV8xNzg0NTc1MDIyOjE3ODQ1Nzg2MjJfVjM" mime="video/mp4" origin-height="720.000000" origin-width="1280.000000" token="OOPwbBQb6oLCEsxyMFzcTmfdn4A"/></figure>
+
+## 连接机器
+
+1. 点击机器控制面板中的绿色电源按钮。
+2. 如果连接成功：
+
+   - 机器将启用
+   - home回零图标将变成黄色
+   - 绿色电源键现在变成了红色
+3. 这表明OpenPnP现在正在与LumenPnP通信。
+
+<callout emoji="❗">
+**USB连接顺序很重要！**
+启动 OpenPnP 之前，请务必先插入 LumenPnP 的 USB 连接线。
+如果 OpenPnP 已经打开，请先将其关闭，然后再连接 USB 连接线。
+</callout>
+
+<callout emoji="❗">
+**链接失败！！！**
+如果出现联接失败时，保持usb连接。关闭openpnp软件，然后按主控盒的RESET复位或者重新插拔主控盒的DC电源线，机器会重启，上下补光灯依次红绿蓝三色闪烁后自动关闭，再打开openpnp软件！！！
+总之就是，机器和软件都要重启，而且必须等待机器重启完了，才能重启openpnp。
+</callout>
+
+<figure view-type="Preview"><source href="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MTA1NzQzYmU1ODFmNmQ2NmVlZGVhZTk5MjEyNTI5N2FfZWM2YzQzMzZiYzQyNWFjYjc5NzU0ZmQyOWMzMDEzNWRfSUQ6NzY2MzgyODA3Mjg0NzcwNzM0N18xNzg0NTc1MDIzOjE3ODQ1Nzg2MjNfVjM" mime="video/mp4" origin-height="720.000000" origin-width="1280.000000" token="NE3ubP1gForA6fx8L2ZcYBCRnXc"/></figure>
+
+<callout emoji="⛔">
+**停止**
+下拉菜单中没有可用的串口。 这通常意味着你的电脑没有检测到机器。 检查一下USB线，确认机器已经开机了。
+</callout>
+
+**如果机器无法连接**
+
+1. 请查看以下内容：
+
+   - 机器电源已开启
+   - USB线已经连接上了并插紧
+   - 选择正确的串口，如果不知道是哪个串口，可以挨个尝试连接
+   - 没有其他软件占用该串口
+   - 极少数情况是使用了USB集线器/扩展器，请直接连接电脑usb端口，或更换USB集线器
+   - 极少数情况是电脑原因，可以更换电脑尝试连接
+2. 重启 OpenPnP 也有助于刷新可用端口。
+
+<callout emoji="💡">
+提示
+如果你拔掉并重新连接USB线，正确的串口通常是列表中出现的新设备。
+</callout>
+
+# 连接摄像头
+
+## 视频教程
+
+<bookmark name="视频教程（嵌入视频）" href="https://player.bilibili.com/player.html?bvid=1vxd3B8EgZ&amp;vd_source=e4bcd8d920c3e18aacbc0b5bcdbd6009&amp;spm_id_from=333.788.videopod.sections"></bookmark>
+
+
+
+<callout emoji="💡">
+请**避免使用usb拓展器/集线器/hub**。否则可能导致无法连接摄像头（部分便宜的拓展器速度不够）。
+请优先将摄像头直接连到电脑的usb口。
+</callout>
+
+<callout emoji="❗">
+下面教程中的相机参数除了Exposure和Brightness 参数外
+其他参数一律不要修改，不要动，不要改！！！否则摄像头会死机，帧率将为0，必须清除所有配置文件才能解决（完全重新校准）。如果你不小心改了，发现画面卡顿，摄像头死机，请按照这个链接解决：[摄像头帧率突然下降为0](https://tcnyw794ws3e.feishu.cn/wiki/K3jJwIn7wi9jBhkb9onceTHlnqu?larkTabName=space#C1URdJROwoWnEVxKHhBcrqYonSg)
+</callout>
+
+## **取下相机镜头盖**
+
+- 请确保两个相机的镜头盖的镜头盖已取下，部分可能运输中已经掉落了。能看到玻璃镜头就行。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MDZlMGMwOTc2NDdiNTRjZmYxMmZjYTk3Y2ZhNDFlYmNfNzI1YmNiY2VjYjdkMjlkYWU4YjA4MmU0YWI3YjBhMDlfSUQ6NzY2MzgyODA3MjE5MzU3NjIzNl8xNzg0NTc1MDIzOjE3ODQ1Nzg2MjNfVjM)
+
+## 连接顶部摄像头
+
+1. 导航至：`Machine Setup > Heads > ReferenceHead H1 > Cameras > OpenPnpCaptureCamera Top`
+
+   ![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YzkxNjQ5ZTZlNGZhZWJkYjQ2MWZlNTNiM2M2OTE0OTJfZjc0NjYzMmRkYjdkNjE4Mjc5ZTE3MTUzZTE1NmQ5MDVfSUQ6NzY2MzgyODA3NDgwMjM1MTQwMF8xNzg0NTc1MDIzOjE3ODQ1Nzg2MjNfVjM)
+2. 打开`Device Settings` 标签页。
+3. 定位 `Device dropdown`。
+
+   - 选择LumenPnP Top相机
+
+   ![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YWE0NmQ5ZGVkY2Q1OTJlN2Y5YjNlOTBkY2Q4ZTAzYWFfOTZmODVmYWUwZWQ2YjAxNDYzZjRhMmE4MjU2ZTdlNDJfSUQ6NzY2MzgyODA3NTUyMzgyMDgwM18xNzg0NTc1MDIyOjE3ODQ1Nzg2MjJfVjM)
+
+<callout emoji="💡">
+**找不到LumePnP Top或者LumenPnP Bottom**
+该问题只针对windows系统。
+如果你是windows系统，可能只看到LumePnP Top或者LumenPnP Bottom其中一个，并且有两个LumePnP Top或者LumenPnP Bottom。请按这个链接方法解决：[摄像头同名](https://tcnyw794ws3e.feishu.cn/wiki/K3jJwIn7wi9jBhkb9onceTHlnqu?larkTabName=space#ZKVgd65rAoBbTQx38Lmc9X0Enye)
+</callout>
+
+<callout emoji="💡">
+**摄影机名称重复**
+该问题针对所有系统，这是 OpenPnP 的一个 bug。
+这里的重复和上面问题不同，你可以看到LumePnP Top和LumenPnP Bottom两个。但还会有一个LumePnP Top或者LumenPnP Bottom，也就是看到三个或以上LumePnP 摄像头。这是由于 OpenPnP 的一个错误，如果您选择的第一个不正确，请使用同名的另一个选项。
+</callout>
+
+1. 请找到`Format`，打开下拉菜单
+2. 然后选择格式：
+
+   - `1920x1080, 30FPS, MJPG`
+3. 如果相机无法连接，请尝试：
+
+   - `1920x1080, 5FPS, YUYV`
+4. 点击`Capture FPS` 旁边 的`Test`。这将：
+
+   - 应用上面所选格式
+   - 开始捕获摄像机画面
+   - 自动应用设置
+
+<callout emoji="💡">
+小提示
+相机图像一开始可能完全是黑色的（相机盖子没打开或者曝光太弱，这里先不管，后面会调整）。 这在调整曝光之前是正常的。
+</callout>
+
+---
+
+### 打开补光灯
+
+在相机画面右上角，单机灯光图标，打开相机补光灯
+
+<callout emoji="💡">
+顶部和底部相机补光灯是一个开关，同时开同时关。
+</callout>
+
+![图片展示的是连接顶部摄像头时的相机界面。画面中央有一个靶心，靶心内有蓝色的球体。右上角有太阳图标，旁边有红色箭头指向该图标。左下角显示“Top”字样。该图片与文档中“连接顶部摄像头”部分相关，用于辅助说明在连接顶部摄像头时，如何在相机界面进行操作，如调整曝光模式等。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZmI5YTBkYjQwMzI4M2EzNGNhZTBjYzM4OWI0OGU5YWJfZTZmYThkYjAzNWNiYjkyN2Q5MzBhMDg2OTk4OWEzNjJfSUQ6NzY2MzgyODA3NzQ1MzI2NjE2MF8xNzg0NTc1MDIzOjE3ODQ1Nzg2MjNfVjM)
+
+### 确认相机设置
+
+请验证以下相机属性是否和我们自己的一致：
+
+<sheet sheet-id="jNzFMJ" token="WYcYsjA8AhNKN0t6zXUc4ePPnHf"></sheet>
+
+---
+
+
+
+### 设置曝光模式
+
+要将相机切换到手动曝光模式：
+
+1. 在相机属性中，找到Exposure曝光这一行。勾选旁边的复选框（如果已经勾选了，请取消勾选，然后再勾选）。
+2. 再次**取消勾选**你刚刚点击的复选框（这里反复勾选是为了确保曝光设置能被正确保存。）。
+3. **然后将数值拖动到最小值（必须修改数值，才会生效）**
+
+   ![图片展示了相机属性中Exposure曝光设置界面。画面中有复选框、数值输入框及滑动条。复选框左侧有黑色箭头指向，右侧绿色箭头指向滑动条，滑动条上有蓝色箭头指向数值“-5”。该图片与文档中“设置曝光模式”步骤相关，用于说明在相机属性中勾选Exposure曝光复选框后，再次取消勾选并拖动数值到最小值的操作，以确保曝光设置能被正确保存。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NTcwMzNjYjhkMTZmNzgwMjQ4OTc5NjVlYTYzN2IxNDBfY2NhYWZkMmQ2ZWFjZmY5ZWI0YzQ5YzRlNTY4Mzc2MzFfSUQ6NzY2MzgyODA4NDAxMzEyNDkwOF8xNzg0NTc1MDIzOjE3ODQ1Nzg2MjNfVjM)
+
+---
+
+### 调整相机顶部曝光
+
+<callout emoji="❗">
+除了Exposure外
+其他参数一律不要修改，不要动，不要改！！！否则摄像头会死机，帧率将为0。如果你不小心改了，请按照这个链接解决：[摄像头帧率突然下降为0](https://tcnyw794ws3e.feishu.cn/wiki/K3jJwIn7wi9jBhkb9onceTHlnqu?larkTabName=space#C1URdJROwoWnEVxKHhBcrqYonSg)
+</callout>
+
+设置 曝光值=100（Linux），曝光值=-1（Windows）作为起点。
+
+你可能需要用机器控制面板移动贴装头到主教准本上方，
+
+然后调整曝光值，让相机看到主校准板的线框。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NTQyY2RmMGViMmIyZGJkNDg0YTNiZjEyYzY5NWYwOGRfYzJhM2JkMGIxZTRhNDExNGYwMjE5NWRlNDBkMzU5ZTNfSUQ6NzY2MzgyODA4NjA4OTI3MjU5Ml8xNzg0NTc1MDIzOjE3ODQ1Nzg2MjNfVjM)
+
+<callout emoji="💡">
+**温馨提示**
+这里只是粗调，主要验证摄像头功能没有问题。后面章节我们还会进行精确调节
+</callout>
+
+---
+
+## 连接底部摄像头
+
+1. 导航至：`Machine Setup > Cameras > OpenPnpCaptureCamera Bottom`
+2. 打开`Device Settings` 标签页。
+3. 定位到`Device`，打开下拉菜单
+4. 然后，从列表中选择LumenPnP Bottom摄像头。
+5. 请找到`Format`，打开下拉菜单
+6. 然后选择格式：
+
+   - `1920x1080, 30FPS, MJPG`
+7. 如果相机无法连接，请尝试：
+
+   - `1920x1080, 5FPS, YUYV`
+8. 点击`Capture FPS` 旁边 的`Test`这将：
+
+   - 应用上面所选格式
+   - 开始捕获摄像机画面
+   - 自动应用设置
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/KEP7boPCeooCPwxLXAMcANp3nAc.webp)
+
+---
+
+### 打开补光灯
+
+在相机画面右上角，单击灯光图标，打开相机补光灯
+
+<callout emoji="💡">
+顶部和底部相机补光灯是一个开关，同时开同时关。
+</callout>
+
+![图片展示的是连接底部摄像头时，打开补光灯的操作界面。画面中有一个靶心图案，靶心内有蓝色的球体。右上角有一个灯光图标，图标内有太阳图案，旁边有红色箭头指向，且图标右侧有一个开关，处于关闭状态。该图片与文档中“打开补光灯”步骤相关，直观呈现了在相机画面右上角单击灯光图标后，灯光开关的状态，帮助用户了解操作位置和效果。](https://cdn.newenergycoder.club/images/lumenpnp/CyBsbepDYo4y34xY3q0cFNKnnGc.webp)
+
+### 确认相机设置
+
+以下所有设置在调整曝光前都保持不变，直到调整曝光时才有细微差别。
+
+使用与顶部摄像头相同的属性值：
+
+<sheet sheet-id="nYD67W" token="WYcYsjA8AhNKN0t6zXUc4ePPnHf"></sheet>
+
+---
+
+### 设置曝光模式
+
+要将相机切换到手动曝光模式：
+
+1. 在相机属性中，找到Exposure曝光这一行。勾选旁边的复选框（如果已经勾选了，请取消勾选，然后再勾选）。
+2. 再次**取消勾选**你刚刚点击的复选框（这里反复勾选是为了确保曝光设置能被正确保存。）。
+3. **然后将数值拖动到最小值（必须修改数值，才会生效）**
+
+   ![图片展示了相机属性中Exposure曝光设置界面。画面中有复选框、数值输入框和滑动条。复选框左侧有黑色箭头指向，表明操作重点。数值输入框显示当前值为-2.5，滑动条右侧有蓝色箭头，指向-5。该图片与上下文紧密相关，上下文介绍了将相机切换到手动曝光模式的操作步骤，此图直观呈现了操作中需取消勾选复选框并拖动滑动条至最小值的环节。](https://cdn.newenergycoder.club/images/lumenpnp/EoLsbRULEo0fzsxRwt5c8IConvd.webp)
+
+---
+
+### 调整底部相机曝光
+
+<callout emoji="❗">
+除了Exposure外
+其他参数一律不要修改，不要动，不要改！！！否则摄像头会死机，帧率将为0。如果你不小心改了，请按照这个链接解决：[摄像头帧率突然下降为0](https://tcnyw794ws3e.feishu.cn/wiki/K3jJwIn7wi9jBhkb9onceTHlnqu?larkTabName=space#C1URdJROwoWnEVxKHhBcrqYonSg)
+</callout>
+
+设置 曝光值=100（Linux），曝光值=-1（Windows）作为起点。
+
+你可能需要用机器控制面板调整贴装头位置，让相机看到吸嘴作为参考点。
+
+<callout emoji="💡">
+**温馨提示**
+曝光良好的图像应能清晰显示吸嘴尖端，但不会过于明亮。
+吸嘴杆尖端高度应该调整到和主校准板顶面高度一致。
+</callout>
+
+![图片展示的是底部摄像头拍摄的图像，画面中有一个蓝色的吸嘴，吸嘴尖端被红色十字线框住，周围有红色的刻度线。画面左下角显示“Bottom”标识。该图与文档中“连接底部摄像头”及“调整底部相机曝光”内容相关，用于辅助说明调整曝光值后，通过底部摄像头拍摄的吸嘴图像情况，以验证摄像头功能是否正常。](https://cdn.newenergycoder.club/images/lumenpnp/GzwUbhf9to9hsLxMrPEcJ2q0nVh.webp)
+
+<callout emoji="💡">
+**温馨提示**
+这里只是粗调，主要验证摄像头功能没有问题。后面章节我们还会进行精确调节
+</callout>
+
+# 回零LumenPnP
+
+## 视频教程
+
+<bookmark name="视频教程（嵌入视频）" href="https://player.bilibili.com/player.html?bvid=1uf5A6hEkY&amp;vd_source=e4bcd8d920c3e18aacbc0b5bcdbd6009&amp;spm_id_from=333.788.videopod.sections"></bookmark>
+
+## 为什么回零很重要
+
+回零会为机器设定已知的起始位置。
+
+在回零过程中，LumenPnP 将贴装头移动到位于机器的 X、Y 和 Z 零位置，即前左角（X0, Y0）处。
+
+---
+
+## 回零之前
+
+**按下Home键前**，先确认吸嘴水平。
+
+<callout emoji="⛔">
+停止 如果
+如果两个吸嘴都不接近水平，就停止。手动将它们调整水平，不需要完全水平。
+如果**吸嘴错位，回零时会导致吸嘴与机架或平台底板碰撞**。 
+在继续之前，先调整吸嘴使其大致水平。
+</callout>
+
+<callout emoji="💡">
+**专业提示**
+机器Home**回零之后**，直接使用**Z Park**按钮就可以保证吸嘴尖端移动到安全高度。
+鼓励在学习操作的同时，经常练习这个习惯。 
+保持吸嘴在安全高度大大降低意外碰撞的可能性。
+“**Park**”按钮位于“机器控制”面板中，在 Z 轴高度调节上下箭头之间。
+</callout>
+
+![图片展示了LumenPnP机器控制面板中的“Home回零”操作界面。画面中，“Home回零”按钮以红色框和箭头突出显示，位于“Machine Controls”面板内，其左侧是红色的“Power”按钮，右侧是“P”形的“Jog”按钮。该图片与文档中“执行回零操作”部分内容相关，直观呈现了按下“Home回零”按钮前的操作界面，帮助用户明确找到回零按钮的位置，以便进行回零操作。](https://cdn.newenergycoder.club/images/lumenpnp/WSnobyPg8obR3QxQGWhcUT5tngd.webp)
+
+![图片展示了LumenPnP机器的贴装头部分。机器主体为黑色，贴装头位于画面中央偏右位置，其上有多个连接线，包括黄色、蓝色等。贴装头下方有一个小孔，可能是用于放置贴片的。背景为红砖墙，墙上有黑色的金属轨道。该图片与文档中“执行回零操作”部分相关，用于直观呈现按下Home键前机器贴装头所在位置，辅助理解操作前机器状态。](https://cdn.newenergycoder.club/images/lumenpnp/BhLmbzKIDoOKx5x9eddceq0gnUg.webp)
+
+---
+
+## 执行回零操作
+
+1. 在`Machine Controls`面板中找到`Home`回零按钮。
+
+<callout emoji="❗">
+**按下Home键前**，先确认吸嘴水平。
+</callout>
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/FE7xbbzKcoy2qCxIFb9c3XZqnrd.webp)
+
+1. 点击 黄色的`Home回零` 图标
+
+   - 机器会把贴装头移到机器的`前左角（X0, Y0）`位置。
+   - 动作完成后，贴装头将停留该位置。
+
+# 安装吸嘴
+
+## 视频教程
+
+<bookmark name="视频教程（嵌入视频）" href="https://player.bilibili.com/player.html?bvid=1Ti536EESt&amp;vd_source=e4bcd8d920c3e18aacbc0b5bcdbd6009&amp;spm_id_from=333.788.videopod.sections"></bookmark>
+
+## 准备吸嘴头
+
+LumenPnP使用CP40吸嘴。
+
+校准时，我们将使用三个吸嘴头（N045、N08和N24）。我们开始时会先在机器上安装其中两个吸嘴头。
+
+1. 在首次安装吸嘴头前，先轻轻润滑O型圈。
+
+   - 在吸嘴杆上涂少量润滑剂，并多次插入或取出头头以均匀涂抹。
+   - 只需少量，但务必确保头完全覆盖，且头上不留多余的材料。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/Imf1b1zqroNgjCxOZovcLTkpnEb.webp)
+
+<callout emoji="⛔">
+停止 如果
+如果润滑剂涂得太多，就停下来。 CP40吸嘴头的开口非常小。 过多的润滑剂很容易堵塞指尖。 只需要非常少量。
+</callout>
+
+<callout emoji="💡">
+温馨提示
+最好尽早给所有吸嘴尖端涂润滑油。 适当的润滑使未来自动更换吸嘴尖端时更加顺畅，防止O型圈过早磨损。
+</callout>
+
+---
+
+## 安装N045吸嘴头
+
+我们将安装以下吸嘴头以开始校准：
+
+<sheet sheet-id="FMzPse" token="WYcYsjA8AhNKN0t6zXUc4ePPnHf"></sheet>
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/X1LDbFwZwoITh0xEGIzcbSaAn9d.webp)
+
+当选择此选项时：
+
+- LumenPnP会将贴装头移向靠近你的位置。
+- 弹窗将出现一条信息
+- 这是正常现象，它只是暂停移动，让你安装吸嘴尖端。单击 OK 忽略。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/YHQjbxd2mom1Qdxt7NBcHDa2ndg.webp)
+
+---
+
+## 将N045吸嘴头安装到N1吸嘴上
+
+1. 将N045吸嘴头推到N1号吸嘴杆上，直到它平稳地贴合O型圈。
+2. 不需要太用力。需要时涂抹润滑。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/Dyy3bsAntoXyFjxRurjce2UWn7b.webp)
+
+---
+
+## 装填N24吸嘴头
+
+对第二个吸嘴重复同样的过程。
+
+1. 导航至：`Machine Setup → Heads → ReferenceHead H1 → Nozzles → ReferenceNozzle N2 → Nozzle Tips`
+2. 勾选N24的吸嘴头`Loaded?`复选框。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/B3eHbMzQHoYNgAx8ryjcduFknMd.webp)
+
+## 将N24吸嘴头安装到N2吸嘴上
+
+1. 将N24吸嘴头推到N2号吸嘴杆上，直到它平稳地贴合O型圈。
+2. 不需要太用力。需要时涂抹润滑。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/YtpDbUSCZoHN9SxrXSgceNrtnQe.gif)
+
+<callout emoji="💡">
+**专业提示**
+润滑过程中请多次插拔每个吸嘴头。 这样润滑油会均匀分布在O型圈上，方便以后换头。
+</callout>
+
+---
+
+# 相机曝光和补光灯亮度调节
+
+## 视频教程
+
+<bookmark name="视频教程（嵌入视频）" href="https://player.bilibili.com/player.html?bvid=1naL86oELg&amp;vd_source=e4bcd8d920c3e18aacbc0b5bcdbd6009&amp;spm_id_from=333.788.videopod.sections"></bookmark>
+
+
+
+<callout emoji="❗">
+**警告**
+机器视觉对光照条件高度敏感。我们建议在 LumenPnP 工作的工作空间内保持恒定的光照。环境光的变化可能需要重新调整视觉设置。
+尤其避免阳光直射或放置在窗户边，易受外部太阳光变化干扰，影响正常使用。
+</callout>
+
+## 调整LED亮度值并打开
+
+1. 机器配置 -> 驱动定义-> DcodeDriver -> Gcode
+
+   - 组件选择：LED
+   - 设置项选择：ACTUATE_BOOLEAN_COMMAND
+   - 将下方 M150 P255 V255 R255 B255 中的 P255 改为 P45。应用保存。数字越大越亮。范围0-255
+
+<callout emoji="💡">
+如果后续使用时，发现亮度低或高了，可以回到这里自行调整亮度值。
+</callout>
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/PpKTbGfBJoCbxmxyCwicw8wzn3P.gif)
+
+1. 在相机画面右上角，单击灯光图标，重新打开相机补光灯启用修改（否则修改将不起作用）
+
+<callout emoji="💡">
+顶部和底部相机补光灯是一个开关，同时开同时关。
+</callout>
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/KYl3bAB0borhWexhUEWc7jM3n0c.webp)
+
+<callout emoji="❗">
+**保持环形灯亮着**
+在校准的剩余时间内保持环形灯亮着。所有校准都应以环形灯打开为基础。
+在实际运行贴片任务时，环形灯会在归位后自动打开，因此正常运行时无需手动打开它们。
+</callout>
+
+## 调整顶部相机曝光
+
+<callout emoji="❗">
+**其他相机设置**
+在接下来的步骤中，除了**Exposure曝光值**和**Saturation饱和度**外，请勿修改任何其他相机设置。默认值应保持不变。
+其他参数一律不要修改，不要动，不要改！！！否则摄像头会死机，帧率将为0。如果你不小心改了，请按照这个链接解决：[摄像头帧率突然下降为0](https://tcnyw794ws3e.feishu.cn/wiki/K3jJwIn7wi9jBhkb9onceTHlnqu#C1URdJROwoWnEVxKHhBcrqYonSg)
+</callout>
+
+1. **将顶部摄像头移动到主校准板上方**
+
+- 使用`Machine Controls`微调Cameera：Top（Head：H1），使之大致**位于基准板正上方**中心位置。
+- 如果发现您的机器没有移动，请将滑块`Distance`设置为 `1`或  `10`。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/CTUybOTkpozU1OxJSwacNRNHn1C.gif)
+
+- 相机画面右键，打开Ruler辅助十字线。使用`0.1`或  `0.01` 的 `Distance`，将摄像头的十字线精确地调整到主校准板中心圆上方。您可以使用鼠标滚轮放大画面，以获得更高的精度。
+
+<grid>
+<column width-ratio="0.500000">
+![](https://cdn.newenergycoder.club/images/lumenpnp/JyCUbSTO3oXjYJxLjYAcou4SnUf.webp)
+</column>
+<column width-ratio="0.500000">
+![](https://cdn.newenergycoder.club/images/lumenpnp/MLZWbgqLgoTLbdxg5EBcwMhhnWb.webp)
+</column>
+</grid>
+
+1. 导航至`Machine Setup > Heads > ReferenceHead H1 > Cameras > OpenPnPCaptureCamera Top`。
+
+   1. 在下方详细信息窗格中，切换到`Device Settings`该选项卡。
+
+<grid>
+<column width-ratio="0.500000">
+![](https://cdn.newenergycoder.club/images/lumenpnp/OMLFbUhoOorjrMxdyG0cxr55nqb.webp)
+</column>
+<column width-ratio="0.500000">
+![](https://cdn.newenergycoder.club/images/lumenpnp/WuKBb3Y6EoXPRUxEFegco118nBb.webp)
+</column>
+</grid>
+
+1. 找到Saturation饱和度，将值改为0（画面将变成黑白，更利于软件后续的识别）
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/Imf1b1zqroNgjCxOZovcLTkpnEb.webp)
+
+1. 右键单击顶部摄像头画面，选择`Show Image Info?`启用图像信息卡。这将显示图像的亮度直方图。
+
+- 请将直方图作为一般参考，而非精确测量。它虽然是一个有用的工具，但并不精确。为了获得最佳效果，请参考下方的对比照片，这些照片展示了“过亮”、“过暗”和“曝光良好”的示例，以帮助您在使用直方图后微调设置。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/X1LDbFwZwoITh0xEGIzcbSaAn9d.webp)
+
+- 请将直方图作为一般参考，而非精确测量。它虽然是一个有用的工具，但并不精确。为了获得最佳效果，请参考下方的对比照片，这些照片展示了“过亮”、“过暗”和“曝光良好”的示例，以帮助您在使用直方图后微调设置。
+- 下一步，我们的目标是**在直方图的右侧形成一个尖锐的峰值，并在左侧形成**一个较大的聚集区域。请参考下图。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/OXm0bkEoIoJrLHxNHltcm5YznDf.webp)
+
+
+
+<callout emoji="💡">
+**🚨重要🚨**
+上面的参考图像只是一个示例。根据光照条件、相机位置和其他环境因素，**您的直方图可能会有很大不同。不要试图完全复制它。**相反，您应该专注于实现关键特征：右侧有一个明显的峰值，左侧有一个明显的聚集或峰值。逐步调整，直到图像清晰且曝光良好。
+</callout>
+
+1. **找到正确的曝光量**。
+
+- 调整Exposure和Saturation滑块或手动输入不同的值，以确保相机能够清晰看到中心圆，从而进行校准。目标是使图形轮廓线区域最亮且清晰可见但不至于完全变成白色，同时板子黑色区域也尽可能暗淡但不至于完全黑色。请参考以下图片调整曝光：
+
+<grid>
+<column width-ratio="0.333333">
+![](https://cdn.newenergycoder.club/images/lumenpnp/KMfvbmd0ro0mUoxQhLHcYddtnCd.webp)
+</column>
+<column width-ratio="0.333333">
+![](https://cdn.newenergycoder.club/images/lumenpnp/XKDAbwrACocdBvxOb7gcHbobnuf.webp)
+</column>
+<column width-ratio="0.333333">
+![](https://cdn.newenergycoder.club/images/lumenpnp/B6atbaaTYo7FrWxo31ScvVUTnJb.webp)
+</column>
+</grid>
+
+<callout emoji="💡">
+**修改LED亮度值**
+如果你尝试修改了 Exposure 和 Saturation ，但画面仍然差
+1. 避免室外阳光直射，请在光线稳定的环境下使用。避免台灯及其他光源直射机器。
+2. 修改 [LED亮度值](https://tcnyw794ws3e.feishu.cn/wiki/BWF1wLHv2i1d4HkF6CMcJ6z3nuf?larkTabName=space#PIgkdWBneoewZ5xTC3TcRprInVh)，以±10的步进值调整补光灯的亮度值**（注意这会同时修改上下补光灯的亮度值，如果你的底部相机曝光已经调整好了，请返回重新修改**[**底部相机曝光**](https://tcnyw794ws3e.feishu.cn/wiki/BWF1wLHv2i1d4HkF6CMcJ6z3nuf?larkTabName=space#VAJzdZnVHooK8fxfAZncJanlnIQ)**，这个过程可能需要反复多次，才能取得一个平衡值）**
+</callout>
+
+- 使用完毕后，请关闭直方图窗口。用打开直方图视图的相同方法将其关闭。
+
+<callout emoji="💡">
+**顶部摄像头画面里什么都没看到？**
+请确保顶部摄像头的镜头盖已取下。
+</callout>
+
+1. **记录底部摄像头曝光值**
+
+- OpenPnP 重启后可能无法保留您的相机曝光设置。**请将曝光值记录并保存**到文本文件中或用笔写下来。
+- 这意味着每次启动 OpenPnP 时，您都必须：
+
+  - 手动关闭**自动曝光模式** 。（这会将相机切换到手动曝光模式）
+  - **在滑块旁边的曝光字段中输入您记录的曝光值**。
+
+<callout>
+经过实际测试，openpnp似乎已经修复了或者bug，但保险起见，还是保存好记录。
+</callout>
+
+1. **应用并保存**
+
+- 请点击`Apply`右下角保存更改。*（OpenPnP 中该按钮可能显示为灰色，这没关系。）*
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/WiEhbGQa5oFfaIxwOGgcVFyFnBg.gif)
+
+
+
+- 立即保存您的 OpenPnP 配置`File > Save Configuration`。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/PlOwbnFlzovjqsx9NsBcIHyPnDe.webp)
+
+---
+
+### 测试顶部相机识别
+
+进入 机器配置 > 全局视觉 > Fiducal Locator。选择基准视觉配置选项卡
+
+找到视觉通道，单击**编辑**按钮
+
+<callout emoji="❗">
+请**不要单击其它任何按钮**，否则机器可能无法使用！
+</callout>
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/DzJAbMZqpoOfipx7fHicCoEFnEd.webp)
+
+你的默认画面中，校准板中心圆周围应该有一个绿色圆圈，表示软件已经识别到中心圆了。
+
+如果没有，右上角关闭，返回前面步骤重新调整曝光值。直到识别正确。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/VtAkbXSHMox3w8xD92CcW3BBnAf.webp)
+
+## 调整底部相机曝光
+
+<callout emoji="💡">
+**其他相机设置**
+在接下来的步骤中，除了**Exposure曝光值**和**Saturation饱和度** 设置外，请勿修改任何其他相机设置。默认值应保持不变。
+**其他参数一律不要修改，不要动，不要改！！！**否则摄像头会死机，帧率将为0。如果你不小心改了，请按照这个链接解决：[摄像头帧率突然下降为0](https://tcnyw794ws3e.feishu.cn/wiki/K3jJwIn7wi9jBhkb9onceTHlnqu#C1URdJROwoWnEVxKHhBcrqYonSg)
+</callout>
+
+1. **选择吸嘴：N1**。
+
+   - 从`Machine Controls`下拉菜单中选择`Nozzle: N1 - N045 (Head:H1)`。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/UOyRbD0GXogl24x2HoWciQf5nIf.gif)
+
+1. **将“吸嘴：N1”定位在底部摄像头上方**
+
+- 使用`Machine Controls`微调`Nozzle: N1`，使之大致**位于基准板上方**位置。
+- 如果发现您的机器没有移动，请将滑块`Distance`设置为 `1`或  `10`。
+- 当您需要更精确的移动时，请将滑块`Distance`设置为 `0.1`或  `0.01`。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/Ofx1bs67yo1iZIxEdQ4cUzpHnec.webp)
+
+- 降低`Nozzle: N1`吸嘴`Z高度`，直至吸嘴尖端*几乎*接触基准板。将吸嘴降低到与基准板相同的高度，可确保在校准前吸嘴处于正确的 Z 轴高度。
+
+<callout emoji="💡">
+在板子边缘接触更利于观察
+</callout>
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=Y2FlODNiM2MzNjY4ZjRmOGY2ZjcxZWNhODJhM2QyZmJfZWY5NjQ3ZTUxMzRmZDJmYWI2YzgxNTI2MWJjNzRiMzNfSUQ6NzY2MzgyODI1NzA3NDI4NTgxOV8xNzg0NTc1MDIzOjE3ODQ1Nzg2MjNfVjM)
+
+- **保持 Z 轴高度不变，微调`Nozzle: N1`使其居中对准底部摄像机画面中心**。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/WA4nbfoHiom7WVxLJVUcYeUcnah.png)
+
+- 在相机画面右键，打开Ruler辅助十字线。使用`0.1`或  `0.01` 的 `Distance`，将吸嘴尖端位置精确地调整到摄像头的十字线正上方。您可以使用鼠标滚轮放大画面，以获得更高的精度。
+
+<grid>
+<column width-ratio="0.500000">
+![](https://cdn.newenergycoder.club/images/lumenpnp/P1EubF7s9ohMhPxf3JKcXt4ened.png)
+</column>
+<column width-ratio="0.500000">
+![](https://cdn.newenergycoder.club/images/lumenpnp/BPadbOhGqoend6xMd7kcKqQ0n7g.png)
+</column>
+</grid>
+
+1. **调整底部摄像头曝光**。
+
+- 返回`Machine Setup > Cameras > OpenPnpCaptureCamera Bottom` 标签页`Device Settings`。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/X26zbL2JjokgKAxZ6b2c13vpn5b.png)
+
+- 找到Saturation饱和度，将值改为0（画面将变成黑白，更利于软件后续的识别）
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/F2jzbN3nwoLZYGxvrSyciNgHnwb.png)
+
+- 右键单击底部摄像头画面，选择`Show Image Info?`启用图像信息卡。这将显示图像的亮度直方图。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/OOPwbBQb6oLCEsxyMFzcTmfdn4A.png)
+
+- 请将直方图作为一般参考，而非精确测量。它虽然是一个有用的工具，但并不精确。为了获得最佳效果，请参考下方的对比照片，这些照片展示了“过亮”、“过暗”和“曝光良好”的示例，以帮助您在使用直方图后微调设置。
+- 下一步，我们的目标是**在直方图的右侧形成一个尖锐的峰值，并在左侧形成**一个较大的聚集区域。请参考下图。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/NE3ubP1gForA6fx8L2ZcYBCRnXc.png)
+
+<callout emoji="💡">
+**🚨重要🚨**
+上面的参考图像只是一个示例。根据光照条件、相机位置和其他环境因素，**您的直方图可能会有很大不同。不要试图完全复制它。**相反，您应该专注于实现关键特征：右侧有一个明显的峰值，左侧有一个明显的聚集或峰值。逐步调整，直到图像清晰且曝光良好。
+</callout>
+
+<callout emoji="💡">
+**修改LED亮度值**
+如果你尝试修改了 Exposure 和 Saturation ，但画面仍然差
+1. 避免室外阳光直射，请在光线稳定的环境下使用。避免台灯及其他光源直射机器。
+2. 修改 [LED亮度值](https://tcnyw794ws3e.feishu.cn/wiki/BWF1wLHv2i1d4HkF6CMcJ6z3nuf?larkTabName=space#PIgkdWBneoewZ5xTC3TcRprInVh)，以±10的步进值调整补光灯的亮度值**（注意这会同时修改上下补光灯的亮度值，如果你的顶部相机曝光已经调整好了，请返回重新修改**[**顶部相机曝光**](https://tcnyw794ws3e.feishu.cn/wiki/BWF1wLHv2i1d4HkF6CMcJ6z3nuf?larkTabName=space#OVLLdKnQAoS2LwxUgAvcBr0Rnxf)**，这个过程可能需要反复多次，才能取得一个平衡值）**
+</callout>
+
+1. **找到正确的曝光量**。
+
+- 调整Exposure和Saturation滑块或手动输入不同的值，以确保相机能够清晰地检测到吸嘴尖端的暗孔，从而进行校准。曝光应保持平衡，既要足够明亮以区分吸嘴尖端和背景，又不能太亮以至于难以辨认暗孔。目标是使最亮的区域清晰可见但不至于完全变成白色，同时较暗的区域也保持轮廓分明。请参考以下图片调整曝光：
+
+<grid>
+<column width-ratio="0.333333">
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MzFkYzBjNjE5MWZmMWZiN2FhZDVkOTU4Y2RiMDcyNmJfZWNlMzZmMDgxYWNlMzRhZWFlMDQ2YjQ4ODY5MTFiMGJfSUQ6NzY2MzgyODI5MDk5MzQ3NDg0NV8xNzg0NTc1MDIzOjE3ODQ1Nzg2MjNfVjM)
+</column>
+<column width-ratio="0.333333">
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MGE3YTcwMjBkZjk2ZWY0OTFiMDg3ZGU5ZDdiZmUwYzZfNjg1MzhjNTQ3MGUzNDc5NmY5N2ZkMWMyNzI1YjExM2JfSUQ6NzY2MzgyODI5MzM1MDYwODE1NF8xNzg0NTc1MDIzOjE3ODQ1Nzg2MjNfVjM)
+</column>
+<column width-ratio="0.333333">
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OGI1NzBkNzMwM2EwYWMyZTI3M2Y4ZmZhMjJkYWU0ODNfODVlZjE0M2JhODBlZjk5ZDZhYTE0NDUzOWJhZTA4NDVfSUQ6NzY2MzgyODI5MTgyODIzOTU1NF8xNzg0NTc1MDIzOjE3ODQ1Nzg2MjNfVjM)
+</column>
+</grid>
+
+- 使用完毕后，请关闭直方图窗口。
+
+<callout emoji="💡">
+**底部摄像头画面里什么都没看到？**
+如果在调整底部摄像头曝光后仍然看不到任何画面，请确保底部摄像头的镜头盖已取下。
+</callout>
+
+1. **记录底部摄像头曝光值**
+
+- OpenPnP 重启后可能无法保留您的相机曝光设置。**请将曝光值记录并保存**到文本文件中或用笔写下来。
+- 这意味着每次启动 OpenPnP 时，您都必须：
+
+  - 手动关闭**自动曝光模式** 。（这会将相机切换到手动曝光模式）
+  - **在滑块旁边的曝光字段中输入您记录的曝光值**。
+
+<callout>
+经过实际测试，openpnp似乎已经修复了或者bug，但保险起见，还是保存好记录。
+</callout>
+
+1. **应用并保存**
+
+- 请点击`Apply`右下角保存更改。*（OpenPnP 中该按钮可能显示为灰色，这没关系。）*
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YWIxNmIzZDc0YmJlZDYwMGMxNTcwYjgzOWM4ZjU1NzdfMGZiYzYwNTAyMjNiNGVmNTBjY2MxMTUyZjA0ZmVkYTlfSUQ6NzY2MzgyODI5NDY1MTE1MzU5M18xNzg0NTc1MDIzOjE3ODQ1Nzg2MjNfVjM)
+
+
+
+- 立即保存您的 OpenPnP 配置`File > Save Configuration`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MjIzNzdhOWY5NGY5ODg1NDFjMWJlNmRiYWVkNzQ5ZGZfNmJjYzBlNzQ0NDk2MGY4ZjQ0NTc2NzdkMzY4N2RjYTVfSUQ6NzY2MzgyODI5NTcxNjMyNjY5MV8xNzg0NTc1MDIzOjE3ODQ1Nzg2MjNfVjM)
+
+### 测试底部相机识别
+
+1. 请先 [安装吸嘴](https://tcnyw794ws3e.feishu.cn/wiki/BWF1wLHv2i1d4HkF6CMcJ6z3nuf?larkTabName=space#QT42dKV8MoyL3DxEWKWcGeBBn1c)，如果已经安装则忽略这一步
+2. 移动N045吸嘴尖端*几乎*接触基准板，然后保持高度不变，将吸嘴移动到底部相机十字线中心
+
+<grid>
+<column width-ratio="0.500000">
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NmNlYWMwZmEwNjIwMzUxMTQ3ODJjOWVhYzFiMzg3NDdfOTNhZTQ2ZDRjYmYyZmQ4YzdjZDY0NDNjMjI2MTRjOGJfSUQ6NzY2MzgyODI5ODI0MTI5NzYyNl8xNzg0NTc1MDIzOjE3ODQ1Nzg2MjNfVjM)
+</column>
+<column width-ratio="0.500000">
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NWUxM2ZjOWVjN2IyMTQ4OTdlNTcyNmIyODAyYmZiZDdfZjNmYmFiNWYwY2JlZjhjZTNkYWJhNGUwYTY1MGU3MTRfSUQ6NzY2MzgyODI5ODY3NzUyMTM2NV8xNzg0NTc1MDIyOjE3ODQ1Nzg2MjJfVjM)
+</column>
+</grid>
+
+1. 然后导航到 机器配置 > 吸嘴列表 > N045。点击**吸嘴校准** 选项卡，单击 **视觉通道** 按钮
+
+<callout emoji="❗">
+请**不要单击其它任何按钮**，否则机器可能无法使用！
+</callout>
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MzQwYzdiM2IzY2U5ZmE1YWExYTM4NDhhNjEyY2RmZTlfNDFlNTE2Nzk1YjZhYjY5OWRmMzEwNzZkYzlkMjFkNjFfSUQ6NzY2MzgyODMwNDE5Mjk0OTQ1OF8xNzg0NTc1MDIzOjE3ODQ1Nzg2MjNfVjM)
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NjBlYjM4ZWNkZDk5YTRhYTAxMDJlZTM5NjNmNmY3MDFfZTM4ODQ5YTE5NjcwYTI3MTNkYTQ3YWVmYTZkMWZlMzhfSUQ6NzY2MzgyODM0OTg4OTgwOTM4Ml8xNzg0NTc1MDIzOjE3ODQ1Nzg2MjNfVjM)
+
+1. 默认界面，画面中的绿色圆圈应该不在吸嘴尖端暗孔上，表示机器没有识别到中心圆孔
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MWNjMTcwNzM3ODczMzk2NmE2MWM5ZmFhNWY5ODZkZTVfZDU1MmE4ZTFiMTFiMmNiYTQzNjU3ZjVmOTc5NTEzMGFfSUQ6NzY2MzgyODM0ODU2ODgzMzI5NF8xNzg0NTc1MDIzOjE3ODQ1Nzg2MjNfVjM)
+
+1. 我们在左上角单击 **cir** 行，将maxDiameter数值改为20（你的可能会稍大，30以内都是可以的），此时右侧画面的绿色圆就和吸嘴中心孔重叠了，表明软件识别到了中心孔。
+
+   1. 右上角点击 x。关闭弹窗。如果你没识别到，也执行关闭。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZThkY2JhZThkZjA4NGEyMzRjZmVmYjVlNTJlYzYwNTNfYmQ2MDI4OTYxNzhlMTFjYzJhNDU1MWY3YzY1NWRhYjJfSUQ6NzY2MzgyODM1MTA0MzU1NDU3OF8xNzg0NTc1MDIyOjE3ODQ1Nzg2MjJfVjM)
+
+- 如果识别正确，选择：是。
+- 如果识别错误，选择：否。并返回前面步骤重新调整曝光值。直到识别正确。
+
+
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=M2M1OTVlZWY5YmM0NmU1MjRiYmQ1ZjgzNTZkZWVjNzlfMjBlZDI3ZWZhNjFkZDMwMWJlNjU5NTZlMDhkZDMwZDRfSUQ6NzY2MzgyODM1Mjg3MjE4OTE2M18xNzg0NTc1MDIzOjE3ODQ1Nzg2MjNfVjM)
+
+<callout emoji="💡">
+maxDiameter是调整吸嘴中心孔的最大直径，系统会在画面中查找minDiameter-maxDiameter直径范围内可能的圆形。由于相机，焦距等轻微差异，默认的maxDiameter可能偏小了，所以需要手动加大（不能无限制大，否则可能会识别到其它圆形）。
+</callout>
+
+---
+
+# 视觉归位
+
+#### 设置回零基准位置
+
+1. 导航至 `Machine Setup > Heads > ReferenceHead H1`。
+
+在**“配置”选项卡**中，将**“回零方式”**更改为`ResetToFiducialLocation`。这样就修改了**回零方式**，机器会先机械归位，之后顶部相机会移动到基准点上方并识别，纠正限位开关造成的任何轻微误差。
+
+<grid>
+<column width-ratio="0.500000">
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MWM0ZjM4YzJjMzA2NmUxZTAyMWMyMjcwZTIyYTcyYmRfMGI5YzA3NTVhODI4Y2RiZmUxYmFmYjJkMzBmMjQ3ZDFfSUQ6NzY2MzgyODM1NjYwNDkyMjgzNF8xNzg0NTc1MDIyOjE3ODQ1Nzg2MjJfVjM)
+</column>
+<column width-ratio="0.500000">
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZDBhMGJkY2NlNTc3NGNlZThiOTE1NmU1Y2Q3ZGU3MjlfZmQzN2NjZjA2YzNkYWI2OWEwMmU3Njg5MDE4OWIzYzNfSUQ6NzY2MzgyODM1OTI4OTMyNjg5Ml8xNzg0NTc1MDIzOjE3ODQ1Nzg2MjNfVjM)
+</column>
+</grid>
+
+1. 应用并保存
+
+- 点击`Apply`右下角保存更改。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZGY4Mjc1ZWQ1NzZiMDlhNTVlYWY5NWJjNDA1ZGI2MjNfOTE2ODFiNmQwYTU0OGRiM2IyOTM5MTAwNWZmNTg0MzFfSUQ6NzY2MzgyODM1ODg4NjcwNjM5OF8xNzg0NTc1MDIyOjE3ODQ1Nzg2MjJfVjM)
+
+1. 点击下方所示的**“将相机定位到目标位置”**图标按钮。
+
+- 这样就将**顶部摄像头**移动到基准板上方**的大致位置。**
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=N2ZkMjAwNzlkOThiN2ViMmMyOGQ0YTYyMGFjMTM0YjJfYjlhNzZiZjUyMTVkOTI2ZWViZmVhZTEzNzI4YjMzZDhfSUQ6NzY2MzgyODM2MTE0NzQwMzIxNV8xNzg0NTc1MDIyOjE3ODQ1Nzg2MjJfVjM)
+
+1. 调整顶部摄像头：
+
+- 在 OpenPnP 的左下角，使用微调控件将**十字线中心**对准**基准点**的正中心。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NGEzMmRjNTUyYzhiYmVlYTFkMTg4ZWViOTA4ZjFlMWRfNGNhNmJkOTQxYWY2NzJjZTQyMmQwNWUwNjk5NzQ3YTRfSUQ6NzY2MzgyODM2NjY3MTI1Mjc1Ml8xNzg0NTc1MDIzOjE3ODQ1Nzg2MjNfVjM)
+
+1. 现在我们已经**完全对准**了回零基准点
+
+- 返回 `Machine Setup > Heads > ReferenceHead H1`。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZjQzYWYzYTgyZWVlN2Q4OThhNzJjYmM3YmMxNGFiYjlfMjFkZDg1MjZkZTQzMDdjNjIwNmE5NmVlOTlkMTYyNmJfSUQ6NzY2MzgyODM2NzY2OTc0Mjg3OF8xNzg0NTc1MDIzOjE3ODQ1Nzg2MjNfVjM)
+
+- 点击`Capture Camera Location`按钮保存回零**基准点**的位置。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ODJlODg5MWIzZGRlYWUxNDJmYTc0ZjZhMzE1OWE4N2JfMjdlNjQ4ZmE1MDUxZGJmMmM3ZjQxZWNlYzg3NDhhZWZfSUQ6NzY2MzgyODM2ODI4NjM3MTA2N18xNzg0NTc1MDIzOjE3ODQ1Nzg2MjNfVjM)
+
+1. 应用并保存
+
+- 点击`Apply`右下角保存更改。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZDIxMmNkZTc2MmU4NDBmMDgwNDVlMjYzYzBjYzVmMDBfODYxYzRhYzBlNDgyZTgwZmQ0YWY2OTIyMGQ4YWEyZDhfSUQ6NzY2MzgyODM3MzcwOTI2MjEwM18xNzg0NTc1MDIyOjE3ODQ1Nzg2MjJfVjM)
+
+#### 测试基准回零
+
+1. 点击“回零”**按钮**，机器完成左下角的机械归位后，会继续将顶部摄像头移动到主校准板的圆点上方，并试图找到其确切位置。当摄像头扫描到标记时，会呈现红色，表示正在扫描标记的圆圈。
+
+如果扫描到远点，机器会自动再次微调位置，知道十字准心完全对准原点中心，即完成了一次精确的视觉归位。这个比简单的机械归位更准确，不会出现因机械限位不准导致归位后位置偏移的情况。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NzhlZWY5MGZmMTExYzgxZGQ0NTI2ZjJmOGVjZjg2NDNfOGViOTgxOWMxZjAwMzExZDMwMzQxNTlkNTQ1YzUxNmJfSUQ6NzY2MzgyODM3NTQ1NDMyMTkzMF8xNzg0NTc1MDIzOjE3ODQ1Nzg2MjNfVjM)
+
+1. 如果您收到此错误`FIDUCIAL-HOME no matches found`，则表示 OpenPnP 无法找到您的回零基准点。您需要调整相机曝光或者[回零基准点管道](https://tcnyw794ws3e.feishu.cn/wiki/VOXawwCRbikLHRk8wTKcWsrXnrf?larkTabName=space#Su3cdJ0qDoErNaxceTlc28CZnjg)。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MGRjN2U3MzA0ODZkZmY3NDVmZWJhNjEzZjAzNjc2ZDVfYjViMjEwOTY3N2E4NzQ2MDcyZmNlZWNmMjFjZWFhNDlfSUQ6NzY2MzgyODM4MDU1NDQ2NDU0Nl8xNzg0NTc1MDIzOjE3ODQ1Nzg2MjNfVjM)
+
+
+
+# OpenPnP概述
+
+## 了解OpenPnP界面
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZTBmNjViZmUwNDlhNWI3NzBjNGZkYmVjNDI0ZmRlMmNfMDc3MzkzZDE3YTBhZjc4MThmZGYxZTM2MDYyNjA2OWNfSUQ6NzY2MzgyODM4MjAzNTA1Mzc2N18xNzg0NTc1MDIyOjE3ODQ1Nzg2MjJfVjM)
+
+---
+
+### 机器控制概述
+
+位于OpenPnP的左下角
+
+**每个机器控制标签页及其功能解析：**
+
+---
+
+**Jog Tab点动标签页**（默认）
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NWZkNDhhYzE5Mzg5MDllYThhOTMwNDFlODc0NWUwYWNfMDI5ZjUyZjI1ZTdhNjMxMDAxMTA0YWQ3ZTQ1YzAwMDVfSUQ6NzY2MzgyODM4Mzg3NjM4NjA1MV8xNzg0NTc1MDIyOjE3ODQ1Nzg2MjJfVjM)
+
+1. 电源键
+2. Home回零按钮（成功连机器时变为黄色）
+3. 吸嘴下拉菜单选择（N1和N2之间切换）
+4. X/Y 点动控制（在 x 轴和 y 轴上点动移动贴装头）
+5. Z 点动控制（上下垂直点动移动机器头）
+6. C 点动控制（旋转选中的吸嘴。使用这些控制时，距离mm会转换为旋转度数deg）
+7. 点动距离滑块（允许调整点动距离。）
+
+---
+
+**Special特别标签页**
+
+- 回收元器件
+- 丢弃吸取的元器件
+
+---
+
+**Actuators执行器标签页**
+
+- 手动开关LED灯
+- 手动开启并读取真空泵
+
+---
+
+---
+
+# 校准准备
+
+## 校准到底是做什么的？
+
+在我们开始浏览“*问题与解决方案*”（OpenPnP自带的校准步骤）之前，了解校准的实际作用，包括一些重要提示，这很有帮助。
+
+校准不是单一的调整。这是一个分层的过程，教会机器物理空间、摄像空间和运动空间之间的关系。
+
+<callout emoji="💡">
+**温馨提示**
+请注意，部分校准步骤完成后无法恢复。如果校准步骤完成错误（虽然罕见），可能需要重新开始并重新加载下载的配置文件。
+</callout>
+
+---
+
+## 为什么我们只执行特定的校准步骤
+
+***问题与解决方案***包含三种步骤：
+
+- **基本步骤**（开始时，只完成我们列出的步骤）
+- **建议步骤**（在我们完成验证 **基本步骤** 之前，不要执行这些步骤）
+- **错误步骤**（在我们的配置文件中，会显示一些标注为错误的步骤，校准时忽略。）
+
+OpenPnP 包含许多校准工具，旨在支持各种类型的机器。
+
+LumenPnP在机械设计上遵循特定的工作方式，工作流程也遵循该设计。 我们只执行LumenPnP所需的步骤，避免某些会导致问题的步骤。
+
+运行无关步骤可能会带来问题或校准数据冲突。
+
+<callout emoji="⛔">
+**只需按照本指南中的步骤操作**
+*问题与解决方案工具* 可能会显示更多建议。 对于LumenPnP，只需按照本指南中描述的步骤操作。 有些建议对这台机器来说并非必需，反而会中断校准流程。
+</callout>
+
+---
+
+## 接下来会发生什么
+
+下一节我们将开始使用OpenPnP的*问题与解决方案*进行校准过程。
+
+每一步都会引导你调整摄像头、吸嘴和机器设置，直到一切正确对齐。
+
+**校准完成后：**
+
+- 机器能正常定位
+- 吸嘴尖端始终与相机的十字准星对齐
+- 反复移动回到同一位置
+- 放置精度在视觉上保持一致
+
+慢慢来。每一步都在上一个基础上逐步推进，最终需要的知道会越来越少，因此认真掌握基础知识非常重要。
+
+---
+
+你已经完成了预检！
+
+下一步
+
+现在我们将开始使用OpenPnP的问题与解决方案进行引导校准过程
+
+[问题与解决方案→](https://tcnyw794ws3e.feishu.cn/wiki/MydWwYC8NibsWVkfRH3cnyK5nOg)
+
+
+
+
+
+
+
+
+
+1. 弹窗提醒界面选择 **否**
+2. 首先，请前往：`Machine Setup → Heads → ReferenceHead H1 → Nozzles → ReferenceNozzle N1 → Nozzle Tips`
+3. 勾选 `N045` 吸嘴头的`Loaded?`复选框
