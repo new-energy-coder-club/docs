@@ -928,3 +928,58 @@ html.dark .share-qr-fab svg {
     display: none;
   }
 }
+
+/* =========================================================
+   Homepage scrolling photo marquee
+   ========================================================= */
+
+/* Outer viewport: clip the track, rounded frame */
+.photo-marquee,
+html.dark .photo-marquee {
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  margin: 0.75rem 0 1.25rem;
+  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-surface);
+}
+
+/* Sliding track: two identical photo sets side by side */
+.photo-marquee .photo-marquee-track,
+html.dark .photo-marquee .photo-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: photo-marquee-scroll 36s linear infinite;
+}
+
+/* Pause on hover so visitors can look at a photo */
+.photo-marquee:hover .photo-marquee-track,
+html.dark .photo-marquee:hover .photo-marquee-track {
+  animation-play-state: paused;
+}
+
+/* Photos: fixed height, uniform margin-left keeps the -50% loop seamless */
+.photo-marquee .photo-marquee-track img,
+html.dark .photo-marquee .photo-marquee-track img {
+  display: block;
+  height: 200px;
+  width: auto;
+  border-radius: var(--radius-lg);
+  margin: 12px 0 12px 12px;
+}
+
+@keyframes photo-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .photo-marquee .photo-marquee-track,
+  html.dark .photo-marquee .photo-marquee-track {
+    animation: none;
+  }
+}
