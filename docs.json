@@ -366,6 +366,16 @@
             ]
           },
           {
+            "group": "仓库独家（NEC 自研）",
+            "icon": "star",
+            "pages": [
+              "skills/nec-resource-publisher",
+              "skills/nec-wechat-sync",
+              "skills/pv-station-rating",
+              "skills/pv-storage-bom"
+            ]
+          },
+          {
             "group": "飞书/Lark 办公套件（25）",
             "icon": "feather",
             "pages": [
@@ -466,7 +476,7 @@
             ]
           },
           {
-            "group": "文档 & 办公文件（9）",
+            "group": "文档 & 办公文件（8）",
             "icon": "file-lines",
             "pages": [
               "skills/docx",
@@ -476,8 +486,7 @@
               "skills/doc-coauthoring",
               "skills/file-skill",
               "skills/email-skill",
-              "skills/mintlify",
-              "skills/nec-resource-publisher"
+              "skills/mintlify"
             ]
           },
           {
@@ -510,14 +519,6 @@
               "skills/cit-thesis-writer",
               "skills/gradpilot",
               "skills/patent-application-cn"
-            ]
-          },
-          {
-            "group": "新能源 & 光伏（2）",
-            "icon": "solar-panel",
-            "pages": [
-              "skills/pv-station-rating",
-              "skills/pv-storage-bom"
             ]
           },
           {
@@ -557,12 +558,11 @@
             ]
           },
           {
-            "group": "社交 & 微信生态（8）",
+            "group": "社交 & 微信生态（7）",
             "icon": "comments",
             "pages": [
               "skills/wx-cli-wechat-local-data",
               "skills/wechat-cli-export",
-              "skills/nec-wechat-sync",
               "skills/corporate-deep-query",
               "skills/xiaohongshu-images",
               "skills/xiaohongshu-skills",
