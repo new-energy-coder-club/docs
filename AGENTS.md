@@ -46,6 +46,7 @@ mint dev
 3. **竞赛**
    - 竞赛概览：总览 → 子分组「ROBOCON备赛」（赛事介绍 → 2026 指南 → 新人指南 → 资料存档 → 资料包）→ 节能减排 → 智能汽车
    - CURC 2026：提案 `proposal` 置顶 → 机构 SIG（about/机械/电控/能力）→ 视觉 SIG → 运营 SIG
+   - CURC 2027：总览 `index` 置顶 → 新人学习区 `onboarding` → 机构 SIG（机械+电控）→ 视觉 SIG（视觉+硬件）→ 运营 SIG；内容同步自 Gitee `feat/curc2027-onboarding` 分支 `competitions/CURC2027ROBOCON`
 4. **社区**
    - 关于我们：关于 → 报名流程 → 加入合集 → NEC+ → Skill 分支 → 赞助
    - 社区与活动：社区 → A416 实验室 → 项目 → 导师 → Discord → 故事

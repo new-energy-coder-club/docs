@@ -1,0 +1,103 @@
+---
+title: "CURC 2027 新人学习区（Onboarding）"
+description: "27 赛季新人从 0 到 1 加入团队的学习资源汇总、进度看板与学习记录提交规范。"
+---
+
+> 本页内容同步自 Gitee 仓库 `docs/onboarding/` 目录。新人入队、留校申请与考核流程请同时阅读 [CURC 2027 新人 onboarding](/start-here/curc2027-onboarding)。
+
+这里是 27 赛季新人从 0 到 1 加入团队、记录学习过程的专属空间：
+
+- **汇总学习资源**：把招新时提到的课程、视频、文档按方向整理在一起，方便查找；
+- **记录学习过程**：每个人按模板写学习记录，形成自己的成长轨迹；
+- **降低沟通成本**：组长通过学习记录了解你的进度和基础，面试/分任务时更有针对性。
+
+## 新人第一步
+
+<Steps>
+  <Step title="读学习资源清单">
+    先读仓库 `docs/onboarding/resources.md`，找到自己方向的学习资料（本页下方已汇总）。
+  </Step>
+  <Step title="读对应 SIG 的新人学习路线">
+    查看本方向的新人学习路线：[机构 SIG（机械/电控）](/curc27/mechanical-sig)、[视觉 SIG（视觉/硬件）](/curc27/vision-sig)、[运营 SIG](/curc27/operation-sig)。
+  </Step>
+  <Step title="了解提交方式">
+    阅读仓库 `docs/onboarding/how-to-log.md`，了解怎么提交学习进度和学习记录。
+  </Step>
+  <Step title="创建个人进度看板">
+    复制 `members/新人进度模板.md`，创建 `members/<你的姓名>.md`。
+  </Step>
+  <Step title="写详细学习记录">
+    参考 `templates/learning-log-template.md`，把每次学习内容放到 `logs/<方向>/<昵称>/<YYYYMMDD>-<主题>.md`。
+  </Step>
+  <Step title="提交 Pull Request">
+    Fork 仓库 → 在分支上编写 → 向 `feat/curc2027-onboarding` 发起 PR，由对应方向组长或领队 Review。
+  </Step>
+</Steps>
+
+## 提交规范
+
+### 个人进度看板（必须）
+
+- **文件位置**：`docs/onboarding/members/<你的姓名>.md`
+- **更新频率**：首次加入后尽快提交，之后每 1–2 周更新一次
+- **作用**：让组长快速了解你的整体进度
+
+### 详细学习记录（建议）
+
+- **文件位置**：`docs/onboarding/logs/<方向>/<昵称>/<YYYYMMDD>-<主题>.md`
+- **方向可选**：`mechanical` / `electrical` / `hardware` / `vision` / `operations`
+- **作用**：记录每次具体学习的内容、踩坑、收获
+
+## 学习资源汇总
+
+以下资源来自《26-27 招新事宜汇总》，按方向整理，仅供入门，之后根据实际项目再深入。
+
+### 通用必看
+
+1. **学会提问**：[【中科大 RM 电控合集】每个新领域的学习者都要看一看的东西](https://www.bilibili.com/video/BV1iH4jz4EPo) —— 不要问"在吗"、"这个怎么做"，要描述清楚：你想做什么、已经做了什么、遇到了什么错误、查过哪些资料。
+2. **Git / Gitee 基础**：[大学生扫盲课：Git、GitHub、Gitee 完整讲解](https://www.bilibili.com/video/BV1d7jbefEee) —— 这是 NEC 协作的基础，必须会。
+3. **开源社区与资料站**：[罗马车圈](https://rcbbs.top/)（各方向开源资料）、[立创开源广场](https://oshwhub.com/)（硬件开源项目复刻）。
+4. **比赛视频**：[【2025 ROBOCON】江阴赛 决赛 华中科技大学 vs 太原工业学院](https://www.bilibili.com/video/BV1z14y1G77V)。
+
+### 机械组
+
+- **SolidWorks 2025**：团队统一软件，基础操作必须会，B站找课跟着画一个成品；
+- 课程：[HUSTROBOCON 机器人队 2025 赛季培训——机械组培训第一讲](https://www.bilibili.com/video/BV1DgnHzmEXK)，各校 RCRM 机械课均可参考，推荐华科；
+- 实操：直接联系组长打螺丝、装车，打印机、切割机、雕刻机等工具必须上手。
+
+### 电控组
+
+- **STM32 必须会**，中科大 RM 电控课至少看一遍起步；
+- 入门路线（任选其一，最终落点在中科大 RM 电控课）：野火 STM32 基础版（约 10h）/ 野火的书 / keysking 的 STM32 HAL 库教程 / 江协科技；
+- 器材：STM32 用最小系统板玩即可，贵器材可闲鱼买入学完再卖。
+
+### 硬件组
+
+- 前期招新统一和电控一起学 STM32；
+- 软件要熟练**嘉立创 EDA**（B站 Expert 实验室嘉立创教程）；
+- 学习思路：上手画一个成品，利用嘉立创每月两次免费打板机会，复刻[立创开源广场](https://oshwhub.com/)项目。
+
+### 视觉组
+
+- **编程语言**：优先 Python 生态（快速验证），掌握 C++（高性能部署）；
+- **基础操作**：OpenCV 核心操作（读取 / 变换 / 色彩空间 / 形态学）；
+- **硬件认知**：工业相机特性（曝光 / 增益 / 触发）、嵌入式平台 Linux 基础；
+- 课程：参考 26 赛季视觉 SIG 资料。
+
+### 运营组
+
+- 运营工作主要包括：公众号/宣传、团队活动组织、物资管理、对外联络、会议记录等；
+- 同样建议掌握 Git/Gitee 基础，方便参与仓库协作；
+- 具体学习内容和任务由运营组长分配。
+
+## 集中培训安排
+
+- **时间**：六月底至七月初
+- **对象**：所有组别
+- **负责人**：领队 @朱佩韦
+- **留校申请**：找 @梨子LL 或 @一一 填写留校申请表（详见 [新人 onboarding](/start-here/curc2027-onboarding)）
+
+## 有问题怎么办？
+
+- 技术问题：先在对应 SIG 群里问，或者在仓库开 Issue 讨论；
+- 仓库操作问题：看 `docs/onboarding/how-to-log.md`，还搞不定就 @ 领队。

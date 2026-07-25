@@ -234,6 +234,16 @@
               "curc26/vision-sig/about",
               "curc26/operation-sig/about"
             ]
+          },
+          {
+            "group": "CURC 2027",
+            "pages": [
+              "curc27/index",
+              "curc27/onboarding",
+              "curc27/mechanical-sig",
+              "curc27/vision-sig",
+              "curc27/operation-sig"
+            ]
           }
         ]
       },
