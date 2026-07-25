@@ -68,6 +68,25 @@ mint dev
 - `wiki/` 目录为飞书 Wiki 导出快照，可通过 `.kimi/skills/feishu-to-nec-mdx/` Skill 从飞书导入/更新
 - `competition/`、`curc26/` 下的历史文档正在逐步迁移到 Mintlify 导航
 
+## 仓库分工（文档仓 vs 主代码仓）
+
+社区有两个职责不同的仓，**互不合并、互不镜像**，2026-07-25 全量比对确认两边无内容一致的重叠文件：
+
+| | 文档仓（本仓） | 主代码仓（资料仓） |
+|---|---|---|
+| 地址 | `github.com/new-energy-coder-club/docs` → https://docs.newenergycoder.club | `gitee.com/darrenpig/new_energy_coder_club` |
+| 定位 | 发布态：面向读者的 Mintlify 文档站 | 工作态：原始资料与项目代码的存档仓 |
+| 内容 | `.mdx` 页面 + frontmatter + `docs.json` 导航 | 历年赛事档案（`competitions/`）、项目代码与模型（`projects/`）、共享素材（`shared/`）、原始文档（`docs/`） |
+| 大二进制 | **不入 git**，统一传 R2 CDN（`cdn.newenergycoder.club/files/...`）后链接 | 直接入库（PDF / STEP / zip / docx / 代码均可） |
+| 分支 | 仅 `main`，推送即自动部署 | `master` 为主，另有 `SKill`、`feat/*-onboarding` 等工作分支 |
+
+协作规则：
+
+1. **不做仓间合并或整仓同步**——两仓结构与定位不同，允许各自独立演化
+2. 内容流向是单向提炼：主代码仓沉淀原始材料 → 文档仓整理为带导航的发布页，大文件传 R2 后在页面中给 CDN 链接
+3. 同名治理文件（GOVERNANCE / ROADMAP / SECURITY / SUPPORT / CODE_OF_CONDUCT 等）以**文档仓版本为准**对外发布，不回写主代码仓
+4. 文档页引用主代码仓内容时，直接链接 Gitee 对应路径，不把其中的大二进制复制进本仓
+
 ## 持续集成
 
 - `.github/workflows/docs-check.yml` 会在 `push` / `pull_request` 时自动运行
