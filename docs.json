@@ -366,13 +366,16 @@
             ]
           },
           {
-            "group": "仓库独家（NEC 自研）",
+            "group": "核心推荐（NEC 精选）",
             "icon": "star",
             "pages": [
               "skills/nec-resource-publisher",
               "skills/nec-wechat-sync",
               "skills/pv-station-rating",
-              "skills/pv-storage-bom"
+              "skills/pv-storage-bom",
+              "skills/patent-application-cn",
+              "skills/cit-thesis-writer",
+              "skills/acad-paper-prompter"
             ]
           },
           {
@@ -510,15 +513,12 @@
             ]
           },
           {
-            "group": "学术 & 论文（6）",
+            "group": "学术 & 论文（3）",
             "icon": "graduation-cap",
             "pages": [
-              "skills/acad-paper-prompter",
               "skills/paper-scaffold",
               "skills/latex-win",
-              "skills/cit-thesis-writer",
-              "skills/gradpilot",
-              "skills/patent-application-cn"
+              "skills/gradpilot"
             ]
           },
           {
