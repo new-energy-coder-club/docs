@@ -5,17 +5,13 @@ description: "固定视觉散料托盘，并放置元件 没有散料托盘，�
 
 # 视觉散料
 
-<grid>
-<column width-ratio="0.500000">
+<Columns cols={2}>
 固定视觉散料托盘，并放置元件
 没有散料托盘，可以随便找个容器，但底面必须时白色不反光（普通A4就行）
 ![图片展示的是视觉散料的元件放置情况。画面中，元件被固定在视觉散料托盘上，托盘放置在黑色工作台上，托盘内有多个白色区域，部分区域放置着黑色元件。托盘右侧有一个紫色的圆形装置，装置上有两个黑色按钮。背景中可以看到一些黄色的圆柱形物体。此图与文档中固定视觉散料托盘并放置元件的内容相关，直观呈现了元件的放置状态。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZDIzYjAwZjYwNmNmZGZkOTdhZTcxMGFkZGE5OGY0ZGVfMzE3NGM3Njg0ODFlZTFhY2RlMzI2ZGU5M2NhZDMyY2RfSUQ6NzY2MzgyMzM2MDA4NTkzNzM5NF8xNzg0NTc1MDMzOjE3ODQ1Nzg2MzNfVjM)
-</column>
-<column width-ratio="0.500000">
 确保大部分的元件正面朝上，同时也保留几个反面朝上（后面会用到）。**但立起来是不行的**
 ![图片展示的是元件放置区域，元件被放置在托盘槽内。托盘槽内有多个元件，其中部分元件被红色箭头指向，表明其为放置目标。托盘槽一般比相机视野大，元件大致居中即可。此图与文档中“设置元件顶部相机移动的元件托盘的中心位置（托盘槽一般都会比相机视野大，因此大致居中即可）”的内容相关，直观呈现了元件放置的区域及目标元件位置。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MjVhZGM2YzljNjAwN2MzYTUyMTkxYzA5NTQzOGM4NzlfYTA0YjZkZGZlZmYyMmY5YWE2NzM0N2I5YzhmMjFhYmNfSUQ6NzY2MzgyMzM2MzA2ODEyMDAxN18xNzg0NTc1MDMzOjE3ODQ1Nzg2MzNfVjM)
-</column>
-</grid>
+</Columns>
 
 新建飞达，选择 **ReferenceLoosePartFeeder**
 
@@ -51,16 +47,12 @@ description: "固定视觉散料托盘，并放置元件 没有散料托盘，�
 注意：一般情况元件的引脚都会被过滤掉（发亮反光），只会识别本体，这是正常的
 </callout>
 
-<grid>
-<column width-ratio="0.500000">
+<Columns cols={2}>
 阈值高了，反面没过滤掉
 ![图片展示了OpenPnP软件界面中元件识别的阈值设置情况。画面右侧是元件识别结果，黑色轮廓为识别出的元件。左侧界面中，“threshold”参数被红色框和箭头突出显示，其值为200。该图片与上下文紧密相关，上下文在讨论元件识别阈值的调整，此图直观呈现了阈值为200时的元件识别效果，辅助说明阈值设置对元件识别的影响。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YzY1ZmI4ZmMzODllN2YyYzU2NGI4OTc1ZmIxOWRjYmZfZDM2YTBiOGZjMzkzMDNhMTg0NDhhZDE0MzAzMjhlZDRfSUQ6NzY2MzgyMzM4Mjk5OTI3MjYyN18xNzg0NTc1MDMzOjE3ODQ1Nzg2MzNfVjM)
-</column>
-<column width-ratio="0.500000">
 阈值合适
 ![图片展示的是OpenPnP软件界面中FIDUCIAL-1X2-FIDUCIAL1X2 Pipeline的运行结果。画面右侧为白底黑字的图形显示区域，显示了多个黑色的矩形图案，这些图案排列在白色背景上。左侧是软件操作界面，有多个步骤选项，当前选中“threshold”步骤。该图片与文档中对OpenPnP软件操作的上下文相关，直观呈现了文档中提到的“修改元件大小范围，需要和最后一行的结果来回切换对比查看，检查修改后是否被修过”的操作效果。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NGVlNTM5MTVkNmMwNWE4NmVhMWY0ZTU4NDUyZjgzNGRfN2MwNzE0OTQ4YWRjNTI3MTI5MjEwOTJmZTEwYjg0Y2FfSUQ6NzY2MzgyMzM4MzgxMjk4NDA4N18xNzg0NTc1MDMzOjE3ODQ1Nzg2MzNfVjM)
-</column>
-</grid>
+</Columns>
 
 低亮度阈值修改，这个作用不是很大，这是为了显示字符用的，但我们识别只识别外轮廓，所以这里只要调整外轮廓清晰就行了
 
@@ -86,17 +78,11 @@ description: "固定视觉散料托盘，并放置元件 没有散料托盘，�
 
 最后我们修改最小值MinArea，将小方块过滤掉
 
-<grid>
-<column width-ratio="0.333333">
+<Columns cols={3}>
 ![图片展示的是OpenPnP软件界面，右侧显示了多个带有数字标识的黑色方块。左侧工具栏中有“Show All”等选项，下方“Rotation”区域有“rotatedRectsStageName”等参数设置。界面右上角有“Draws RotatedRects from a sagas model...”的提示。该图片与文档中“执行工料测试，软件会移动到上方并开始识别，检查是否正常。否则需要返回修改”的内容相关，用于直观呈现工料测试时软件识别的工件状态。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZGFmODUzYWQ0YTc0ZDYyMWI4ZjE3NDMxYTAwMGQzNTdfOGU5YmNiZDk4YTlkNjBhZTA1NWEwZTI5MmY2YjgyMjBfSUQ6NzY2MzgyMzM5ODExNTU0NDAwMl8xNzg0NTc1MDMzOjE3ODQ1Nzg2MzNfVjM)
-</column>
-<column width-ratio="0.333333">
 ![图片展示的是OpenPnP软件界面，用于执行工料测试。画面中显示了多个绿色边框的方块，分布在白色背景上，部分方块内有数字标识。界面左侧有多个选项卡，右侧有“Draws RotatedRects from a sagas model, input can be a single RotatedRect or a List of RotatedRects”等提示信息。该图片与文档中执行工料测试的内容相关，用于直观呈现软件识别后的结果。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NjY1ZDFkNjgyZWRiYWYzNGJkNDU0NjVhYjI2NGJkOWRfMjBhYTYzNjA5NGYzYWQzMTIwY2QzM2I1NmU1YWM1YTRfSUQ6NzY2MzgyMzM5NzI2ODU4OTg0Ml8xNzg0NTc1MDMzOjE3ODQ1Nzg2MzNfVjM)
-</column>
-<column width-ratio="0.333333">
 ![这张图片是机器视觉处理软件的操作界面，左侧是图像处理相关的参数设置面板，其中“draw_results”选项处于勾选选中状态。界面右侧的预览区域中，标注有绿色和紫色的小型图案（对应散料）被完整识别并呈现，部分散料带有清晰的二维码样式标识。界面底部显示了相关识别参数及状态信息，结合上下文可知该界面用于完成视觉散料的参数调试与识别作业，当前界面正处于视觉散料的检测处理环节，可直观查看散料的识别效果。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NDA3NjlmN2MwZjk4NDA1ZWExNTdmY2FiNWY4ODVkMTdfN2JiN2RkZTBkZGNmOWEwOGU3NmQ3ZTk5ZmNkYmY2NDVfSUQ6NzY2MzgyMzQwMDE3NTIwOTY3NF8xNzg0NTc1MDMzOjE3ODQ1Nzg2MzNfVjM)
-</column>
-</grid>
+</Columns>
 
 然后修改最小值，滤出小边框
 
@@ -114,11 +100,7 @@ description: "固定视觉散料托盘，并放置元件 没有散料托盘，�
 
 如果吸取失败，你可能需要调整Z高度再次尝试。或者查看 [常见问题汇总](https://tcnyw794ws3e.feishu.cn/wiki/K3jJwIn7wi9jBhkb9onceTHlnqu?larkTabName=space#TsRfdO9jGoqRFlxr7dbcRLqInyd)
 
-<grid>
-<column width-ratio="0.500000">
+<Columns cols={2}>
 ![图片展示了OpenPnP软件界面，用于执行工料测试和吸取测试。画面中显示了“Camera Top (Head HI)”的图像，图像上有红色线条标注。界面右侧有“OpenPnP - Untitled.job.xml”文件信息，下方是任务、元件、参考、工具等选项卡。画面右上角有红色箭头指向的“+”号，点击可添加任务。底部有操作设置区域，可调整X/Y/Z等参数。该图片与文档中执行工料测试和吸取测试的操作步骤相关，展示了操作前的软件界面状态。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZTgxZTk2ZjEyNjZiODhhMGIyODQ0OTdkZmJiMGFlNmNfMzgxNGVkZGQ2ODc0MjFiMzY4OTVlMWIzZTExZTZkMDlfSUQ6NzY2MzgyMzQxMDcyMzYwNTQzNl8xNzg0NTc1MDMzOjE3ODQ1Nzg2MzNfVjM)
-</column>
-<column width-ratio="0.500000">
 ![这张图片呈现了视觉散料识别操作的场景，上方的作业喷嘴下有一个小型的金属元件，下方是带有黑色边框的格子状工作台面，其中一个格子的台面上散落着多颗小型金属电子元件。结合上下文，这个画面对应吸取测试的相关环节，是执行吸取测试前的状态，需要检查设备是否能成功吸取这些散料元件，若吸取失败则需调整相关参数再次尝试。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YTc1ODUzNDc5Y2ZhZDJlYjE5YTcwNjBhYzg0MDQyMzdfODc0YjE4NDY2NjNkYjM1NGQ0NDFjZWRjZTVkYmE0NWZfSUQ6NzY2MzgyMzQxMzQ4MzUzOTcyMV8xNzg0NTc1MDMzOjE3ODQ1Nzg2MzNfVjM)
-</column>
-</grid>
+</Columns>
