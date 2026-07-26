@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinFlow · CURC26 财务开源可视化</title>
+<meta name="description" content="常州工 NEC 机器人队 2026 赛季财务开源可视化 · 收付实现制·现金口径">
+<script src="./vendor/react.production.min.js"></script>
+<script src="./vendor/react-dom.production.min.js"></script>
+<style>
+  :root{
+    --bg0:#070d1a; --bg1:#0b1426; --bg2:#101c33;
+    --card:rgba(255,255,255,.045);
+    --card-border:rgba(148,197,255,.12);
+    --text:#e6eefb; --text-dim:#8fa3bf; --text-faint:#5c6f8a;
+    --cyan:#22d3ee; --green:#34d399; --gold:#fbbf24; --pink:#f472b6;
+    --purple:#a78bfa; --orange:#fb923c; --blue:#60a5fa; --red:#f87171;
+    --mono:'JetBrains Mono','SFMono-Regular',Consolas,'Courier New',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    font-family:'PingFang SC','Microsoft YaHei','Noto Sans SC','Segoe UI',system-ui,sans-serif;
+    color:var(--text);
+    background:
+      radial-gradient(1200px 600px at 85% -10%, rgba(34,211,238,.10), transparent 60%),
+      radial-gradient(900px 500px at -10% 110%, rgba(52,211,153,.08), transparent 60%),
+      linear-gradient(160deg, var(--bg0), var(--bg1) 55%, #0a1220);
+    min-height:100vh;
+  }
+  ::selection{background:rgba(34,211,238,.35);}
+  .wrap{max-width:1180px;margin:0 auto;padding:28px 20px 64px;}
+
+  /* ---- Header ---- */
+  header.hero{padding:18px 0 8px;}
+  .brand{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .logo{
+    width:46px;height:46px;border-radius:12px;flex:0 0 auto;
+    background:linear-gradient(135deg,var(--cyan),var(--green));
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--mono);font-weight:800;font-size:20px;color:#04222b;
+    box-shadow:0 6px 24px rgba(34,211,238,.35);
+  }
+  h1{font-size:clamp(22px,3.4vw,34px);font-weight:800;letter-spacing:.5px;
+     background:linear-gradient(90deg,#fff,#9be8f7 55%,var(--gold));
+     -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .subtitle{margin-top:8px;color:var(--text-dim);font-size:clamp(12px,1.6vw,15px);letter-spacing:.3px;}
+  .badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+  .badge{
+    font-family:var(--mono);font-size:11px;padding:4px 10px;border-radius:999px;
+    border:1px solid var(--card-border);background:var(--card);color:var(--text-dim);
+  }
+  .badge.ok{color:var(--green);border-color:rgba(52,211,153,.4);}
+  .badge.gold{color:var(--gold);border-color:rgba(251,191,36,.4);}
+
+  /* ---- Tabs ---- */
+  nav.tabs{
+    display:flex;gap:6px;flex-wrap:wrap;margin:26px 0 22px;
+    padding:6px;border-radius:14px;background:rgba(255,255,255,.03);
+    border:1px solid var(--card-border);backdrop-filter:blur(6px);
+  }
+  .tab{
+    border:none;cursor:pointer;border-radius:10px;padding:10px 18px;
+    background:transparent;color:var(--text-dim);font-size:14px;font-weight:600;
+    font-family:inherit;transition:all .22s ease;letter-spacing:.4px;
+  }
+  .tab:hover{color:var(--text);background:rgba(255,255,255,.05);}
+  .tab.active{
+    color:#04222b;background:linear-gradient(90deg,var(--cyan),var(--green));
+    box-shadow:0 4px 18px rgba(34,211,238,.35);
+  }
+
+  /* ---- Cards & grid ---- */
+  .grid{display:grid;gap:16px;}
+  .g4{grid-template-columns:repeat(4,1fr);}
+  .g3{grid-template-columns:repeat(3,1fr);}
+  .g2{grid-template-columns:repeat(2,1fr);}
+  @media(max-width:960px){.g4{grid-template-columns:repeat(2,1fr);}.g3{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:640px){.g4,.g3,.g2{grid-template-columns:1fr;}}
+  .card{
+    background:var(--card);border:1px solid var(--card-border);border-radius:16px;
+    padding:20px;position:relative;overflow:hidden;
+    transition:transform .2s ease,border-color .2s ease;
+  }
+  .card:hover{transform:translateY(-2px);border-color:rgba(148,197,255,.28);}
+  .card h3{font-size:15px;font-weight:700;margin-bottom:14px;color:var(--text);display:flex;align-items:center;gap:8px;}
+  .card h3 .dot{width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);}
+  .kpi-label{font-size:12px;color:var(--text-dim);letter-spacing:1px;}
+  .kpi-value{font-family:var(--mono);font-size:clamp(22px,2.6vw,30px);font-weight:800;margin-top:8px;}
+  .kpi-sub{font-size:12px;color:var(--text-faint);margin-top:6px;}
+  .kpi-value.cyan{color:var(--cyan);} .kpi-value.pink{color:var(--pink);}
+  .kpi-value.green{color:var(--green);} .kpi-value.gold{color:var(--gold);}
+  .glowline{position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:.6;}
+
+  /* ---- Charts ---- */
+  .chart-box{position:relative;}
+  .bar-row{display:grid;grid-template-columns:170px 1fr 120px;gap:12px;align-items:center;margin:12px 0;cursor:default;}
+  .bar-label{font-size:13px;color:var(--text-dim);text-align:right;line-height:1.3;}
+  .bar-track{height:22px;border-radius:6px;background:rgba(255,255,255,.05);overflow:hidden;position:relative;}
+  .bar-fill{
+    height:100%;border-radius:6px;width:0;
+    transition:width 1.1s cubic-bezier(.22,.9,.3,1);
+    box-shadow:0 0 14px rgba(34,211,238,.25) inset;
+  }
+  .bar-value{font-family:var(--mono);font-size:13px;text-align:right;color:var(--text);}
+  .bar-count{font-size:11px;color:var(--text-faint);}
+  @media(max-width:640px){.bar-row{grid-template-columns:110px 1fr 100px;}}
+
+  .legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+  .legend-item{
+    display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text-dim);
+    padding:5px 11px;border-radius:999px;border:1px solid var(--card-border);
+    background:rgba(255,255,255,.03);cursor:pointer;user-select:none;transition:all .18s ease;
+    font-family:inherit;
+  }
+  .legend-item:hover{border-color:rgba(148,197,255,.4);color:var(--text);}
+  .legend-item.off{opacity:.35;text-decoration:line-through;}
+  .legend-swatch{width:10px;height:10px;border-radius:3px;flex:0 0 auto;}
+
+  /* ---- Tooltip ---- */
+  .tooltip{
+    position:absolute;z-index:30;pointer-events:none;
+    background:rgba(8,15,30,.96);border:1px solid rgba(34,211,238,.4);
+    border-radius:10px;padding:9px 12px;font-size:12px;line-height:1.55;
+    box-shadow:0 8px 28px rgba(0,0,0,.55);white-space:nowrap;
+    transform:translate(-50%,calc(-100% - 10px));
+  }
+  .tooltip .t-amt{font-family:var(--mono);font-weight:700;color:var(--gold);font-size:14px;}
+  .tooltip .t-dim{color:var(--text-dim);}
+
+  /* ---- Sankey ---- */
+  .sankey-node-label{font-size:12px;fill:var(--text);}
+  .sankey-node-amt{font-family:var(--mono);font-size:12px;fill:var(--gold);font-weight:700;}
+  .sankey-link{cursor:pointer;transition:opacity .18s ease;}
+  .sankey-stage{font-size:11px;fill:var(--text-faint);letter-spacing:2px;}
+
+  /* ---- Reconciliation ---- */
+  .recon-row{
+    display:flex;justify-content:space-between;align-items:center;gap:12px;
+    padding:13px 0;border-bottom:1px dashed rgba(148,197,255,.12);flex-wrap:wrap;
+  }
+  .recon-row:last-child{border-bottom:none;}
+  .recon-name{font-weight:700;font-size:14px;display:flex;align-items:center;gap:8px;}
+  .recon-formula{font-size:12px;color:var(--text-dim);margin-top:4px;font-family:var(--mono);line-height:1.6;}
+  .recon-result{
+    font-family:var(--mono);font-weight:800;color:var(--green);font-size:16px;
+    background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.35);
+    padding:4px 12px;border-radius:8px;
+  }
+
+  /* ---- Offbook / todos ---- */
+  .offbook-amt{font-family:var(--mono);font-size:22px;font-weight:800;color:var(--cyan);margin:6px 0;}
+  .offbook-note{font-size:12px;color:var(--text-dim);line-height:1.7;}
+  .todo-code{
+    font-family:var(--mono);font-size:11px;font-weight:700;color:var(--gold);
+    border:1px solid rgba(251,191,36,.45);border-radius:6px;padding:2px 8px;
+  }
+  .todo-level{font-size:11px;padding:2px 9px;border-radius:999px;font-weight:700;}
+  .todo-level.高{background:rgba(248,113,113,.14);color:var(--red);border:1px solid rgba(248,113,113,.4);}
+  .todo-level.中{background:rgba(251,191,36,.12);color:var(--gold);border:1px solid rgba(251,191,36,.4);}
+  .todo-level.低{background:rgba(52,211,153,.12);color:var(--green);border:1px solid rgba(52,211,153,.4);}
+  .todo-title{font-weight:700;font-size:15px;margin:10px 0 6px;}
+  .todo-desc{font-size:13px;color:var(--text-dim);line-height:1.75;}
+
+  .balance-strip{
+    margin-top:16px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;
+    padding:14px 18px;border-radius:12px;
+    background:linear-gradient(90deg,rgba(52,211,153,.12),rgba(34,211,238,.10));
+    border:1px solid rgba(52,211,153,.35);
+  }
+  .balance-strip .b-num{font-family:var(--mono);font-size:22px;font-weight:800;color:var(--green);}
+
+  .section-title{font-size:17px;font-weight:800;margin:6px 0 14px;display:flex;align-items:center;gap:10px;}
+  .section-title::before{content:'';width:4px;height:18px;border-radius:2px;
+    background:linear-gradient(180deg,var(--cyan),var(--green));}
+  .muted{color:var(--text-dim);font-size:13px;line-height:1.7;}
+  .mono{font-family:var(--mono);}
+  .view-anim{animation:fadeSlide .35s ease both;}
+  @keyframes fadeSlide{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+
+  footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--card-border);
+    color:var(--text-faint);font-size:12px;line-height:1.9;}
+  footer a{color:var(--cyan);text-decoration:none;}
+  .cdn-fallback{
+    max-width:640px;margin:120px auto;padding:32px;border-radius:16px;text-align:center;
+    background:var(--card);border:1px solid var(--card-border);color:var(--text-dim);line-height:2;
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<noscript><div class="cdn-fallback">需要启用 JavaScript 才能查看 FinFlow 可视化。</div></noscript>
+<script src="./data.js"></script>
+<script>
+  // CDN 加载失败兜底提示
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      if (!window.React || !window.ReactDOM || !window.FINFLOW_DATA) {
+        var el = document.getElementById('root');
+        if (el && !el.hasChildNodes()) {
+          el.innerHTML = '<div class="cdn-fallback">⚠ 依赖加载失败。<br>请确认 vendor/、data.js、app.js 与 index.html 位于同一目录。</div>';
+        }
+      }
+    }, 2500);
+  });
+</script>
+<script src="./app.js"></script>
+</body>
+</html>

@@ -232,7 +232,8 @@
               "curc26/mechanical-sig/electrical",
               "curc26/mechanical-sig/capabilities",
               "curc26/vision-sig/about",
-              "curc26/operation-sig/about"
+              "curc26/operation-sig/about",
+              "curc26/finflow"
             ]
           },
           {

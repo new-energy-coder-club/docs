@@ -1,0 +1,31 @@
+---
+title: "FinFlow 财务开源"
+description: "CURC26 赛季财务开源可视化：资金流入流出、体外专项、27赛季专项勾稽（收付实现制·现金口径，数据截至 2026-07-25）"
+---
+
+## FinFlow · CURC26 财务开源可视化
+
+常州工 NEC 机器人队 2026 赛季财务全量开源：主账资金池（已补平归零 ✓）、体外专项 7 项、27赛季专项勾稽平衡 3,657.51、三条勾稽路径验证一致。
+
+<iframe
+  src="https://cdn.newenergycoder.club/finflow/index.html"
+  style={{ width: '100%', height: '860px', border: 'none', borderRadius: '12px', background: '#070d1a' }}
+  title="FinFlow · CURC26 财务开源可视化"
+/>
+
+<CardGroup cols={3}>
+  <Card title="现金流入" icon="arrow-trend-up">
+    **¥26,174.39**（86笔）中期众筹 10,800 + Sponsor 8,400 + 7月众筹净 6,600 + 朱佩韦补平 374.39
+  </Card>
+  <Card title="现金流出" icon="arrow-trend-down">
+    **¥26,174.39** 中期现金部分 19,200 + 7月支出 5,974.39 + 归还孙诗睿垫付 1,000
+  </Card>
+  <Card title="自由现金池结余 FCF" icon="scale-balanced">
+    **¥0.00 ✓** 朱佩韦补平后资金池归零；现金口径 = 审计递推 = FCFE 映射
+  </Card>
+</CardGroup>
+
+<Note>
+  口径：收付实现制 · 现金口径 · 数据截至 2026-07-25。横向项目捐助 4,412.71（非现金）与 27赛季募集 900（并入队服专项）不纳入主账。
+  交互组件源码：[FinFlow 开源仓库](https://github.com/new-energy-coder-club/docs/tree/main/public/finflow)（MIT License）。
+</Note>
