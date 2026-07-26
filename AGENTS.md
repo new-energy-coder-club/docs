@@ -51,6 +51,7 @@ mint dev
    - 关于我们：关于 → 报名流程 → 加入合集 → NEC+ → Skill 分支 → 赞助
    - 社区与活动：社区 → A416 实验室 → 项目 → 导师 → Discord → 故事
    - 治理与安全：GOVERNANCE → CODE_OF_CONDUCT → SUPPORT → SECURITY
+   - 财务公开：财务整理总览 `community/finance-overview-2026-07-25`（xlsx 原文全表转录，原始文件托管 R2 CDN `files/finance/`）
    - 核心团队：团队总览 → 维护者名单
    - 贡献指南：总览 → 规范 → 流程 → 代码风格 → Gitee 协作
 5. **Wiki** — Wiki 总览、新人入门、社区与协作、培训与资源、规范与安全
