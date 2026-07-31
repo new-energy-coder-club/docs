@@ -18,6 +18,9 @@
   "styles": [
     "style.css"
   ],
+  "styling": {
+    "latex": true
+  },
   "favicon": "/favicon.svg",
   "search": {
     "prompt": "搜索文档、竞赛、项目与社区资料..."
@@ -52,9 +55,9 @@
             "group": "新手上路",
             "icon": "graduation-cap",
             "pages": [
+              "start-here/newcomer-guide",
               "start-here/curc2027-onboarding",
               "start-here/2027-summer-camp",
-              "start-here/newcomer-guide",
               "start-here/first-good-issue"
             ]
           },
@@ -78,6 +81,9 @@
               "mechanical/chassis",
               "mechanical/chassis-omniwheel",
               "mechanical/chassis-mecanum",
+              "mechanical/ek-team-25-mechanical-training",
+              "mechanical/ek-mechanical-solidworks",
+              "mechanical/rhino-modeling-tutorial",
               {
                 "group": "设备与加工手册",
                 "icon": "wrench",
@@ -91,9 +97,57 @@
                   "mechanical/lumenpnp-introduction"
                 ]
               },
-              "mechanical/ek-team-25-mechanical-training",
-              "mechanical/ek-mechanical-solidworks",
-              "mechanical/rhino-modeling-tutorial"
+              {
+                "group": "培训资料",
+                "icon": "book-open",
+                "pages": [
+                  "mechanical/training-resources",
+                  "mechanical/training-structure-design-methodology",
+                  "mechanical/training-weight-reduction-guide",
+                  "mechanical/training-threaded-fasteners",
+                  "mechanical/training-aluminum-tube-pneumatics",
+                  "mechanical/falcon2-user-manual",
+                  "mechanical/m2006-motor-guide",
+                  "mechanical/m3508-motor-guide",
+                  "mechanical/training-how-to-ask",
+                  "mechanical/training-how-to-debug",
+                  "mechanical/dm-s3519-motor",
+                  "mechanical/rm-rc-supplier-directory",
+                  "mechanical/robocon-open-source-docs"
+                ]
+              },
+              {
+                "group": "LumenPnP 贴片机",
+                "icon": "microchip",
+                "pages": [
+                  "mechanical/lumenpnp/lumenpnp",
+                  "mechanical/lumenpnp/lumenpnp-v4",
+                  "mechanical/lumenpnp/doc-4",
+                  "mechanical/lumenpnp/doc-5",
+                  "mechanical/lumenpnp/doc-6",
+                  "mechanical/lumenpnp/doc-7",
+                  "mechanical/lumenpnp/v4-0",
+                  "mechanical/lumenpnp/doc-9",
+                  "mechanical/lumenpnp/doc-10",
+                  "mechanical/lumenpnp/doc-11",
+                  "mechanical/lumenpnp/doc-12",
+                  "mechanical/lumenpnp/doc-13",
+                  "mechanical/lumenpnp/doc-14",
+                  "mechanical/lumenpnp/doc-15",
+                  "mechanical/lumenpnp/doc-16",
+                  "mechanical/lumenpnp/doc-17",
+                  "mechanical/lumenpnp/doc-18",
+                  "mechanical/lumenpnp/doc-19",
+                  "mechanical/lumenpnp/mark-mark",
+                  "mechanical/lumenpnp/doc-21",
+                  "mechanical/lumenpnp/doc-22",
+                  "mechanical/lumenpnp/doc-23",
+                  "mechanical/lumenpnp/doc-24",
+                  "mechanical/lumenpnp/doc-25",
+                  "mechanical/lumenpnp/pos2pnp-pos",
+                  "mechanical/lumenpnp/openpnp"
+                ]
+              }
             ]
           },
           {
@@ -103,8 +157,8 @@
               "vision/odin1-update",
               "vision/ms200-lidar",
               "embedded-software/introduction",
-              "embedded-software/control",
               "embedded-software/development-setup",
+              "embedded-software/control",
               "embedded-software/vibe-coding-debug",
               "embedded-software/hxc-motor-control",
               "embedded-software/cube-mars-ak70-10-kv100",
@@ -149,7 +203,9 @@
                   "competition/robocon",
                   "competition/robocon2026-guide",
                   "competition/robocon2026-newcomer-guide",
-                  "competition/curc-resources"
+                  "competition/curc-resources",
+                  "competition/robocon-materials",
+                  "mechanical/robocon-open-source-docs"
                 ]
               },
               {
@@ -170,13 +226,24 @@
           {
             "group": "CURC 2026",
             "pages": [
-              "curc26/mechanical-sig/about",
               "curc26/proposal",
+              "curc26/mechanical-sig/about",
               "curc26/mechanical-sig/mechanical",
               "curc26/mechanical-sig/electrical",
               "curc26/mechanical-sig/capabilities",
               "curc26/vision-sig/about",
-              "curc26/operation-sig/about"
+              "curc26/operation-sig/about",
+              "curc26/finflow"
+            ]
+          },
+          {
+            "group": "CURC 2027",
+            "pages": [
+              "curc27/index",
+              "curc27/onboarding",
+              "curc27/mechanical-sig",
+              "curc27/vision-sig",
+              "curc27/operation-sig"
             ]
           }
         ]
@@ -188,8 +255,8 @@
             "group": "关于我们",
             "pages": [
               "community/about",
-              "community/join-collection",
               "community/registration-process",
+              "community/join-collection",
               "community/nec-plus",
               "community/skill-branch",
               "community/sponsors"
@@ -199,9 +266,9 @@
             "group": "社区与活动",
             "pages": [
               "community/nec2026-community",
-              "community/mentors",
               "community/a416-lab",
               "community/projects",
+              "community/mentors",
               "community/discord",
               "community/story"
             ]
@@ -216,10 +283,16 @@
             ]
           },
           {
+            "group": "财务公开",
+            "pages": [
+              "community/finance-overview-2026-07-25"
+            ]
+          },
+          {
             "group": "核心团队",
             "pages": [
-              "community/maintainers",
-              "community/team"
+              "community/team",
+              "community/maintainers"
             ]
           },
           {
@@ -269,6 +342,7 @@
             "pages": [
               "wiki/training-resources",
               "wiki/tech-resources",
+              "wiki/team-training-videos",
               "wiki/hku-software-trainee",
               "wiki/experience-index"
             ]
@@ -287,6 +361,246 @@
         "pages": [
           "ROADMAP",
           "resource-index"
+        ]
+      },
+      {
+        "tab": "技能库",
+        "groups": [
+          {
+            "group": "概览",
+            "icon": "book-open",
+            "pages": [
+              "skills/index"
+            ]
+          },
+          {
+            "group": "核心推荐（NEC 精选）",
+            "icon": "star",
+            "pages": [
+              "skills/nec-resource-publisher",
+              "skills/nec-wechat-sync",
+              "skills/pv-station-rating",
+              "skills/pv-storage-bom",
+              "skills/patent-application-cn",
+              "skills/cit-thesis-writer",
+              "skills/acad-paper-prompter"
+            ]
+          },
+          {
+            "group": "飞书/Lark 办公套件（25）",
+            "icon": "feather",
+            "pages": [
+              "skills/lark-shared",
+              "skills/lark-contact",
+              "skills/lark-im",
+              "skills/lark-calendar",
+              "skills/lark-doc",
+              "skills/lark-sheets",
+              "skills/lark-base",
+              "skills/lark-task",
+              "skills/lark-approval",
+              "skills/lark-mail",
+              "skills/lark-drive",
+              "skills/lark-wiki",
+              "skills/lark-minutes",
+              "skills/lark-vc",
+              "skills/lark-vc-agent",
+              "skills/lark-okr",
+              "skills/lark-slides",
+              "skills/lark-whiteboard",
+              "skills/lark-markdown",
+              "skills/lark-event",
+              "skills/lark-attendance",
+              "skills/lark-openapi-explorer",
+              "skills/lark-skill-maker",
+              "skills/lark-workflow-meeting-summary",
+              "skills/lark-workflow-standup-report"
+            ]
+          },
+          {
+            "group": "AI CLI 调用器（6）",
+            "icon": "terminal",
+            "pages": [
+              "skills/kimi-cli",
+              "skills/claude-cli",
+              "skills/gemini-cli",
+              "skills/aicodewith",
+              "skills/trae-assistant",
+              "skills/persona-switch"
+            ]
+          },
+          {
+            "group": "前端 & 设计开发（14）",
+            "icon": "palette",
+            "pages": [
+              "skills/react-best-practices",
+              "skills/react-native-skills",
+              "skills/shadcn",
+              "skills/frontend-design",
+              "skills/frontend-skill",
+              "skills/web-design-guidelines",
+              "skills/web-artifacts-builder",
+              "skills/webapp-testing",
+              "skills/web-design",
+              "skills/canvas-design",
+              "skills/algorithmic-art",
+              "skills/brand-guidelines",
+              "skills/theme-factory",
+              "skills/chart-visualization"
+            ]
+          },
+          {
+            "group": "开发工程 & 工作流（17）",
+            "icon": "gears",
+            "pages": [
+              "skills/clean-code-zh",
+              "skills/security-best-practices",
+              "skills/git-commit",
+              "skills/gh-cli",
+              "skills/github-skill",
+              "skills/test-driven-development",
+              "skills/spec-to-implementation",
+              "skills/composition-patterns",
+              "skills/hook-analyzer-skill",
+              "skills/screenshot",
+              "skills/writing-plans",
+              "skills/executing-plans",
+              "skills/defuddle",
+              "skills/planning-with-files",
+              "skills/harness",
+              "skills/agentic-loop",
+              "skills/agent-browser"
+            ]
+          },
+          {
+            "group": "搜索 & 资讯聚合（8）",
+            "icon": "magnifying-glass",
+            "pages": [
+              "skills/baidu-search",
+              "skills/online-search",
+              "skills/multi-search-engine",
+              "skills/news",
+              "skills/news-extractor",
+              "skills/news-summary",
+              "skills/neodata-financial-search",
+              "skills/tech-news-digest"
+            ]
+          },
+          {
+            "group": "文档 & 办公文件（8）",
+            "icon": "file-lines",
+            "pages": [
+              "skills/docx",
+              "skills/pdf",
+              "skills/pptx",
+              "skills/xlsx",
+              "skills/doc-coauthoring",
+              "skills/file-skill",
+              "skills/email-skill",
+              "skills/mintlify"
+            ]
+          },
+          {
+            "group": "集成 & 平台连接（14）",
+            "icon": "plug",
+            "pages": [
+              "skills/tencent-docs",
+              "skills/tencent-meeting-mcp",
+              "skills/tencent-survey",
+              "skills/tencent-news",
+              "skills/wecomcli-setup",
+              "skills/wecom-weisheng-scrm",
+              "skills/weiyun",
+              "skills/youdaonote",
+              "skills/notion",
+              "skills/ima",
+              "skills/kdocs",
+              "skills/imap-smtp-email",
+              "skills/tme-openapi",
+              "skills/flyai"
+            ]
+          },
+          {
+            "group": "学术 & 论文（3）",
+            "icon": "graduation-cap",
+            "pages": [
+              "skills/paper-scaffold",
+              "skills/latex-win",
+              "skills/gradpilot"
+            ]
+          },
+          {
+            "group": "QClaw/OpenClaw 平台（15）",
+            "icon": "puzzle",
+            "pages": [
+              "skills/qclaw-cron-skill",
+              "skills/qclaw-env",
+              "skills/qclaw-rules",
+              "skills/qclaw-skill-creator",
+              "skills/qclaw-text-file",
+              "skills/qclaw-openclaw",
+              "skills/self-improving",
+              "skills/self-improving-agent",
+              "skills/session-logs",
+              "skills/skill-vetter",
+              "skills/public-skill",
+              "skills/content-factory",
+              "skills/cloud-upload-backup",
+              "skills/mcporter",
+              "skills/mcp-builder"
+            ]
+          },
+          {
+            "group": "效率 & 头脑风暴（9）",
+            "icon": "lightbulb",
+            "pages": [
+              "skills/productivity-automation-kit",
+              "skills/plan-my-day",
+              "skills/study-habits",
+              "skills/brainstorming",
+              "skills/consulting-analysis",
+              "skills/report-generator-skill",
+              "skills/ai-dev-dashboard",
+              "skills/ai-data-analysis",
+              "skills/ai-promotion-query"
+            ]
+          },
+          {
+            "group": "社交 & 微信生态（7）",
+            "icon": "comments",
+            "pages": [
+              "skills/wx-cli-wechat-local-data",
+              "skills/wechat-cli-export",
+              "skills/corporate-deep-query",
+              "skills/xiaohongshu-images",
+              "skills/xiaohongshu-skills",
+              "skills/kimi-webbridge",
+              "skills/xbrowser"
+            ]
+          },
+          {
+            "group": "TRAE 内置 & 独立工具（17）",
+            "icon": "screwdriver-wrench",
+            "pages": [
+              "skills/TRAE-code-review",
+              "skills/TRAE-debugger",
+              "skills/TRAE-generate-mini-app",
+              "skills/data-analysis",
+              "skills/redis-development",
+              "skills/find-skills",
+              "skills/dogfood",
+              "skills/aippt",
+              "skills/weather-advisor",
+              "skills/slack-gif-creator",
+              "skills/fbs_bookwriter",
+              "skills/wendao-partner-qclaw-skill",
+              "skills/chuangye",
+              "skills/bdpan-storage",
+              "skills/kc-gui",
+              "skills/resume-builder",
+              "skills/resume-optimizer"
+            ]
+          }
         ]
       }
     ],

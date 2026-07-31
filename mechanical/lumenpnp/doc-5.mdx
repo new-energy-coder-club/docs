@@ -1,0 +1,470 @@
+---
+title: "视觉通道调整"
+description: "寻找归位基准点（顶部摄像头） 识别PCB基准标记（顶部摄像头） 校准吸嘴尖端（底部摄像头） 校准元器件位置（底部摄像头）"
+---
+
+<title>视觉通道调整</title>
+
+# 介绍
+
+## 视觉通道调整
+
+计算机视觉是贴片机中最关键、最复杂的组件之一。它在以下四个主要任务中发挥着关键作用：
+
+- 寻找归位基准点（顶部摄像头）
+- 识别PCB基准标记（顶部摄像头）
+- 校准吸嘴尖端（底部摄像头）
+- 校准元器件位置（底部摄像头）
+
+配置文件中提供的默认视觉设置针对一般用途进行了优化。但是，由于光照条件、组件形状和其他环境因素的变化，您可能需要对其进行微调以获得最佳性能。
+
+---
+
+## 环境光
+
+<callout emoji="❗">
+**警告**
+机器视觉对光照条件高度敏感。我们建议在 LumenPnP 工作的工作空间内保持恒定的光照。环境光的变化可能需要重新调整视觉设置。
+</callout>
+
+---
+
+## 理解 OpenPnP 中的计算机视觉
+
+OpenPnP 中的计算机视觉系统从顶部或底部摄像头捕获图像，并通过由多个阶段组成的“通道”对其进行处理。这些阶段主要分为三类：
+
+1. 图像处理：修改图像，使计算机更容易识别照片的各个部分。例如：`Threshold`将图像转换为纯黑白色。
+2. 特征检测：识别图像中的特定元素。例如：`DetectCirclesHough`，检测圆形。
+3. 可视化和调试：Vision 会叠加有用的标记，通过调试和调整来协助您调整流程。例如：`DrawCircles`，它会高亮显示图像上检测到的圆圈。
+
+每个阶段都有可调节的“参数”，可以微调其功能。例如，`Threshold`该阶段会应用亮度截止来区分物体和背景。调整`threshold`参数可以改变实现这种分离的亮度级别。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/XSGHbMWLaoVSeqxRbU9cltHqngg.webp)
+
+如需进行更高级的调整，您可以在通道中添加或删除其他处理阶段。但我们不建议这样做。
+
+---
+
+## 通道编辑视图
+
+通道编辑视图有几个部分和功能：
+
+1. 阶段列表：显示通道中的所有阶段。点击某个阶段即可在主显示屏中查看其结果并修改其参数。
+2. 主视图：显示当前选定阶段的输出，除非特定阶段被固定（参见#5）。
+3. 阶段输出：如果阶段或通道出现问题，则显示错误消息。
+4. 阶段设置：允许您更改所选阶段的设置。
+5. 固定图像：即使选择了其他阶段，也会在主视图中锁定特定阶段的结果。这对于实时监控更改对调试阶段的影响非常有用。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/Q8qBbvbVmoANdOxCc2GcyW0hnAb.webp)
+
+# 归位基准通道
+
+如果您在归位 LumenPnP 时收到错误消息`FIDUCIAL-HOME no matches found`，则可能需要调整归位视觉通道。请按照以下步骤获取有关解决方法的指南。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/Ki8TbvMO1o7kq7xcPXHcsGJUnGg.webp)
+
+## 打开通道
+
+1. 单击右上方窗格中的`Machine Setup`选项卡。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/LAtKbCq0comFV0x6Lnwc3Swwnnb.webp)
+
+1. 如果有必要，请点击“扩展”复选框。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/VZo0bcLa9oZleCx57bsc5O2ynub.webp)
+
+1. 点击`Heads > ReferenceHead H1`。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/T0YsbXECVoJQDAxWyhNcH0yFn8b.webp)
+
+1. 点击下面显示的“将摄像头定位在位置上”图标按钮。这会将顶部摄像头移动到基准板安装的位置。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/Gb0UbjgWnoiqmsxSvMRcfO0wn4C.webp)
+
+1. 确认顶部摄像机准确位于归位基准点上方。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/Pya8bHnlioRxOLxlN1FcQet0nPd.webp)
+
+1. 转到`Vision`选项卡。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/QBkvbogk0oIKnoxxfqFcjJMNnKh.webp)
+
+1. 从类型下拉菜单中选择`FiducialVision`。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/BWQdbJCTTonNOxx6ykVc3KSxnZd.webp)
+
+1. 从列表中选择`- Default Machine Fiducial Locator -`。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/J6M4b46ubolMwuxywtZcXRmLnKb.webp)
+
+1. 单击“通道” `Edit`。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/WzugbNx6RoNXWTxXZ0fcAUsDnwg.webp)
+
+## 编辑通道
+
+您可以在此窗口中编辑视觉通道以检测归位基准。归位基准是使用圆形对称检测的。
+
+1. 请检查 mask（掩模）阶段 的输出。该阶段会将图像中不必要的部分涂黑，以减少错误检测，从而降低视觉管线将图像中的其他圆形误识别为归零基准点的可能性。点击此阶段，可以查看并调整其直径（`diameter`）设置。
+
+   - 直径过大：可能会让图像中残留其他潜在的圆形，导致管线误检测。
+   - 直径过小：可能会把真正的归零基准点也掩模掉。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/SnPFbAVTRoWPPFxL1EEc7XDtnfh.webp)
+
+1. 请检查视觉管线中 cir 阶段 的输出。该阶段会在图像中寻找圆对称特征，并输出一张彩色热图，显示其认为圆对称中心所在的位置。目标是让该阶段输出的热图中最亮、最黄（最热点）的点落在归零基准点的正中心。点击此阶段可以查看其设置。
+
+   - 如果 OpenPnP 检测到了圆对称特征，您会在窗口右下角的字段中看到类似如下的输出信息：  
+   `Circle [x=639.5, y=361.5, diameter=78.0, score=133.06040353848752]`  
+   这意味着 OpenPnP 找到了一个圆对称图形，并报告了它所检测到的圆的相关信息。
+   - 如果没有检测到圆形，请调整 最大圆直径（maxDiameter） 参数，使其能够检测到更大的圆形。增大 `maxDiameter` 的值可以告诉该阶段接受直径更大的圆形。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/UbUIbfm4ZoKK36xofeEcT8S9n9d.webp)
+
+## 调整相机曝光值
+
+如果按照上述方案，仍然无法解决问题，那么你可能需要 [调整相机曝光度](https://tcnyw794ws3e.feishu.cn/wiki/BWF1wLHv2i1d4HkF6CMcJ6z3nuf#WMJFdahIno1gmjxP8rAcFGUAn9S)。请确保基准点清晰可见。
+
+<callout emoji="❗">
+调整相机曝光值后。您必须重新执行 问题与解决方案，进行一次完整校准操作。
+</callout>
+
+## 恢复默认
+
+如果您修改了通道参数，或者删除了部分参数，需要恢复默认数据，可执行一下操作。
+
+1. 点击下方代码块中的“复制”按钮，将视觉通道保存到剪贴板。
+
+```Python
+<cv-pipeline>
+   <stages>
+      <cv-stage class="org.openpnp.vision.pipeline.stages.ImageCapture" name="image" enabled="true" default-light="true" settle-option="Settle" count="1"/>
+      <cv-stage class="org.openpnp.vision.pipeline.stages.MaskCircle" name="mask" enabled="true" diameter="500" property-name="MaskCircle"/>
+      <cv-stage class="org.openpnp.vision.pipeline.stages.DetectCircularSymmetry" name="cir" enabled="true" min-diameter="10" max-diameter="150" max-distance="250" search-width="0" search-height="0" max-target-count="1" min-symmetry="1.2" corr-symmetry="0.0" outer-margin="0.2" inner-margin="0.4" sub-sampling="8" super-sampling="1" symmetry-score="OverallVarianceVsRingVarianceSum" property-name="" diagnostics="true" heat-map="true"/>
+      <cv-stage class="org.openpnp.vision.pipeline.stages.ConvertModelToKeyPoints" name="results" enabled="true" model-stage-name="cir"/>
+   </stages>
+</cv-pipeline>
+```
+
+1. 单击视觉通道窗口中的`Clipboard`图标，将新通道粘贴到 OpenPnP。这回创建新通道并删除原来的所有通道。
+
+![图片展示了OpenPnP软件中Fiducial Vision Pipeline界面。左侧为通道列表，选中“cir”通道，其参数如minDiameter、maxDiameter等可调整。右侧是工作图像，显示一个带有网格的红色圆圈。右下角显示RGB、HSV等信息及圆心坐标、直径等数据。图片中红色箭头指向“Clipboard”图标，与上文提到的“单击视觉通道窗口中的Clipboard图标，将新通道粘贴到OpenPnP”操作对应，用于创建新通道并删除原有通道。](https://cdn.newenergycoder.club/images/lumenpnp/ZWqqbxswboQtLGxbgSwclw9wnn6.webp)
+
+# PCB 基准通道
+
+就像归位基准一样，您将使用mark标记来识别电路板的准确位置。调整它们是相同的过程，只是在 OpenPnP UI 中的不同位置。
+
+1. 转到`Vision`选项卡。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/GiEwbg1X2oZWOWxDSKYcOhpfnPh.webp)
+
+1. 从类型下拉菜单中选择`FiducialVision`。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/DV1LbpTJJoLp2PxTG43cjUqdnhb.webp)
+
+1. 从通道列表中选择`FIDUCIAL-1X2`（或者从分配给您的电路板基准的任何通道中选择）。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/Z8zZbzzAeoLtVyxIC7zcatlMnfu.webp)
+
+1. 单击“通道” `Edit`。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/JzNpbKQf4odOzdxQCNPcK4ygnhg.webp)
+
+1. 继续执行与[ 归位基准通道](https://newenergycoderclub.feishu.cn/docx/H0bXdwpeWoIpYBxS8tEci9CKnig?larkTabName=space#doxcnVXKsjInoXonRW9IyWpNmdd) 部分相同的步骤。
+
+# 吸嘴校准通道
+
+如果您在 **问题与解决方案** 校准机器时，提示 Subjet not Found 错误
+
+![图片展示的是在进行吸嘴校准通道操作时，出现“Subject not found”错误的界面。左侧为蓝色光圈状的吸嘴，右侧是电脑屏幕，显示了错误提示框及多个校准建议。错误提示框中红框突出显示“Subject not found”，下方有“OK”按钮。屏幕右侧还列出了多个校准建议，如“Set background calibration method for N24”等，部分建议用黄色框突出显示。该图片直观呈现了校准过程中遇到的问题及对应提示。](https://cdn.newenergycoder.club/images/lumenpnp/Ej1rbzpH3oPkfdxLpPAcENhonDb.webp)
+
+或者在吸嘴校准时收到错误消息`Nozzle tip calibration: not enough results from vision. Check pipeline and threshold`，则可能需要调整吸嘴尖端校准通道。
+
+请按照以下步骤获取有关迭代方法的指南。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/GMF2b84UGoyoGrxzfuvczOS8nuh.webp)
+
+## 将吸嘴置于底部摄像头上方
+
+1. 在第一个工具头（左侧N1）上安装吸嘴头（如果已经安装则保持不变）。这里以N045 演示。其他吸嘴头类似。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/C1eSbeeZdoMhOwxJduYcwLwZn0d.webp)
+
+1. 单击右上方窗格中`Machine Setup`的选项卡。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/FMGcbSPQyosMS0xAAGkcJTYFnCd.webp)
+
+1. 勾选“扩展”复选框。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/Mjn6bdjQpoQaV0xxYbFcCkS9nWc.webp)
+
+1. 点击`Heads > ReferenceHead H1 > Nozzles > ReferenceNozzle N1`
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/Wg37bGeOooRbG2xGOuNc0Qgsn5e.webp)
+
+1. 单击`Nozzle Tips`选项卡。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/VeDDb1T1cocinfxJbIrcWTAmnde.webp)
+
+1. 勾选您正在调整的吸嘴的`Loaded?`复选框。这里演示的是N045。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/Nzphbx9nvoLtjWxqNCocSPbAnIg.webp)
+
+1. 单击`Nozzle Tips > ReferenceNozzleTip N045`（或您正在调整的吸嘴）。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/YceBbl0foofoecxvbLxcjLWXnKh.webp)
+
+1. 单击`Calibration`选项卡。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/KGHvba7QdoXtTexu6WxcH0Sen4c.webp)
+
+1. 先将 LumenPnP 归零，以确保工具头的位置准确。如果出现错误`Nozzle tip calibration: not enough results from vision. Check pipeline and threshold`提示，请忽略。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/O976bTJO2oVe7AxVwl6cFr7qnMT.webp)
+
+1. 从机器控制下拉菜单中选择`Nozzle: N1 - N045 (Head:H1)`（或您正在调整的那个吸嘴）。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/BTlybnNjmoK1GGxkQd8cOOKFnRh.webp)
+
+1. 单击“将定位工具置于位置上方”按钮，将左吸嘴置于底部摄像头上方。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/SnPFbAVTRoWPPFxL1EEc7XDtnfh.webp)
+
+1. 单击“通道” `Edit`。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/UbUIbfm4ZoKK36xofeEcT8S9n9d.webp)
+
+## 编辑通道
+
+您可以在此窗口中编辑视觉通道以检测归位基准。归位基准是使用圆形对称检测的。
+
+1. 请检查 mask（掩模）阶段 的输出。该阶段会将图像中不必要的部分涂黑，以减少错误检测，从而降低视觉管线将图像中的其他圆形误识别为归零基准点的可能性。点击此阶段，可以查看并调整其直径（`diameter`）设置。
+
+   - 直径过大：可能会让图像中残留其他潜在的圆形，导致管线误检测。
+   - 直径过小：可能会把真正的归零基准点也掩模掉。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/KyRwbzSHwowPZJxkDY1ch1zCnnh.webp)
+
+1. 请检查视觉管线中 cir 阶段 的输出。该阶段会在图像中寻找圆对称特征，并输出一张彩色热图，显示其认为圆对称中心所在的位置。目标是让该阶段输出的热图中最亮、最黄（最热点）的点落在归零基准点的正中心。点击此阶段可以查看其设置。
+
+   - 如果 OpenPnP 检测到了圆对称特征，您会在窗口右下角的字段中看到类似如下的输出信息：  
+   `Circle [x=639.5, y=361.5, diameter=78.0, score=133.06040353848752]`  
+   这意味着 OpenPnP 找到了一个圆对称图形，并报告了它所检测到的圆的相关信息。
+   - 如果没有检测到圆形，请调整 最大圆直径（maxDiameter） 参数，使其能够检测到更大的圆形。增大 `maxDiameter` 的值可以告诉该阶段接受直径更大的圆形。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/QY1RbWtt2oTHsyxY8WDctlkQnWh.webp)
+
+## 调整相机曝光值
+
+如果按照上述方案，仍然无法解决问题，那么你可能需要 [调整相机曝光度](https://tcnyw794ws3e.feishu.cn/wiki/BWF1wLHv2i1d4HkF6CMcJ6z3nuf#WMJFdahIno1gmjxP8rAcFGUAn9S)。请确保基准点清晰可见。
+
+<callout emoji="❗">
+调整相机曝光值后。您必须重新执行 问题与解决方案，进行一次完整校准操作。
+</callout>
+
+## 恢复默认
+
+如果您修改了通道参数，或者删除了部分参数，需要恢复默认数据，可执行一下操作。
+
+1. 点击下方代码块中的“复制”按钮，将视觉通道保存到剪贴板。
+
+```Python
+<cv-pipeline>
+  <stages>
+      <cv-stage class="org.openpnp.vision.pipeline.stages.ImageCapture" name="image" enabled="true" default-light="true" settle-option="Settle" count="1"/>
+      <cv-stage class="org.openpnp.vision.pipeline.stages.MaskCircle" name="mask" enabled="true" diameter="100" property-name="MaskCircle"/>
+      <cv-stage class="org.openpnp.vision.pipeline.stages.DetectCircularSymmetry" name="cir" enabled="true" min-diameter="11" max-diameter="14" max-distance="250" search-width="0" search-height="0" max-target-count="1" min-symmetry="1.2" corr-symmetry="0.0" outer-margin="0.2" inner-margin="0.4" sub-sampling="8" super-sampling="1" symmetry-score="OverallVarianceVsRingVarianceSum" property-name="" diagnostics="true" heat-map="true"/>
+      <cv-stage class="org.openpnp.vision.pipeline.stages.ConvertModelToKeyPoints" name="results" enabled="true" model-stage-name="cir"/>
+  </stages>
+</cv-pipeline>
+```
+
+```Python
+<cv-pipeline>
+  <stages>
+      <cv-stage class="org.openpnp.vision.pipeline.stages.ImageCapture" name="image" enabled="true" default-light="true" settle-option="Settle" count="1"/>
+      <cv-stage class="org.openpnp.vision.pipeline.stages.MaskCircle" name="mask" enabled="true" diameter="200" property-name="MaskCircle"/>
+      <cv-stage class="org.openpnp.vision.pipeline.stages.DetectCircularSymmetry" name="cir" enabled="true" min-diameter="20" max-diameter="24" max-distance="250" search-width="0" search-height="0" max-target-count="1" min-symmetry="2.0" corr-symmetry="0.0" outer-margin="0.2" inner-margin="0.4" sub-sampling="8" super-sampling="1" symmetry-score="OverallVarianceVsRingVarianceSum" property-name="" diagnostics="true" heat-map="true"/>
+      <cv-stage class="org.openpnp.vision.pipeline.stages.ConvertModelToKeyPoints" name="results" enabled="true" model-stage-name="cir"/>
+  </stages>
+</cv-pipeline>
+```
+
+```Python
+<cv-pipeline>
+  <stages>
+      <cv-stage class="org.openpnp.vision.pipeline.stages.ImageCapture" name="image" enabled="true" default-light="true" settle-option="Settle" count="1"/>
+      <cv-stage class="org.openpnp.vision.pipeline.stages.MaskCircle" name="mask" enabled="true" diameter="200" property-name="MaskCircle"/>
+      <cv-stage class="org.openpnp.vision.pipeline.stages.DetectCircularSymmetry" name="cir" enabled="true" min-diameter="35" max-diameter="44" max-distance="250" search-width="0" search-height="0" max-target-count="1" min-symmetry="1.2" corr-symmetry="0.0" outer-margin="0.2" inner-margin="0.4" sub-sampling="8" super-sampling="1" symmetry-score="OverallVarianceVsRingVarianceSum" property-name="" diagnostics="true" heat-map="true"/>
+      <cv-stage class="org.openpnp.vision.pipeline.stages.ConvertModelToKeyPoints" name="results" enabled="true" model-stage-name="cir"/>
+  </stages>
+</cv-pipeline>
+```
+
+```Python
+<cv-pipeline>
+  <stages>
+      <cv-stage class="org.openpnp.vision.pipeline.stages.ImageCapture" name="image" enabled="true" default-light="true" settle-option="Settle" count="1"/>
+      <cv-stage class="org.openpnp.vision.pipeline.stages.MaskCircle" name="mask" enabled="true" diameter="200" property-name="MaskCircle"/>
+      <cv-stage class="org.openpnp.vision.pipeline.stages.DetectCircularSymmetry" name="cir" enabled="true" min-diameter="60" max-diameter="75" max-distance="250" search-width="0" search-height="0" max-target-count="1" min-symmetry="1.2" corr-symmetry="0.0" outer-margin="0.2" inner-margin="0.4" sub-sampling="8" super-sampling="1" symmetry-score="OverallVarianceVsRingVarianceSum" property-name="" diagnostics="true" heat-map="true"/>
+      <cv-stage class="org.openpnp.vision.pipeline.stages.ConvertModelToKeyPoints" name="results" enabled="true" model-stage-name="cir"/>
+  </stages>
+</cv-pipeline>
+```
+
+```Python
+<cv-pipeline>
+  <stages>
+      <cv-stage class="org.openpnp.vision.pipeline.stages.ImageCapture" name="image" enabled="true" default-light="true" settle-option="Settle" count="1"/>
+      <cv-stage class="org.openpnp.vision.pipeline.stages.MaskCircle" name="mask" enabled="true" diameter="200" property-name="MaskCircle"/>
+      <cv-stage class="org.openpnp.vision.pipeline.stages.DetectCircularSymmetry" name="cir" enabled="true" min-diameter="101" max-diameter="124" max-distance="250" search-width="0" search-height="0" max-target-count="1" min-symmetry="1.2" corr-symmetry="0.0" outer-margin="0.2" inner-margin="0.4" sub-sampling="8" super-sampling="1" symmetry-score="OverallVarianceVsRingVarianceSum" property-name="" diagnostics="true" heat-map="true"/>
+      <cv-stage class="org.openpnp.vision.pipeline.stages.ConvertModelToKeyPoints" name="results" enabled="true" model-stage-name="cir"/>
+  </stages>
+</cv-pipeline>
+```
+
+```Python
+<cv-pipeline>
+  <stages>
+      <cv-stage class="org.openpnp.vision.pipeline.stages.ImageCapture" name="image" enabled="true" default-light="true" settle-option="Settle" count="1"/>
+      <cv-stage class="org.openpnp.vision.pipeline.stages.MaskCircle" name="mask" enabled="true" diameter="200" property-name="MaskCircle"/>
+      <cv-stage class="org.openpnp.vision.pipeline.stages.DetectCircularSymmetry" name="cir" enabled="true" min-diameter="190" max-diameter="233" max-distance="250" search-width="0" search-height="0" max-target-count="1" min-symmetry="1.2" corr-symmetry="0.0" outer-margin="0.2" inner-margin="0.4" sub-sampling="8" super-sampling="1" symmetry-score="OverallVarianceVsRingVarianceSum" property-name="" diagnostics="true" heat-map="true"/>
+      <cv-stage class="org.openpnp.vision.pipeline.stages.ConvertModelToKeyPoints" name="results" enabled="true" model-stage-name="cir"/>
+  </stages>
+</cv-pipeline>
+```
+
+1. 单击视觉通道窗口中的`Clipboard`图标，将新通道粘贴到 OpenPnP。这会创建新通道并删除原来的所有通道。
+
+![图片展示了OpenPnP软件中视觉通道窗口界面。窗口左侧为通道列表，选中“cir”通道，其参数如minDiameter、maxDiameter等在下方显示。右侧是工作图像，呈现一个带有网格的红色圆圈。窗口右上角有前进、后退、播放等控制按钮。该图片与文档中恢复默认视觉通道的操作步骤相关，直观呈现了视觉通道窗口的界面布局，帮助用户了解操作时的软件界面情况。](https://cdn.newenergycoder.club/images/lumenpnp/AwaTbZs6zo9v0Qxiob2cTJxinJb.webp)
+
+# 元件识别通道
+
+元件识别是最难调整的通道，因为它需要适应工作中的每个元件。
+
+如果您在选择组件后收到错误`No Results Found`，或者贴装阶段底部相机无法识别出红框，贴片贴歪（前提是偏移校准没问题），则需要调整视觉通道。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/NKijbWIhjozqrQxCHCpcYCWAntc.webp)
+
+## 设置吸嘴
+
+1. 在第一个工具头上安装吸嘴头。在本例中，我们将使用 N045 吸嘴头。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/QWS2bZV4soc0QVxvKj9cGXEkn4d.webp)
+
+1. 单击右上方窗格中的`Machine Setup`选项卡。
+2. 点击“扩展”复选框。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/YiogbZhhHondZvxZuJiccxUDn4y.webp)
+
+1. 点击`Heads > ReferenceHead H1 > Nozzles > ReferenceNozzle N1`
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/EwKUbaZ86ozHtwxeFQAc96cZnig.webp)
+
+1. 单击`Nozzle Tips`选项卡。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NDE3N2E3MTY5YWFiODVkMmUzMjgwOGU4MjQxMzU3OTFfNTY3OTdmMjJlMGM1YjYxYWU4ZGEyMmNjZDNmZjNjMDdfSUQ6NzY2MzgwOTg5MjE5MjM5MDA3Nl8xNzg0NTc1MDE2OjE3ODQ1Nzg2MTZfVjM)
+
+1. 单击您正在调整的吸嘴的`Loaded?`复选框。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NWI2OWRiYjdlMTgzNjE3MGYyMDY2YWNmNzRhZjNmNGZfZjM4MTA3NjdkMWNlYzM5ODkxODZkNDU1YTkyZDBmZGRfSUQ6NzY2MzgwOTg5MjIyNTkyODE3M18xNzg0NTc1MDE2OjE3ODQ1Nzg2MTZfVjM)
+
+1. 单击`Nozzle Tips > ReferenceNozzleTip N045`（或您正在使用的吸嘴）。
+
+![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NGE3ZDgyODVmNjM3OTlhYWVkMjUwY2ZiNWFlYjk4YWJfOTMxMDAzZTFhZDA4N2I1Njc3ZDJjMmQ4ZmExNTE5YjZfSUQ6NzY2MzgwOTg4ODkwODUxMjE4N18xNzg0NTc1MDE1OjE3ODQ1Nzg2MTVfVjM)
+
+1. 检查是否选择了正确的工具头`Machine Controls Tab`。
+
+![图片展示了OpenPnP软件界面中元件识别通道调整的操作场景。画面左侧是元件识别区域，有红色圆圈标识。右侧是“Machine Controls Tab”区域，其中“Camera: Top (Head: H1)”被红色箭头指向突出显示。该图片与上下文紧密相关，上下文提到要检查是否选择了正确的工具头“Machine Controls Tab”，此图直观呈现了该操作位置，辅助用户在软件中进行元件识别通道调整时，准确找到并选择正确的工具头。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZjEwYzI1NmVkOWUwNTI3ZGNhN2U5MmE3ZDllZmE5YmFfYjI0ODgxMDdmNjcwY2NmNzc2ZmRhNTFiY2MzZDlhNDhfSUQ6NzY2MzgwOTg5MDQ0MzUyOTE3NV8xNzg0NTc1MDE1OjE3ODQ1Nzg2MTVfVjM)
+
+## 拾取元件
+
+要调整元件识别通道，您需要拾取要调整的组件。您可以[设置飞达](https://tcnyw794ws3e.feishu.cn/wiki/MB7GwzTu0iWvH4kZQWfcNBURneh)并使用“拾取”按钮。
+
+![图片展示了OpenPnP软件界面，用于调整元件识别通道。界面左侧是相机视图，显示了元件图像。右侧是“Machine Setup”标签下的“Feeder”设置区域，选中“ReferenceFeeder”选项，下方有“Perform a feed and pick on the selected feeder”按钮。图片中红色箭头指向该按钮，旁边有文字说明“Perform a feed and pick on the selected feeder”。该图片与上下文关系紧密，上下文提到要调整元件识别通道需拾取要调整的组件，此图直观呈现了操作步骤中拾取组件的界面位置。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MzJlNWExMWYzMGVhMDZlMTliN2ExMmQzMWUwNzMxMmRfZjhmMGQzMDE1OWIwZmQ2MmMxMWQ5ZTYwOTE2YjYxZDZfSUQ6NzY2MzgwOTg5MTIxOTM5MzUwNl8xNzg0NTc1MDE2OjE3ODQ1Nzg2MTZfVjM)
+
+## 打开通道
+
+1. 元件被选中并吸取到嘴上后，导航至选项`Packages`卡。
+
+![图片展示了OpenPnP软件界面，用于元件识别通道的设置。界面左侧为相机视图，显示元件图像，下方有X/Y、Z轴控制按钮。右侧是“Packages”卡，列出了元件ID、Description、Tape Specification等信息，其中“Bottom Vision Settings Tab”被红色框突出显示。右侧还显示了Nozzle Tip、Settings、Footprint、Vision Compositing等设置选项。该图片与上下文关系紧密，直观呈现了元件识别通道中“Packages”卡的界面布局及关键设置项。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YjFmNDg0ZDQwNDFlOWU0ZWU3NjE0OTFlZmI1NGI0MGFfMDBmNGVlMGNlNmVlMjk1MmIzNDM2ZGNjNzViMGM4YjNfSUQ6NzY2MzgwOTg5MTUyMjk1NjI1MF8xNzg0NTc1MDE1OjE3ODQ1Nzg2MTVfVjM)
+
+1. 选择您要调整的封装。
+
+![这是名为OpenPnP的软件操作界面截图，右侧表格内，一条编号为`2000_SMD_N08`的行被红色方框突出标注，并有红色箭头指向该行，该行属于与封装设置相关的内容区域；界面左侧展示了视觉识别相关的图像，包含被定位的标记图形。该图对应文档中“选择您要调整的封装”这一步骤，直观呈现了该步骤里选定对应封装的操作界面内容。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NzJiZjkxNjAxYWNiYzU0M2VhNTU2MTA5Zjg3MjkxNjVfZTVmNTdkZDI0OWNlYzQyZjEyZjA3NzNiOTEwYTMzMjRfSUQ6NzY2MzgwOTg4OTAwOTA5MzU3Ml8xNzg0NTc1MDE1OjE3ODQ1Nzg2MTVfVjM)
+
+1. 检查吸嘴头是否与您要使用的封装兼容。
+
+![图片展示了OpenPnP软件界面中元件识别通道的设置情况。界面左侧为相机视角，显示元件图像，下方有X/Y、Z等坐标控制按钮。右侧是元件信息列表，选中“FDCAL_3X4”元件。下方“Machine Controls”区域有Nozzle Tip、Settings、Footprint等选项卡，当前选中“Bottom Vision Settings”选项卡，其中Nozzle Tip列表中“N95”被红框突出显示，其“Compatible?”列显示为“F”。该图片与上下文关系紧密，直观呈现了上下文提到的检查吸嘴头与封装兼容性及点击“Bottom Vision Settings Tab”后界面显示的内容。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ODE3NmI4MTc3ODZlMzM0YWM5OTg5NjRlYjVmYzljMzlfOTkwNjBkYjYyNjBmNDQzMjljY2Y1OTJiNThlMmI0MGZfSUQ6NzY2MzgwOTg5MDk3MTg5Njc5M18xNzg0NTc1MDE2OjE3ODQ1Nzg2MTZfVjM)
+
+1. 点击`Bottom Vision Settings Tab`。
+
+![图片展示的是OpenPnP软件界面，左侧为相机视图，显示元件吸嘴头的图像。右侧是“Bottom Vision Settings”设置区域，其中“Bottom Vision Settings”按钮被红色箭头突出显示。该图片与上下文紧密相关，上下文提到在元件识别通道中打开通道后，需点击“Bottom Vision Settings Tab”，此图即为该操作后的界面展示，直观呈现了“Bottom Vision Settings”按钮的位置，帮助用户了解操作后的软件界面情况。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NGY0YzBhY2U4NGQ5NzNkMmRkNTlkZDgyN2NlMmVkOGZfYjU0MzI0M2Y4YWRkZTY5ZjQzMmQyM2RlZDkwZmQwNmNfSUQ6NzY2MzgwOTg5MDQ4MTMyNzA0MF8xNzg0NTc1MDE2OjE3ODQ1Nzg2MTZfVjM)
+
+1. 单击通道：`Edit`按钮。
+
+![图片展示的是OpenPnP软件界面，左侧为相机视图，显示元件图像，有红色、蓝色圆圈及矩形框。右侧是视觉通道设置区域，有“Manage Settings”等选项，其中“Pipette”下“Edit”按钮被红色箭头突出显示。该图片与上下文关系紧密，上下文提到在元件识别通道中打开通道后，需点击“Edit”按钮，此图直观呈现了该操作位置，辅助理解如何进行视觉通道调整。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MWExMjNmZGYyOTlhOGFkMjg0NGYxMjZhZjY5OGVkMDBfNGUzMjYzZTkwOTlmMTU2NTQ1ZjFmMGNjYmJiYTBmZTdfSUQ6NzY2MzgwOTg5MTI1NzA3NjY2NF8xNzg0NTc1MDE2OjE3ODQ1Nzg2MTZfVjM)
+
+> **影响所有其他元件**
+> 
+> 默认视觉是全局修改，也就是所有封装都共用这一个视觉配置。也就是你这里编辑按钮后，是所有封装都会被影响。我们推荐：先单击“专门针对XXX”按钮，再单击 Edit，即可将更改后的视觉设置专门应用于该零件（*不会*影响其他零件和组件）。
+> 
+> ![图片展示的是底部视觉配置界面中通用设置部分。画面中“命名”处显示为“Default Machine Bottom Vision”，“分配至”处有红色框突出显示“专门用于 CAP-SMD”，下方还有“设置管理”“启用？”“预旋转”“旋转方式”“元件尺寸检查”“尺寸公差（%）”等设置项。该图片与上下文紧密相关，直观呈现了底部视觉配置中通用设置的具体内容，帮助用户了解如何命名和分配视觉方案。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ODBjZmQxODAyOWJkOGVlODI2OTk0YWE0NTVkNzcwNTVfYzllOTIwNGZhNmY5OWZjMDY2OGYxNTc0ZDdjMzE3MGRfSUQ6NzY2MzgwOTg5MDk3MTg4MDQwOV8xNzg0NTc1MDE2OjE3ODQ1Nzg2MTZfVjM)
+> 
+> 同时也要注意，是修改封装库的底部视觉。元件库的视觉不要动，
+> 
+> 优先把底部视觉方案指定给元件所属的封装。最好不要在元件库里为元件指定封装。
+> 
+> 封装是父级，元件是子级，同一个封装下，可以包含多种不同规格的元件。
+
+
+
+1. 允许 OpenPnP 将吸嘴移动至底部摄像头位置。
+
+## 编辑通道
+
+1. 点击`DrawRotatedRects`。
+
+![图片展示了OpenPnP软件中Bottom Vision Pipeline界面，左侧为Pipeline编辑器，显示了多个步骤，其中“DrawRotatedRects”步骤被红色框和箭头突出显示。右侧是主视图，显示了组件轮廓周围的矩形。该图片与上下文紧密相关，上下文提到在编辑通道时点击“DrawRotatedRects”，主视图将显示组件轮廓周围的矩形，若矩形不精确，需区分组件和工具头，或放宽阈值。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NmVlNjY1YjEyMjc1ZTFlYzQwMjUzNjkzN2MwNDU4ZTZfZGM4MTZkY2U0NjQyOGU2YTM3ODFlMTViYjAwZjExYzBfSUQ6NzY2MzgwOTg5MTIxOTM3NzEyMl8xNzg0NTc1MDE2OjE3ODQ1Nzg2MTZfVjM)
+
+1. 主视图将显示组件轮廓周围的矩形。
+
+   1. 如果组件周围的矩形不精确，那么我们需要更清楚地区分真正的组件和工具头。
+   2. 如果没有矩形，我们需要放宽阈值以使组件更容易识别。
+   3. 如果图像看起来与上面的效果类似，则说明您的通道已正确调整。如果归位时仍然出现故障，则可能需要稍微放松过滤。
+
+## 阈值调整
+
+平台`Threshold`是最常调整的平台。它将相机图像转换为黑白图像，确保喷嘴尖端与被测元件之间形成鲜明的对比。这一步骤至关重要，因为相机向上照射的 LED 灯应充分照亮被测元件，使其在图像中呈现亮白色。我们需要检测被测元件的位置和旋转角度，因此精确勾勒出元件轮廓非常重要。`threshold`根据需要调整参数，直到精确勾勒出被测元件的轮廓为止。
+
+- 如果图像太暗，请降低该`threshold`值。
+- 如果图像太亮，请提高该`threshold`值。
+
+<callout emoji="❗">
+**曝光设置**
+如果您难以达到下方所示的“良好阈值”结果，可能是底部摄像头的曝光量过高。这会导致 OpenPnP 难以区分元件和喷嘴尖端。 [请调整底部摄像头的曝光量](https://tcnyw794ws3e.feishu.cn/wiki/BWF1wLHv2i1d4HkF6CMcJ6z3nuf#M8BvdF1iSolQGbxHLVGc5v2knCg)，然后重新调整阈值。
+</callout>
+
+<callout emoji="❗">
+调整相机曝光值后。您必须重新执行 问题与解决方案，进行一次完整校准操作。
+</callout>
+
+![图片展示了视觉通道调整中元件识别通道的阈值调整示例。左侧为阈值过低时的图像，中间为阈值适中时的图像，右侧为阈值过高时的图像。每种情况下方对应有表格，显示了不同的阈值设置，如左侧为30，中间为200，右侧为253。该图片与文档中“阈值调整”部分相关，直观呈现了不同阈值设置对元件识别通道图像效果的影响，帮助理解阈值调整对视觉识别效果的重要性。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YjQ1ZDhhYTljNGI3YTExN2Y1Y2M4NWQzNzM5MjFhNzFfZTExY2YxYTliZjVhYWY0NTE0YjlmNDAwYmEzNDA5NzBfSUQ6NzY2MzgwOTg4ODM5MjcyNzUwMF8xNzg0NTc1MDE1OjE3ODQ1Nzg2MTVfVjM)
+
+## 测试部件识别
+
+1. 要查看调整后的通道的执行情况，请单击`Test Alignment`按钮。 
+
+![这张图片是OpenPnP软件的操作界面，用于视觉通道与部件识别的相关设置操作。界面右侧工具区域有红色箭头指向标注的蓝色按钮，按钮上显示“Test Alignment”，对应上下文里查看调整后通道执行情况的操作要求。界面左侧展示了带有标记的底部摄像头采集的零件影像，左侧标注有“Top”“Bottom”区域，底部显示视觉相关的设备与参数信息，整体呈现的是与元件识别通道阈值调整相关的操作界面内容，该界面与文档中测试部件识别的操作指引相匹配。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NTkwN2ExMTA4MDMwZmQ4OTdlYzE3N2NiYThiYzViNDhfMDE5MWE3NmYyNTQwMmUxMmY4ZmYxNzQ0Y2MxZjhmZmRfSUQ6NzY2MzgwOTg5MDQ5NzkyNDAyOF8xNzg0NTc1MDE2OjE3ODQ1Nzg2MTZfVjM)
+
+
+
+<callout emoji="❗">
+**笔记**
+如果收到`Part height unknown and camera Bottom does not support part height sensing.`错误提示，您需要设置零件的高度。这样 OpenPnP 才能将其正确放置在底部摄像头上方。
+1. 前往`Parts Tab`
+2. 选择您的组件
+3. 双击“高度”列进行修改。
+</callout>
+
+![图片展示的是OpenPnP软件界面，其中“Machine Setup”选项卡被选中。画面右上角显示了“Parts Tab”中“FIDUCIAL_3X4”等组件信息。画面右下角弹出一个红色边框的“Error”提示框，显示“Part height unknown and camera Bottom does not support part height sensing.”错误信息，提示需设置零件高度以正确放置在底部摄像头上方。该图片与文档中“测试部件识别”部分相关，用于说明若收到特定错误提示时的操作步骤。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MjYwZTZkNDEwODZkNmI5YWY4ZGI5YWYxMzMyMjVlNDZfMDkxZGQ3NzZhZWM1YTFkYWIxZDc1NWZkNDEzMTA2NWJfSUQ6NzY2MzgwOTg4ODc4NjgxMTg0Nl8xNzg0NTc1MDE2OjE3ODQ1Nzg2MTZfVjM)

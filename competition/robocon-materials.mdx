@@ -1,0 +1,222 @@
+---
+title: "ROBOCON 资料包"
+description: "NEC 社区 ROBOCON 备赛资料包：OpenPnP 贴片机教程、电机驱动手册、嵌入式电控教程、机械结构设计文档、平面定位资料、演示视频与参赛队马术/四足整机开源方案，文件托管于社区 CDN。"
+---
+
+本页面汇总 ROBOCON 备赛过程中沉淀的教程、软件与设计资料，所有文件托管于社区 CDN（cdn.newenergycoder.club），点击即可下载。
+
+<Note>
+  本页面由社区共同维护，文档仓库地址：[github.com/new-energy-coder-club/docs](https://github.com/new-energy-coder-club/docs)（页面源码：`competition/robocon-materials.mdx`），欢迎提交 PR 补充更多备赛资料。
+</Note>
+
+## 分类导航
+
+- [电机与驱动](#电机与驱动) — 宇树 GO-M8010-6、达妙 DM-S3519、M2006 控制工程、FOC 读物
+- [OpenPnP 贴片机教程](#openpnp-贴片机教程) — 摄像头校准、吸嘴更换、复杂拼板贴片
+- [软件工具](#软件工具) — AiCube-ISP 烧录工具、贴片坐标 CSV 转换软件
+- [机械设计文档](#机械设计文档) — 传动机构、设计方法论、舵轮、机构图册、装配规范
+- [三维模型与硬件资料](#三维模型与硬件资料) — 限位开关 STEP、气泵固定件、震动飞达
+- [演示视频](#演示视频) — PnP 贴片机 Creo 装配演示
+- [调试与测试资料](#调试与测试资料) — VOFA+、激光测距数据页、电池浪涌测试
+- [机械设计培训与教程](#机械设计培训与教程) — SW 草图作业、ANSYS 拓扑优化、轻量化设计
+- [参赛队整机开源方案（马术 / 四足）](#参赛队整机开源方案马术--四足) — 各校马术/四足机器人整机模型与电控固件
+- [赛事与参考资料](#赛事与参考资料) — ROBOCON 调研报告、夏令营规则、供应商资料
+- [嵌入式与电控教程](#嵌入式与电控教程) — 中科大电控教学、ESP32 硬件设计、STM32 控制板
+- [焊接实战指南](#焊接实战指南) — 焊接避坑、贴片进阶、PCB 进化三部曲
+- [平面定位与导航](#平面定位与导航) — OPS 定位系统、IMU+里程计硕士论文
+
+## 电机与驱动
+
+- [宇树 GO-M8010-6 电机使用手册 v1.2](https://cdn.newenergycoder.club/files/electrical/unitree-go-m8010-6-motor-manual-v1.2.pdf)（PDF，1.04 MB，19 页）
+  Unitree GO-M8010-6 关节电机使用手册，含电气参数、通信协议与安全注意事项（2022-09）。
+- [宇树 GO-M8010-6 电机用户手册 v1.0](https://cdn.newenergycoder.club/files/electrical/unitree-go-m8010-6-motor-user-manual-v1.0.pdf)（PDF，0.76 MB，7 页）
+  GO-M8010-6 电机早期版本用户手册（2022-07），供版本对照参考。
+- [达妙 DM-S3519-1EC 减速电机（含 DM3520-1EC 驱动器）使用说明书 V1.0](https://cdn.newenergycoder.club/files/electrical/damiao-dm-s3519-1ec-motor-manual-v1.0.pdf)（PDF，1.66 MB，20 页）
+  达妙科技 DM-S3519-1EC 减速电机与驱动器的接线、CAN 通信与寄存器说明（2024-11）。
+- [达妙 DM-S3519-1EC 电机三维模型](https://cdn.newenergycoder.club/files/electrical/damiao-dm-s3519-1ec-3d-model.SLDPRT)（SLDPRT，2.22 MB）
+  DM-S3519-1EC 电机 SolidWorks 零件模型（2024-10-21），可直接用于整机装配设计。
+- 达妙电机库类图：HXC 达妙电机驱动库（ESP32 + FreeRTOS）的 UML 类图，覆盖 `HXC_DMCtrl`、`DMMotor`（MIT/速度/速度位置三种模式）、`PID_CONTROL`、`HXC_CAN`/`HXC_TWAI` 等核心类，配合 [/embedded-software/hxc-motor-control](/embedded-software/hxc-motor-control) 阅读。
+
+![达妙电机库 UML 类图：HXC_DMCtrl 派生 DM3519/DM6220/DMH3510/DM3507，DMMotor 依赖 HXC_CAN 与 FreeRTOS](https://cdn.newenergycoder.club/images/motor/damiao-motor-library-class-diagram.jpg)
+
+- [M2006 电机 STM32F4 CAN + PID 控制示例工程](https://cdn.newenergycoder.club/files/electrical/m2006-stm32f4-can-pid-demo.zip)（ZIP，13.60 MB）
+  大疆 M2006 电机控制的 STM32F4 CubeMX 工程（CAN 收发、PID 闭环、串口），可直接烧录参考。
+- [深入理解无刷直流电机矢量控制技术](https://cdn.newenergycoder.club/files/electrical/bldc-vector-control-foc-guide.pdf)（PDF，4.12 MB，110 页）
+  上官致远著，零基础入门 BLDC 矢量控制（FOC）的系统性读物（第一版发行版）。
+- [RoboMaster M2006 P36 直流无刷减速电机使用说明](https://cdn.newenergycoder.club/files/electrical/rm-m2006-p36-motor-user-guide.pdf)（PDF，0.69 MB，10 页）
+  大疆 M2006 P36 电机官方使用说明发布版，配合上方 M2006 控制示例工程使用（2018-01 V1.0）。
+- [RoboMaster M3508 P19 直流无刷减速电机使用说明 V1.0（中英日）](https://cdn.newenergycoder.club/files/electrical/rm-m3508-p19-motor-user-guide-v1.0.pdf)（PDF，1.42 MB，21 页）
+  大疆 M3508 P19 电机官方三语使用说明（2017-08 V1.0）。
+
+## OpenPnP 贴片机教程
+
+- [底摄像头焦距及旋转坐标校准——粗调与精调教程](https://cdn.newenergycoder.club/files/robocon/bottom-camera-focus-rotation-calibration.pdf)（PDF，0.65 MB）
+  OpenPnP 底摄像头焦距调节与旋转坐标校准的图文教程，覆盖粗调与精调两个阶段。
+- [吸嘴自动更换坐标校准步骤补充教程](https://cdn.newenergycoder.club/files/robocon/nozzle-auto-change-calibration-supplement.pdf)（PDF，0.76 MB）
+  吸嘴自动更换（Auto Nozzle Change）场景的坐标校准补充步骤说明。
+- [OpenPnP 高阶教程：非常规复杂拼板贴片设置](https://cdn.newenergycoder.club/files/robocon/openpnp-advanced-panelization-tutorial.pdf)（PDF，4.18 MB，2026-04-07）
+  面向非常规、复杂拼板（Panelization）场景的贴片设置进阶教程。
+
+## 软件工具
+
+- [AiCube-ISP v6.96N](https://cdn.newenergycoder.club/files/robocon/AiCube-ISP-v6.96N.exe)（EXE，10.04 MB）
+  AiCube 系列视觉模块的 ISP 固件烧录工具（Windows）。
+- [OpenPnP 贴片坐标 CSV 格式转换软件](https://cdn.newenergycoder.club/files/robocon/openpnp-csv-coordinate-converter.zip)（ZIP，30.69 MB）
+  将 EDA 导出的贴片坐标 CSV 转换为 OpenPnP 可导入格式的小工具（pos2PnP），附使用说明与 Win7 依赖补丁。
+
+## 机械设计文档
+
+- [传动机构简述](https://cdn.newenergycoder.club/files/robocon/transmission-mechanism-overview.pdf)（PDF，3.54 MB，40 页）
+  齿轮、链、带、螺旋等常见传动方式的设计指南，结合竞技机器人竞赛实例分析。
+- [结构设计的思维逻辑](https://cdn.newenergycoder.club/files/robocon/structural-design-methodology.pdf)（PDF，1.19 MB，9 页）
+  哈工大竞技机器人队出品的机械结构设计方法论，面向 RoboMaster/ROBOCON 类赛事。
+- [5065-2006 低成本大功率舵轮轮组机械结构开源文档](https://cdn.newenergycoder.club/files/robocon/steering-wheel-mechanical-design.pdf)（PDF，3.89 MB，18 页）
+  中南大学 EK 战队开源的舵轮轮组机械结构设计文档（2025-08）。
+- [HIWIN 上银直线导轨技术手册](https://cdn.newenergycoder.club/files/robocon/hiwin-linear-guideway-catalog.pdf)（PDF，16.37 MB，232 页）
+  上银直线导轨选型型录与技术资料（2020 版）。
+- [RM2023 福建农林大学 071 战队：一种便宜的舵轮制作开源](https://cdn.newenergycoder.club/files/mechanical/rm2023-fafu-071-low-cost-steering-wheel.pdf)（PDF，0.36 MB，2 页）
+  打印件 + 板材 + 自制包胶的低成本舵轮方案，单轮约 15 元，经飞坡与暴力测试验证。
+- [实用机构图册](https://cdn.newenergycoder.club/files/mechanical/practical-mechanism-atlas.pdf)（PDF，35.73 MB，493 页）
+  机构设计参考图册（扫描版），收录大量经典机构结构与运动简图，方案设计灵感库。
+- [史上最全的机械装配技术规范](https://cdn.newenergycoder.club/files/mechanical/mechanical-assembly-specification.pdf)（PDF，0.24 MB，7 页）
+  机械装配作业全流程规范：作业前准备、基本规范、装配要求与检查要点。
+
+## 三维模型与硬件资料
+
+- [XY 限位开关 XY0055](https://cdn.newenergycoder.club/files/robocon/xy-limit-switch-xy0055.stp)（STEP，0.06 MB）
+  贴片机 XY 轴限位开关安装件的三维模型（STEP 格式）。
+- [气泵固定件 v5](https://cdn.newenergycoder.club/files/robocon/air-pump-mount-v5.3mf)（3MF，0.06 MB）
+  气泵固定结构件，3MF 格式可直接切片打印。
+- [震动飞达（振动送料器）](https://cdn.newenergycoder.club/files/robocon/vibration-feeder.zip)（ZIP，0.12 MB）
+  震动飞达开源资料包，含 BOM、PCB 源文件（嘉立创 EDA JSON）与结构件 STEP/STL 模型。
+
+## 演示视频
+
+- [自制 PnP 贴片机 Creo 装配演示](https://cdn.newenergycoder.club/files/robocon/pnp-machine-creo-demo-2025-10-26.mp4)（MP4，11.54 MB，20 秒）
+  Creo Parametric 中 MY_PNP_MACHINE 整机装配体的结构演示录屏（1080p60）。
+
+## 调试与测试资料
+
+- [VOFA+ 1.4.0 安装包](https://cdn.newenergycoder.club/files/electrical/vofa-plus-1.4.0-setup.exe)（EXE，33.19 MB）/ [VOFA+ 1.4.0 便携版](https://cdn.newenergycoder.club/files/electrical/vofa-plus-1.4.0-portable.zip)（ZIP，32.87 MB）
+  上位机串口调试与波形显示工具，电机 PID 调参、传感器数据可视化常用。
+- [SICK DT35-B15251 中程激光距离传感器数据页](https://cdn.newenergycoder.club/files/electrical/sick-dt35-b15251-datasheet-zh.pdf)（PDF，0.71 MB，10 页，中文）
+  DT35-B15251（订货号 1057652）激光测距传感器中文数据页，DC 12–30 V，M12 五针接口，IP65/67。
+- [TB47/48 电池架开关上电浪涌测试](https://cdn.newenergycoder.club/files/electrical/tb47-tb48-battery-inrush-current-test.pdf)（PDF，1.24 MB，7 页）
+  DJI TB47/48 电池架上电浪涌电流实测报告，含固态电容与 TVS 抑制方案对比波形。
+
+## 机械设计培训与教程
+
+- [HzMi 机械组第一次作业（SOLIDWORKS 草图）](https://cdn.newenergycoder.club/files/mechanical/hzmi-mechanical-homework-01.pdf)（PDF，6.01 MB，15 页）
+  机械组新人 SOLIDWORKS 草图训练题（带座轴承等），附思路提示与视频教程入口。
+- [RM 用 7 步超简明 ANSYS 拓扑优化教程](https://cdn.newenergycoder.club/files/mechanical/ansys-topology-optimization-7-steps-rm.pdf)（PDF，0.72 MB，7 页）
+  中南大学 FYT + 上理中英 RoboVigor 出品的 ANSYS Topology Optimization 极简流程教程。
+- [轻量化设计指南](https://cdn.newenergycoder.club/files/mechanical/lightweight-design-guide.pdf)（PDF，3.58 MB，14 页）
+  竞技机器人减重设计与板材零件减重方法，与《结构设计的思维逻辑》同系列。
+- [机械组培训文档：螺纹系零件](https://cdn.newenergycoder.club/files/mechanical/mechanical-training-threaded-fasteners.pdf)（PDF，0.57 MB，5 页）
+  螺栓/螺钉/螺柱的分类与选型，六角、法兰、盖形、自锁等螺母的特点与适用场景。
+- [机械组培训文档：铝管 + 气动](https://cdn.newenergycoder.club/files/mechanical/mechanical-training-aluminum-tube-pneumatics.pdf)（PDF，0.76 MB，8 页）
+  方形铝管（6061/6063）特点与加工要点，气动系统基础与选型入门。
+- [Creality Falcon2 激光雕刻机用户手册 V3.0](https://cdn.newenergycoder.club/files/mechanical/creality-falcon2-laser-engraver-manual-v3.0.pdf)（PDF，3.07 MB，24 页）
+  创想三维 Falcon2 激光雕刻机快速使用指南（中英双语），配合 [/mechanical/falcon2-laser-engraver](/mechanical/falcon2-laser-engraver) 使用。
+
+## 参赛队整机开源方案（马术 / 四足）
+
+各校参赛队开源的马术 / 四足机器人整机方案，含 SolidWorks 整机模型与 STM32 电控固件，按学校与赛季整理。更多队伍开源链接（百度网盘等）见 [Robocon 开源文档汇总](/mechanical/robocon-open-source-docs)。
+
+### 机械结构（SolidWorks 整机模型）
+
+- [湖北工业大学 HCRT-DOG（2019，8 自由度并联四足）](https://cdn.newenergycoder.club/files/robocon/hubei-univ-tech-2019-hcrt-dog-quadruped.zip)（ZIP，95.87 MB）
+  HCRT-DOG 开源仓库快照：SolidWorks 整机与零件模型（M3508 电机、吸盘夹末端机构等），含硬件目录，早期经典四足方案参考。
+- [四川大学马术（2023，8 自由度机械）](https://cdn.newenergycoder.club/files/robocon/sichuan-univ-2023-equestrian-8dof-mechanical.zip)（ZIP，13.35 MB）
+  8 自由度马术机器人 SolidWorks 零件与装配模型，含 IMU、NUC、RealSense 等传感器安装结构。
+- [四川大学马术（2023，串联 12 自由度机械）](https://cdn.newenergycoder.club/files/robocon/sichuan-univ-2023-equestrian-12dof-serial-mechanical.zip)（ZIP，65.93 MB）
+  同步带驱动一代：整机、腿部、身体全套 SolidWorks 装配，串联 12 自由度马术方案。
+- [福建理工大学（2024，8 自由度串联机械 2.0）](https://cdn.newenergycoder.club/files/robocon/fujian-univ-tech-2024-8dof-serial-mechanical.zip)（ZIP，38.58 MB）
+  "2.0 8自由度马"：碳方管机身 + 宇树 GO-M8010-6 电机 + 同步带传动的整机 SolidWorks 模型。
+- [福建理工大学（2024，12 自由度串联机械·带轮马二代）](https://cdn.newenergycoder.club/files/robocon/fujian-univ-tech-2024-12dof-serial-mechanical.zip)（ZIP，97.47 MB）
+  轮足式马术机器人二代整机模型：关节连接器、同步带、轴承等完整零件库与装配体。
+- [福建理工大学（2024，8 自由度宇树并联·Lain）](https://cdn.newenergycoder.club/files/robocon/fujian-univ-tech-2024-8dof-unitree-parallel-lain.7z)（7Z，61.61 MB）
+  GO-M8010-6 并联腿四足：碳纤管/碳纤板骨架、Mid-360 雷达保护罩、RealSense D435 与总装配模型。
+- [福建理工大学（2024，8 自由度并联·4310 废案存档）](https://cdn.newenergycoder.club/files/robocon/fujian-univ-tech-2024-8dof-parallel-4310-deprecated.7z)（7Z，35.29 MB）
+  机械文件 V5.0：4310 电机方案的分步子装配（大腿、小腿、底板、电机固定），方案迭代对照存档。
+- [晋中信息学院（2024，12 自由度串联机械）](https://cdn.newenergycoder.club/files/robocon/jinzhong-info-college-2024-12dof-serial-mechanical.zip)（ZIP，96.40 MB）
+  "12轴狗" 整机 SLDASM 装配，宇树 GO-M8010-6 电机、分电板与标准件库一应俱全。
+
+### 电控固件（STM32 工程）
+
+- [大连工业大学（2024，四足电控）](https://cdn.newenergycoder.club/files/robocon/dalian-polytechnic-2024-quadruped-control.7z)（7Z，0.42 MB）
+  DPU_ 四足机器人控制固件：STM32F4 HAL 库 + MDK-ARM 工程，结构清晰适合入门参考。
+- [哈尔滨工程大学（2024，8 自由度并联"可可"电控）](https://cdn.newenergycoder.club/files/robocon/harbin-engineering-2024-8dof-parallel-coco-control.7z)（7Z，13.29 MB）
+  Corgi_for_ROBOCON 开源工程：STM32H7 HAL + MDK-ARM 四足控制代码，并联腿机型参考。
+
+## 赛事与参考资料
+
+- [ROBOCON 调研报告（2019 年）](https://cdn.newenergycoder.club/files/robocon/robocon-research-report-2019.pdf)（PDF，3.03 MB，81 页）
+  全国大学生机器人大赛组委会出品的 ROBOCON 赛事调研报告，含亚太各国赛事概述（2019-09）。
+- [2023 机器人队夏令营比赛规则 2.0](https://cdn.newenergycoder.club/files/robocon/summer-camp-robot-rules-v2.0.pdf)（PDF，4.72 MB）
+  夏令营井字棋套环对抗赛规则：三层场地、取环放环计分与视觉自动加分细则（2023-08 更新）。
+- [道芯科技（Achip）公司介绍 V1.4（客户版）](https://cdn.newenergycoder.club/files/electrical/achip-technology-intro-v1.4.pdf)（PDF，2.13 MB，18 页）
+  上海道芯科技高性能专用模拟芯片公司简介，聚焦电感式位移与高精度压力传感器信号链芯片。
+
+## 嵌入式与电控教程
+
+- [【RoboMaster】中科大电控教学开源](https://cdn.newenergycoder.club/files/electrical/ustc-rm-electrical-teaching-open-source.pdf)（PDF，0.62 MB，12 页）
+  中科大电控教学体系：CubeMX 基础、CAN 通信、大疆 RM 电机控制、串口绘图、PID 闭环全链路。
+- [番外篇：如何去提问](https://cdn.newenergycoder.club/files/electrical/ustc-how-to-ask-questions.pdf)（PDF，0.21 MB，2 页）
+  中科大电控教学番外：提问前的准备与提问时的信息提交，新人必读沟通指南。
+- [番外篇：如何 Debug](https://cdn.newenergycoder.club/files/electrical/ustc-how-to-debug.pdf)（PDF，0.35 MB，4 页）
+  中科大电控教学番外：围绕开发环境与数据流两大类问题的快速定位与解决思路。
+- [RM 电控组相关基础知识](https://cdn.newenergycoder.club/files/electrical/rm-electrical-basic-knowledge.pdf)（PDF，0.23 MB，4 页）
+  RoboMaster 电控组知识框架：主控选型、CubeMX/IDE 工具链、CAN 总线与调试工具速览。
+- [重邮 ESP32 入门系列教程：ESP32 硬件设计参考](https://cdn.newenergycoder.club/files/electrical/esp32-hardware-design-reference-cqupt.pdf)（PDF，0.82 MB，10 页）
+  重庆邮电大学出品的 ESP32 硬件设计入门：模组与芯片选型、最小系统与供电电路设计。
+- [工训 ROBO2026 硬件参考手册 V1.0](https://cdn.newenergycoder.club/files/electrical/gx-robo2026-stm32f405-board-manual.pdf)（PDF，0.37 MB，20 页）
+  工训 ROBO2026 STM32F405 竞赛控制板（GX-ROBO2026）教程，面向工科竞赛与嵌入式教学。
+- [树莓派 4B（DFR0619/DFR0618/DFR0697）WIKI 链接汇总](https://cdn.newenergycoder.club/files/electrical/raspberry-pi-4b-dfrobot-wiki-links.pdf)（PDF，0.24 MB，4 页）
+  DFRobot 树莓派 4B 开发环境搭建、系统烧录、远程登录等官方 WIKI 链接整理。
+
+## 焊接实战指南
+
+- [电路焊接：从入门到入土——避坑指南](https://cdn.newenergycoder.club/files/electrical/sourcing-soldering-ep01-beginner-pitfalls.pdf)（PDF，0.21 MB，3 页）
+  焊接入门常见误区：烙铁温度设定、烙铁头保养与挂锡保护等基础避坑要点。
+- [焊接求生指南 EP02：实战进阶篇](https://cdn.newenergycoder.club/files/electrical/soldering-survival-guide-ep02.pdf)（PDF，0.26 MB，4 页）
+  贴片阻容、密脚芯片焊接实战：防立碑、对位固定与助焊技巧。
+- [焊接求生指南 EP03：从洞洞板到完美 PCB](https://cdn.newenergycoder.club/files/electrical/soldering-survival-guide-ep03.pdf)（PDF，0.26 MB，4 页）
+  告别飞线：设计并焊接第一块 PCB 的完整进化路线。
+
+## 平面定位与导航
+
+- [全方位平面定位系统 OPS-9 使用说明书](https://cdn.newenergycoder.club/files/positioning/ops-9-omnidirectional-positioning-manual.pdf)（PDF，1.15 MB，21 页）
+  沈阳艾克申（NEUAction）OPS-9 全方位平面定位系统产品手册，ROBOCON 场地定位常用方案。
+- [基于惯性传感器与正交里程计的平面定位系统设计与实现（王厚伟）](https://cdn.newenergycoder.club/files/positioning/planar-positioning-imu-orthogonal-odometry-thesis.pdf)（PDF，9.89 MB，91 页）
+  东北大学硕士学位论文（2018）：IMU + 正交里程计融合平面定位系统的设计与实现。
+
+## 相关页面
+
+- [各团队培训课视频汇总](/wiki/team-training-videos) — 76 门 B 站公开课分类索引
+- [Robocon 开源文档汇总](/mechanical/robocon-open-source-docs) — 各队开源链接与联系方式
+- [机械组培训资料下载](/mechanical/training-resources)
+
+<div className="share-qr-widget" aria-label="扫码分享本页">
+  <div className="share-qr-panel">
+    <img
+      src="https://cdn.newenergycoder.club/images/qrcode/robocon-materials.png"
+      alt="ROBOCON 资料包页面二维码"
+      width="148"
+      height="148"
+    />
+    <span className="share-qr-tip">扫码在手机上打开本页</span>
+  </div>
+  <div className="share-qr-fab" tabIndex={0}>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="3" y="3" width="7" height="7" rx="1" />
+      <rect x="14" y="3" width="7" height="7" rx="1" />
+      <rect x="3" y="14" width="7" height="7" rx="1" />
+      <path d="M14 14h3v3h-3z" />
+      <path d="M21 14v3" />
+      <path d="M14 21h3" />
+      <path d="M18 18h3v3h-3z" />
+    </svg>
+    <span>分享本页</span>
+  </div>
+</div>

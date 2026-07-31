@@ -1,0 +1,48 @@
+---
+title: "mcporter"
+description: "Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/t…"
+---
+
+| 项目 | 内容 |
+|---|---|
+| 来源 | [skills/mcporter/SKILL.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/mcporter/SKILL.md) |
+| 分类 | QClaw/OpenClaw 平台 |
+| 安装 | 克隆 [Skill 分支](https://github.com/new-energy-coder-club/new_energy_coder_club/tree/Skill) 后，将 `skills/mcporter/` 目录复制到 `~/.claude/skills/`（Claude Code）、`~/.trae/skills/`（Trae IDE）或 `~/.qclaw/skills/`（QClaw/OpenClaw），详见 [Skill 安装方式](/community/skill-branch) |
+
+# mcporter
+
+Use `mcporter` to work with MCP servers directly.
+
+Quick start
+
+- `mcporter list`
+- `mcporter list <server> --schema`
+- `mcporter call <server.tool> key=value`
+
+Call tools
+
+- Selector: `mcporter call linear.list_issues team=ENG limit:5`
+- Function syntax: `mcporter call "linear.create_issue(title: \"Bug\")"`
+- Full URL: `mcporter call https://api.example.com/mcp.fetch url:https://example.com`
+- Stdio: `mcporter call --stdio "bun run ./server.ts" scrape url=https://example.com`
+- JSON payload: `mcporter call <server.tool> --args '{"limit":5}'`
+
+Auth + config
+
+- OAuth: `mcporter auth <server | url> [--reset]`
+- Config: `mcporter config list|get|add|remove|import|login|logout`
+
+Daemon
+
+- `mcporter daemon start|status|stop|restart`
+
+Codegen
+
+- CLI: `mcporter generate-cli --server <name>` or `--command <url>`
+- Inspect: `mcporter inspect-cli <path> [--json]`
+- TS: `mcporter emit-ts <server> --mode client|types`
+
+Notes
+
+- Config default: `./config/mcporter.json` (override with `--config`).
+- Prefer `--output json` for machine-readable results.

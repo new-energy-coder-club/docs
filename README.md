@@ -53,7 +53,7 @@ python tools/ci/check_docs.py
 
 ## 项目结构
 
-> 说明：Wiki 中的技术教程已按主题迁移到对应 SIG / 工具目录（如机械设计、嵌入式软件、AI 工具），`wiki/` 主要保留新人入口、社区协作、培训资源与安全规范等飞书原始沉淀。旧 Wiki URL 已通过 `docs.json` 的 `redirects` 自动跳转。
+> 说明：Wiki 中的技术教程已按主题迁移到对应 SIG / 工具目录（如机械设计、嵌入式软件、AI 工具），`wiki/` 主要保留新人入口、社区协作、培训资源与安全规范等飞书原始沉淀。
 
 ```
 .
@@ -61,11 +61,18 @@ python tools/ci/check_docs.py
 ├── docs.json                 # Mintlify 站点配置与导航
 ├── style.css                 # 自定义主题样式
 ├── robots.txt                # 搜索引擎与 AI 爬虫指引
+├── llms.txt                  # LLM 抓取指引
 ├── AGENTS.md                 # 给 AI Agent 的项目说明
 ├── images/                   # 图片资源
+├── logo/                     # 站点 Logo（明暗主题）
+├── public/                   # 静态附件（PPT、资料包等）
+├── snippets/                 # MDX 可复用片段
+├── templates/                # 竞赛/项目/周报文档模板
 ├── start-here/               # 快速开始与新手上路
+├── training/                 # 新人训练营系列课程
 ├── modules/                  # 项目模块总览
 ├── mechanical/               # 机械设计专题
+│   └── lumenpnp/             # LumenPnP 开源贴片机组装与使用文档（自飞书迁移）
 ├── vision/                   # 机器视觉专题
 ├── embedded-software/        # 嵌入式软件专题
 ├── ai-tools/                 # AI 工具指南
@@ -76,6 +83,12 @@ python tools/ci/check_docs.py
 ├── wiki/                     # 飞书 Wiki 导出快照（新人/社区/资源类沉淀）
 └── tools/ci/                 # CI 检查脚本
 ```
+
+## 内容来源与导入
+
+- `wiki/` 与部分专题文档（如 `mechanical/lumenpnp/`）来自飞书 Wiki，可通过仓库内的 `.kimi/skills/feishu-to-nec-mdx/` Skill 从飞书增量导入并自动转换为带 frontmatter 的 MDX。
+- 大文件（PDF、压缩包、视频等）托管于 Cloudflare R2 CDN（`https://cdn.newenergycoder.club`），页面只引用 CDN 链接，不入 Git 仓库。
+- 旧 Wiki URL 已通过 `docs.json` 的 `redirects` 自动跳转。
 
 ## 贡献指南
 

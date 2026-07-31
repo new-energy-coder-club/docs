@@ -1,0 +1,434 @@
+---
+title: "常见错误汇总"
+description: "您可能在放置零件时发现不准确或错误。本页面将介绍这些错误以及如何修复它们。您可能会同时遇到几个错误，因此请先选择一个错误来解决，然后再继续。"
+---
+
+<title>常见错误汇总</title>
+
+# 贴装错误
+
+您可能在放置零件时发现不准确或错误。本页面将介绍这些错误以及如何修复它们。您可能会同时遇到几个错误，因此请先选择一个错误来解决，然后再继续。
+
+![图片展示了电路板上常见的贴装错误类型。包含随机偏移、全球偏移、喷嘴偏移、零件偏移、旋转偏移、90度偏移等。其中，随机偏移指各部件摆放看似随意；全球偏移指每个部分在X和Y方向上的位移量相同；喷嘴偏移指使用特定喷嘴放置的所有零件均有偏移；零件偏移指零件相对于自身方向存在偏移；旋转偏移指零件以一致的旋转偏移量放置；90度偏移指零件以90度为增量旋转。这些错误类型与文档中介绍的贴装错误内容相呼应，直观呈现了错误形态。](https://cdn.newenergycoder.club/images/lumenpnp/XEqpb9LBEouFP6xpA8AcrzipnCd.png)
+
+
+
+## 随机偏移
+
+![图片展示了一块电路板，板面上有多个编号为R1至R8的电阻元件。电阻元件呈环形排列，编号清晰可见，元件表面有金属引脚。该图片与文档中“随机偏移”部分内容相关，用于直观呈现电路板上元件的布局情况，辅助说明电路板放置时可能出现的随机偏移问题，帮助理解元件放置的正确位置和状态。](https://cdn.newenergycoder.club/images/lumenpnp/KL4zbyaWuoL9Z7xHkiIc4xsNnBb.webp)
+
+如果您的零件放置时看似随机偏移和旋转，则可能存在以下几个根本原因：
+
+### 电路板的 Z 位置太高
+
+如果吸嘴没有将元件压入电路板，而是让其从一定高度掉落到板面上，就无法被准确放置。请以 0.10mm 的步长逐步降低电路板的 Z 轴坐标，直到观察到吸嘴尖端刚刚轻微将元器件压入电路板为止。
+
+### 部件的高度值太大
+
+如果 OpenPnP 认为元件比实际更高，即使电路板的 Z 轴位置正确，它也会尝试将元件放置得过高。请在“Parts”（元件）选项卡中选择对应的元件，降低其高度值，使其符合实际尺寸。
+
+### 吸嘴尖端吸力不足
+
+如果您的吸嘴正确地将元件压入电路板，但仍然出现看似随机的偏移，很可能是吸嘴尖端的吸力不足。当 LumenPnP 的贴装头移动时，元件虽然仍附着在吸嘴上，但因为没有被足够的力量吸住，可能会旋转或滑动。我们称这种滑动为“pirouetting”（旋转漂移）。有两种可能的解决方法：
+
+- 使用更大直径的吸嘴：吸嘴直径越大，吸住元件的吸力就越强。
+- 清洁吸嘴尖端：特别是最小的 N045 吸嘴，焊膏可能会堵塞尖端，降低吸力。如果您将吸嘴尖端对着光线观察时看不到微小的光环，则可能需要用细金属丝和异丙醇清洁尖端。
+
+### 底部摄像头方向错误
+
+如果以上都不是，是类似下面这种感觉有点规律但实际毫无规律的偏移，请检查你的 [底部摄像头方向](https://newenergycoderclub.feishu.cn/docx/Q9IIdVb5NoURosx6oDtcboHJngj?larkTabName=space#doxcn3r7lNU538SUtV5D50ltkrh) 是否正确，之后必须重新执行 [问题与解决方案](https://tcnyw794ws3e.feishu.cn/wiki/MydWwYC8NibsWVkfRH3cnyK5nOg) 从头开始校准。
+
+![图片展示了一块电路板，表面有多个编号的电阻和二极管。电阻编号从R1至R24，二极管编号从D1至D24。电阻和二极管以不同颜色标注，电阻为黄色，二极管为白色。电路板表面有明显的绿色涂层，部分区域有划痕。图片与文档中“底部摄像头方向错误”内容相关，用于说明电路板外观情况，辅助判断底部摄像头方向是否正确。](https://cdn.newenergycoder.club/images/lumenpnp/K0HAbFSlEoUKhhxCw7Rc5O8Dntd.webp)
+
+## 全局偏移
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/CO5vbynWMoLUC2xtzjHc6Edbn0d.webp)
+
+如果所有元件在 X 和/或 Y 轴方向上都存在一致的偏移，可能的原因有以下几种：
+
+### 底部摄像头位置需要调整
+
+如果 OpenPnP 对底部相机实际位置的理解有误，元件的放置位置也会出错。请在 [问题与解决方案](https://tcnyw794ws3e.feishu.cn/wiki/MydWwYC8NibsWVkfRH3cnyK5nOg) 中重新开放前7个任务（含归位），重新校准。
+
+![图片展示了OpenPnP软件界面中“问题与解决方案”部分，重点突出“底部摄像头位置需要调整”和“基准校准管道需要调整”两个问题。界面左侧有“问题与解决方案”选项，右侧是问题列表，其中“底部摄像头位置需要调整”和“基准校准管道需要调整”被红色框和箭头突出显示。该图片与文档中贴装错误中提到的底部摄像头位置和基准校准管道需调整的内容相关，直观呈现了问题所在位置。](https://cdn.newenergycoder.club/images/lumenpnp/NdVLbVSwHoKLcuxSXFvcEIaYnJe.webp)
+
+### 基准校准管道需要调整
+
+如果 OpenPnP 错误地检测了您的基准点，而认为丝网印刷标记或封装是基准点，则电路板上的所有位置都将发生偏移。[确保您的基准点管道正确识别了您的 PCB 基准点。](https://tcnyw794ws3e.feishu.cn/wiki/VOXawwCRbikLHRk8wTKcWsrXnrf#ZBgrdKKLSofFfcx6usacBXZHn1b)
+
+### 两个吸嘴都需要偏移校准调整
+
+您的两个吸嘴偏移量可能需要调整。请在 [问题与解决方案](https://tcnyw794ws3e.feishu.cn/wiki/MydWwYC8NibsWVkfRH3cnyK5nOg) 中重新开放前7个任务（含归位），重新校准。
+
+![图片展示了飞书文档中关于贴装错误的全局偏移问题与解决方案相关内容。画面左侧为文档界面，有“问题与解决方案”等选项卡，右侧是详细的解决方案列表，包括“Reference E1”“Reference E2”等步骤，如“Raise the E1 Part Diameter on at least one big or the needle tip on the needle”等。画面中用红色箭头突出显示了“Use Auto-Focus”选项，下方还有“Execute”“Cancel”“Standard”“Response”按钮。该图片与文档中提到的两个吸嘴偏移校准调整问题相关，为解决此问题提供了操作指引。](https://cdn.newenergycoder.club/images/lumenpnp/Yy5Pbn8CsoVxuQxEUiEchu7inhy.webp)
+
+### LumenPnP 在运动过程中跳过了一些步骤
+
+如果 LumenPnP 的步进电机遇到太大阻力，它们可能会“失步”并失去位置。确认这种情况发生的方法是导航到`Machine Setup -> Heads`，单击`ReferenceHead H1`“将相机移动到位置”按钮，该按钮位于归位基准坐标旁边。如果相机不在归位基准的中心，则您的机器可能跳过了步骤。发生这种情况的原因有多种：
+
+- 机器的龙门架与拾取区域或工作区中的某物发生干扰。检查以确保机器可以轻松自由移动，并且没有电缆被卡住或缠结。
+- 从 v3.1 开始，LumenPnP 型号都配有线性导轨。这些导轨需要适当的润滑才能正常运行。使用随附的润滑包润滑您的导轨。
+- 如果您提高了机器的行驶速度，这可能是失步的原因。如果电机无法以要求的速度移动机器，它们将失步。尝试通过导航到`Machine Setup -> Drivers -> GcodeDriver GcodeDriver -> Driver Settings`并降低字段中的值来降低机器的行驶速度`Max. Feed Rate [/min]`。
+
+## 吸嘴偏移
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/UfHObysWjo3pczxczfMcHPWsnec.webp)
+
+如果使用特定吸嘴放置的部件在 X 轴和/或 Y 轴上具有一致的偏移，则可能存在以下几个根本原因：
+
+### 该吸嘴的吸嘴偏移需要调整
+
+如果 OpenPnP 无法准确了解吸嘴与顶部摄像头之间的距离，则会以不准确的距离放置它们。
+
+请在 [问题与解决方案](https://tcnyw794ws3e.feishu.cn/wiki/MydWwYC8NibsWVkfRH3cnyK5nOg) 中重新开放前7个任务（含归位），重新校准。
+
+![图片展示的是OpenPnP软件界面，重点突出“重新校准”按钮。界面中列出了多种校准步骤，如“Calibrate the machine position for site”等，部分步骤被红色框线标注。图片下方有“重新校准”按钮，箭头指向该按钮。该图片与文档中“吸嘴偏移”问题相关，用于说明在OpenPnP软件中重新校准操作，以解决吸嘴偏移问题，需在问题与解决方案中重新开放前7个任务（含归位），重新校准。](https://cdn.newenergycoder.club/images/lumenpnp/ZKZHb4OGloHirbxVOHFc6xx2nQe.webp)
+
+### 您的零件底部视觉管道需要调整
+
+OpenPnP 根据底部摄像头视图中看到的内容决定如何将零件放置到电路板上。如果摄像头视野内的强光或反光表面使 OpenPnP 认为您的零件尺寸与实际尺寸不同，您会看到放置偏移。[调整元件识别管道](https://tcnyw794ws3e.feishu.cn/wiki/VOXawwCRbikLHRk8wTKcWsrXnrf#BjmPduA1goGx6gxnBH8ckzIpnZb)。
+
+### 吸嘴尖端校准需要调整
+
+当 OpenPnP 执行吸嘴头校准时，它会分析吸嘴头中的任何偏转。如果此校准无法正确识别吸嘴头，则会导致放置错误。[调整吸嘴头校准管道](https://tcnyw794ws3e.feishu.cn/wiki/VOXawwCRbikLHRk8wTKcWsrXnrf#LLijdw3xjoMd2MxMWC9cscLwnDg)。
+
+
+
+## 零件偏移
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/AsCQbxABNo87IMxahbHcUzpInNh.webp)
+
+**如果零件相对于封装方向**发生偏移，则主要存在一个潜在根本原因：
+
+### 视觉管道不准确
+
+当 OpenPnP 处理吸嘴上元件的底部视觉图像时，它会识别元件的边界，并利用该信息进行精确定位。如果 OpenPnP 错误地找到了元件的边界，贴装时也会产生偏差。这种情况通常是因为底部相机拍摄到了吸嘴尖端，而 OpenPnP 误以为这是吸嘴上元件的一部分。
+
+解决方法：
+
+- 调整[底部视觉管线](https://tcnyw794ws3e.feishu.cn/wiki/VOXawwCRbikLHRk8wTKcWsrXnrf#BjmPduA1goGx6gxnBH8ckzIpnZb)，确保 OpenPnP 能正确识别您的元件。
+
+## 旋转偏移
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/AGQtbKS6xoG7wWxMPe2crvWTnze.webp)
+
+如果放置的部件具有一致的旋转偏移，则可能存在以下几个根本原因：
+
+### 吸嘴头对于你选择的部件来说太小
+
+如果您选择用来拾取部件的吸嘴头没有对该部件施加足够的吸力，则可能会导致该部件在吸嘴头上移位，这通常会导致我们称之为“旋转”的旋转偏移。增加您用于该部件的吸嘴头直径可以防止这种情况发生。
+
+### 底部摄像头需要旋转调节
+
+如果两个吸嘴的零件导致一致的旋转偏移，则可能是您需要调整底部摄像头的旋转。导航到`Machine Setup -> Cameras -> OpenPnPCaptureCamera Bottom -> Image Transforms`字段并调整`Rotation`该值。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/CgX0bHuZkoDkmDxje4NcqzwHnnd.png)
+
+### 您的零件底部视觉管道需要调整
+
+OpenPnP 根据底部摄像头视图中看到的内容决定如何将零件放置在电路板上。如果摄像头视野内的强光或反光表面使 OpenPnP 认为您的零件尺寸与实际尺寸不同，您将看到放置错误。[调整零件识别管道](https://tcnyw794ws3e.feishu.cn/wiki/VOXawwCRbikLHRk8wTKcWsrXnrf#BjmPduA1goGx6gxnBH8ckzIpnZb)。
+
+
+
+## 90 度偏移
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/LUHpbGna1ojLWnxYyS3cPKSenxC.webp)
+
+如果某些零件的放置位置偏移了 90 度或 180 度，则可能存在以下几个根本原因：
+
+### 送料器的旋转值需要调整
+
+设置送料器位置时，您输入的旋转值等于零件被拾取时的初始旋转角度`Rotation`。如果发现某个零件放置不正确，请以 90 度为增量调整该零件送料器的旋转角度。
+
+### 该部件的视觉管道需要调整
+
+如果旋转偏移始终为 90 度或 180 度，则这种情况不太可能发生，但仍然值得[调整零件的视觉管道](https://tcnyw794ws3e.feishu.cn/wiki/VOXawwCRbikLHRk8wTKcWsrXnrf#BjmPduA1goGx6gxnBH8ckzIpnZb)。
+
+## 其他错误
+
+### 零件未拾取
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/QxMibLjiaoTtd7xbRCccQ9q2nce.webp)
+
+如果吸嘴不能持续拾取零件，则可能存在以下几个根本原因：
+
+- **真空传感器阈值太敏感。**如果您注意到您的吸嘴正在尝试拾取零件，但似乎上升得太快，则真空传感器阈值错误地告诉 OpenPnP 它已成功拾取零件。这可以通过[调整真空传感器阈值](https://tcnyw794ws3e.feishu.cn/wiki/MB7GwzTu0iWvH4kZQWfcNBURneh)来解决（**我们强烈建议禁用真空检测功能**）。
+- **送料器 Z 位置设置过高。**如果指示机器拾取部件的位置略高，则吸嘴尖端无法与部件良好密封，从而无法拾取。可通过调整 [供料器高度](https://tcnyw794ws3e.feishu.cn/wiki/MB7GwzTu0iWvH4kZQWfcNBURneh)来解决此问题。
+- **吸嘴尖端吸力不足。**特别是对于最小的 N045 吸嘴尖端，一些焊锡膏会卡在尖端，从而降低吸力。如果在灯光下看不到尖端发出的微小光圈，则可能需要用细线和异丙醇清洁尖端。
+
+### 零件粘连
+
+如果您在让吸嘴释放部件时遇到困难，则可能存在以下几个根本原因：
+
+- **电路板的 Z 位置设置得太高。**如果吸嘴没有将部件完全压入焊膏中，则不会帮助将部件固定到位。将电路板的 Z 高度设置得稍低一些，以确保将部件正确推入焊膏中。
+- **吸嘴需要清洁。**如果焊膏粘到吸嘴头上，它会粘在零件上。使用异丙醇和细漆包线清洁吸嘴头，以清除开口。
+- **停留时间不足。**如果 OpenPnP 在放置后向上移动之前没有给气动管线足够的时间来平衡压力，则管线中可能仍存在一些潜在真空，导致部件粘住。[禁用真空感应](https://tcnyw794ws3e.feishu.cn/wiki/MB7GwzTu0iWvH4kZQWfcNBURneh)，并在相关吸嘴头的“配置”选项卡上增加“放置停留时间（毫秒）”。（真空感应会覆盖任何手动输入的停留时间。）
+
+### “未找到结果”错误
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/H4ESbfnqzo6iSCxf10GcNPRzn6c.webp)
+
+- 如果底部摄像头无法正确识别该组件，则可能需要调整其[元件识别视觉管道](https://tcnyw794ws3e.feishu.cn/wiki/VOXawwCRbikLHRk8wTKcWsrXnrf#BjmPduA1goGx6gxnBH8ckzIpnZb)。
+
+
+
+## 吸嘴在很高的位置就放下元件了
+
+### 板子Z位置设置错误
+
+移动 N1 喷嘴，使其刚好接触PCB 的顶面。将当前 Z 位置（可在 UI 右下角的绿色栏中看到）输入到板的 Z 位置字段中。
+
+<callout emoji="❗">
+**多点测量**
+这里建议多测量电路板上的几个不同位置高度，取最小值，再减小0.1mm。吸嘴有弹簧，不用担心这点距离会导致撞击损坏。
+</callout>
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/ZCIAbpwnYoAsVyxRFgbctuP6ngh.webp)
+
+### 元件的高度设置错误
+
+请根据实际元件高度设置，过大会导致提前释放元件。
+
+![图片展示了OpenPnP软件界面中元件高度设置的操作示例。界面左侧为相机视图，右上方窗格中“Feeder”选项卡下，元件“LED_0001_NOMetric_LED_Small”高度显示为1.000mm。下方“Nozzle N1 - NDM5 (Head H1)”下，X/Y、Z等坐标值被红色箭头指向。该图片与上下文“元件的高度设置错误”相关，用于说明根据实际元件高度设置，过大会导致提前释放元件的问题，直观呈现了元件高度设置的操作位置。](https://cdn.newenergycoder.club/images/lumenpnp/FcSAbbqr9oRQsnxYm92c7f7knHf.webp)
+
+### 微调进料器高度
+
+1. 使用下拉菜单选择你需要设置的吸嘴，下图实例是N1。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/OUPjbDC9xoHcK0x4piJce7Yjn8c.webp)
+
+1. 导航到`Feeders`右上方窗格中的选项卡。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/N1oLb4nc7ofA9BxeGzkcU56zn1c.webp)
+
+1. 选择您想要开始的进料器，然后单击“定位喷嘴”图标按钮，将喷嘴置于进料器上方。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/NKsNb7EdRoQRNmxwNhVc0DoMnSe.png)
+
+1. 使用慢速控制降低 Z 轴，直到喷嘴接触塑料胶带盖的表面。
+
+<callout emoji="❗">
+这里建议在接触编带表面后，向下再移动0.1mm。解决编带不平整的问题。
+</callout>
+
+<grid>
+<column width-ratio="0.516119">
+![](https://cdn.newenergycoder.club/images/lumenpnp/LQjyb5wFzo52u3xCN3Zco9kSnyI.png)
+</column>
+<column width-ratio="0.483881">
+![](https://cdn.newenergycoder.club/images/lumenpnp/ALLbbl7JEoaueFxtbSPcoCAZnwb.png)
+</column>
+</grid>
+
+1. 点击“捕获喷嘴”图标按钮，保存供料器的新Z高度。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/TPalbPsDoo7tr4x16Sic0LtpnLf.png)
+
+1. 将 Z 轴向上安全移动，然后将 XY 龙门架远离进料器。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/Jmq3bGBQkodMR3xBIZ3ckhnPnAO.png)
+
+1. 单击“拾取”图标按钮从进料器中拾取元件。如果元件拾取正确，则 Z 高度正确。如果不正确，您应该：
+
+   1. 将进料器的 Z 高度降低`0.1mm`
+   2. 按“应用”保存更改
+   3. 将机器放回原位
+   4. 尝试再次从供料器中挑选一个组件。
+
+## 元件方向不对
+
+### 设置feeder的旋转方向
+
+![这是贴片机操作软件界面的截图，展示了元件贴装相关参数设置内容。界面左侧是贴片机视觉对位的操作区域，有代表元件、电路板的图形标识，还标注了视角相关提示；右侧参数设置区的「Rotation」栏已被红框标注，当前显示数值为180.000，对应文档中提到的飞达偏移角度设置内容，该界面用于设置或调整贴片飞达的旋转偏移参数，以纠正元件方向错误，满足贴装的方向要求。](https://cdn.newenergycoder.club/images/lumenpnp/CAASbqYa1oylIDxnGcOclLMHnfg.webp)
+
+### 刚开始上料元件方向确认
+
+站在贴片机正前方，俯视贴片平台
+
+此时有一个电路板（需要贴装一个二极管）和一个二极管编带飞达，放置位置和方向如下
+
+![图片展示了贴片机上料时元件方向确认的放置位置和方向。画面中有一个电路板和一个二极管编带飞达，电路板位于右侧，编带飞达在左侧。电路板上标注有“1”和“2”，编带飞达上也标注有“1”和“2”。电路板和编带飞达均处于贴片机的贴装平台上。该图与上下文紧密相关，用于说明站在贴片机正前方俯视贴片平台时，元件放置的位置和方向，为元件方向确认提供直观参考。](https://cdn.newenergycoder.club/images/lumenpnp/JlBRbm1UToJJYOxPQHYcnw8Jnle.webp)
+
+**硬性规定：**逆时针旋转为正角度，顺时针旋转为负角度。
+
+我们此时需要将编带里的元件旋转-90度或+270（注意不是图示的+90和-270。好好理解下），才能和编带里的方向一致
+
+![图片展示了飞达旋转角度的示例。左侧为飞达吸取元件时的旋转角度，上方箭头标注+90度，下方箭头标注-270度。右侧为元件在飞达吸取后的状态，元件方向与飞达旋转角度相关。该图与上下文紧密相关，用于说明飞达旋转角度对元件方向的影响，帮助理解在设置飞达旋转角度时，需考虑元件已有默认旋转角度，以确保贴片方向正确。](https://cdn.newenergycoder.club/images/lumenpnp/C0LAbibKZowS1oxwMMkcnK4Pnjx.webp)
+
+我们就需要修改对应飞达的旋转角度（这里称为偏移角度更合适），填入-90或270
+
+![图片展示了飞达设置界面，用于修改飞达旋转角度以解决元件方向不对问题。界面中“飞达”按钮被红色框突出显示，下方“Pick Location”区域的“Rotation”值为0.000，有红色箭头指向。图片上方有“元件库”“视觉方案”等按钮，下方有“General Settings”“Pick Location”等设置项。该图片与上下文紧密相关，直观呈现了飞达设置界面，帮助理解在导入pos文件后，元件已有默认旋转角度时，需在此基础上再减90度以确保元件方向正确。](https://cdn.newenergycoder.club/images/lumenpnp/YdeubBmAJomMdXx2QHEckFTKnlb.jpg)
+
+但是我们导入pos文件后，有的元件已经会有一个默认旋转角度，如下1N5819已经默认逆时针旋转了+90度，
+
+那么贴片机在吸取元件后，会再旋转这个+90度，此时如果想要方向正确，我们需要在上面的飞达的旋转角度-90或270基础上再减+90度（**没错，就是减90，不是加90。如果是-90，减去-90实际就是加90**），则飞达的旋转角度应该填-180或180.
+
+<callout emoji="❗">
+总结
+飞达旋转角度-pos旋转角度=实际旋转角度，编带元件经过最终旋转角度值旋转后和电路板上方向一致
+</callout>
+
+你也可以手动将pos文件的旋转角度改为0，但如果有许多相同的元器件，你得挨个改，所以不推荐，直接改飞达旋转角度最高效。
+
+总结：如果你的pos文件角度是0，则飞达旋转角度就是一开始计算的值，不需要再修改了。如果不是0，就需要将pos的角度也要加上计算。
+
+![图片展示的是贴片列表界面，列出了多个元件的相关信息。其中，D3、D6、D9等元件的“角度”列显示为90.000、180.000等数值，且“Status”列均为“已禁用”，“错误处理”列显示为“Alert”。该图片与文档中“元件方向不对”部分内容相关，可能是用于说明元件方向设置情况，辅助理解元件方向不对时的元件状态及角度信息。](https://cdn.newenergycoder.club/images/lumenpnp/YnpEb4NHnoQWXLxlARXcHlxgnsd.png)
+
+电动飞达也和上面计算方法类似，不再赘述。
+
+- 参考文档 : [https://github.com/openpnp/openpnp/wiki/ReferenceStripFeeder](https://github.com/openpnp/openpnp/wiki/ReferenceStripFeeder)
+
+
+
+## 摄像头和吸嘴偏移微调
+
+1. 使用下拉菜单选择带有 N045 喷嘴头的 N1。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/OBF8buhhhoynACxVw0Uca6oynqd.png)
+
+1. 导航到`Feeders`右上方窗格中的选项卡。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/ByvCbml54oONXexvDhfcnhMQnRg.png)
+
+1. 选择您想要开始的进料器，然后单击“定位喷嘴”图标按钮，将喷嘴置于进料器上方。
+
+![](https://cdn.newenergycoder.club/images/lumenpnp/KkD5bu4HJovC9rxk8uycsyAbnc8.png)
+
+如果你发现此时吸嘴并不在电阻槽的中心，而是略有偏移，那是吸嘴和相机之间的偏移校准有误差，此时我们可以手动修正
+
+如下，吸嘴朝Y+方向偏移，说明吸嘴和相机之间的偏移值大了，此时需要减小
+
+![图片展示了贴片机吸嘴对准电阻槽的场景。吸嘴位于电阻槽上方，吸嘴朝Y+方向偏移，说明吸嘴和相机之间的偏移值大了。该图片与上下文紧密相关，上下文提到若吸嘴在电阻槽中心略有偏移，需手动修正，此时可找到吸嘴设置，将Y偏移量减小，建议以0.1为单位调整，此图直观呈现了吸嘴偏移的情况，辅助理解手动修正的操作。](https://cdn.newenergycoder.club/images/lumenpnp/UArhbMT3BoFx88x8Kluc5eVKnLb.png)
+
+找到吸嘴设置，将Y的偏移量减小，建议0.1为单位调整。
+
+![这张图片是吸嘴与相机偏移校准的设置界面，用于解决吸嘴和相机之间的偏移校准误差问题。界面左侧的列表中，选中了“吸嘴1ReferenceNozzle1H1”这一项，该选项被红色标注突出显示；界面右侧的偏移量设置区域，Y轴的偏移量数值为-62.900，也被红色框标注，对应文档中提到的吸嘴朝Y+方向偏移需减小Y轴偏移量的情况，为吸嘴偏移的手动修正操作提供了直观的设置参考。](https://cdn.newenergycoder.club/images/lumenpnp/Al3ebHbFRoDBFTxRj60cpYEsn1b.png)
+
+然后回到飞达设置，先执行相机定位到槽中心位置，再执行吸嘴定位，看是否还有偏移。如此反复调整，直至完成。
+
+一般校准完成后，后面的飞达就不再需要校准了，就是准的了。
+
+![图片展示的是飞达设置界面。界面中“General Settings”部分显示了“Part”为C_0805_2012Metric - 100nF，还有“FeedRetry Count”“Pick Retry Count”等参数。下方“Pick Location”区域有X、Y、Z坐标值，以及Rotation角度值。界面右下角有四个图标，其中①处的图标被红色框突出显示，②处的图标也被红色框突出显示。该图片与上下文关于飞达设置的内容相关，直观呈现了飞达设置界面及关键图标位置。](https://cdn.newenergycoder.club/images/lumenpnp/HkCnbfBtwoZGLAxtJ7RcQIwHnmw.png)
+
+# 归位后提示Z错误
+
+使用时，发现电机吸取元器件测试时，弹窗提示以下错误
+
+![图片展示的是某软件界面，显示了“归位后提示Z错误”的相关操作界面。界面上方有“任务”“脚本”“界面”等选项卡，右侧有“问题A解决方案”选项被选中。中间弹出“Error”错误提示框，内容为“Effective Safe Z coordinate 46.500mm is outside Safe Z Zone.”。下方有“General Settings”设置区域，显示了“Part P_2512_43x34Metric -120mm”等信息。该图片与文档中电机吸取元器件测试时弹出归位错误提示的内容相关，直观呈现了错误提示及操作界面。](https://cdn.newenergycoder.club/images/lumenpnp/CvcXbCuTOohK5XxkgNacgRPFn1e.png)
+
+点击home归位，错误还在
+
+![图片展示的是某软件界面，显示“归位后提示Z错误”的问题。界面上方有“任务”“脚本”“元件”等选项卡，中间部分有元件列表及错误提示框，提示“Effective Safe Z coordinate 50.500mm is outside Safe Z Zone”。下方有“General Settings”设置区域，显示元件编号、拾取次数等信息。左下角有“Camera Top (Head HD)”相机设置区域，可进行X/Y/Z轴操作。该图片直观呈现了软件界面及错误提示情况，与文档中描述的归位后提示Z错误问题相关。](https://cdn.newenergycoder.club/images/lumenpnp/PZ4ybDu8uojtArxANtEcUhm4nCd.png)
+
+此时可以直接关机重启解决。
+
+你也可以取消勾选N1和N2的动态z，然后选择抛料，将吸嘴上的物料抛弃（实际没有，但软件认为有，所以我们需要假装抛弃），之后再重新勾选动态z，再执行一次home归位。
+
+![图片展示的是某设备的界面，左侧为摄像头拍摄的图像，右侧是设备设置区域。在“安全选择”下拉菜单中，红色框突出显示了“安全选择”选项。在“安全选择”右侧的“安全设置”区域，红色框标注了“动态Safe Z”选项。该图片与文档中“摄像头帧率突然下降为0”问题的上下文相关，可能是在说明导致该问题的设备安全设置相关操作或配置](https://cdn.newenergycoder.club/images/lumenpnp/VeKibPlTCooFj8xMATGczn36nKc.png)
+
+导致这个错误出现，是我们的元器件的元件高度没有设置。所以一定要提前设置每一个元件的高度（不能为0）
+
+![图片展示的是某设备的界面，左侧为摄像头实时画面，显示电路板。右侧是任务管理界面，列出多个任务，其中“JST 2019 Metric - 50m”任务被红色框突出显示。下方是底座视觉配置，包括命名、设置位置、启用等参数设置。该图片与文档中“摄像头帧率突然下降为0”的问题相关，可能是用于说明设备在执行相关任务时的视觉配置情况，辅助分析摄像头帧率下降的原因。](https://cdn.newenergycoder.club/images/lumenpnp/Aki3beuJqodslsxMPWjcGyhTnGg.png)
+
+# 摄像头帧率突然下降为0
+
+原因是摄像机的一些默认配置不能随意修改，否则会导致驱动存在问题，摄像头变得很卡，测试帧率也基本接近0。
+
+下面以群主的相机为例讲解解决办法。总的来说就是删除openpnp现在的所有配置（需要重新校准）
+
+确保 OpenPnP 已完全关闭，然后再继续。
+
+[准备工作->导入配置文件](https://tcnyw794ws3e.feishu.cn/wiki/BWF1wLHv2i1d4HkF6CMcJ6z3nuf#UMYrdw5W1oVObUxPfdKc2hQxn1g)
+
+# 摄像头同名
+
+本问题只针对windows系统上运行openpnp。linux系统没有这个问题
+
+如下图所示，上下摄像头显示一样的名字
+
+![图片展示了Windows系统设备管理器中“照相机”类别下的内容。其中，有两个名称为“LumenPnP Top”的摄像头设备，且均被红色圆圈标注突出显示。该图片与文档中“摄像头同名”问题相关，用于说明在Windows系统上运行openPnP时，上下摄像头显示一样的名字这一问题，直观呈现了设备管理器中摄像头名称重复的情况。](https://cdn.newenergycoder.club/images/lumenpnp/T7OBb7ZOSoXkB9xFVn7c9t73n4b.png)
+
+电脑左下角搜索，进入设备管理器
+
+![图片展示了电脑设备管理器的操作界面。画面左侧为“设备管理器”选项被红框突出显示。右侧弹出的设备管理器窗口中，有“照相机”类别，其中“USB UVC Camera - 0000:00:14.0”被红框标注。该图片与文档中“摄像头同名”问题相关，用于说明在电脑左下角搜索进入设备管理器后，找到照相机类别，列出已连接摄像头的操作步骤，辅助理解如何排查摄像头同名问题。](https://cdn.newenergycoder.club/images/lumenpnp/JhCpbbB5koWttcx5Nxec3JUyneh.png)
+
+保持两个摄像头都是联接状态，找到照相机，里面列出已连接的摄像头
+
+![图片展示了Windows系统设备管理器中摄像头的显示情况。在“设备管理器”窗口的“图像设备”下，有“照相机”类别，其中“LumenPnP Top”和“LumenPnP Top”两个摄像头名称显示相同，且被红色框突出显示。该图片与文档中“摄像头同名”问题相关，用于说明在Windows系统上运行openPnP时，上下摄像头显示相同名字的情况，为解决此问题提供设备管理器中摄像头显示状态的参考。](https://cdn.newenergycoder.club/images/lumenpnp/Fr8tbRrFJoOMI2xnERHcZSoNnje.png)
+
+右键摄像头名称，点击卸载设备，摄像头的驱动将被删除。将两个摄像头都卸载，确保照相机下不再有我们的摄像头或者照相机这个选项本身也消失了。
+
+![图片展示了Windows系统设备管理器中摄像头相关设置界面。在“照相机”类别下，有两个摄像头名称显示为“LumenPiP”。右键点击其中一个摄像头名称，弹出菜单中“卸载设备”选项被红色框突出显示。该图片与文档中解决摄像头显示相同名字问题的操作步骤相关，是右键卸载摄像头驱动步骤的直观呈现，帮助用户在设备管理器中找到并操作卸载摄像头驱动的选项。](https://cdn.newenergycoder.club/images/lumenpnp/J38Jbvk5Covxdnxr9nhcpGq4n0d.gif)
+
+保持摄像头联接，重启电脑，之后再进入设备管理器这里，两个摄像头名称就恢复正常了。
+
+如果还是无法解决，请按上面方法卸载设备，然后更换其中一个摄像头的usb接口，再电脑重启.
+
+![图片展示了电脑设备管理器中“照相机”下的两个摄像头名称，分别是“LumenPnP Bottom”和“LumenPnP Top”。这与文档中解决摄像头显示相同名字问题的操作步骤相关，文档提到在设备管理器的照相机下找到已连接的摄像头，此图直观呈现了找到的摄像头名称，为后续卸载设备等操作提供了视觉参考。](https://cdn.newenergycoder.club/images/lumenpnp/DGDxb5gL8oe9mwxgkxUclweLnDe.png)
+
+# 没有吸力，电磁阀无法启动
+
+这个原因可能是默认的继电器的PWM值太低，导致启动电压低了，电磁阀无法动作。
+
+可以做如下修改
+
+- 找到驱动定义
+- 贴装头选择H1 VAC1，对应左边电磁阀
+- 设置为选择ACTUATE_BOOLEAN_CONMAND
+- 将S180改成S255，右下角应用保存
+
+![图片展示了贴片机驱动定义界面。左侧“驱动定义”处显示“GoodDrivers GoodDrivers”，下方“Actuator”栏选中“H1 VAC1”，对应“设置为”栏的“ACTUATE_BOOLEAN_CONMAND”。红色箭头指向“设置为”栏，下方代码中“S180”被红框标注。右下角有“应用”按钮。该图片与文档中“没有吸力，电磁阀无法启动”问题的解决步骤相关，是修改驱动定义设置的示例。](https://cdn.newenergycoder.club/images/lumenpnp/LRr2b5bdnoGGmjx1nwbckcZcnvd.gif)
+
+- 贴装头选择改为H1 VAC2，对应右边电磁阀
+- 设置为选择ACTUATE_BOOLEAN_CONMAND
+- 将S180改成S255，右下角应用保存
+
+![图片展示的是贴片机驱动配置界面。界面中“Actuator H1 VAC2”对应“ACTUATE_BOOLEAN_COMMAND”，下方有“True W106 P2 S253”和“False W107 P2”等指令。界面右下角有“导入”和“导出”按钮。该图片与文档中“没有吸力，电磁阀无法启动”问题的解决步骤相关，用于直观呈现驱动配置中相关参数设置情况，辅助理解问题排查操作。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZWMwMGZhZjc2YWYwZjRkYWE4M2U0ODY3MWQ0NmQzMTNfNjA1YjZlMDU0MDY2OTQ4MjJjZDI5MTU2OGExZGU5YTRfSUQ6NzY2MzgwOTg0OTgxMzI0MDc3Ml8xNzg0NTc1MDE0OjE3ODQ1Nzg2MTRfVjM)
+
+如果问题还不解决，请检查电磁阀导线的通断，电路板硬件好坏，最后再更换新的电磁阀。
+
+# 相机图像转换-旋转方向
+
+<callout emoji="ℹ️">
+我们的相机和官方的不同，所以需要修改相机方向。
+如果你是从本文档教程下载的 [导入配置文件](https://tcnyw794ws3e.feishu.cn/wiki/BWF1wLHv2i1d4HkF6CMcJ6z3nuf?larkTabName=space#UMYrdw5W1oVObUxPfdKc2hQxn1g)，相机方向已经调整好了，无需修改
+但为了准确性，可以按照下面教程再次核对下。
+</callout>
+
+## 顶部相机
+
+- 导航至`Machine Setup > Heads > ReferenceHead H1 > Cameras > OpenPnpCaptureCamera Top > image Transforms`。
+- 图像转换这里，**水平翻转和垂直翻转均不勾选。**
+
+![图片展示的是飞达系统中OpenPnPCaptureCamera Top相机的图像转换界面。界面中“图像转换”选项被选中，下方有“通用配置”“相机稳定策略”“设备配置”“白平衡”“定位位置”“镜头校准”等选项卡。在“图像调整”区域，有Rotation、X偏移量、Y偏移量等参数设置，其中Rotation为0.000，X偏移量和Y偏移量均为0。该图片与文档中调整相机图像转换方向的操作说明相关，用于辅助理解如何在系统中进行相关设置。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=N2I1NDc3MjNjOTU1YzA3YTMwODVmNWIxMjZmOThjNDdfYjllNzZmNDYwZmExOGU0NDQzZTdkODJkYTM4ZTM0YzNfSUQ6NzY2MzgwOTg0ODk2MTg0NjIwM18xNzg0NTc1MDE0OjE3ODQ1Nzg2MTRfVjM)
+
+如果你是自己购买的其他相机，请按下列方法调整：
+
+- 请先将顶部相机移动到基准版中心位置。
+- 在十字线中心，鼠标左键单击不放，向右上角拖动鼠标，最后释放。此时机器移动，十字线中心应该移动到你刚刚在基准板上指示的位置(指哪打哪)。
+- 如果移动的方向不对，尝试在 *图像转换 中*，修改垂直和水平反转，直到方向正确。
+
+目前还没有进行像素值校准，所以你的移动距离不是精确的，这里只要移动方向是正确的就可以。
+
+下图是动图显示。请仔细对比。
+
+![图片展示的是OpenPnP软件中底部相机图像调整界面。界面左侧有相机图像显示区域，下方是X/Y坐标轴控制区。右侧是相机设置区域，勾选了“水平翻转”选项。该图片与文档中“底部相机图像调整”内容相关，用于说明在导航至`Machine Setup>Cameras>OpenPnpCaptureCamera Bottom>image Transforms`后，仅勾选“水平翻转”这一操作步骤。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZGM4YjE1NWYyNTkwNDBmNjI0ODM1NjIxZjI3NWFjNjNfNjQ0NDk4MTMwZmU0ZmE1ODA2OTkyZmU5ZTkxMGU0ZmZfSUQ6NzY2MzgwOTg0Nzg2NzI0NzU5Nl8xNzg0NTc1MDE0OjE3ODQ1Nzg2MTRfVjM)
+
+## 底部相机
+
+- 导航至`Machine Setup > Cameras > OpenPnpCaptureCamera Bottom > image Transforms`。
+- 图像调整这里，仅勾选**水平翻转。**
+
+![图片展示了飞达视觉系统中ReferenceMachine下的OpenPnPCaptureCameraBottom配置界面。画面中“图像转换”选项被红色框突出显示，下方“水平翻转？”选项处有红色箭头指向，其右侧有勾选状态。该图片与上下文紧密相关，上下文提到在调整相机图像转换方向时，若为购买的其他相机，需先将吸嘴移动到相机中心位置，适当降低高度，再通过鼠标操作调整吸嘴位置，此图直观呈现了图像转换配置界面中关键操作点，辅助理解操作步骤。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NGU2ZTZhYTBjNDA5ZDA0NWRjODNlOGQ3OGIyNGM0M2NfMjQ3MGMyMjA4Y2YzNjQ1YmYxMTI2MTUzMmI2NjZlNzNfSUQ6NzY2MzgwOTg0ODUyOTkxNDg1OV8xNzg0NTc1MDE0OjE3ODQ1Nzg2MTRfVjM)
+
+如果你是自己购买的其他相机，请按下列方法调整：
+
+- 请先将左边吸嘴移动到底部相机中心位置，适当降低吸嘴高度，直至能看清吸嘴。
+- 在十字线中心，鼠标左键单击不放，向右上角拖动鼠标，最后释放。此时机器移动，**吸嘴尖端**应和您指示方向相反（你往东它往西）。然后再次从十字线中线拖动将鼠标准心放置在吸嘴尖端中心，释放，机器移动，吸嘴应大致回到图像中心位置。
+- 如果移动的方向不对，尝试在 *图像转换 中*，修改垂直和水平反转，直到方向正确。
+
+目前还没有进行像素值校准，所以你的移动距离不是精确的，这里只要移动方向是正确的就可以。
+
+下图是正确的动图显示。请仔细对比。
+
+![图片展示的是OpenPnP软件界面，处于“Machine Setup”标签下。画面中显示了相机图像转换相关设置，包括General Configuration、Camera Setting、Device Settings等选项卡。在“Camera Setting”选项卡下，有“Properties”区域，可设置Name、Looking at、Auto Camera Setup等参数。画面左下角有X/Y坐标轴控制区域，右下角有“Measure”按钮。该图片与上下文内容相关，用于辅助说明在OpenPnP软件中进行相机图像转换设置的操作。](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MzYwMDY2YWMxYzZkN2Y2M2YyOWE1ZDI0NTJkMTExZjdfZGY2MWQ0MDEzMjMzODgwNGQ4MjQ4MWEzOTEwMGYxMWNfSUQ6NzY2MzgwOTg0ODcxNDQ5Njk5MF8xNzg0NTc1MDE0OjE3ODQ1Nzg2MTRfVjM)

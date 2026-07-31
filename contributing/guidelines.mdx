@@ -13,6 +13,23 @@ description: "如何为 NEC 新能源开发者社区做出贡献"
 - 🔧 提交代码修复
 - ✨ 添加新功能
 
+## 仓库分工（先搞清楚往哪提交）
+
+社区有两个职责不同的仓，**互不合并、互不镜像**，贡献前请先确认目标仓：
+
+| | 文档仓 | 主代码仓（资料仓） |
+|---|---|---|
+| 地址 | [github.com/new-energy-coder-club/docs](https://github.com/new-energy-coder-club/docs) → [docs.newenergycoder.club](https://docs.newenergycoder.club) | [gitee.com/darrenpig/new_energy_coder_club](https://gitee.com/darrenpig/new_energy_coder_club) |
+| 定位 | 发布态：面向读者的 Mintlify 文档站 | 工作态：原始资料与项目代码的存档仓 |
+| 适合提交 | 教程、指南、规范、整理后的竞赛/项目文档（`.mdx` + frontmatter，需注册导航） | 历年赛事档案、项目代码、CAD 模型、原始 PDF/压缩包等素材 |
+| 大二进制 | 不入 git，统一传社区 CDN 后在页面中给链接 | 直接入库 |
+
+协作规则：
+
+1. 内容单向提炼：原始材料先沉淀到主代码仓，整理成发布页时再到文档仓提交 `.mdx`
+2. 同名治理文件（GOVERNANCE、ROADMAP、SECURITY 等）以文档仓版本为准对外发布
+3. 文档页引用主代码仓内容时，直接链接 Gitee 对应路径，不把大二进制复制进文档仓
+
 ## 行为准则
 
 ### 我们的承诺
