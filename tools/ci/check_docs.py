@@ -12,6 +12,11 @@
 8. 不存在指向 localhost 的内部链接
 9. robots.txt 存在
 10. 外部链接抽样健康检查（警告级别）
+11. navbar 链接可解析（内部链接指向存在的页面，外部链接使用 https）
+12. logo / favicon 品牌资源文件存在，SVG 需含 viewBox 且无超大固定宽高
+13. 主题色为合法 #RRGGBB 且主色对比度达标（WCAG 相对亮度）
+14. 首页 index.mdx 存在、frontmatter 完整且注册在导航第一个 Tab
+15. docs.json styles 引用的 CSS 文件均存在
 """
 
 from __future__ import annotations
@@ -188,6 +193,139 @@ def check_robots_txt() -> list[str]:
     if not robots.is_file():
         warnings.append("缺少 robots.txt，搜索引擎与 AI 爬虫无法发现 sitemap/llms.txt")
     return warnings
+
+
+def check_navbar(data: dict) -> list[str]:
+    """navbar 链接：内部链接必须可解析到页面，外部链接必须使用 https。"""
+    errors: list[str] = []
+    navbar = data.get("navbar", {})
+    entries = list(navbar.get("links", []))
+    primary = navbar.get("primary")
+    if isinstance(primary, dict):
+        entries.append(primary)
+    for entry in entries:
+        href = entry.get("href", "")
+        label = entry.get("label", href)
+        if href.startswith("http://"):
+            errors.append(f"navbar 链接「{label}」使用不安全的 http: {href}")
+        elif href.startswith("/") and not href.startswith("//"):
+            if not target_exists(href.lstrip("/")):
+                errors.append(f"navbar 内部链接「{label}」无法解析: {href}")
+    return errors
+
+
+def check_brand_assets(data: dict) -> list[str]:
+    """logo / favicon 引用的文件必须存在。"""
+    errors: list[str] = []
+    assets: list[str] = []
+    logo = data.get("logo", {})
+    if isinstance(logo, dict):
+        assets.extend(v for v in logo.values() if isinstance(v, str))
+    elif isinstance(logo, str):
+        assets.append(logo)
+    favicon = data.get("favicon")
+    if isinstance(favicon, str):
+        assets.append(favicon)
+    for asset in assets:
+        if asset.startswith(("http://", "https://")):
+            continue
+        path = ROOT / asset.lstrip("/")
+        if not path.is_file():
+            errors.append(f"品牌资源文件缺失: {asset}")
+        elif asset.lower().endswith(".svg"):
+            errors.extend(check_svg_sanity(path, asset))
+    return errors
+
+
+SVG_WIDTH_RE = re.compile(r'<svg[^>]*\swidth="([0-9.]+)"')
+SVG_HEIGHT_RE = re.compile(r'<svg[^>]*\sheight="([0-9.]+)"')
+
+
+def check_svg_sanity(path: Path, label: str) -> list[str]:
+    """SVG Logo 健全性：必须有 viewBox，且不得带超大固定宽高（防 tldraw 等工具坏导出）。"""
+    errors: list[str] = []
+    try:
+        head = path.read_text(encoding="utf-8", errors="replace")[:2000]
+    except OSError:
+        return [f"无法读取 SVG: {label}"]
+    if "<svg" not in head:
+        return [f"不是合法 SVG: {label}"]
+    if "viewBox" not in head:
+        errors.append(f"SVG 缺少 viewBox，无法自适应缩放: {label}")
+    for pattern, attr in ((SVG_WIDTH_RE, "width"), (SVG_HEIGHT_RE, "height")):
+        m = pattern.search(head)
+        if m and float(m.group(1)) > 1000:
+            errors.append(
+                f"SVG 带有超大固定 {attr}=\"{m.group(1)}\"（可能为绘图工具坏导出）: {label}"
+            )
+    return errors
+
+
+HEX_COLOR_RE = re.compile(r"^#[0-9a-fA-F]{6}$")
+
+
+def _relative_luminance(hex_color: str) -> float:
+    """WCAG 相对亮度。"""
+    r = int(hex_color[1:3], 16) / 255
+    g = int(hex_color[3:5], 16) / 255
+    b = int(hex_color[5:7], 16) / 255
+
+    def channel(c: float) -> float:
+        return c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4
+
+    return 0.2126 * channel(r) + 0.7152 * channel(g) + 0.0722 * channel(b)
+
+
+def check_theme_colors(data: dict) -> tuple[list[str], list[str]]:
+    """主题色必须为合法 #RRGGBB；主色相对页面底色对比度低于 3.0 给警告。"""
+    errors: list[str] = []
+    warnings: list[str] = []
+    colors = data.get("colors", {})
+    for key in ("primary", "light", "dark"):
+        value = colors.get(key)
+        if value is None:
+            continue
+        if not isinstance(value, str) or not HEX_COLOR_RE.match(value):
+            errors.append(f"docs.json colors.{key} 不是合法 #RRGGBB: {value!r}")
+    primary = colors.get("primary", "")
+    if isinstance(primary, str) and HEX_COLOR_RE.match(primary):
+        bg = "#0d1117"  # style.css --bg-page
+        l1 = _relative_luminance(primary)
+        l2 = _relative_luminance(bg)
+        ratio = (max(l1, l2) + 0.05) / (min(l1, l2) + 0.05)
+        if ratio < 3.0:
+            warnings.append(
+                f"主题色 primary {primary} 相对页面底色 {bg} 对比度 {ratio:.2f}:1，低于 3.0:1"
+            )
+    return errors, warnings
+
+
+def check_homepage(data: dict) -> list[str]:
+    """首页 index.mdx 存在、frontmatter 完整，且注册在导航第一个 Tab。"""
+    errors: list[str] = []
+    index = ROOT / "index.mdx"
+    if not index.is_file():
+        errors.append("首页 index.mdx 不存在")
+        return errors
+    errors.extend(check_frontmatter_fields(index))
+    tabs = data.get("navigation", {}).get("tabs", [])
+    first_tab_pages = tabs[0].get("pages", []) if tabs else []
+    if "index" not in first_tab_pages:
+        errors.append("首页 index 未注册在导航第一个 Tab 的 pages 中")
+    return errors
+
+
+def check_styles(data: dict) -> list[str]:
+    """docs.json styles 引用的每个 CSS 文件必须存在。"""
+    errors: list[str] = []
+    for css in data.get("styles", []):
+        if not isinstance(css, str):
+            continue
+        if css.startswith(("http://", "https://")):
+            continue
+        if not (ROOT / css.lstrip("/")).is_file():
+            errors.append(f"样式文件缺失: {css}")
+    return errors
 
 
 # Markdown/MDX 中链接的正则
@@ -369,9 +507,14 @@ def main() -> int:
                 except Exception as exc:
                     warnings.append(f"外部链接检查异常: {url} ({exc})")
 
-    # 7. style.css 存在性
-    if not (ROOT / "style.css").is_file():
-        warnings.append("style.css 不存在，请确认主题是否生效")
+    # 7. 首页 / Header / 主题配置检查
+    errors.extend(check_navbar(data))
+    errors.extend(check_brand_assets(data))
+    color_errors, color_warnings = check_theme_colors(data)
+    errors.extend(color_errors)
+    warnings.extend(color_warnings)
+    errors.extend(check_homepage(data))
+    errors.extend(check_styles(data))
 
     # 输出报告
     print("=" * 60)

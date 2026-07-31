@@ -49,7 +49,7 @@ body,
 html.dark body {
   background-color: var(--bg-page);
   color: var(--text-secondary);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.75;
 }
 
@@ -78,6 +78,46 @@ html.dark #navbar {
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-default);
   height: 56px;
+}
+
+/* Navbar links & tabs: readable size, clear active state */
+#navbar a,
+#navbar button,
+html.dark #navbar a,
+html.dark #navbar button {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: color 0.2s;
+}
+
+#navbar a:hover,
+#navbar button:hover,
+html.dark #navbar a:hover,
+html.dark #navbar button:hover {
+  color: var(--text-primary);
+}
+
+/* Active top tab: bright text + primary underline indicator */
+#navbar [aria-current],
+#navbar a[data-active="true"],
+#navbar a[aria-selected="true"],
+html.dark #navbar [aria-current],
+html.dark #navbar a[data-active="true"],
+html.dark #navbar a[aria-selected="true"] {
+  color: var(--text-primary) !important;
+  font-weight: 600;
+  box-shadow: inset 0 -2px 0 var(--mck-primary);
+}
+
+/* Navbar primary CTA button: keep McKinsey blue pill */
+#navbar a[class*="primary"],
+#navbar button[class*="primary"],
+html.dark #navbar a[class*="primary"],
+html.dark #navbar button[class*="primary"] {
+  color: #ffffff !important;
+  border-radius: var(--radius-md);
+  box-shadow: none;
 }
 
 /* Sidebar navigation */
@@ -398,11 +438,13 @@ html.dark [role="complementary"] [class*="current"]:is(a, span) {
   font-weight: 400 !important;
 }
 
-/* Cards */
+/* Cards (Mintlify uses lowercase .card class) */
 .mint-card,
 [class*="Card"],
+[class*="card"],
 html.dark .mint-card,
-html.dark [class*="Card"] {
+html.dark [class*="Card"],
+html.dark [class*="card"] {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-lg);
@@ -413,8 +455,10 @@ html.dark [class*="Card"] {
 
 .mint-card:hover,
 [class*="Card"]:hover,
+[class*="card"]:hover,
 html.dark .mint-card:hover,
-html.dark [class*="Card"]:hover {
+html.dark [class*="Card"]:hover,
+html.dark [class*="card"]:hover {
   border-color: var(--mck-primary);
   transform: translateY(-1px);
 }
@@ -439,6 +483,20 @@ html.dark [class*="Card"] [class*="title"] {
   font-size: 16px;
   font-weight: 600;
   color: var(--text-primary);
+  margin-bottom: var(--space-1);
+}
+
+/* Card headings rendered as h2/h3 must not inherit global heading styles */
+[class*="Card"] h2,
+[class*="card"] h2,
+html.dark [class*="Card"] h2,
+html.dark [class*="card"] h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-top: 0;
   margin-bottom: var(--space-1);
 }
 
@@ -486,7 +544,7 @@ h3 {
 p,
 html.dark p {
   color: var(--text-secondary);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.75;
   margin-bottom: var(--space-4);
   max-width: 640px;
@@ -496,7 +554,7 @@ html.dark p {
 li,
 html.dark li {
   color: var(--text-secondary);
-  font-size: 14px;
+  font-size: 15px;
   padding: 3px 0;
 }
 
@@ -514,7 +572,19 @@ html.dark a {
 
 a:hover,
 html.dark a:hover {
-  color: var(--mck-primary);
+  color: var(--mck-accent);
+}
+
+/* Keyboard focus: visible outline for accessibility */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible,
+html.dark a:focus-visible,
+html.dark button:focus-visible,
+html.dark [tabindex]:focus-visible {
+  outline: 2px solid var(--text-link);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
 }
 
 /* Buttons */
@@ -635,26 +705,41 @@ html.dark .hero-stats {
 }
 
 .hero-stats [class*="Card"],
-html.dark .hero-stats [class*="Card"] {
+.hero-stats [class*="card"],
+html.dark .hero-stats [class*="Card"],
+html.dark .hero-stats [class*="card"] {
+  align-items: center;
   text-align: center;
   background-color: var(--bg-surface);
   border: 1px solid var(--border-default);
   padding: 20px 16px;
 }
 
+.hero-stats [class*="Card"] h2,
+.hero-stats [class*="card"] h2,
 .hero-stats [class*="Card"] [class*="title"],
-html.dark .hero-stats [class*="Card"] [class*="title"] {
+.hero-stats [class*="card"] [class*="title"],
+html.dark .hero-stats [class*="Card"] h2,
+html.dark .hero-stats [class*="card"] h2,
+html.dark .hero-stats [class*="Card"] [class*="title"],
+html.dark .hero-stats [class*="card"] [class*="title"] {
   font-size: 28px;
   font-weight: 700;
   color: var(--mck-primary);
-  margin-bottom: 4px;
+  border-bottom: none;
+  margin: 0 0 4px;
+  padding-bottom: 0;
+  max-width: none;
 }
 
 .hero-stats [class*="Card"] p,
-html.dark .hero-stats [class*="Card"] p {
+.hero-stats [class*="card"] p,
+html.dark .hero-stats [class*="Card"] p,
+html.dark .hero-stats [class*="card"] p {
   margin: 0 auto;
   color: var(--text-secondary);
   font-size: 13px;
+  text-align: center;
 }
 
 /* Button group spacing */
@@ -711,13 +796,17 @@ html.dark a[class*="secondary"]:hover {
 
 /* Card hover lift and border glow */
 [class*="Card"],
-html.dark [class*="Card"] {
+[class*="card"],
+html.dark [class*="Card"],
+html.dark [class*="card"] {
   border: 1px solid var(--border-default);
   transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 [class*="Card"]:hover,
-html.dark [class*="Card"]:hover {
+[class*="card"]:hover,
+html.dark [class*="Card"]:hover,
+html.dark [class*="card"]:hover {
   border-color: var(--mck-primary);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(0, 102, 255, 0.08);
@@ -797,7 +886,7 @@ html.dark .hero-gsap h1 {
 .hero-gsap .hero-subtitle,
 html.dark .hero-gsap .hero-subtitle {
   font-size: 18px;
-  color: var(--text-secondary);
+  color: #adbac7;
   max-width: 640px;
   margin: 0 auto 20px;
   line-height: 1.6;
@@ -828,4 +917,63 @@ html.dark .hero-banner-img {
   max-width: 1200px;
   margin: 0 auto 24px;
   border-radius: var(--radius-xl);
+}
+
+/* =========================================================
+   Sidebar real DOM fixes (Mintlify renders #sidebar divs,
+   not <aside class="sidebar"> — selectors above are legacy)
+   ========================================================= */
+
+/* Sidebar container */
+#sidebar,
+html.dark #sidebar {
+  background-color: var(--bg-page);
+  border-right: 1px solid var(--border-default);
+}
+
+/* Sidebar links: readable size and color */
+#navigation-items a,
+html.dark #navigation-items a {
+  font-size: 13px;
+  color: var(--text-secondary);
+  border-radius: var(--radius-md);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+#navigation-items a:hover,
+html.dark #navigation-items a:hover {
+  color: var(--text-primary);
+  background-color: var(--bg-elevated);
+}
+
+/* Active sidebar item: kill the solid primary pill, keep a left indicator */
+#navigation-items a[class*="bg-primary"],
+#navigation-items a[class*="text-primary"],
+html.dark #navigation-items a[class*="bg-primary"],
+html.dark #navigation-items a[class*="text-primary"] {
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  color: var(--text-primary) !important;
+  text-shadow: none !important;
+  border-radius: var(--radius-md) !important;
+  border-left: 2px solid var(--text-link) !important;
+}
+
+/* Active sidebar item hover: stay neutral */
+#navigation-items a[class*="bg-primary"]:hover,
+html.dark #navigation-items a[class*="bg-primary"]:hover {
+  background-color: var(--bg-elevated) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Navbar logo: constrain the replaced NEC logo */
+#navbar img,
+header img,
+html.dark #navbar img,
+html.dark header img {
+  max-height: 28px;
+  width: auto;
+  max-width: 180px;
+  object-fit: contain;
 }

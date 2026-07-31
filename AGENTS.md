@@ -57,6 +57,11 @@ mint dev
   - `robots.txt` 存在
   - 外部链接抽样健康检查（警告级别）
   - 未重新引入已删除的归档目录（`legacy/`、`api-reference/`、`essentials/`）
+  - `navbar` 链接可解析（内部链接指向存在页面，外部链接使用 https）
+  - `logo` / `favicon` 品牌资源文件存在，SVG 需含 `viewBox` 且无超大固定宽高
+  - 主题色为合法 `#RRGGBB`，主色对比度低于 3.0:1 时给出警告
+  - 首页 `index.mdx` 存在、frontmatter 完整且注册在导航第一个 Tab
+  - `docs.json` `styles` 引用的 CSS 文件均存在
 - 本地可手动执行：
   ```bash
   python tools/ci/check_docs.py
