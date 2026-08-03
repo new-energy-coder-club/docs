@@ -1,0 +1,82 @@
+---
+title: "NEC-Claw 云端对话"
+description: "在文档站内直接使用的云端 AI 对话接口：由 Kimi API 驱动，支持流式输出，API Key 仅保存在本机浏览器"
+---
+
+import { KimiChat } from "/snippets/kimi-chat.jsx";
+
+NEC-Claw 云端对话是部署在本文档站内的轻量级 AI 对话接口，直接调用 Kimi（Moonshot）开放平台的云端模型，无需本地部署任何服务，体验与 NEC 内部的 openClaw 类似。
+
+<Note>
+  本页面采用 **BYOK（自带 Key）** 模式：你需要填入自己的 Kimi API Key，调用费用由 Kimi 开放平台按量收取，NEC 不经手、不存储你的 Key。
+</Note>
+
+## 在线体验
+
+<KimiChat />
+
+## 使用步骤
+
+<Steps>
+  <Step title="获取 Kimi API Key" icon="key">
+    访问 [Kimi 开放平台](https://platform.moonshot.cn/)，注册并完成实名认证后，在「API Key 管理」中创建一个新的 Key（以 `sk-` 开头）。
+
+    新账号通常有少量免费额度，之后按 token 计费。
+  </Step>
+
+  <Step title="填入 Key 并开始对话" icon="message-circle">
+    点击上方对话窗口右上角的「设置」，粘贴 API Key 后即可开始对话。Key 会保存在本机浏览器的 localStorage 中，下次访问自动加载。
+  </Step>
+
+  <Step title="（可选）切换模型或代理" icon="sliders">
+    - **模型**：默认 `kimi-latest`（自动指向最新 Kimi 模型），也可改为 `moonshot-v1-8k` 等平台已开放的模型 ID。
+    - **API Base URL**：默认为 `https://api.moonshot.cn/v1`；如团队自建了转发代理（例如 Cloudflare Worker），可改为代理地址。
+  </Step>
+</Steps>
+
+## 安全说明
+
+<Warning>
+  - API Key 仅保存在你自己的浏览器 localStorage 中，不会被上传到 NEC 服务器，也不会出现在页面 URL 或文档仓库中。
+  - 请勿在公共电脑上勾选保存 Key；使用完毕后可在「设置」中清空输入框并刷新页面。
+  - 对话内容直接从你的浏览器发送到 Kimi 开放平台，不经过 NEC 中转，请遵守 Kimi 开放平台的使用协议，勿输入涉密或未授权的数据。
+</Warning>
+
+## 与 openClaw 的区别
+
+| 维度 | NEC-Claw 云端对话（本页） | openClaw（Kimi Claw + 飞书） |
+|---|---|---|
+| 入口 | 文档站网页 | 飞书群 / Kimi 网页端 |
+| 账号体系 | 自带 Kimi API Key | Kimi 会员（Allegretto 档位） |
+| 上下文 | 仅当前会话，刷新后清空 | 可持续记忆、多端同步 |
+| 适用场景 | 临时问答、文档辅助阅读 | 团队共享、长期工作流 |
+
+如需团队级共享与飞书接入，请参考 [openClaw 安全安装指南](/ai-tools/openclaw-setup)。
+
+## 常见问题
+
+<AccordionGroup>
+  <Accordion title="提示请求失败 / CORS 错误？">
+    浏览器直连 `api.moonshot.cn` 时，个别网络环境（如企业网关拦截跨域请求）可能失败。解决方案：
+    1. 更换网络环境重试；
+    2. 自建一个 API 转发代理（如 Cloudflare Worker），在「设置」中把 Base URL 改为代理地址。
+  </Accordion>
+
+  <Accordion title="提示 401 / 403？">
+    API Key 无效或已过期。请到 Kimi 开放平台重新创建 Key 并更新。
+  </Accordion>
+
+  <Accordion title="对话记录会被保存吗？">
+    不会。消息仅保存在当前页面的内存中，刷新或关闭页面即清空。NEC 不记录任何对话内容。
+  </Accordion>
+
+  <Accordion title="支持哪些模型？">
+    理论上支持 Kimi 开放平台所有兼容 OpenAI Chat Completions 协议的模型，在「设置」中直接填写模型 ID 即可。模型清单以 [Kimi 开放平台文档](https://platform.moonshot.cn/docs) 为准。
+  </Accordion>
+</AccordionGroup>
+
+## 相关资源
+
+- [Kimi 开放平台](https://platform.moonshot.cn/)
+- [openClaw 安全安装指南](/ai-tools/openclaw-setup)
+- [NEC AI 基础技术可研](/ai-tools/ai-feasibility-study)
