@@ -1132,3 +1132,134 @@ html.dark .photo-marquee .photo-marquee-track img {
   html.dark .photo-marquee .photo-marquee-track {
     animation: none;
   }
+
+
+/* =========================================================
+   GitHub-style profile card (homepage season leader contact)
+   ========================================================= */
+
+.gh-profile-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 20px;
+  margin: 12px 0 4px;
+  background-color: #ffffff;
+  border: 1px solid #d0d7de;
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(31, 35, 40, 0.06);
+}
+
+html.dark .gh-profile-card {
+  background-color: #0d1117;
+  border-color: #30363d;
+  box-shadow: 0 1px 2px rgba(1, 4, 9, 0.6);
+}
+
+.gh-profile-card .gh-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 1px solid #d0d7de;
+  box-shadow: 0 0 0 2px rgba(31, 136, 61, 0.15);
+  flex-shrink: 0;
+}
+
+html.dark .gh-profile-card .gh-avatar {
+  border-color: #30363d;
+}
+
+.gh-profile-card .gh-meta {
+  flex: 1 1 220px;
+  min-width: 200px;
+}
+
+.gh-profile-card .gh-name {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #1f2328;
+  margin: 0;
+}
+
+html.dark .gh-profile-card .gh-name {
+  color: #e6edf3;
+}
+
+.gh-profile-card .gh-handle {
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
+  font-size: 14px;
+  color: #57606a;
+  margin: 2px 0 8px;
+}
+
+html.dark .gh-profile-card .gh-handle {
+  color: #8b949e;
+}
+
+.gh-profile-card .gh-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.gh-profile-card .gh-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  border-radius: 999px;
+  border: 1px solid #d0d7de;
+  color: #57606a;
+  background-color: #f6f8fa;
+}
+
+html.dark .gh-profile-card .gh-badge {
+  border-color: #30363d;
+  color: #8b949e;
+  background-color: #161b22;
+}
+
+.gh-profile-card .gh-badge.gh-badge-leader {
+  color: #1a7f37;
+  border-color: rgba(31, 136, 61, 0.4);
+  background-color: rgba(31, 136, 61, 0.1);
+}
+
+html.dark .gh-profile-card .gh-badge.gh-badge-leader {
+  color: #3fb950;
+  border-color: rgba(63, 185, 80, 0.4);
+  background-color: rgba(63, 185, 80, 0.1);
+}
+
+.gh-profile-card .gh-qr {
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.gh-profile-card .gh-qr img {
+  width: 108px;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #d0d7de;
+  display: block;
+}
+
+html.dark .gh-profile-card .gh-qr img {
+  border-color: #30363d;
+}
+
+.gh-profile-card .gh-qr span {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  color: #57606a;
+}
+
+html.dark .gh-profile-card .gh-qr span {
+  color: #8b949e;
+}
