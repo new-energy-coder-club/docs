@@ -1132,6 +1132,7 @@ html.dark .photo-marquee .photo-marquee-track img {
   html.dark .photo-marquee .photo-marquee-track {
     animation: none;
   }
+}
 
 
 /* =========================================================
@@ -1287,4 +1288,72 @@ html.dark .gh-profile-card .gh-qr span {
   flex: 1 1 200px;
   max-width: none;
   margin: 0;
+}
+
+/* =========================================================
+   Compact header layout (navbar 紧凑化)
+   实测结构：#navbar 内含 顶行 .h-16(64px) + 标签行 .h-12(48px)
+   ========================================================= */
+
+/* Navbar 不再固定 56px，包裹压缩后的内容 */
+#navbar,
+html.dark #navbar {
+  height: auto;
+  min-height: 0;
+}
+
+/* 顶行（logo/搜索/外链/CTA）：64px -> 48px */
+#navbar [class*="h-16"],
+html.dark #navbar [class*="h-16"] {
+  height: 48px;
+}
+
+/* Tab 标签行：48px -> 34px */
+#navbar [class*="h-12"],
+html.dark #navbar [class*="h-12"] {
+  height: 34px;
+}
+
+/* Tab 项：收紧间距与字号 */
+.nav-tabs,
+html.dark .nav-tabs {
+  gap: 4px 18px;
+}
+
+.nav-tabs-item,
+html.dark .nav-tabs-item {
+  font-size: 13px;
+}
+
+/* 导航链接与按钮：14px -> 13px */
+#navbar a,
+#navbar button,
+html.dark #navbar a,
+html.dark #navbar button {
+  font-size: 13px;
+}
+
+/* 搜索框：h-9(36px) -> 32px */
+#navbar button[class*="h-9"],
+html.dark #navbar button[class*="h-9"] {
+  height: 32px;
+  border-radius: var(--radius-md);
+}
+
+/* Logo 随细条缩放 */
+#navbar img,
+header img,
+html.dark #navbar img,
+html.dark header img {
+  max-height: 22px;
+  max-width: 150px;
+}
+
+/* 主 CTA：紧凑内边距 */
+#navbar a[class*="primary"],
+#navbar button[class*="primary"],
+html.dark #navbar a[class*="primary"],
+html.dark #navbar button[class*="primary"] {
+  padding: 4px 12px;
+  font-size: 13px;
 }
