@@ -5,3 +5,6 @@
 # Draft content
 drafts/
 *.draft.mdx
+
+# Agent skill 目录（非站点内容，避免 Mintlify 解析 SKILL.md 产生告警）
+.kimi/
