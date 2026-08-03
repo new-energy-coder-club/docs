@@ -1430,3 +1430,20 @@ html.dark body:has(.hero-gsap) #sidebar ul.sidebar-group:has(> li:only-child) {
 .join-leader-row .gh-profile-card {
   min-height: 92px;
 }
+
+/* CardGroup 网格容器自带 card-group 类，会被全局 [class*="card"] 规则误伤，
+   导致每组卡片外多一层边框盒子——清除容器上的卡片样式 */
+.card-group,
+html.dark .card-group {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+.card-group:hover,
+html.dark .card-group:hover {
+  border: none;
+  transform: none;
+}
