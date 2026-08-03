@@ -1345,8 +1345,8 @@ html.dark #navbar button[class*="h-9"] {
 header img,
 html.dark #navbar img,
 html.dark header img {
-  max-height: 22px;
-  max-width: 150px;
+  max-height: 32px;
+  max-width: 200px;
 }
 
 /* 主 CTA：紧凑内边距 */
