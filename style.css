@@ -1141,11 +1141,11 @@ html.dark .photo-marquee .photo-marquee-track img {
 .gh-profile-card {
   display: flex;
   align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  max-width: 460px;
-  padding: 12px 14px;
-  margin: 8px 0 4px;
+  gap: 8px;
+  flex-wrap: nowrap;
+  max-width: 380px;
+  padding: 8px 10px;
+  margin: 6px 0 2px;
   background-color: #ffffff;
   border: 1px solid #d0d7de;
   border-radius: 12px;
@@ -1159,8 +1159,8 @@ html.dark .gh-profile-card {
 }
 
 .gh-profile-card .gh-avatar {
-  width: 44px;
-  height: 44px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   border: 1px solid #d0d7de;
   box-shadow: 0 0 0 2px rgba(31, 136, 61, 0.15);
@@ -1172,13 +1172,13 @@ html.dark .gh-profile-card .gh-avatar {
 }
 
 .gh-profile-card .gh-meta {
-  flex: 1 1 160px;
-  min-width: 140px;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .gh-profile-card .gh-name {
-  font-size: 15px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 600;
   line-height: 1.3;
   color: #1f2328;
   margin: 0;
@@ -1190,9 +1190,12 @@ html.dark .gh-profile-card .gh-name {
 
 .gh-profile-card .gh-handle {
   font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
-  font-size: 12px;
+  font-size: 11px;
   color: #57606a;
-  margin: 1px 0 6px;
+  margin: 0 0 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 html.dark .gh-profile-card .gh-handle {
@@ -1208,11 +1211,12 @@ html.dark .gh-profile-card .gh-handle {
 .gh-profile-card .gh-badge {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 1px 8px;
-  font-size: 11px;
+  gap: 3px;
+  padding: 0 6px;
+  font-size: 10px;
   font-weight: 500;
-  line-height: 16px;
+  line-height: 15px;
+  white-space: nowrap;
   border-radius: 999px;
   border: 1px solid #d0d7de;
   color: #57606a;
@@ -1243,7 +1247,7 @@ html.dark .gh-profile-card .gh-badge.gh-badge-leader {
 }
 
 .gh-profile-card .gh-qr img {
-  width: 72px;
+  width: 56px;
   height: auto;
   border-radius: 8px;
   border: 1px solid #d0d7de;
@@ -1256,11 +1260,31 @@ html.dark .gh-profile-card .gh-qr img {
 
 .gh-profile-card .gh-qr span {
   display: block;
-  margin-top: 4px;
-  font-size: 11px;
+  margin-top: 2px;
+  font-size: 10px;
   color: #57606a;
 }
 
 html.dark .gh-profile-card .gh-qr span {
   color: #8b949e;
+}
+
+/* Join-community card + leader card side by side */
+.join-leader-row {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.join-leader-row > [class*="card"],
+.join-leader-row > [class*="Card"] {
+  flex: 1 1 200px;
+  margin: 0;
+}
+
+.join-leader-row .gh-profile-card {
+  flex: 1 1 200px;
+  max-width: none;
+  margin: 0;
 }
