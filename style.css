@@ -1346,13 +1346,19 @@ html.dark #navbar button[class*="h-9"] {
   border-radius: var(--radius-md);
 }
 
-/* Logo 随细条缩放 */
+/* Logo 随细条缩放（h-7 固定 28px，需显式 height 才能放大） */
 #navbar img,
 header img,
 html.dark #navbar img,
 html.dark header img {
   max-height: 32px;
   max-width: 200px;
+}
+
+#navbar img.nav-logo,
+html.dark #navbar img.nav-logo {
+  height: 32px;
+  max-height: none;
 }
 
 /* 主 CTA：紧凑内边距 */
