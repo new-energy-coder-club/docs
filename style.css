@@ -1302,16 +1302,16 @@ html.dark #navbar {
   min-height: 0;
 }
 
-/* 顶行（logo/搜索/外链/CTA）：64px -> 48px */
+/* 顶行（logo/搜索/外链/CTA）：64px -> 56px（与 Tab 行合并后统一行高） */
 #navbar [class*="h-16"],
 html.dark #navbar [class*="h-16"] {
-  height: 48px;
+  height: 56px;
 }
 
-/* Tab 标签行：48px -> 34px */
+/* Tab 标签行：48px -> 56px（合并进顶行） */
 #navbar [class*="h-12"],
 html.dark #navbar [class*="h-12"] {
-  height: 34px;
+  height: 56px;
 }
 
 /* Tab 项：收紧间距与字号 */
@@ -1356,4 +1356,48 @@ html.dark #navbar a[class*="primary"],
 html.dark #navbar button[class*="primary"] {
   padding: 4px 12px;
   font-size: 13px;
+}
+
+/* =========================================================
+   Merged single-row header (顶行 + Tab 标签行合并为一行)
+   实测结构：#navbar .max-w-8xl > div 下两个子块：
+   .relative（顶行） + div.h-12（Tab 行，移动端 hidden）
+   ========================================================= */
+
+/* 两子块并排 */
+#navbar .max-w-8xl > div,
+html.dark #navbar .max-w-8xl > div {
+  display: flex;
+  align-items: center;
+}
+
+/* 顶行占据剩余空间，允许搜索框弹性收缩 */
+#navbar .max-w-8xl > div > .relative,
+html.dark #navbar .max-w-8xl > div > .relative {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* 去掉顶行内部的分隔底边（合并后不再需要） */
+#navbar .max-w-8xl > div > .relative .h-full,
+html.dark #navbar .max-w-8xl > div > .relative .h-full {
+  border-bottom: none !important;
+}
+
+/* Tab 行贴右侧，与 CTA 之间细分隔线 */
+#navbar [class*="h-12"],
+html.dark #navbar [class*="h-12"] {
+  flex: 0 0 auto;
+  padding-left: 16px;
+  padding-right: 20px;
+  margin-left: 8px;
+  border-left: 1px solid var(--border-subtle);
+}
+
+/* 中等宽度（lg~xl 之间）：空间不足时隐藏外链项，保留 CTA 与 Tab，避免重叠 */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  #navbar li.navbar-link,
+  html.dark #navbar li.navbar-link {
+    display: none;
+  }
 }
