@@ -102,6 +102,58 @@ import { LazyImages } from "/snippets/lazy-images.jsx";
   </Card>
 </CardGroup>
 
+## 知识图谱构建
+
+社区沉淀的赛事与工程经验，可以通过下面两个开源工具转化为**可检索、可推理的知识图谱**，配合 Claude Code / MCP 让 AI 直接读写社区知识库：
+
+<CardGroup cols={2}>
+  <Card
+    title="Basic Memory"
+    icon="brain"
+    href="https://github.com/basicmachines-co/basic-memory"
+  >
+    用 Markdown + MCP 把对话、笔记沉淀为本地知识图谱（SQLite 索引，`[[双链]]` 关联），Claude 可直接读写，零基础设施上手
+  </Card>
+  <Card
+    title="Graphiti"
+    icon="diagram-project"
+    href="https://github.com/getzep/graphiti"
+  >
+    Zep 开源的时序知识图谱框架，为 Agent 构建动态长期记忆，支持实体关系增量更新，后端可选 Neo4j / FalkorDB
+  </Card>
+</CardGroup>
+
+<Tabs>
+  <Tab title="Basic Memory">
+    适合个人/小组：笔记即图谱，无需数据库。
+
+    ```bash
+    # 安装（推荐 uv）
+    uv tool install basic-memory
+
+    # 注册到 Claude Code（MCP）
+    claude mcp add basic-memory -- uvx basic-memory mcp
+    ```
+
+    之后在与 Claude 的对话中说「记录一下 XX 方案」，即会自动写入本地 Markdown 笔记并建立关联。
+  </Tab>
+  <Tab title="Graphiti">
+    适合社区级：多源信息汇入一张时序图谱，需要图数据库。
+
+    ```bash
+    # Python 库
+    pip install graphiti-core
+
+    # MCP Server（Docker，内含 Neo4j）
+    git clone https://github.com/getzep/graphiti
+    cd graphiti/mcp_server
+    docker compose up
+    ```
+
+    将赛季文档、会议纪要作为 episode 喂入，Graphiti 会自动抽取实体与关系并保留时间维度。
+  </Tab>
+</Tabs>
+
 ## 代表项目
 
 <CardGroup cols={3}>

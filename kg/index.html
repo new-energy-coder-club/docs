@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NEC 文档知识图谱</title>
+<style>
+  :root {
+    --primary: #0066FF;
+    --bg: #ffffff;
+    --panel: #ffffff;
+    --text: #1a1a1a;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --link: rgba(120, 144, 180, 0.3);
+    --link-hl: rgba(0, 102, 255, 0.9);
+    --link-path: #F59E0B;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d1117;
+      --panel: #161b22;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --border: #30363d;
+      --link: rgba(140, 160, 190, 0.22);
+      --link-hl: rgba(88, 166, 255, 0.95);
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
+  #graph { position: absolute; inset: 0; }
+
+  .panel {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.08);
+  }
+  .toolbar {
+    position: absolute; top: 12px; left: 12px; z-index: 10;
+    display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+    max-width: calc(100% - 24px);
+  }
+  .toolbar input[type="search"], .toolbar select {
+    height: 34px; padding: 0 10px; border-radius: 8px;
+    border: 1px solid var(--border); background: var(--panel); color: var(--text);
+    font-size: 13px; outline: none;
+  }
+  .toolbar input[type="search"] { width: 180px; }
+  .toolbar input:focus, .toolbar select:focus { border-color: var(--primary); }
+  .btn {
+    height: 34px; padding: 0 12px; border-radius: 8px; cursor: pointer;
+    border: 1px solid var(--border); background: var(--panel); color: var(--text);
+    font-size: 12px; display: inline-flex; align-items: center; gap: 4px;
+  }
+  .btn:hover { border-color: var(--primary); color: var(--primary); }
+  .btn.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+  .stat {
+    font-size: 12px; color: var(--muted); background: var(--panel);
+    border: 1px solid var(--border); border-radius: 8px; padding: 0 10px;
+    height: 34px; display: flex; align-items: center;
+  }
+
+  /* 聚焦面包屑 */
+  #crumb {
+    position: absolute; top: 58px; left: 12px; z-index: 10; display: none;
+    align-items: center; gap: 8px; padding: 8px 12px; font-size: 12px;
+  }
+  #crumb.show { display: flex; }
+  #crumb .depth { display: flex; align-items: center; gap: 6px; color: var(--muted); }
+  #crumb input[type="range"] { width: 90px; accent-color: var(--primary); }
+
+  /* 路径查找面板 */
+  #pathPanel {
+    position: absolute; top: 12px; right: 12px; z-index: 10; width: 260px;
+    padding: 12px; display: none; font-size: 12px;
+  }
+  #pathPanel.show { display: block; }
+  #pathPanel h4 { margin: 0 0 8px; font-size: 13px; }
+  #pathPanel select { width: 100%; height: 30px; margin-bottom: 6px; border-radius: 6px;
+    border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 12px; }
+  #pathPanel .row { display: flex; gap: 6px; margin-top: 4px; }
+  #pathResult { margin-top: 8px; color: var(--muted); line-height: 1.7; max-height: 160px; overflow: auto; }
+  #pathResult b { color: var(--text); }
+
+  .legend {
+    position: absolute; left: 12px; bottom: 12px; z-index: 10;
+    padding: 10px 12px; font-size: 12px; max-height: 42%; overflow: auto;
+  }
+  .legend h4 { margin: 0 0 6px; font-size: 12px; color: var(--muted); font-weight: 600; }
+  .legend-item { display: flex; align-items: center; gap: 6px; padding: 2px 0;
+    cursor: pointer; user-select: none; white-space: nowrap; }
+  .legend-item.off { opacity: .35; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+
+  .tip {
+    position: absolute; z-index: 20; pointer-events: none; display: none;
+    background: var(--panel); border: 1px solid var(--border); border-radius: 8px;
+    padding: 8px 10px; font-size: 12px; max-width: 280px;
+    box-shadow: 0 4px 16px rgba(0,0,0,.15);
+  }
+  .tip b { display: block; margin-bottom: 2px; }
+  .tip span { color: var(--muted); }
+  .tip .act { color: var(--primary); }
+
+  .hint { position: absolute; right: 12px; bottom: 12px; z-index: 10;
+    font-size: 11px; color: var(--muted); padding: 6px 10px; max-width: 320px; line-height: 1.7; }
+  #fallback { position: absolute; inset: 0; display: none; place-items: center;
+    color: var(--muted); font-size: 14px; text-align: center; padding: 24px; }
+  /* 全屏时让根元素撑满 */
+  :fullscreen body, :fullscreen #graph { background: var(--bg); }
+</style>
+</head>
+<body>
+<div id="graph"></div>
+
+<div class="toolbar">
+  <input id="search" type="search" placeholder="搜索页面标题，回车定位…" list="pageList" />
+  <datalist id="pageList"></datalist>
+  <select id="groupFilter"><option value="">全部板块</option></select>
+  <button class="btn" id="btnPath" title="查找两个页面间的最短互链路径">⇄ 路径</button>
+  <button class="btn" id="btnIsolated" title="高亮没有互链的孤岛页面">◎ 孤岛</button>
+  <button class="btn" id="btnReset" title="退出聚焦，重置视图">⟲ 重置</button>
+  <button class="btn" id="btnFullscreen" title="全屏 / 退出全屏">⛶ 全屏</button>
+  <span class="stat" id="stat">加载中…</span>
+</div>
+
+<div class="panel" id="crumb">
+  <span>聚焦：<b id="crumbName"></b></span>
+  <span class="depth">深度 <input type="range" id="depthRange" min="1" max="3" value="1" /> <b id="depthVal">1</b> 跳</span>
+  <button class="btn" id="crumbOpen">打开文档</button>
+  <button class="btn" id="crumbExit">✕ 退出</button>
+</div>
+
+<div class="panel" id="pathPanel">
+  <h4>⇄ 最短互链路径</h4>
+  <select id="pathFrom"></select>
+  <select id="pathTo"></select>
+  <div class="row">
+    <button class="btn active" id="pathGo" style="flex:1">查找路径</button>
+    <button class="btn" id="pathClear">清除</button>
+  </div>
+  <div id="pathResult"></div>
+</div>
+
+<div class="panel legend" id="legend"><h4>板块（点击开关）</h4></div>
+<div class="tip" id="tip"></div>
+<div class="panel hint">
+  拖拽移动节点（松手固定，再拖可调整）· 双击进入邻居聚焦<br/>
+  单击在新标签页打开文档 · 悬停查看互链 · 滚轮缩放
+</div>
+<div id="fallback">图谱渲染库加载失败（需要访问 unpkg.com）。<br/>数据文件：/kg/graph-data.js</div>
+
+<script src="./graph-data.js"></script>
+<script src="https://unpkg.com/force-graph@1.49.6/dist/force-graph.min.js"></script>
+<script>
+(function () {
+  const tip = document.getElementById('tip');
+  const statEl = document.getElementById('stat');
+  const searchEl = document.getElementById('search');
+  const filterEl = document.getElementById('groupFilter');
+  const legendEl = document.getElementById('legend');
+  const crumbEl = document.getElementById('crumb');
+  const crumbName = document.getElementById('crumbName');
+  const depthRange = document.getElementById('depthRange');
+  const depthVal = document.getElementById('depthVal');
+  const pathPanel = document.getElementById('pathPanel');
+  const pathFrom = document.getElementById('pathFrom');
+  const pathTo = document.getElementById('pathTo');
+  const pathResult = document.getElementById('pathResult');
+
+  if (typeof ForceGraph === 'undefined') {
+    document.getElementById('fallback').style.display = 'grid';
+    statEl.textContent = '渲染库加载失败';
+    return;
+  }
+  if (!window.NEC_GRAPH) {
+    statEl.textContent = 'graph-data.js 加载失败';
+    return;
+  }
+
+  const DATA = window.NEC_GRAPH;
+
+  // ---------- 基础数据 ----------
+  const PALETTE = ['#0066FF', '#F59E0B', '#10B981', '#8B5CF6', '#EF4444', '#06B6D4',
+    '#EC4899', '#84CC16', '#F97316', '#6366F1', '#14B8A6', '#A855F7', '#EAB308',
+    '#22D3EE', '#F43F5E', '#64748B', '#0EA5E9', '#D946EF'];
+  const colorOf = new Map();
+  let paletteIdx = 0;
+  const groupColor = (g) => {
+    if (!colorOf.has(g)) colorOf.set(g, PALETTE[paletteIdx++ % PALETTE.length]);
+    return colorOf.get(g);
+  };
+
+  const nodeById = new Map(DATA.nodes.map((n) => [n.id, n]));
+  // 无向邻接表（查找路径 / 聚焦用）
+  const adj = new Map(DATA.nodes.map((n) => [n.id, new Set()]));
+  DATA.links.forEach((l) => {
+    const s = idOf(l.source), t = idOf(l.target);
+    if (adj.has(s)) adj.get(s).add(t);
+    if (adj.has(t)) adj.get(t).add(s);
+  });
+  function idOf(x) { return x && x.id !== undefined ? x.id : x; }
+
+  // ---------- 状态 ----------
+  const hiddenGroups = new Set();
+  let keyword = '';
+  let hoverNode = null;
+  let focusId = null;       // 聚焦中心
+  let focusDepth = 1;       // N 跳
+  let pathNodes = null;     // Set，路径高亮
+  let pathLinks = null;     // Set("a|b")，路径高亮
+  let isolatedOn = false;
+
+  // 搜索候选
+  const pageList = document.getElementById('pageList');
+  DATA.nodes.slice().sort((a, b) => a.title.localeCompare(b.title, 'zh'))
+    .forEach((n) => {
+      const o = document.createElement('option');
+      o.value = n.title; pageList.appendChild(o);
+    });
+
+  // ---------- 图 ----------
+  let draggingNode = false;   // 拖动节点期间禁止画布平移/缩放
+  const Graph = ForceGraph()(document.getElementById('graph'))
+    .nodeId('id')
+    .nodeVal((n) => Math.sqrt(n.val || 1))
+    .nodeColor(nodeColor)
+    .nodeLabel(() => '')
+    .linkColor(linkColor)
+    .linkWidth(linkWidth)
+    .cooldownTicks(100)
+    .d3AlphaDecay(0.02)
+    .d3VelocityDecay(0.3)
+    .enableNodeDrag(true)
+    .onNodeDrag((n) => { draggingNode = true; hideTip(); })
+    .onNodeDragEnd((n) => {
+      n.fx = n.x; n.fy = n.y;               // 拖拽后固定位置
+      setTimeout(() => { draggingNode = false; }, 0);
+    })
+    .onNodeHover((node) => {
+      hoverNode = node || null;
+      document.body.style.cursor = node ? 'pointer' : '';
+      if (node && !draggingNode) showTip(node); else hideTip();
+    })
+    .onNodeRightClick((node) => {                        // 右键取消固定
+      node.fx = undefined; node.fy = undefined;
+      Graph.d3ReheatSimulation();
+    })
+    .onBackgroundClick(() => { hoverNode = null; hideTip(); cancelPendingClick(); })
+    .onBackgroundRightClick(() => resetView())
+    .nodeCanvasObjectMode(() => 'after')
+    .nodeCanvasObject(drawOverlay);
+
+  // 单击/双击区分：260ms 内第二次点击同一节点视为双击（聚焦），否则执行单击（打开文档）
+  const DBLCLICK_MS = 260;
+  let pendingClick = null;   // { id, timer }
+  Graph.onNodeClick((node) => {
+    if (pendingClick && pendingClick.id === node.id) {
+      // 双击：取消单击计时，进入聚焦
+      clearTimeout(pendingClick.timer);
+      pendingClick = null;
+      hideTip();
+      enterFocus(node.id);
+    } else {
+      cancelPendingClick();
+      pendingClick = {
+        id: node.id,
+        timer: setTimeout(() => {
+          pendingClick = null;
+          window.open(node.url, '_blank');
+        }, DBLCLICK_MS),
+      };
+    }
+  });
+  function cancelPendingClick() {
+    if (pendingClick) { clearTimeout(pendingClick.timer); pendingClick = null; }
+  }
+  function hideTip() { tip.style.display = 'none'; }
+
+  function nodeColor(n) {
+    if (pathNodes) {
+      return pathNodes.has(n.id) ? cssVar('--link-path') : 'rgba(128,128,128,0.25)';
+    }
+    if (isolatedOn && (adj.get(n.id) || new Set()).size === 0) return '#EF4444';
+    if (hiddenGroups.has(n.group)) return 'rgba(128,128,128,0.12)';
+    if (hoverNode) {
+      const nb = adj.get(hoverNode.id);
+      if (n.id === hoverNode.id || (nb && nb.has(n.id))) return groupColor(n.group);
+      return 'rgba(128,128,128,0.2)';
+    }
+    return groupColor(n.group);
+  }
+  function linkColor(l) {
+    if (pathLinks && pathLinks.has(linkKey(l))) return cssVar('--link-path');
+    if (hoverNode && (idOf(l.source) === hoverNode.id || idOf(l.target) === hoverNode.id))
+      return cssVar('--link-hl');
+    return cssVar('--link');
+  }
+  function linkWidth(l) {
+    if (pathLinks && pathLinks.has(linkKey(l))) return 2.4;
+    if (hoverNode && (idOf(l.source) === hoverNode.id || idOf(l.target) === hoverNode.id)) return 1.6;
+    return 0.6;
+  }
+  function linkKey(l) {
+    const s = idOf(l.source), t = idOf(l.target);
+    return s < t ? s + '|' + t : t + '|' + s;
+  }
+
+  // force-graph 的 nodeColor/nodeCanvasObject 每一帧都会自动重评，
+  // 这里只需确保动画循环处于运行状态即可让高亮/着色立即生效。
+  function refresh() {
+    if (typeof Graph.resumeAnimation === 'function') Graph.resumeAnimation();
+  }
+
+  function drawOverlay(node, ctx, scale) {
+    const r = Math.sqrt(node.val || 1) * 2;
+    // 悬停 / 聚焦中心 / 路径节点 高亮圈
+    if (node === hoverNode || node.id === focusId || (pathNodes && pathNodes.has(node.id))) {
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, r * 1.5, 0, 2 * Math.PI);
+      ctx.strokeStyle = pathNodes && pathNodes.has(node.id) ? cssVar('--link-path') : cssVar('--link-hl');
+      ctx.lineWidth = 1.4 / scale;
+      ctx.stroke();
+    }
+    // 固定的节点画个小钉子
+    if (node.fx !== undefined) {
+      ctx.fillStyle = cssVar('--muted');
+      ctx.beginPath();
+      ctx.arc(node.x + r * 0.9, node.y - r * 0.9, Math.max(1.6, 2.4 / scale), 0, 2 * Math.PI);
+      ctx.fill();
+    }
+    // 标签：悬停 / 高缩放 / 搜索命中 / 聚焦模式
+    const showLabel = node === hoverNode || node.id === focusId || scale > 2.4 ||
+      (keyword && match(node)) || (focusId && visibleSet.has(node.id));
+    if (showLabel) {
+      const fontSize = Math.max(10 / scale, 1.7);
+      ctx.font = `${fontSize}px sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillStyle = cssVar('--text');
+      ctx.fillText(node.title, node.x, node.y + r + fontSize * 0.9);
+    }
+  }
+
+  function showTip(node) {
+    const deg = (adj.get(node.id) || new Set()).size;
+    tip.innerHTML = `<b>${escapeHtml(node.title)}</b>` +
+      `<span>${node.group} · ${deg} 条互链<br>${node.url}</span><br/>` +
+      `<span class="act">双击聚焦邻居 · 单击打开文档</span>`;
+    tip.style.display = 'block';
+  }
+
+  // ---------- 可见性管线 ----------
+  let visibleSet = new Set(DATA.nodes.map((n) => n.id));
+
+  function applyVisibility() {
+    let ids;
+    if (focusId) {
+      ids = bfsSet(focusId, focusDepth);
+    } else {
+      ids = new Set(DATA.nodes.filter((n) => !hiddenGroups.has(n.group)).map((n) => n.id));
+    }
+    visibleSet = ids;
+    const nodes = DATA.nodes.filter((n) => ids.has(n.id));
+    const links = DATA.links.filter((l) => ids.has(idOf(l.source)) && ids.has(idOf(l.target)));
+    Graph.graphData({ nodes, links });
+    statEl.textContent = `${nodes.length} 页 · ${links.length} 条互链` + (focusId ? '（聚焦中）' : '');
+  }
+
+  function bfsSet(start, depth) {
+    const seen = new Set([start]);
+    let frontier = [start];
+    for (let d = 0; d < depth; d++) {
+      const next = [];
+      for (const id of frontier) {
+        for (const nb of (adj.get(id) || [])) {
+          if (!seen.has(nb)) { seen.add(nb); next.push(nb); }
+        }
+      }
+      frontier = next;
+    }
+    return seen;
+  }
+
+  // ---------- 聚焦 ----------
+  function enterFocus(id) {
+    cancelPendingClick();
+    hideTip();
+    focusId = id;
+    crumbName.textContent = nodeById.get(id).title;
+    crumbEl.classList.add('show');
+    applyVisibility();
+    if (typeof Graph.d3ReheatSimulation === 'function') Graph.d3ReheatSimulation();
+    const n = nodeById.get(id);
+    if (n && n.x !== undefined) Graph.centerAt(n.x, n.y, 500);
+    Graph.zoom(2.5, 600);
+  }
+  function exitFocus() {
+    focusId = null;
+    crumbEl.classList.remove('show');
+    applyVisibility();
+    Graph.zoomToFit(600, 60);
+  }
+  document.getElementById('crumbExit').onclick = exitFocus;
+  document.getElementById('crumbOpen').onclick = () => focusId && window.open(nodeById.get(focusId).url, '_blank');
+  depthRange.oninput = () => {
+    focusDepth = +depthRange.value;
+    depthVal.textContent = depthRange.value;
+    if (focusId) applyVisibility();
+  };
+
+  // ---------- 路径查找（BFS 最短路） ----------
+  const sortedNodes = DATA.nodes.slice().sort((a, b) => a.title.localeCompare(b.title, 'zh'));
+  [pathFrom, pathTo].forEach((sel) => {
+    sel.innerHTML = '<option value="">选择页面…</option>' +
+      sortedNodes.map((n) => `<option value="${n.id}">${escapeHtml(n.title)}</option>`).join('');
+  });
+  document.getElementById('btnPath').onclick = () => pathPanel.classList.toggle('show');
+  document.getElementById('pathGo').onclick = () => {
+    const a = pathFrom.value, b = pathTo.value;
+    if (!a || !b || a === b) { pathResult.textContent = '请选择两个不同的页面'; return; }
+    const path = shortestPath(a, b);
+    if (!path) {
+      pathResult.textContent = '两页之间没有互链路径（分属不同连通分量）';
+      pathNodes = new Set([a, b]); pathLinks = new Set();
+    } else {
+      pathNodes = new Set(path);
+      pathLinks = new Set();
+      for (let i = 0; i < path.length - 1; i++) {
+        const s = path[i], t = path[i + 1];
+        pathLinks.add(s < t ? s + '|' + t : t + '|' + s);
+      }
+      pathResult.innerHTML = `<b>${path.length - 1} 跳</b>：` +
+        path.map((id) => escapeHtml(nodeById.get(id).title)).join(' → ');
+      const mid = nodeById.get(path[Math.floor(path.length / 2)]);
+      if (mid && mid.x !== undefined) Graph.centerAt(mid.x, mid.y, 500);
+    }
+    refresh();
+  };
+  document.getElementById('pathClear').onclick = () => {
+    pathNodes = null; pathLinks = null; pathResult.textContent = '';
+    pathFrom.value = ''; pathTo.value = '';
+    refresh();
+  };
+  function shortestPath(a, b) {
+    const prev = new Map([[a, null]]);
+    const q = [a];
+    while (q.length) {
+      const cur = q.shift();
+      if (cur === b) {
+        const path = [];
+        for (let n = b; n !== null; n = prev.get(n)) path.unshift(n);
+        return path;
+      }
+      for (const nb of (adj.get(cur) || [])) {
+        if (!prev.has(nb)) { prev.set(nb, cur); q.push(nb); }
+      }
+    }
+    return null;
+  }
+
+  // ---------- 孤岛 ----------
+  document.getElementById('btnIsolated').onclick = (e) => {
+    isolatedOn = !isolatedOn;
+    e.currentTarget.classList.toggle('active', isolatedOn);
+    if (isolatedOn) {
+      const iso = DATA.nodes.filter((n) => (adj.get(n.id) || new Set()).size === 0);
+      statEl.textContent = `${iso.length} 个孤岛页面（红色）`;
+    } else {
+      applyVisibility();
+    }
+    refresh();
+  };
+
+  // ---------- 重置 ----------
+  document.getElementById('btnReset').onclick = resetView;
+  function resetView() {
+    cancelPendingClick();
+    hideTip();
+    exitFocus();
+    pathNodes = null; pathLinks = null; pathResult.textContent = '';
+    isolatedOn = false;
+    document.getElementById('btnIsolated').classList.remove('active');
+    hiddenGroups.clear();
+    document.querySelectorAll('.legend-item').forEach((el) => el.classList.remove('off'));
+    filterEl.value = '';
+    searchEl.value = ''; keyword = '';
+    applyVisibility();
+    if (typeof Graph.d3ReheatSimulation === 'function') Graph.d3ReheatSimulation();
+    Graph.zoomToFit(600, 60);
+  }
+
+  // ---------- 板块筛选 ----------
+  const groups = [...new Set(DATA.nodes.map((n) => n.group))].sort((a, b) => a.localeCompare(b, 'zh'));
+  groups.forEach((g) => {
+    const opt = document.createElement('option');
+    opt.value = g; opt.textContent = g;
+    filterEl.appendChild(opt);
+
+    const item = document.createElement('div');
+    item.className = 'legend-item';
+    item.innerHTML = `<span class="dot" style="background:${groupColor(g)}"></span>${g}`;
+    item.onclick = () => {
+      hiddenGroups.has(g) ? hiddenGroups.delete(g) : hiddenGroups.add(g);
+      item.classList.toggle('off');
+      if (focusId) exitFocus(); else applyVisibility();
+    };
+    legendEl.appendChild(item);
+  });
+  filterEl.onchange = () => {
+    hiddenGroups.clear();
+    document.querySelectorAll('.legend-item').forEach((el) => el.classList.remove('off'));
+    if (filterEl.value) {
+      groups.forEach((g, i) => {
+        if (g !== filterEl.value) {
+          hiddenGroups.add(g);
+          legendEl.children[i + 1].classList.add('off');
+        }
+      });
+    }
+    if (focusId) exitFocus(); else applyVisibility();
+  };
+
+  // ---------- 搜索 ----------
+  function match(n) {
+    return n.title.toLowerCase().includes(keyword) || n.id.toLowerCase().includes(keyword);
+  }
+  searchEl.addEventListener('input', () => {
+    keyword = searchEl.value.trim().toLowerCase();
+    refresh();
+  });
+  searchEl.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && keyword) {
+      const hit = Graph.graphData().nodes.find((n) => match(n)) || DATA.nodes.find((n) => match(n));
+      if (hit) {
+        if (hit.x !== undefined) { Graph.centerAt(hit.x, hit.y, 400); Graph.zoom(4, 600); }
+        hoverNode = hit; showTip(hit); refresh();
+        // 短暂停留后自动收起提示框，避免遮挡
+        setTimeout(() => { if (hoverNode === hit) hideTip(); }, 2600);
+      }
+    }
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (tip.style.display === 'block') {
+      tip.style.left = Math.min(e.clientX + 14, window.innerWidth - 300) + 'px';
+      tip.style.top = Math.min(e.clientY + 14, window.innerHeight - 110) + 'px';
+    }
+  });
+  // Esc 退出聚焦 / 清除路径 / 退出全屏
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (document.fullscreenElement) { document.exitFullscreen(); return; }
+      if (focusId) exitFocus();
+      if (pathNodes) { pathNodes = null; pathLinks = null; pathResult.textContent = ''; refresh(); }
+    }
+  });
+
+  // ---------- 全屏 ----------
+  const btnFullscreen = document.getElementById('btnFullscreen');
+  btnFullscreen.onclick = () => {
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    } else {
+      document.documentElement.requestFullscreen().catch(() => {
+        // iframe 内被浏览器策略拒绝时，退化为新标签页打开独立图谱页
+        window.open('/kg/index.html', '_blank');
+      });
+    }
+  };
+  document.addEventListener('fullscreenchange', () => {
+    const fs = !!document.fullscreenElement;
+    btnFullscreen.textContent = fs ? '⛶ 退出全屏' : '⛶ 全屏';
+    btnFullscreen.classList.toggle('active', fs);
+    // 全屏切换后容器尺寸变化，重算画布大小
+    syncSize();
+    setTimeout(() => Graph.zoomToFit(400, 60), 120);
+  });
+
+  // ---------- 尺寸跟随（窗口 resize / iframe 尺寸变化 / 全屏切换） ----------
+  const graphEl = document.getElementById('graph');
+  function syncSize() {
+    Graph.width(graphEl.clientWidth).height(graphEl.clientHeight);
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(() => syncSize()).observe(graphEl);
+  }
+  window.addEventListener('resize', syncSize);
+
+  // ---------- 阻止 UI 面板上的拖拽/滚轮穿透到画布 ----------
+  document.querySelectorAll('.toolbar, .panel, .legend').forEach((el) => {
+    ['pointerdown', 'mousedown', 'touchstart', 'wheel'].forEach((evt) =>
+      el.addEventListener(evt, (e) => e.stopPropagation(), { passive: true })
+    );
+  });
+
+  function cssVar(name) {
+    return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  }
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  }
+
+  applyVisibility();
+  Graph.d3Force('charge').strength(-120);
+  syncSize();
+  setTimeout(() => Graph.zoomToFit(800, 60), 600);
+})();
+</script>
+</body>
+</html>
