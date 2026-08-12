@@ -1,0 +1,130 @@
+---
+title: "Vibe Coding 高阶手册"
+description: "面向有基础工程师的 Vibe Coding 进阶指南：Loop 流程、FDE 框架、Skill 体系与 Kimi Code /tower 多 agent 实验"
+---
+
+> 在这之前，你应该已经掌握了相关的基础、中级知识。下面是**高阶部分**的分享。
+>
+> **0 基础起步？** 先看 → [用 AI 搭一个 HTML 网页（Win11 小白版）](/start-here/build-html-with-ai)
+
+## Loop 流程 —— 写给未来的 FDE 工程师 / AI 实习生
+
+不管任何 CLI 或 IDE，人类都需要对产出物以及上下文有着某一方向的掌控力。
+
+至少在以下方面之一有所基础：
+
+1. 主视觉
+2. 代码框架
+3. 需求实现 **技术逻辑**
+4. 对标竞品和差异
+5. 用户使用逻辑 **业务逻辑**
+6. 传统流程细节 **Know How**
+
+<Warning>
+如果纯 0 基础上去做，将会有**技术退化、品味降低、创造力萎缩**的风险。
+</Warning>
+
+---
+
+## FDE 框架与协作逻辑
+
+协作逻辑，这里不仅需要成熟的 GitHub 和 Gitee 等 Git 版本管理软件的基础，以及人和机器都看得懂的 Markdown 标记性文本的基础，协作的内容和信息同步形式有着重要的意义。
+
+### 这里有几个原则
+
+- 未来的文档 Readme 不仅是写给人看的，还是写给 AI 看的
+- 提示词的质量和框架模板仓的质量，直接决定了产物质量
+
+### 现代 FDE 开发逻辑
+
+- **Spec kit** 细分需求，给出明确的 PRD，并人工 Review 之后，再来相关协作开发
+- 认知上的敏锐，来自经验和长期人工 Review 的结果，AI 并不能很好地 Review
+- 可以通过 **superpower** 之类的标准开发来处理相关
+
+---
+
+## 开始打开你的 Kimi Code / Claude Code
+
+官方文档：
+
+- Claude Code 快速开始：https://docs.anthropic.com/en/docs/claude-code/getting-started
+- [Claude Code | Kimi Code 文档](https://www.kimi.com/code/docs/third-party-tools/claude-code.html)
+
+先安装这个，**再注入 Key** 就可以。
+
+![Kimi Code 配置流程](images/vibe-coding/01-kimi-code-config.png)
+*▲ 截图占位：Kimi Code 文档中关于配置流程的内容（左侧目录 / 右侧配置步骤）*
+
+然后按 **Win + R**，输入 `cmd` 打开终端。
+
+输入刚才安装的 `claude`，就开始**根据上面的文档进行配置**。
+
+---
+
+## Skill 部分
+
+先把 Claude Code 配置好 Kimi，然后是 Skill 部分。
+
+作者喜欢的几个 Skill 打包上传了仓库：
+
+```
+https://gitee.com/darrenpig/new_energy_coder_club/tree/SKill/
+```
+
+可以直接和 AI 说：
+
+> **拉取下载并本地配置 https://gitee.com/darrenpig/new_energy_coder_club/tree/SKill/ 这个仓库里的 Skill**
+
+然后可以看看这些 Skill 有没有什么自己能用的：[docs.newenergycoder.club/skills](/skills/index)
+
+![NEC Skill 技术库索引](images/vibe-coding/02-skill-library.png)
+*▲ 截图占位：文档站 Skill 技术库索引页面*
+
+很多都可以玩玩看，强烈推荐 **Feishu-CLI** 的 Skill。
+
+![专利申请 Skill 示例](images/vibe-coding/03-skill-patent.png)
+*▲ 截图占位：专利申请（中文）Skill 的介绍页面*
+
+以及一些摸鱼小工具：一键导出申请专利的结构、画图啥的……
+
+晚点还有实用的硬件部分，和安装生成网页、交互式界面……
+
+---
+
+## 🗼 Kimi Code 实验性功能：/tower
+
+**多个 agent 同时维护 1 个 repo，互不"打架"。**
+
+### 怎么理解
+
+> 想象一下 PM 找不同的人沟通事情。沟通时间、冲突情况都是不保证的，但沟通内容都是 team 内的事情。
+>
+> 内部有个塔台（tower）来分发任务、协调冲突、指定 reviewer、合并代码、清理残留。
+
+### 更多介绍
+
+- 知乎文章：[Vibe Coding 与多 agent 协作](https://zhuanlan.zhihu.com/p/2068765717583992104)
+- 求体验求拍砖，PR 在这 👉：[MoonshotAI/kimi-code#2633](https://github.com/MoonshotAI/kimi-code/pull/2633)
+
+### 如何体验
+
+**（1）安装运行**
+
+```bash
+pnpm dlx https://pkg.pr.new/@moonshot-ai/kimi-code@6275c7c
+```
+
+**（2）然后：**
+
+- `/tower` 命令 1
+- `/tower` 命令 2
+- …
+- 并发即为上限
+
+---
+
+## 相关链接
+
+- Claude Code | Kimi Code 配置：https://www.kimi.com/code/docs/third-party-tools/claude-code.html
+- NEC Skill 技术库：[/skills/index](/skills/index)
+- 飞书原文：[Vibe coding 高阶手册](https://newenergycoderclub.feishu.cn/wiki/ODiLwfa0Ai2PizkCK2zccXgInUh)
