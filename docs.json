@@ -195,7 +195,8 @@
             "group": "解决方案",
             "icon": "feather",
             "pages": [
-              "solutions/feishu/index"
+              "solutions/feishu/index",
+              "solutions/liblibai-2-0"
             ]
           }
         ]
