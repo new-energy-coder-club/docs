@@ -49,7 +49,7 @@ mint dev
    - CURC 2027：总览 `index` 置顶 → 新人学习区 `onboarding` → 机构 SIG（机械+电控）→ 视觉 SIG（视觉+硬件）→ 运营 SIG；内容同步自 Gitee `feat/curc2027-onboarding` 分支 `competitions/CURC2027ROBOCON`
 4. **社区**
    - 关于我们：关于 → 报名流程 → 加入合集 → NEC+ → Skill 分支 → 赞助
-   - 社区与活动：社区 → A416 实验室 → 项目 → 导师 → Discord → 故事
+   - 社区与活动：社区 → A416 实验室 → 项目 → 导师 → Discord → 推荐群聊 → 故事
    - 治理与安全：GOVERNANCE → CODE_OF_CONDUCT → SUPPORT → SECURITY
    - 财务公开：财务整理总览 `community/finance-overview-2026-07-25`（xlsx 原文全表转录，原始文件托管 R2 CDN `files/finance/`）
    - 核心团队：团队总览 → 维护者名单
