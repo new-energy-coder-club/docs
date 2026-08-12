@@ -30,3 +30,10 @@ __pycache__/
 # OS
 .DS_Store
 Thumbs.db
+
+# 本地工具配置（含个人偏好/凭证，不入库）
+.claude/
+
+# 飞书克隆 / 导出工作区（含 R2 凭证脚本与运行产物，严禁提交）
+.clone-*/
+.feishu-mdx-export/
