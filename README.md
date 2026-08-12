@@ -80,6 +80,7 @@ python tools/ci/check_docs.py
 ├── curc26/                   # CURC 2026 赛季文档
 ├── community/                # 社区介绍与治理
 ├── contributing/             # 贡献指南
+├── solutions/                # 外部解决方案（飞书、LiblibAI 等）
 ├── wiki/                     # 飞书 Wiki 导出快照（新人/社区/资源类沉淀）
 └── tools/ci/                 # CI 检查脚本
 ```
@@ -87,6 +88,7 @@ python tools/ci/check_docs.py
 ## 内容来源与导入
 
 - `wiki/` 与部分专题文档（如 `mechanical/lumenpnp/`）来自飞书 Wiki，可通过仓库内的 `.kimi/skills/feishu-to-nec-mdx/` Skill 从飞书增量导入并自动转换为带 frontmatter 的 MDX。
+- 单篇飞书文档需要**在飞书内部克隆备份**（不动 MDX）时，用 `.kimi/skills/feishu-doc-clone/`：正文逐块搬运，图片下载后传 Cloudflare R2 再改写成 CDN 链接，断点续跑。
 - 大文件（PDF、压缩包、视频等）托管于 Cloudflare R2 CDN（`https://cdn.newenergycoder.club`），页面只引用 CDN 链接，不入 Git 仓库。
 - 旧 Wiki URL 已通过 `docs.json` 的 `redirects` 自动跳转。
 
