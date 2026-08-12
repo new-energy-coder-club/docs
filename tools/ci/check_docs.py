@@ -83,6 +83,10 @@ EXTERNAL_LINK_ALLOWLIST = {
     "www.rt-thread.io",
     "www.yahboom.com",
     "cdn.newenergycoder.club",
+    # 飞书内部 API 签名下载链接：导出后签名过期必然 400，属预期
+    "internal-api-drive-stream.feishu.cn",
+    # npm 对非浏览器 UA 固定返回 403（反爬），真实用户访问正常
+    "www.npmjs.com",
 }
 
 
