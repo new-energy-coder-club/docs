@@ -56,6 +56,7 @@
             "icon": "graduation-cap",
             "pages": [
               "start-here/newcomer-guide",
+              "start-here/build-html-with-ai",
               "start-here/curc2027-onboarding",
               "start-here/2027-summer-camp",
               "start-here/first-good-issue"
@@ -188,6 +189,13 @@
               "templates/competition-template",
               "templates/weekly-report-template"
             ]
+          },
+          {
+            "group": "解决方案",
+            "icon": "feather",
+            "pages": [
+              "solutions/feishu/index"
+            ]
           }
         ]
       },
@@ -271,6 +279,7 @@
               "community/projects",
               "community/mentors",
               "community/discord",
+              "community/recommended-groups",
               "community/story"
             ]
           },
@@ -316,7 +325,8 @@
             "icon": "book-open",
             "pages": [
               "wiki/nec-wiki-home",
-              "wiki/important-docs"
+              "wiki/important-docs",
+              "wiki/knowledge-graph"
             ]
           },
           {
