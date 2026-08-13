@@ -272,7 +272,7 @@ html.dark [role="complementary"] a[aria-selected="true"],
 html.dark [role="complementary"] [class*="active"]:is(a, span),
 html.dark [role="complementary"] [class*="current"]:is(a, span) {
   color: var(--text-primary) !important;
-  border-left-color: var(--text-link) !important;
+  border-left-color: var(--mck-primary) !important;
   font-weight: 400 !important;
 }
 
@@ -797,7 +797,7 @@ html.dark #navigation-items a[class*="text-primary"] {
   color: var(--text-primary) !important;
   text-shadow: none !important;
   border-radius: var(--radius-md) !important;
-  border-left: 2px solid var(--text-link) !important;
+  border-left: 2px solid var(--mck-primary) !important;
 }
 
 /* Active sidebar item hover: stay neutral */
