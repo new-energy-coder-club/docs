@@ -331,10 +331,6 @@ a[class*="primary"]{
   border: none;
   font-weight: 600;
 }
-button[class*="primary"]:hover,
-a[class*="primary"]:hover{
-  background-color: var(--mck-primary-soft);
-}
 /* Code blocks */
 pre{
   background-color: var(--bg-code);
