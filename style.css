@@ -1285,3 +1285,37 @@ html.dark .card-group:hover {
   border: none;
   transform: none;
 }
+
+/* =========================================================
+   P2: 状态切换过渡统一 + 窄屏适配
+   ========================================================= */
+
+/* ① 侧边栏激活左条：颜色/出现加 0.2s 过渡，与导航 hover、TOC 激活条节奏统一 */
+#navigation-items a,
+html.dark #navigation-items a {
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+/* ② 窄屏（< lg）header 降级：隐藏顶部 Tab 行，避免与 logo/搜索/CTA 在一行挤压溢出；
+      移动端导航由汉堡菜单接管。lg~xl 的隐藏外链项规则（见上）不受影响 */
+@media (max-width: 1023px) {
+  #navbar [class*="h-12"],
+  html.dark #navbar [class*="h-12"] {
+    display: none;
+  }
+}
+
+/* ③ 跑马灯触屏适配：窄屏/触屏无 hover，改为可横向滑动查看，仍保留桌面悬停暂停 */
+@media (max-width: 1023px), (hover: none) {
+  .photo-marquee,
+  html.dark .photo-marquee {
+    overflow-x: auto;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+  .photo-marquee .photo-marquee-track,
+  html.dark .photo-marquee .photo-marquee-track {
+    animation: none;   /* 关闭自动滚动，交由用户手势控制 */
+  }
+}
+
