@@ -7,7 +7,7 @@ icon: "diagram-project"
 本页把文档站 **全部已注册页面之间的互链关系**渲染成一张可交互的力导向图，帮助新人快速建立全站结构认知，也方便维护者发现「孤岛页面」和链接断档。
 
 <iframe
-  src="/kg/index.html"
+  src="https://cdn.newenergycoder.club/kg/index.html"
   style={{ width: "100%", height: "680px", border: "1px solid var(--border, #30363d)", borderRadius: "12px" }}
   title="NEC 文档知识图谱"
   allowFullScreen
@@ -39,7 +39,14 @@ icon: "diagram-project"
 python tools/kg/build_graph.py
 ```
 
-脚本读取 `docs.json` 导航中注册的所有页面，解析 Markdown 链接与 MDX `href` 中的站内跳转，输出 `kg/graph-data.js`（`window.NEC_GRAPH` 全局变量，force-graph 兼容格式）。页面结构变化后重新运行即可，图谱页会自动加载最新数据。
+脚本读取 `docs.json` 导航中注册的所有页面，解析 Markdown 链接与 MDX `href` 中的站内跳转，输出 `kg/graph-data.js`（`window.NEC_GRAPH` 全局变量，force-graph 兼容格式）。
+
+**托管方式**：Mintlify 生产环境不服务根级静态目录，图谱页与数据经 R2 CDN（`cdn.newenergycoder.club/kg/`）对外提供。修改 `kg/index.html` 或重新生成 `graph-data.js` 后，需上传 CDN 才会在线上生效：
+
+```bash
+wrangler r2 object put "docs/kg/index.html" --file "kg/index.html" --content-type "text/html; charset=utf-8" --remote
+wrangler r2 object put "docs/kg/graph-data.js" --file "kg/graph-data.js" --content-type "application/javascript; charset=utf-8" --remote
+```
 
 <Info>
   当前图谱基于「页面互链」构建。后续计划接入 [Basic Memory](https://github.com/basicmachines-co/basic-memory) 笔记双链与 [Graphiti](https://github.com/getzep/graphiti) 抽取的实体关系，升级为概念级知识图谱——接入方式见首页「知识图谱构建」板块。

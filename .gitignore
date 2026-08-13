@@ -37,3 +37,6 @@ Thumbs.db
 # 飞书克隆 / 导出工作区（含 R2 凭证脚本与运行产物，严禁提交）
 .clone-*/
 .feishu-mdx-export/
+
+# Wrangler 本地状态与缓存（R2 上传时产生）
+.wrangler/

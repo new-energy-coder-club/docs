@@ -8,3 +8,7 @@ drafts/
 
 # Agent skill 目录（非站点内容，避免 Mintlify 解析 SKILL.md 产生告警）
 .kimi/
+
+# 知识图谱交互页源码：经 R2 CDN（cdn.newenergycoder.club/kg/）对外提供，
+# Mintlify 不托管根级静态目录，避免误解析
+kg/
