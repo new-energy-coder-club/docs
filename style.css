@@ -38,110 +38,77 @@
   --radius-lg: 8px;
   --radius-xl: 12px;
 }
-
 /* Force dark palette */
-html,
-html.dark {
+html{
   color-scheme: dark;
 }
-
-body,
-html.dark body {
+body{
   background-color: var(--bg-page);
   color: var(--text-secondary);
   font-size: 15px;
   line-height: 1.75;
 }
-
 /* Global background */
 #content-wrapper,
-main,
-html.dark #content-wrapper,
-html.dark main {
+main{
   background-color: var(--bg-page);
 }
-
 /* Content area max-width for readability */
 #content-wrapper > main,
-#content-wrapper > div,
-html.dark #content-wrapper > main,
-html.dark #content-wrapper > div {
+#content-wrapper > div{
   max-width: 860px;
   margin-left: auto;
   margin-right: auto;
 }
-
 /* Navbar */
-#navbar,
-html.dark #navbar {
+#navbar{
   background-color: rgba(13, 17, 23, 0.95);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-default);
   height: 56px;
 }
-
-/* Navbar links & tabs: readable size, clear active state */
+/* Navbar links & tabs: readable size,
+clear active state */
 #navbar a,
-#navbar button,
-html.dark #navbar a,
-html.dark #navbar button {
+#navbar button{
   font-size: 14px;
   font-weight: 500;
   color: var(--text-secondary);
   transition: color 0.2s;
 }
-
 #navbar a:hover,
-#navbar button:hover,
-html.dark #navbar a:hover,
-html.dark #navbar button:hover {
+#navbar button:hover{
   color: var(--text-primary);
 }
-
 /* Active top tab: bright text + primary underline indicator */
 #navbar [aria-current],
 #navbar a[data-active="true"],
-#navbar a[aria-selected="true"],
-html.dark #navbar [aria-current],
-html.dark #navbar a[data-active="true"],
-html.dark #navbar a[aria-selected="true"] {
+#navbar a[aria-selected="true"]{
   color: var(--text-primary) !important;
   font-weight: 600;
   box-shadow: inset 0 -2px 0 var(--mck-primary);
 }
-
 /* Navbar primary CTA button: keep McKinsey blue pill */
 #navbar a[class*="primary"],
-#navbar button[class*="primary"],
-html.dark #navbar a[class*="primary"],
-html.dark #navbar button[class*="primary"] {
+#navbar button[class*="primary"]{
   color: #ffffff !important;
   border-radius: var(--radius-md);
   box-shadow: none;
 }
-
-
 /* Right-side TOC */
 .toc,
 [class*="toc"],
-[role="complementary"],
-html.dark .toc,
-html.dark [class*="toc"],
-html.dark [role="complementary"] {
+[role="complementary"]{
   background-color: transparent !important;
   border-left: 1px solid var(--border-default);
   font-size: 12px;
   line-height: 1.6;
   width: 200px;
 }
-
 /* TOC title */
 .toc-title,
 [class*="toc"] > div:first-child,
-[role="complementary"] > div:first-child,
-html.dark .toc-title,
-html.dark [class*="toc"] > div:first-child,
-html.dark [role="complementary"] > div:first-child {
+[role="complementary"] > div:first-child{
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
@@ -149,31 +116,23 @@ html.dark [role="complementary"] > div:first-child {
   color: var(--text-tertiary);
   margin-bottom: var(--space-3);
 }
-
 /* TOC items */
 .toc a,
 [class*="toc"] a,
-[role="complementary"] a,
-html.dark .toc a,
-html.dark [class*="toc"] a,
-html.dark [role="complementary"] a {
+[role="complementary"] a{
   color: var(--text-secondary);
   padding: var(--space-1) 0 var(--space-1) var(--space-3);
   border-left: 2px solid var(--border-subtle);
   transition: color 0.2s, border-color 0.2s;
 }
-
 .toc a:hover,
 [class*="toc"] a:hover,
-[role="complementary"] a:hover,
-html.dark .toc a:hover,
-html.dark [class*="toc"] a:hover,
-html.dark [role="complementary"] a:hover {
+[role="complementary"] a:hover{
   color: var(--text-primary);
   border-left-color: var(--text-tertiary);
 }
-
-/* Active TOC item - kill solid button look, keep only left indicator */
+/* Active TOC item - kill solid button look,
+keep only left indicator */
 .toc [aria-current],
 .toc [aria-current] *,
 .toc a[data-active="true"],
@@ -203,86 +162,48 @@ html.dark [role="complementary"] a:hover {
 [role="complementary"] [class*="active"],
 [role="complementary"] [class*="active"] *,
 [role="complementary"] [class*="current"],
-[role="complementary"] [class*="current"] *,
-html.dark .toc [aria-current],
-html.dark .toc [aria-current] *,
-html.dark .toc a[data-active="true"],
-html.dark .toc a[data-active="true"] *,
-html.dark .toc a[aria-selected="true"],
-html.dark .toc a[aria-selected="true"] *,
-html.dark .toc [class*="active"],
-html.dark .toc [class*="active"] *,
-html.dark .toc [class*="current"],
-html.dark .toc [class*="current"] *,
-html.dark [class*="toc"] [aria-current],
-html.dark [class*="toc"] [aria-current] *,
-html.dark [class*="toc"] a[data-active="true"],
-html.dark [class*="toc"] a[data-active="true"] *,
-html.dark [class*="toc"] a[aria-selected="true"],
-html.dark [class*="toc"] a[aria-selected="true"] *,
-html.dark [class*="toc"] [class*="active"],
-html.dark [class*="toc"] [class*="active"] *,
-html.dark [class*="toc"] [class*="current"],
-html.dark [class*="toc"] [class*="current"] *,
-html.dark [role="complementary"] [aria-current],
-html.dark [role="complementary"] [aria-current] *,
-html.dark [role="complementary"] a[data-active="true"],
-html.dark [role="complementary"] a[data-active="true"] *,
-html.dark [role="complementary"] a[aria-selected="true"],
-html.dark [role="complementary"] a[aria-selected="true"] *,
-html.dark [role="complementary"] [class*="active"],
-html.dark [role="complementary"] [class*="active"] *,
-html.dark [role="complementary"] [class*="current"],
-html.dark [role="complementary"] [class*="current"] * {
+[role="complementary"] [class*="current"] *{
   background-color: transparent !important;
   background-image: none !important;
   box-shadow: none !important;
   border-radius: 0 !important;
 }
-
 /* Active TOC link text color and left indicator */
 .toc [aria-current],
 .toc a[data-active="true"],
 .toc a[aria-selected="true"],
-.toc [class*="active"]:is(a, span),
-.toc [class*="current"]:is(a, span),
+.toc [class*="active"]:is(a,
+span),
+.toc [class*="current"]:is(a,
+span),
 [class*="toc"] [aria-current],
 [class*="toc"] a[data-active="true"],
 [class*="toc"] a[aria-selected="true"],
-[class*="toc"] [class*="active"]:is(a, span),
-[class*="toc"] [class*="current"]:is(a, span),
+[class*="toc"] [class*="active"]:is(a,
+span),
+[class*="toc"] [class*="current"]:is(a,
+span),
 [role="complementary"] [aria-current],
 [role="complementary"] a[data-active="true"],
 [role="complementary"] a[aria-selected="true"],
-[role="complementary"] [class*="active"]:is(a, span),
-[role="complementary"] [class*="current"]:is(a, span),
-html.dark .toc [aria-current],
-html.dark .toc a[data-active="true"],
-html.dark .toc a[aria-selected="true"],
-html.dark .toc [class*="active"]:is(a, span),
-html.dark .toc [class*="current"]:is(a, span),
-html.dark [class*="toc"] [aria-current],
-html.dark [class*="toc"] a[data-active="true"],
-html.dark [class*="toc"] a[aria-selected="true"],
-html.dark [class*="toc"] [class*="active"]:is(a, span),
-html.dark [class*="toc"] [class*="current"]:is(a, span),
-html.dark [role="complementary"] [aria-current],
-html.dark [role="complementary"] a[data-active="true"],
-html.dark [role="complementary"] a[aria-selected="true"],
-html.dark [role="complementary"] [class*="active"]:is(a, span),
-html.dark [role="complementary"] [class*="current"]:is(a, span) {
+[role="complementary"] [class*="active"]:is(a,
+span),
+[role="complementary"] [class*="current"]:is(a,
+span),
+span),
+span),
+span),
+span),
+span),
+span){
   color: var(--text-primary) !important;
   border-left-color: var(--mck-primary) !important;
   font-weight: 400 !important;
 }
-
 /* Cards (Mintlify uses lowercase .card class) */
 .mint-card,
 [class*="Card"],
-[class*="card"],
-html.dark .mint-card,
-html.dark [class*="Card"],
-html.dark [class*="card"] {
+[class*="card"]{
   background-color: var(--bg-surface);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-lg);
@@ -290,45 +211,33 @@ html.dark [class*="card"] {
   box-shadow: none;
   transition: border-color 0.2s, transform 0.2s;
 }
-
 .mint-card:hover,
 [class*="Card"]:hover,
-[class*="card"]:hover,
-html.dark .mint-card:hover,
-html.dark [class*="Card"]:hover,
-html.dark [class*="card"]:hover {
+[class*="card"]:hover{
   border-color: var(--mck-primary);
   transform: translateY(-1px);
 }
-
-/* Card icons - outline style, McKinsey blue */
+/* Card icons - outline style,
+McKinsey blue */
 [class*="Card"] svg,
-[class*="Card"] [class*="icon"],
-html.dark [class*="Card"] svg,
-html.dark [class*="Card"] [class*="icon"] {
+[class*="Card"] [class*="icon"]{
   width: 32px;
   height: 32px;
   color: var(--mck-primary);
   stroke-width: 1.5;
   margin-bottom: var(--space-3);
 }
-
 /* Card titles */
 [class*="Card"] h3,
-[class*="Card"] [class*="title"],
-html.dark [class*="Card"] h3,
-html.dark [class*="Card"] [class*="title"] {
+[class*="Card"] [class*="title"]{
   font-size: 16px;
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: var(--space-1);
 }
-
 /* Card headings rendered as h2/h3 must not inherit global heading styles */
 [class*="Card"] h2,
-[class*="card"] h2,
-html.dark [class*="Card"] h2,
-html.dark [class*="card"] h2 {
+[class*="card"] h2{
   font-size: 16px;
   font-weight: 600;
   color: var(--text-primary);
@@ -337,20 +246,20 @@ html.dark [class*="card"] h2 {
   margin-top: 0;
   margin-bottom: var(--space-1);
 }
-
 /* Card descriptions */
 [class*="Card"] p,
-[class*="Card"] [class*="description"],
-html.dark [class*="Card"] p,
-html.dark [class*="Card"] [class*="description"] {
+[class*="Card"] [class*="description"]{
   font-size: 13px;
   color: var(--text-secondary);
   line-height: 1.5;
 }
-
 /* Headings */
-h1, h2, h3, h4, h5, h6,
-html.dark h1, html.dark h2, html.dark h3, html.dark h4, html.dark h5, html.dark h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
   color: var(--text-primary);
   line-height: 1.3;
 }
@@ -377,91 +286,64 @@ h3 {
   margin-top: var(--space-6);
   margin-bottom: var(--space-3);
 }
-
 /* Paragraphs */
-p,
-html.dark p {
+p{
   color: var(--text-secondary);
   font-size: 15px;
   line-height: 1.75;
   margin-bottom: var(--space-4);
   max-width: 640px;
 }
-
 /* Lists */
-li,
-html.dark li {
+li{
   color: var(--text-secondary);
   font-size: 15px;
   padding: 3px 0;
 }
-
-li strong,
-html.dark li strong {
+li strong{
   color: var(--text-primary);
   font-weight: 500;
 }
-
 /* Links */
-a,
-html.dark a {
+a{
   color: var(--text-link);
 }
-
-a:hover,
-html.dark a:hover {
+a:hover{
   color: var(--mck-accent);
 }
-
 /* Keyboard focus: visible outline for accessibility */
 a:focus-visible,
 button:focus-visible,
-[tabindex]:focus-visible,
-html.dark a:focus-visible,
-html.dark button:focus-visible,
-html.dark [tabindex]:focus-visible {
+[tabindex]:focus-visible{
   outline: 2px solid var(--text-link);
   outline-offset: 2px;
   border-radius: var(--radius-sm);
 }
-
 /* Buttons */
 button,
-a.button,
-html.dark button,
-html.dark a.button {
+a.button{
   border-radius: var(--radius-md);
 }
-
 button[class*="primary"],
-a[class*="primary"],
-html.dark button[class*="primary"],
-html.dark a[class*="primary"] {
+a[class*="primary"]{
   background-color: var(--mck-primary);
   color: #ffffff;
   border: none;
   font-weight: 600;
 }
-
 button[class*="primary"]:hover,
-a[class*="primary"]:hover,
-html.dark button[class*="primary"]:hover,
-html.dark a[class*="primary"]:hover {
+a[class*="primary"]:hover{
   background-color: var(--mck-primary-soft);
 }
-
 /* Code blocks */
-pre,
-html.dark pre {
+pre{
   background-color: var(--bg-code);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-lg);
   font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
 }
-
 /* Inline code / command pills */
-:not(pre) > code,
-html.dark :not(pre) > code {
+:not(pre) > code{
   background-color: var(--bg-elevated);
   color: var(--text-link);
   padding: 3px 8px;
@@ -470,99 +352,74 @@ html.dark :not(pre) > code {
   font-size: 12px;
   font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
 }
-
 /* Tables */
-table,
-html.dark table {
+table{
   background-color: var(--bg-surface);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-lg);
   overflow: hidden;
   font-size: 13px;
 }
-
-th,
-html.dark th {
+th{
   background-color: var(--bg-elevated);
   color: var(--text-primary);
   font-weight: 600;
   padding: var(--space-3) var(--space-4);
 }
-
-td,
-html.dark td {
+td{
   color: var(--text-secondary);
   border-bottom: 1px solid var(--border-default);
   padding: var(--space-3) var(--space-4);
 }
-
 /* Footer */
-footer,
-html.dark footer {
+footer{
   background-color: var(--bg-page);
   border-top: 1px solid var(--border-default);
 }
-
 /* Steps component */
-.mint-step-icon,
-html.dark .mint-step-icon {
+.mint-step-icon{
   background-color: var(--mck-primary);
   color: #ffffff;
 }
-
 /* Status / success accents */
-.mint-status-success,
-html.dark .mint-status-success {
+.mint-status-success{
   color: #3fb950;
 }
-
 /* Selection highlight */
-::selection,
-html.dark ::selection {
+::selection{
   background-color: rgba(0, 102, 255, 0.25);
   color: var(--text-primary);
 }
-
 /* Hide empty TOC */
 .toc:empty,
-[class*="toc"]:empty,
-html.dark .toc:empty,
-html.dark [class*="toc"]:empty {
+[class*="toc"]:empty{
   display: none;
 }
 
 /* ==================================================}
-
 /* =========================================================
    Homepage enhancements
    ========================================================= */
 
-/* Hero stats badges: centered, surface background, subtle border */
-.hero-stats,
-html.dark .hero-stats {
+/* Hero stats badges: centered,
+surface background,
+subtle border */
+.hero-stats{
   margin-top: 24px;
   margin-bottom: 8px;
 }
-
 .hero-stats [class*="Card"],
-.hero-stats [class*="card"],
-html.dark .hero-stats [class*="Card"],
-html.dark .hero-stats [class*="card"] {
+.hero-stats [class*="card"]{
   align-items: center;
   text-align: center;
   background-color: var(--bg-surface);
   border: 1px solid var(--border-default);
   padding: 20px 16px;
 }
-
 .hero-stats [class*="Card"] h2,
 .hero-stats [class*="card"] h2,
 .hero-stats [class*="Card"] [class*="title"],
-.hero-stats [class*="card"] [class*="title"],
-html.dark .hero-stats [class*="Card"] h2,
-html.dark .hero-stats [class*="card"] h2,
-html.dark .hero-stats [class*="Card"] [class*="title"],
-html.dark .hero-stats [class*="card"] [class*="title"] {
+.hero-stats [class*="card"] [class*="title"]{
   font-size: 28px;
   font-weight: 700;
   color: var(--mck-primary);
@@ -571,32 +428,24 @@ html.dark .hero-stats [class*="card"] [class*="title"] {
   padding-bottom: 0;
   max-width: none;
 }
-
 .hero-stats [class*="Card"] p,
-.hero-stats [class*="card"] p,
-html.dark .hero-stats [class*="Card"] p,
-html.dark .hero-stats [class*="card"] p {
+.hero-stats [class*="card"] p{
   margin: 0 auto;
   color: var(--text-secondary);
   font-size: 13px;
   text-align: center;
 }
-
 /* Button group spacing */
 .mint-button-group,
-html.dark .mint-button-group,
-[class*="ButtonGroup"] {
+[class*="ButtonGroup"]{
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
   margin: 20px 0 8px;
 }
-
 /* Primary button: McKinsey blue */
 button[class*="primary"],
-a[class*="primary"],
-html.dark button[class*="primary"],
-html.dark a[class*="primary"] {
+a[class*="primary"]{
   background-color: var(--mck-primary);
   color: #ffffff;
   border: 1px solid var(--mck-primary);
@@ -604,20 +453,14 @@ html.dark a[class*="primary"] {
   padding: 10px 18px;
   border-radius: var(--radius-md);
 }
-
 button[class*="primary"]:hover,
-a[class*="primary"]:hover,
-html.dark button[class*="primary"]:hover,
-html.dark a[class*="primary"]:hover {
+a[class*="primary"]:hover{
   background-color: var(--mck-primary-soft);
   border-color: var(--mck-primary-soft);
 }
-
 /* Secondary button: outlined */
 button[class*="secondary"],
-a[class*="secondary"],
-html.dark button[class*="secondary"],
-html.dark a[class*="secondary"] {
+a[class*="secondary"]{
   background-color: transparent;
   color: var(--text-primary);
   border: 1px solid var(--border-default);
@@ -625,72 +468,50 @@ html.dark a[class*="secondary"] {
   padding: 10px 18px;
   border-radius: var(--radius-md);
 }
-
 button[class*="secondary"]:hover,
-a[class*="secondary"]:hover,
-html.dark button[class*="secondary"]:hover,
-html.dark a[class*="secondary"]:hover {
+a[class*="secondary"]:hover{
   border-color: var(--mck-primary);
   color: var(--mck-primary);
 }
-
 /* Card hover lift and border glow */
 [class*="Card"],
-[class*="card"],
-html.dark [class*="Card"],
-html.dark [class*="card"] {
+[class*="card"]{
   border: 1px solid var(--border-default);
   transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
-
 [class*="Card"]:hover,
-[class*="card"]:hover,
-html.dark [class*="Card"]:hover,
-html.dark [class*="card"]:hover {
+[class*="card"]:hover{
   border-color: var(--mck-primary);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(0, 102, 255, 0.08);
 }
-
 /* Inline links inside cards should remain readable */
-[class*="Card"] a,
-html.dark [class*="Card"] a {
+[class*="Card"] a{
   color: var(--text-link);
 }
-
 /* Reduce right TOC noise on homepage by making items more compact */
 .toc a,
-[class*="toc"] a,
-html.dark .toc a,
-html.dark [class*="toc"] a {
+[class*="toc"] a{
   font-size: 12px;
   padding: 3px 0 3px 10px;
 }
-
 /* Homepage section spacing */
-#content-wrapper h2,
-html.dark #content-wrapper h2 {
+#content-wrapper h2{
   margin-top: 48px;
 }
-
-#content-wrapper h2:first-of-type,
-html.dark #content-wrapper h2:first-of-type {
+#content-wrapper h2:first-of-type{
   margin-top: 32px;
 }
-
 /* =========================================================
    GSAP-style homepage hero
    ========================================================= */
 
 /* Centered hero section on homepage */
-.hero-gsap,
-html.dark .hero-gsap {
+.hero-gsap{
   text-align: center;
   padding: 24px 24px 12px;
 }
-
-.hero-gsap .hero-tagline,
-html.dark .hero-gsap .hero-tagline {
+.hero-gsap .hero-tagline{
   display: block;
   text-align: center;
   color: var(--mck-accent);
@@ -705,15 +526,11 @@ html.dark .hero-gsap .hero-tagline::before {
   content: "{ ";
   color: var(--mck-primary);
 }
-
-.hero-gsap .hero-tagline::after,
-html.dark .hero-gsap .hero-tagline::after {
+.hero-gsap .hero-tagline::after{
   content: " }";
   color: var(--mck-primary);
 }
-
-.hero-gsap h1,
-html.dark .hero-gsap h1 {
+.hero-gsap h1{
   font-size: clamp(40px, 8vw, 96px);
   font-weight: 800;
   letter-spacing: -0.04em;
@@ -722,75 +539,58 @@ html.dark .hero-gsap h1 {
   margin: 0 auto 16px;
   max-width: 900px;
 }
-
-.hero-gsap .hero-subtitle,
-html.dark .hero-gsap .hero-subtitle {
+.hero-gsap .hero-subtitle{
   font-size: 18px;
   color: #adbac7;
   max-width: 640px;
   margin: 0 auto 20px;
   line-height: 1.6;
 }
-
 /* Hero CTA: larger primary button */
-.hero-cta,
-html.dark .hero-cta {
+.hero-cta{
   justify-content: center;
   margin: 4px 0 16px;
 }
-
 .hero-cta button,
-.hero-cta a,
-html.dark .hero-cta button,
-html.dark .hero-cta a {
+.hero-cta a{
   padding: 14px 32px;
   font-size: 16px;
   font-weight: 600;
   border-radius: 999px;
 }
-
 /* Make hero banner blend with dark background */
-.hero-banner-img,
-html.dark .hero-banner-img {
+.hero-banner-img{
   display: block;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto 24px;
   border-radius: var(--radius-xl);
 }
-
 /* =========================================================
    Sidebar real DOM fixes (Mintlify renders #sidebar divs,
-   not <aside class="sidebar"> — selectors above are legacy)
+not <aside class="sidebar"> — selectors above are legacy)
    ========================================================= */
 
 /* Sidebar container */
-#sidebar,
-html.dark #sidebar {
+#sidebar{
   background-color: var(--bg-page);
   border-right: 1px solid var(--border-default);
 }
-
 /* Sidebar links: readable size and color */
-#navigation-items a,
-html.dark #navigation-items a {
+#navigation-items a{
   font-size: 13px;
   color: var(--text-secondary);
   border-radius: var(--radius-md);
   transition: background-color 0.2s, color 0.2s;
 }
-
-#navigation-items a:hover,
-html.dark #navigation-items a:hover {
+#navigation-items a:hover{
   color: var(--text-primary);
   background-color: var(--bg-elevated);
 }
-
-/* Active sidebar item: kill the solid primary pill, keep a left indicator */
+/* Active sidebar item: kill the solid primary pill,
+keep a left indicator */
 #navigation-items a[class*="bg-primary"],
-#navigation-items a[class*="text-primary"],
-html.dark #navigation-items a[class*="bg-primary"],
-html.dark #navigation-items a[class*="text-primary"] {
+#navigation-items a[class*="text-primary"]{
   background-color: transparent !important;
   background-image: none !important;
   box-shadow: none !important;
@@ -799,32 +599,17 @@ html.dark #navigation-items a[class*="text-primary"] {
   border-radius: var(--radius-md) !important;
   border-left: 2px solid var(--mck-primary) !important;
 }
-
 /* Active sidebar item hover: stay neutral */
-#navigation-items a[class*="bg-primary"]:hover,
-html.dark #navigation-items a[class*="bg-primary"]:hover {
+#navigation-items a[class*="bg-primary"]:hover{
   background-color: var(--bg-elevated) !important;
   color: var(--text-primary) !important;
 }
-
-/* Navbar logo: constrain the replaced NEC logo */
-#navbar img,
-header img,
-html.dark #navbar img,
-html.dark header img {
-  max-height: 28px;
-  width: auto;
-  max-width: 180px;
-  object-fit: contain;
-}
-
 /* =========================================================
    Floating share QR widget
    ========================================================= */
 
 /* Fixed bottom-right container */
-.share-qr-widget,
-html.dark .share-qr-widget {
+.share-qr-widget{
   position: fixed;
   right: 24px;
   bottom: 24px;
@@ -833,10 +618,8 @@ html.dark .share-qr-widget {
   flex-direction: column;
   align-items: flex-end;
 }
-
 /* QR panel: hidden until hover / focus */
-.share-qr-panel,
-html.dark .share-qr-panel {
+.share-qr-panel{
   opacity: 0;
   visibility: hidden;
   transform: translateY(8px);
@@ -849,37 +632,28 @@ html.dark .share-qr-panel {
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
   text-align: center;
 }
-
 .share-qr-widget:hover .share-qr-panel,
-.share-qr-widget:focus-within .share-qr-panel,
-html.dark .share-qr-widget:hover .share-qr-panel,
-html.dark .share-qr-widget:focus-within .share-qr-panel {
+.share-qr-widget:focus-within .share-qr-panel{
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
-
-.share-qr-panel img,
-html.dark .share-qr-panel img {
+.share-qr-panel img{
   display: block;
   width: 148px;
   height: 148px;
   border-radius: var(--radius-md);
   background-color: #ffffff;
 }
-
-.share-qr-tip,
-html.dark .share-qr-tip {
+.share-qr-tip{
   display: block;
   margin-top: 8px;
   font-size: 12px;
   color: var(--text-secondary);
   white-space: nowrap;
 }
-
 /* Floating action button */
-.share-qr-fab,
-html.dark .share-qr-fab {
+.share-qr-fab{
   display: flex;
   align-items: center;
   gap: 6px;
@@ -894,60 +668,47 @@ html.dark .share-qr-fab {
   transition: background-color 0.2s ease, transform 0.2s ease;
   outline: none;
 }
-
 .share-qr-fab:hover,
-.share-qr-fab:focus-visible,
-html.dark .share-qr-fab:hover,
-html.dark .share-qr-fab:focus-visible {
+.share-qr-fab:focus-visible{
   background-color: var(--mck-primary-soft);
   transform: translateY(-1px);
 }
-
-.share-qr-fab svg,
-html.dark .share-qr-fab svg {
+.share-qr-fab svg{
   width: 16px;
   height: 16px;
 }
 
 /* Do not print the floating widget */
-@media print {
-  .share-qr-widget,
-  html.dark .share-qr-widget {
+@media print {.share-qr-widget{
     display: none;
   }
 }
-
 /* =========================================================
    Homepage scrolling photo marquee
    ========================================================= */
 
-/* Outer viewport: clip the track, rounded frame */
-.photo-marquee,
-html.dark .photo-marquee {
+/* Outer viewport: clip the track,
+rounded frame */
+.photo-marquee{
   overflow: hidden;
   border-radius: var(--radius-xl);
   margin: 0.75rem 0 1.25rem;
   border: 1px solid var(--border-subtle);
   background-color: var(--bg-surface);
 }
-
 /* Sliding track: two identical photo sets side by side */
-.photo-marquee .photo-marquee-track,
-html.dark .photo-marquee .photo-marquee-track {
+.photo-marquee .photo-marquee-track{
   display: flex;
   width: max-content;
   animation: photo-marquee-scroll 36s linear infinite;
 }
-
 /* Pause on hover so visitors can look at a photo */
-.photo-marquee:hover .photo-marquee-track,
-html.dark .photo-marquee:hover .photo-marquee-track {
+.photo-marquee:hover .photo-marquee-track{
   animation-play-state: paused;
 }
-
-/* Photos: fixed height, uniform margin-left keeps the -50% loop seamless */
-.photo-marquee .photo-marquee-track img,
-html.dark .photo-marquee .photo-marquee-track img {
+/* Photos: fixed height,
+uniform margin-left keeps the -50% loop seamless */
+.photo-marquee .photo-marquee-track img{
   display: block;
   height: 200px;
   width: auto;
@@ -965,9 +726,7 @@ html.dark .photo-marquee .photo-marquee-track img {
 }
 
 /* Respect reduced-motion preferences */
-@media (prefers-reduced-motion: reduce) {
-  .photo-marquee .photo-marquee-track,
-  html.dark .photo-marquee .photo-marquee-track {
+@media (prefers-reduced-motion: reduce) {.photo-marquee .photo-marquee-track{
     animation: none;
   }
 }
@@ -1133,81 +892,57 @@ html.dark .gh-profile-card .gh-qr span {
   max-width: none;
   margin: 0;
 }
-
 /* =========================================================
    Compact header layout (navbar 紧凑化)
    实测结构：#navbar 内含 顶行 .h-16(64px) + 标签行 .h-12(48px)
    ========================================================= */
 
 /* Navbar 不再固定 56px，包裹压缩后的内容 */
-#navbar,
-html.dark #navbar {
+#navbar{
   height: auto;
   min-height: 0;
 }
-
 /* 顶行（logo/搜索/外链/CTA）：64px -> 56px（与 Tab 行合并后统一行高） */
-#navbar [class*="h-16"],
-html.dark #navbar [class*="h-16"] {
+#navbar [class*="h-16"]{
   height: 56px;
 }
-
 /* Tab 标签行：48px -> 56px（合并进顶行） */
-#navbar [class*="h-12"],
-html.dark #navbar [class*="h-12"] {
+#navbar [class*="h-12"]{
   height: 56px;
 }
-
 /* Tab 项：收紧间距与字号 */
-.nav-tabs,
-html.dark .nav-tabs {
+.nav-tabs{
   gap: 4px 18px;
 }
-
-.nav-tabs-item,
-html.dark .nav-tabs-item {
+.nav-tabs-item{
   font-size: 13px;
 }
-
 /* 导航链接与按钮：14px -> 13px */
 #navbar a,
-#navbar button,
-html.dark #navbar a,
-html.dark #navbar button {
+#navbar button{
   font-size: 13px;
 }
-
 /* 搜索框：h-9(36px) -> 32px */
-#navbar button[class*="h-9"],
-html.dark #navbar button[class*="h-9"] {
+#navbar button[class*="h-9"]{
   height: 32px;
   border-radius: var(--radius-md);
 }
-
 /* Logo 随细条缩放（h-7 固定 28px，需显式 height 才能放大） */
 #navbar img,
-header img,
-html.dark #navbar img,
-html.dark header img {
+header img{
   max-height: 32px;
   max-width: 200px;
 }
-
-#navbar img.nav-logo,
-html.dark #navbar img.nav-logo {
+#navbar img.nav-logo{
   height: 32px;
   max-height: none;
 }
-
 /* 主 CTA：紧凑内边距 */
 #navbar a[class*="primary"],
-#navbar button[class*="primary"],
-html.dark #navbar a[class*="primary"],
-html.dark #navbar button[class*="primary"] {
+#navbar button[class*="primary"]{
   padding: 4px 12px;
   font-size: 13px;
 }
-
 /* =========================================================
    Merged single-row header (顶行 + Tab 标签行合并为一行)
    实测结构：#navbar .max-w-8xl > div 下两个子块：
@@ -1215,28 +950,21 @@ html.dark #navbar button[class*="primary"] {
    ========================================================= */
 
 /* 两子块并排 */
-#navbar .max-w-8xl > div,
-html.dark #navbar .max-w-8xl > div {
+#navbar .max-w-8xl > div{
   display: flex;
   align-items: center;
 }
-
 /* 顶行占据剩余空间，允许搜索框弹性收缩 */
-#navbar .max-w-8xl > div > .relative,
-html.dark #navbar .max-w-8xl > div > .relative {
+#navbar .max-w-8xl > div > .relative{
   flex: 1 1 auto;
   min-width: 0;
 }
-
 /* 去掉顶行内部的分隔底边（合并后不再需要） */
-#navbar .max-w-8xl > div > .relative .h-full,
-html.dark #navbar .max-w-8xl > div > .relative .h-full {
+#navbar .max-w-8xl > div > .relative .h-full{
   border-bottom: none !important;
 }
-
 /* Tab 行贴右侧，与 CTA 之间细分隔线 */
-#navbar [class*="h-12"],
-html.dark #navbar [class*="h-12"] {
+#navbar [class*="h-12"]{
   flex: 0 0 auto;
   padding-left: 16px;
   padding-right: 20px;
@@ -1245,20 +973,16 @@ html.dark #navbar [class*="h-12"] {
 }
 
 /* 中等宽度（lg~xl 之间）：空间不足时隐藏外链项，保留 CTA 与 Tab，避免重叠 */
-@media (min-width: 1024px) and (max-width: 1279px) {
-  #navbar li.navbar-link,
-  html.dark #navbar li.navbar-link {
+@media (min-width: 1024px) and (max-width: 1279px) {#navbar li.navbar-link{
     display: none;
   }
 }
-
 /* =========================================================
    Homepage layout polish (首页布局优化)
    ========================================================= */
 
 /* 首页隐藏左侧边栏中唯一的站点名盒子（首页 Tab 仅 index 一页，条目冗余） */
-body:has(.hero-gsap) #sidebar ul.sidebar-group:has(> li:only-child),
-html.dark body:has(.hero-gsap) #sidebar ul.sidebar-group:has(> li:only-child) {
+body:has(.hero-gsap) #sidebar ul.sidebar-group:has(> li:only-child){
   display: none;
 }
 
@@ -1268,53 +992,42 @@ html.dark body:has(.hero-gsap) #sidebar ul.sidebar-group:has(> li:only-child) {
 .join-leader-row .gh-profile-card {
   min-height: 92px;
 }
-
 /* CardGroup 网格容器自带 card-group 类，会被全局 [class*="card"] 规则误伤，
    导致每组卡片外多一层边框盒子——清除容器上的卡片样式 */
-.card-group,
-html.dark .card-group {
+.card-group{
   background-color: transparent;
   border: none;
   border-radius: 0;
   padding: 0;
   box-shadow: none;
 }
-
-.card-group:hover,
-html.dark .card-group:hover {
+.card-group:hover{
   border: none;
   transform: none;
 }
-
 /* =========================================================
    P2: 状态切换过渡统一 + 窄屏适配
    ========================================================= */
 
 /* ① 侧边栏激活左条：颜色/出现加 0.2s 过渡，与导航 hover、TOC 激活条节奏统一 */
-#navigation-items a,
-html.dark #navigation-items a {
+#navigation-items a{
   transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 
 /* ② 窄屏（< lg）header 降级：隐藏顶部 Tab 行，避免与 logo/搜索/CTA 在一行挤压溢出；
       移动端导航由汉堡菜单接管。lg~xl 的隐藏外链项规则（见上）不受影响 */
-@media (max-width: 1023px) {
-  #navbar [class*="h-12"],
-  html.dark #navbar [class*="h-12"] {
+@media (max-width: 1023px) {#navbar [class*="h-12"]{
     display: none;
   }
 }
 
 /* ③ 跑马灯触屏适配：窄屏/触屏无 hover，改为可横向滑动查看，仍保留桌面悬停暂停 */
-@media (max-width: 1023px), (hover: none) {
-  .photo-marquee,
-  html.dark .photo-marquee {
+@media (max-width: 1023px), (hover: none) {.photo-marquee{
     overflow-x: auto;
     scrollbar-width: thin;
     -webkit-overflow-scrolling: touch;
   }
-  .photo-marquee .photo-marquee-track,
-  html.dark .photo-marquee .photo-marquee-track {
+.photo-marquee .photo-marquee-track{
     animation: none;   /* 关闭自动滚动，交由用户手势控制 */
   }
 }
