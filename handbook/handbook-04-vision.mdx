@@ -1,0 +1,297 @@
+---
+title: "👁️ 视觉培训手册"
+description: "视觉组：识别方案、数据集收集标注、模型训练与部署"
+---
+
+> 本手册由飞书群聊语料提炼而成，语料来自 NEC 视觉相关 4 个群（AIC 工业视觉、NEC 横向小车视觉识别项目、RC 视觉预备&数据集收集、视觉-硬件-场务），覆盖时间 2025-09 至 2026-10。
+> 仅整理语料中真实出现的内容（型号、URL、工具、规则），未出现的不写；私人闲聊已剔除。
+> 整理日期：2026-10-28。
+
+---
+
+## 1. 工种概述
+
+### 1.1 职责定位
+
+视觉组（视觉 SIG）在 NEC / ROBOCON 项目中承担三条主线：
+
+1. **目标识别**：比赛道具识别（如 ROBOCON 2026 的 KFS 武林秘籍、武器端头识别）、甲骨文识别、工业视觉竞赛（AIC 工业视觉智能应用赛）的缺陷/尺寸/字符检测。
+2. **自主导航与定位**：基于留形 Odin1 空间记忆模组、宇树 L1 / MID360 / 4D-L1 激光雷达的建图与重定位；与码盘定位、激光定位方案对比。
+3. **自制视觉硬件**：N630 电调板 SMT 贴片焊接（OpenPnP / LumenPnP）、相机固定结构、电源（6S1P / 6S2P / 7S2P）选型。
+
+视觉组内部又分为三个小组（语料中明确出现）：
+
+| 小组 | 职责 | 在语料中出现的成员 |
+|---|---|---|
+| 视觉算法组（数据/模型） | 图片压缩、YOLO 环境部署、数据集收集与标注、模型训练、K230 部署 | 郭童童、杨万洁、汪奕希、郑绍恺 |
+| 视觉硬件组 | 环境部署、硬件调试、SMT 焊接、电池 | 张龚轩、白逸鸣、崔正阳、李嘉涵、李硕、张馨琳、黎心怡、侯佳奕 |
+| 场务组 | 实验室分区整理（机械用具区/零件区/打印机区/电机区）、设备管理 | 杨彩妮、白逸鸣、顾佳欣、闻志伟 |
+| 树莓派组 | 树莓派 / Pi5 / 香橙派 上位机学习与部署 | 汪奕希、白逸鸣、杨彩妮、杨万洁 |
+
+视觉负责人：卢永杰（语料中明确"视觉负责人"角色）；视觉 SIG 同时归并场务与硬件（卢永杰 2026-01-27 原话："场务和硬件也一并归我们组"）。
+
+### 1.2 技术栈（按语料真实出现）
+
+- **检测框架**：YOLO，规定版本 **yolo11n**，备用 **yolov8n**；明确**禁止**使用 yolo11j / yolo11x（"这俩是大模型"）。
+- **模型格式**：训练后转 `.kmodel` 部署到 K230（语料实证：`1_kfs_three_class.kmodel` + `1_kfs_three_class_detect.py`）。
+- **边缘算力**：嘉楠 CanMV-K230（立创·庐山派 AI 视觉开发板）、K210、树莓派 Pi5、香橙派 OrangePi AI Pro（昇腾）、NEC-Pi（自建树莓派服务器）。
+- **激光雷达 / SLAM**：留形 Odin1（dTOF+RGB+IMU，FOV 120°×90°，70m，70 万点/秒）、宇树 Unitree L1 LiDAR、MID360、4D-L1、Point-LIO、FastLIO2、Mujoco。
+- **深度相机**：Intel RealSense D435（FOV 86°×57°，结构光，10m 内有效，仅做局部感知）。
+- **操作系统 / 环境**：Ubuntu 22.04 / 25.10、Docker、ROS / ROS2、RT-Smart（RT-Thread）、Samba 文件共享、SSH 公钥部署。
+- **工业视觉软件**：V+ 算法工具（Vision Plus）、V+ 深度学习工具、V+ Python 脚本工具；AI Cube V1.4（K230 离线开发软件）。
+- **协作 / 工程工具**：Gitee（NEC 主仓 `darrenpig/new_energy_coder_club`）、GitHub（数据集协作仓 `NEC-CuCu/coworkers_for_KFS`）、飞书 Base / Wiki / 日历、Read the Docs 文档站（`new-energy-coder-club.readthedocs.io/zh-cn/latest/curc26/视觉Sig/README.html`）、OpenPnP / LumenPnP（SMT 贴片）、Rufus 4.13、SD Card Formatter 5.0.3、win32diskimager、fishros 一键 ROS 安装脚本。
+- **辅助测量**：1000/1600 倍电子显微镜（hvscam 软件），用于 PCB 焊接检测。
+
+---
+
+## 2. 核心知识体系
+
+### 2.1 识别方案选型
+
+- **小模型优先**：YOLO 训练统一用 **yolo11n**（nano 版），备用 yolov8n。语料原话："版本使用 yolo11n，备用 yolov8n，别用成 yolo11j/yolo11x（这俩是大模型）"。
+- **D435 不能替代激光雷达做导航**：D435 是结构光深度相机，FOV 仅 86°×57°，没有 360° 环视；做局部避障、抓取位姿检测可以，做全局建图不够。Odin1 是 dTOF+RGB+IMU+内置 SLAM 一体化模组，与 D435 差一个量级，不能直接替换（语料 2026-06-13 NEC-Claw 答复）。
+- **激光雷达 vs 码盘 vs 视觉**：2025-11-13 哈工大交流视频被推为参考，团队同时评估三种定位方案。
+
+### 2.2 数据集收集与标注
+
+1. **统一规范**：参照《KFS 协作标注说明以及参与方式.pdf》，数据集格式与外部协作仓库保持一致。
+2. **协作仓库**：GitHub `NEC-CuCu/coworkers_for_KFS`，并由 NEC 主仓（Gitee）挂为二级仓库链接。
+3. **标注平台**：使用百度云平台进行标注（2026-04-17 20:30 有专门线上会议讲解注意点，要求录视频、开 AI 总结）。
+4. **命名规范**：导出图片**不要**用默认的 `Image1/2/3` 命名，因为"每一个都是 Image1/2/3"，必须重命名加以区分后再提交（语料 2026-03-20 郭童童原话）。
+5. **数据集组织**：批次以 `T_XX.zip` / `F_XX.zip` / `B_R1.zip` / `R_R1.zip` 等形式上传到群，由数据组汇总。
+6. **图片预处理**：训练前先完成"图片压缩处理"，再"部署 YOLO 环境、转换格式"（2026-03-15 进度同步原话）。
+7. **截止纪律**：例如 2025-12-26 是 KFS 数据集第一阶段截止点；中期检测前需出一版可用模型。
+
+### 2.3 模型训练与部署
+
+- **训练流程（KFS 实证）**：图片压缩 → YOLO 环境部署 → 格式转换 → 标注 → 训练 → 导出 → 转 `.kmodel` → K230 离线推理。
+- **K230 部署**：使用 **AI Cube V1.4**（Windows 离线包），参考嘉楠官方文档《使用 AI Cube 开发》(`https://www.kendryte.com/ai_docs/zh/v0.6/...`)。模型产物示例：`1_kfs_three_class.kmodel` + 推理脚本 `1_kfs_three_class_detect.py`。
+- **SD 卡烧录**：
+  - **K230 只能用配套 SD 卡**（语料 2026-04-04："230 的 SD 卡只能用它配的，别的 SD 卡，它识别不到"）；
+  - 树莓派可用 Rufus / SD Card Formatter / win32diskimager + Ubuntu 22.04 镜像；
+  - 烧录完成后建议保留 32GB / 8GB 若干张常备（语料中 DarrenPig 提过实验室有 4 张）。
+- **Odin1 部署（Pi5 环境）**：在 Pi5 Ubuntu 25.10 上用 Docker 配置 Ubuntu 22.04 + ROS2 环境，再测 Odin1 空间记忆模组。Odin1 ROS 驱动包 `odin_ros_driver`（`https://github.com/manifoldsdk/odin_ros_driver.git`），固件与文档在 `https://manifoldtechltd.github.io/wiki/Odin1/Cover.html`。
+- **L1 LiDAR + Point-LIO 建图**（语料 2026-07-04 卢永杰给出的命令）：
+  ```bash
+  # 终端 1：启动 L1 驱动
+  cd /home/polly/unilidar_sdk
+  ./run_unilidar_docker.sh
+  # 容器内
+  roslaunch unitree_lidar_ros run_without_rviz.launch
+
+  # 终端 2：运行 Point-LIO
+  sudo docker exec -it unilidar_ros1 /bin/bash -c \
+    "source /opt/ros/noetic/setup.bash && \
+     source /root/unilidar_sdk/unitree_lidar_ros/devel/setup.bash && \
+     source /root/catkin_point_lio/devel/setup.bash && \
+     roslaunch point_lio_unilidar mapping_unilidar_l1.launch"
+  ```
+  无硬件时可用 `rosbag play unilidar-2023-09-22-12-42-04.bag` 测试。
+
+### 2.4 相机 / 雷达安装规范（语料 2026-06-12 NEC-Claw 答复）
+
+优先级：**刚性 > 视野 > 高度**。
+
+- **刚性**：摄像头必须与底盘主框架刚性连接，不能装在会晃动的结构上；避开电机、皮带、气动元件等振动源。
+- **视野**：水平方向左右各至少 90°，最好 120°+（用于闭环检测）；垂直方向地平线以上 15°–30°、地面以下 2–3m。
+- **高度**：30–60cm 是甜点区间；与雷达保持高度接近以便联合标定。
+- **角度**：水平或轻微下倾 5°–10°，不要朝上（天空没特征点），不要朝下太多（丢帧后难重定位）。
+- **雷达**：避开八根柱子 / 皮带这类密集金属结构（防止多路径反射与结构共振）；必要时装到框架外缘或加高 5–10cm。
+- **雷达 + 摄像头融合**：两者光心/原点最好在同一垂直平面，水平距离 < 20cm。
+
+### 2.5 自主导航典型问题排查（语料 2026-06-11）
+
+症状：建图"四周都不能缩在一起"，收敛困难。
+
+排查顺序：
+
+1. 把雷达**拆下来**到开阔场地单测 SLAM——如果还是发散，是雷达本身（精度 / 时间同步）问题；
+2. 检查 TF 与点云 timestamp 是否对齐；
+3. 看具体发散方向是否对应柱子方位——是的话属于多路径反射；
+4. 不要在正式赛前 24 天内换"Odin1 建图 + 其他雷达重定位"这类大方案（维护两套外参标定，风险高）。
+
+---
+
+## 3. 标准流程与协作规范
+
+### 3.1 组队与报名（AIC 工业视觉赛为例）
+
+- 每组 1–3 人，**高年级 + 新生搭配**；
+- 组长到 QQ 机器视觉竞赛群，按群要求向顾老师发送组队信息；
+- 报名在截止前完成（如 9.25 提交）；
+- 直接进省赛，**无校赛**；
+- 周三前安装好软件，周四约实验室开放；
+- 参赛手册 + 具体要求要"多测试多练习"，配套培训视频反复看。
+
+### 3.2 数据集协作
+
+- 数据集格式以《KFS 协作标注说明以及参与方式》为准，与外部协作方同步；
+- 阶段性截止（如 12.26 一阶段）→ 群内集中收集 → 统一命名 → 上传 GitHub 仓；
+- 每次集中标注前先开短会同步要求；
+- 与 NEC-Claw / NEC-Pi5 等机器人协作，进度每日同步到 MEMORY.md 与 Base。
+
+### 3.3 与电控 / 机构的接口
+
+- **电源接口**：视觉侧 DC5521（**5.5 外径 / 2.1 内径**），电控侧提前准备转接器。
+- **电池**：24V 系统，6S1P / 6S2P 是常见配置；汇天行方案曾用 6S2P、机器人整体 7S2P 4000mAh 5C；续航 15–25 分钟可接受（4 个 300W 全向电机，总额定 3000W，按 50% 负载估算 15 分钟需 15.6 Ah）。
+- **大电流风险**：电压超过安全电压会导致电容爆炸，必要时加稳压。
+- **上位机 / 下位机**：视觉跑在上位机（Pi5 / 香橙派 / 笔记本），下位机（如 M3508 + N630 电调）只暴露电机接口；参考深圳职业技术大学 R2 项目（`https://github.com/inkccc/Rc2026`）——"下位机只提供电机接口，所有感知决策动作都写在上位机"。
+- **CAN 总线工程**：`ProPrj_CanToCan_2026-04-04.epro` 为团队 CAN 转 CAN 工程模板。
+
+### 3.4 进度管理
+
+- 视觉 SIG 任务清单由负责人在飞书群 @NEC-Claw / NEC-Pi5 同步；
+- 每日 9:30 运行 `daily-task-manager` 扫描待办；
+- 中期检测日期为关键里程碑（2026 赛季为 4 月 20 日）；
+- 双周周报，远程开发同学必须提交；
+- 进度同步文档统一渲染到 `new-energy-coder-club.readthedocs.io` 视觉 Sig 章节。
+
+---
+
+## 4. 关键资源清单
+
+### 4.1 硬件型号（语料真实出现）
+
+| 类别 | 型号 | 用途 / 备注 |
+|---|---|---|
+| AI 视觉开发板 | 嘉楠 CanMV-K230（立创·庐山派） | 主力识别推理板，配 AI Cube V1.4 离线开发 |
+| AI 视觉开发板 | 嘉楠 K210 | 旧款，仍可用 |
+| 单板机 | 树莓派 Pi5 | 上位机，跑 Ubuntu 25.10 + Docker + ROS2 |
+| 单板机 | 香橙派 OrangePi AI Pro（昇腾） | 备用上位机，配《OrangePi_AI_Pro_昇腾_用户手册_v1.2.pdf》 |
+| 空间记忆模组 | 留形科技 Odin1 | dTOF+RGB+IMU+内置 SLAM，FOV 120°×90°，70m，70 万点/秒 |
+| 激光雷达 | 宇树 Unitree L1 | 配 `unilidar_sdk` + `point_lio_unilidar` |
+| 激光雷达 | 4D-L1 / MID360 | 采购清单内 |
+| 深度相机 | Intel RealSense D435 | 局部感知用，不做导航 |
+| 机器狗 | 宇树 Unitree Go2 | `go2_ros2_sdk` |
+| 电调板 | N630（自研，南邮开源 `oshwhub.com/njupt-robomasters/n630`） | 视觉组负责 SMT 焊接 |
+| 机器狗（合作） | MechDog Pro | 渠道资料百度盘 `1LahXRI-P0pEQ-tDn42GBPA` 提取码 d5p2 |
+| SMT 贴片机 | OpenPnP / LumenPnP v4.1.0 / PixiePlacer | N630 自焊接用 |
+| 电子显微镜 | hvscam 1000/1600 倍 | 焊接质检 |
+
+### 4.2 软件与框架版本
+
+- YOLO **11n**（首选） / **v8n**（备用）；禁用 11j / 11x
+- AI Cube **V1.4**（K230 离线）
+- Odin1 ROS 驱动 **0.9.0**，固件 **0.10.0**
+- Odin1 快速启动 **v1.3.0**
+- Ubuntu **22.04**（Docker / 真机） / **25.10**（Pi5 宿主）
+- Rufus **4.13**
+- SD Card Formatter **5.0.3**
+- CrealityPrint **7.0.1.4212**
+- Git **2.53.0.2**
+- Node.js **v24.14.1**
+- Steam **v3.0.0-rc.16**（win_x64，语料中以安装包形式出现）
+- PROCESS_LX 命令行（MindCloud 上位机配套）
+- OpenPnP Windows x64 / Marlin-rev05 / LumenPnP-PCBs v4.1.0 / LumenPnP-Config v4-00 / LumenPnP-STLs v4.1.0
+
+### 4.3 数据集与代码仓
+
+- 数据集协作仓：`https://github.com/NEC-CuCu/coworkers_for_KFS`
+- NEC 主仓：`https://gitee.com/darrenpig/new_energy_coder_club`（分支 `CURC2026ROBOCON`）
+- 新人学习仓（河南工程学院 刘承涛）：`https://gitee.com/lglonar/lckfb_learning`
+- 宇树雷达 SDK：`https://github.com/unitreerobotics/unilidar_sdk`、`https://github.com/unitreerobotics/point_lio_unilidar`
+- Go2 SDK：`https://gitee.com/darrenpig/go2_ros2_sdk/tree/master`
+- 全向轮：`https://gitee.com/darrenpig/OpenTpuOmniWheel`
+- 深圳职业技术大学 R2 参考代码：`https://github.com/inkccc/Rc2026`
+- OpenPnP：`https://github.com/openpnp/openpnp`、Wiki Quick Start、`https://openpnp.org/`
+- FIORD PNP 开源：`https://oshwhub.com/qiufengluoye/FIORD_PNP`
+- 萝马车圈 N630 教程：`https://mp.weixin.qq.com/s/eo4Z7zX9QEANzh_B1-b1Pw`
+- RM 论坛 N630：`https://bbs.robomaster.com/article/811470`
+
+### 4.4 培训视频 / 教程
+
+- AIC 工业视觉赛 9.21 回放：赛题培训 `http://www.dcck.com.cn/spshow.php?id=1580`，V+ 算法工具基础 `http://www.dcck.com.cn/spshow.php?id=1581`
+- AIC 9.28 回放：V+ 深度学习工具 `http://www.dcck.com.cn/spshow.php?id=1638`，V+ Python 脚本工具 `http://www.dcck.com.cn/spshow.php?id=1639`
+- 立创庐山派 K230 快速开始（B 站）：`https://b23.tv/riHYtvF`
+- 哈工大视觉定位 / 码盘 / 激光定位交流：`https://b23.tv/KcRkDsE`
+- Mujoco + FastLIO2 在 ROBOCON 2026 仿真接入 SLAM：`https://b23.tv/lsPrMGW`
+- 嵌入式 AI 培训：`https://b23.tv/Ud4RU5G`
+- 算力自由平台部署 Isaac Gym：`https://b23.tv/3LS7zoF`
+- 港科 HKU Robocon Linux 文件系统教程：`https://docs.m2stud.io/cs/linux/fs/`（覆盖路径、权限、apt、tar/7z）
+- 上位机基础课程（openEuler）：`https://www.openeuler.openatom.cn/zh/learn/mooc/detail/`
+- 焊接教程：STM32F405 小 C 板锡膏焊接 `https://b23.tv/YWzCtOK`、DAPlink 自制 `https://b23.tv/56sNluS`
+- FreakStudio 树莓派教程：`https://freakstudio.cn/node/019d25fa-4dd3-73b2-8559-fb9567f93206`
+- 语雀参考：`https://www.yuque.com/lonlypan/td6smc/zoz1pvniigkca4z9`
+- OpenPnP 中文 Wiki（Alandesign）：`https://wiki.alandesign.cn/zh/openpnp/How_to_SMT`
+- SMT 调试：`https://debug.opulo.io/`
+- 一键 ROS 安装：`wget http://fishros.com/install -O fishros && . fishros`
+- RA8P1 AI MCU：`https://rt-thread-studio.github.io/sdk-bsp-ra8p1-titan-board/latest/start/Titan_template/README_zh.html`
+- 富瀚微 FH8626 / MC632X / MC3302 上手指南：`https://www.rt-thread.org/document/site/`（搜对应型号）
+- 南科大 ARES 战队 Odin1 调车视频：`https://v.douyin.com/Q9NkLNgK05w`
+
+### 4.5 文档与表单（飞书）
+
+- 视觉 SIG 培训文档：`https://new-energy-coder-club.readthedocs.io/zh-cn/latest/curc26/视觉Sig/README.html`
+- 视觉 SIG Base：`https://scn0bdoc8zxg.feishu.cn/base/VrbfbmzXMaMqY6sUmiAcJAAHned`
+- 数据集标注注意点会议：`https://scn0bdoc8zxg.feishu.cn/docx/LDTzdNbf6o4CCcxVw6EcC2MCnOb`
+- 视觉组分工表格：`https://scn0bdoc8zxg.feishu.cn/wiki/CsI1wXtQWivfejkR59WcaM0qnlR`
+- 设备报价 / 空闲时间：`https://scn0bdoc8zxg.feishu.cn/sheets/QcVTscqHUh44Zit6sXac2joNn7S`
+- 自动化批量上传工具影刀：`https://ying-dao.feishu.cn/wiki/QC8JwSADRicsW7kxlUtcw8HbnVe`（可批量上传数据集与图片）
+- 武林秘籍 PRD 沙盘：`https://scn0bdoc8zxg.feishu.cn/docx/KSSNd8knSoVraHx5MoPc0FFqnhO`（模拟沙盘 120cm × 60cm 以内）
+
+---
+
+## 5. 常见问题与经验教训
+
+1. **K230 SD 卡兼容性**：只能用 K230 官方配套的 SD 卡，普通卡识别不到（2026-04-04 郭童童）。采购时按 K230 教程链接购买，常见 8GB / 32GB。
+2. **图片命名混乱**：导出数据集默认 `Image1/2/3`，多批次汇合时互相覆盖。务必**先重命名再打包上传**。
+3. **YOLO 版本误用**：用 yolo11j / yolo11x 会被批"是大模型"。NEC 视觉统一 yolo11n，备用 yolov8n。
+4. **D435 ≠ 雷达**：D435 是结构光深度相机，FOV 窄、强光/暗光下深度图易糊，无内置 SLAM。不能拿来做全局导航。
+5. **雷达安装位置**：八根柱子 + 皮带会让 FOV 前后各损失 30–45°，建图不收敛。优先刚性、外移或抬高，最后再考虑换雷达。
+6. **换方案纪律**：赛前 24 天内不要换"Odin1 建图 + 其他雷达重定位"这类涉及两套外参标定的方案。
+7. **N630 烧录口**：3V3 / GND 焊反会导致插上就无法识别端口，拔下就识别到（魏卫 2026-03-31）。排查思路：万用表测通断 + 看原理图。曾出现 32 主控 180° 反焊的事故。
+8. **SMT 红胶**：超声波清洗剂对红胶无效，只能高温硬刮且容易把按钮固定死，板子报废。新方案：一面回流焊，另一面风枪（哈工大硬件灵感，风枪怼着吹也不会影响另一面）。下一板减少红胶剂量。
+9. **SMT 吸嘴选型**：503 吸 0603/0805/1206 等小元件；505 吸电解电容、电感；STM32F407 这类大芯片推荐 507。吸附元件的部件叫 **JUKI 吸嘴**。
+10. **RT-Smart 用户态/内核态**：内核态注册设备（如 LED 为杂项/gpio），用户态查找设备再调用，是 RT-Smart 的标准套路。新人容易陷入"应该有个库直接调用"的误区（语料 2025-11-06 刘承涛）。
+11. **电池安全**：电压超过安全电压会炸电容。6S 满电 25.2V、7S 满电 29.4V，选 7S 更接近 24V 系统额定。持续放电倍率 ≥ 5C。
+12. **AI 生成代码审慎**：DarrenPig 提醒"AI 埋了一个架构优化，Debug 比对了接近三天三夜才解决"——AI 改的代码务必人工 review。
+13. **K230 售后**：嘉楠官方售后技术群"不怎么样"，主要靠嘉南开发者社区（`kendryte.com`）+ 立创庐山派教程。
+14. **电源线 / 配件管控**："杨彩妮的电源线有人看到不"——设备位置要登记，19V 电池 / USB 转 Type-C / 电源线借还留痕。
+
+---
+
+## 6. 新人上手路径建议
+
+按语料中实际出现的新人培养节奏整理：
+
+**第 1 周｜环境与账号**
+1. 装好 Git、GitHub Desktop、Clash（语料中杨万洁发过 `Git-2.53.0.2-64-bit.exe`、`Clash.for.Windows.Setup.0.20.39.exe`）。
+2. 加入 Gitee NEC 主仓 `darrenpig/new_energy_coder_club` 和 GitHub `NEC-CuCu/coworkers_for_KFS`。
+3. 看完《KFS 协作标注说明以及参与方式》，明确数据集格式与命名规范。
+4. 跑通 HKU Robocon Linux 文件系统教程，重点掌握路径、权限、apt、tar/7z。
+
+**第 2 周｜硬件认知**
+5. 在 K230 上跑通官方 AI Cube 流程，烧录一次镜像（用配套 SD 卡），跑通 hello world 与一个内置识别例程。B 站视频：`b23.tv/riHYtvF`。
+6. 上手一块树莓派 / 香橙派，用 Rufus 烧 Ubuntu 22.04，跑通 SSH + Samba 文件共享（语料中有现成的 `smbclient //192.168.31.60/share` 用法示例）。
+7. 看一遍 V+ 算法工具基础回放（`dcck.com.cn/spshow.php?id=1581`），理解工业视觉软件工作流。
+
+**第 3 周｜数据集 + 训练**
+8. 跟一次集中的数据集拍摄或标注（群里关注 F/T 编号 zip 包），熟悉命名与上传流程。
+9. 本机部署 YOLO 环境，跑通 yolo11n 训练 demo；尝试图片压缩、格式转换。
+10. 在 K230 上部署一个 `.kmodel`（参考 `1_kfs_three_class.kmodel` + `1_kfs_three_class_detect.py`）。
+
+**第 4 周｜导航 + 协作**
+11. 在 Pi5 上按卢永杰的命令脚本启动 L1 LiDAR + Point-LIO 容器，先看 rviz / rosbag 回放。
+12. 阅读 Odin1 Wiki（`manifoldtechltd.github.io/wiki/Odin1/Cover.html`），看南科大 ARES 调车视频，理解空间记忆模组的使用边界。
+13. 加入视觉 SIG 周会（每周末晚 21:30 是历史惯例），向负责人报到分组意向（算法 / 硬件 / 场务 / 树莓派）。
+
+**贯穿纪律**
+- 双周写周报，进度及时同步到 Base 与 MEMORY.md；
+- 数据集命名、模型版本号严格遵守群规；
+- 大赛前 24 天不引入未验证的大改动；
+- 相机雷达装车前先按"刚性 > 视野 > 高度"自审一遍。
+
+---
+
+## 附录：语料来源群列表
+
+本手册内容以下来自 4 个飞书群（数据起止时间即语料覆盖区间）：
+
+| 群名 | 原始消息数 | 有效消息数 | 时间范围 | 主要议题 |
+|---|---|---|---|---|
+| AIC 工业视觉 | 100 | 56 | 2025-09 至 2026-01 | 工业视觉智能应用赛报名、V+ 软件培训、组队规则 |
+| NEC 横向小车视觉识别项目 | 163 | 102 | 2025-10 至 2026-01 | 武林秘籍沙盘 PRD、K230 入门、Unitree 雷达资料、K230 与 RT-Smart 开发 |
+| RC 视觉预备 & 数据集收集 | 64 | 30 | 2025-09 至 2026-01 | AIC 工业视觉赛训、KFS 数据集协作标注、富瀚微合作 |
+| 视觉-硬件-场务 | 794 | 517 | 2026-01 至 2026-10 | 视觉 SIG 日常分工、N630 SMT、KFS / 武器端头数据集、Odin1 / L1 调试、雷达摄像头安装、电池选型 |
+
+手册中所有型号、URL、命令、人名均可在上述语料中溯源。

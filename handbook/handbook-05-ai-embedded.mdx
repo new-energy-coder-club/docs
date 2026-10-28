@@ -1,0 +1,176 @@
+---
+title: "🤖 算法/AI/嵌入式培训手册"
+description: "算法组：嵌入式开发、AI Agent、芯片设计大赛"
+---
+
+> 来源说明：本手册提炼自 NEC（NewEnergyCoder，常州工学院机器人 / ROBOCON 团队）飞书群聊语料，覆盖六个相关群：AIC 智能体、AIC 的 AI 小分队、ESP 智能小组、NEC-26RC-嵌入式（电控组）、NEC-AI 科研小分队、NEC 嵌入式芯片与系统设计大赛。所有型号、链接、流程均来自群内真实讨论，未做编造。语料时间跨度约为 2025-09 至 2026-10。
+
+---
+
+## 1. 工种概述
+
+算法 / AI / 嵌入式方向在 NEC 内主要承担三类工作：
+
+- **嵌入式开发（电控）**：负责 ROBOCON 机器人的下位机开发，覆盖主控（STM32 / ESP32 / 大疆 A 板 / 达妙板 / 重邮 ESP32-S3 A 板）、电调（C620、N630、AM32、BLHeli-S、小蜜蜂）、电机（3508、2006、宇树 M8010、CubeMars AK 系列）、CAN / UART / 485 通信、串口调速、角度闭环、继电器 IO 控制电磁阀等。
+- **AI 智能体**：面向竞赛（AIC 智能体大赛）和内部协作的 AI Agent 应用，维护 NEC-Claw 飞书机器人，做赛事提醒、起名、文档问答、知识库等。
+- **AI 科研 / 工具链**：为课题组与论文场景打造 Codex / Claude Code Skill（例如 aspen-bkp-analysis）、配置 CC-Switch、Kimi-Claw、AtomCode 等 AI 编程环境。
+- **芯片设计大赛方向**：参加全国大学生嵌入式芯片与系统设计竞赛（NXP / 海思 / 瑞芯微 / 瑞萨等赛道）、星闪杯等比赛。
+
+代表项目：基于瑞萨 RA8P1 异构双核（Cortex-M85 + M33，集成 Ethos-U55 NPU）+ RT-Thread 的「具身智能排球机器人」，由 M85 负责视觉识别与轨迹预判，M33 负责底层多关节电机闭环。
+
+## 2. 核心知识体系
+
+### 2.1 嵌入式开发
+
+**新人基础门槛**（入组调查三项）：
+
+1. 51 / 32 单片机基础（最好打过蓝桥杯）；
+2. Trae / Kimi / Claude / Codex 等 Vibe Coding 工具使用经验；
+3. Clash 等科学上网环境。
+
+**必备开发环境**（五一前必须装好）：
+
+- 版本与运行环境：git、Node.js
+- AI 工具：Claude、Codex、Kimi Code 或 Trae；可选 cc-switch（用于切换 Claude 中转）
+- IDE / 平台：VS Code + PlatformIO（用于 ESP32 重邮 A 板），Keil（用于达妙 / 大疆 A 板，自行 B 站找安装与和谐教程），或 ST 官方 STM32CubeMX / CubeIDE / STM32Programmer
+- 串口 / 调试工具：VOFA+（付费，可申请离线授权）、SSCON、Putty、ComAssistant（纸飞机）、开源串口助手 Entrance（github.com/fcanlnony/Entrance，VOFA 免费替代）
+- 无线烧录 / 调试：开源 DAPLink（速度接近 STLink_V2，约 80 元/对，初次使用需按教程配对）
+
+**核心通信与控制**：
+
+- CAN 总线 + STM32CubeMX 编程（参考中科大 RM 电控合集视频）
+- UART 串口调速（有线 → 无线）、DShot / PWM 电调协议
+- 485 通信（宇树 M8010：参考官方 STM32 例程，电机 ID 0-14）
+- 大疆 A 板通过 USB 串口接上位机：上位机算里程计与定位，主控将速度指令通过 CAN 分发给 C620 → 3508。这是每台机器人都要走通的链路，所有电控必须掌握。
+- 电磁阀采用「GPIO → 继电器 → 电磁阀」的 IO 控制，不要试图用电机驱动板替代；推荐 3pin 排针 + 单路蓝色继电器模块，4 路包邮约 6.5 元；气动用 24V。
+- 双核异构（IMX93）：A 核跑 Linux / dtb，M 核跑 MCUXpresso / FreeRTOS / Zephyr，独立 PC/SP、独立链接脚本、不共享 MMU；资源冲突会导致 Linux 侧 crash，dtb 与 MCUXpresso 对外设 / 内存的配置必须互不冲突。
+
+### 2.2 AI Agent 应用
+
+- **NEC-Claw** 飞书机器人：可被 @ 完成记录 MEMORY、设定多档赛事报名提醒（如嵌赛 4.20 截止，提前 10 天与 3 天两档提醒）、批量生成队名候选、解析赛题链接、回答知识库内容（例如自动总结电磁阀 IO 控制方法）。
+- **Codex Skill 开发**：徐康示范的 `aspen-bkp-analysis` Skill，目录结构含 SKILL.md、references/、scripts/scan_bkp.py、agents/openai.yaml，本地校验 `Skill is valid!` 后需重启 Codex 识别，使用方式为 `$aspen-bkp-analysis` 触发。
+- **AI 编程工具横向对比**（群内真实偏好）：Trae 被评价为「天然 IDE」；Kimi Code 体验好但 Token 限额紧张；AtomCode（atomcode.atomgit.com）有免费 Coding Plan；aicodewith.com 提供 Claude Code 中转注册。
+- **Kimi-Claw** 安装：`bash <(curl -fsSL https://cdn.kimi.com/kimi-claw/install.sh)`。
+
+### 2.3 算法方案示例：RA8P1 排球机器人
+
+- 主控：瑞萨 RA8P1 Titan 开发板（RT-Thread 官方 BSP：github.com/RT-Thread-Studio/sdk-bsp-ra8p1-titan-board）
+- 架构：Cortex-M85 + Ethos-U55 NPU 做视觉识别与轨迹预判，Cortex-M33 + RT-Thread 标准版做多关节电机闭环，双核通过高速 AMP 通信打通感知-决策-控制链路
+- 文档：群文件《RT-Thread 双核 AMP_ROBOCON 排球机器人_高性能实战.pptx》《TitanBoard_M8010_技术方案.md》《智能智驾组件 AGL_openEuler 适配与 RA8_TiTAN 控制系统设计_v2.pdf》
+- 底盘侧如未跑 ROS，需要下位机封装 MicroROS 节点或 ROS2 API 与上位机对接。
+
+## 3. 标准流程与协作规范
+
+### 3.1 培训与考核节奏（电控组实例）
+
+培训进度通过飞书多维表格「电控培训进度」追踪，由魏卫、郭童童、王欣怡打钩验收：
+
+1. 3508 转动（用任意开发板 + 任意电调让 3508 转起来，可抄代码，只需自己烧录）
+2. 串口调速（建议串口，可有线 / 无线）
+3. 无线串口调速（可线下约魏卫教学，前提是串口调速过关）
+4. 角度控制
+
+进阶任务：用 AI 移植代码让 DM-MC02-N630 转电机（DJI A 板 + C620 转 3508 通关后再做）。
+
+### 3.2 任务认领制
+
+- 任务以编号形式发到群里（例：任务 1 CAN 线做正反向快插 5-10 个；任务 2 激光雕刻机调试；任务 3 工业电调拆线组线焊线；任务 4 维修 3D 打印机；任务 5 3508 带排球击球拍打到 1.6 米），成员直接在群内认领，无需私聊。
+- 任务必须满足「当前条件基本足够、无过多资金要求」，避免「解决排球的电机问题」这种过于模糊的表述。
+- 后期可能改为个人任务制。
+- 涉及钱走正规运营 / 商务 / 采购流程，不许私下集资。
+
+### 3.3 分组协作
+
+- 26 赛季分组实例：主赛（王欣怡、孙诗睿、李畅畅、岳添俊），排球（吴梦婷、文钰婷、孟洁、胡培培）。
+- 组会通常晚 8:30 线下开，电控组会要求尽可能到场，可线上补；会议要开「会议录制 + AI 总结」。
+- 接口文档：由彭光源整理、郭童童改成飞书云文档共同维护；规范是「飞书云文档优先，别用金山云文档」。
+- Git / LaTeX 等不再专门开课，直接交给 AI 边用边学。
+
+### 3.4 物料与采购
+
+- PCB：嘉立创下单（不会下就现学，嵌入式入门必过），下完截图发群，地址私聊负责人；打板前确认所有开发板、分电板的保护壳尺寸。
+- 电调良品率教训：AM32 一批 6 块约 2 块不能用，下单前先问客服能否提供技术支持，并可参考以往买过的店铺。
+- 电池：6S1P 3C 21700 / 18650，目前库存为东磁 50E 6S1P 共 6 块；固定电池不要用捆扎带，用胶带或让机械画专用机构。
+- 每周到实验室的人负责看一下电池电量。
+
+## 4. 关键资源清单
+
+### 4.1 开发板 / 芯片
+
+| 板卡 | 用途 / 备注 |
+| --- | --- |
+| 重邮 ESP32-S3 A 板 | VS Code + PlatformIO 开发；oswhub.com/qingmeijiupiao/esp32robo；github.com/CQUPTIMTA/BoardA；模板仓 github.com/CQUPTHXC/ESP32_platformio_temple_project |
+| 大疆 A 板（RoboMaster 开发板） | Keil 开发；例程 github.com/RoboMaster/DevelopmentBoard-Examples；通过 USB 串口对上位机、CAN 对电调 |
+| 达妙开发板 | Keil 开发；达妙双路 CAN 调试仪资料在 gitee.com/kit-miao/dm-tools |
+| DM-MC02-N630 | 进阶任务载体，配套 N630 电调 |
+| 瑞萨 RA8P1 Titan | RT-Thread BSP：github.com/RT-Thread-Studio/sdk-bsp-ra8p1-titan-board |
+| NXP FRDM-IMX93 | 嵌赛 NXP 赛道官方板，NEC 是国内最早玩 IMX93 的社区 |
+| RK3588 | 瑞芯微赛道载体，可做 NEC-Claw 实体化 |
+| ESP-01 / ESP-01S（ESP8266） | ESP-01 需要外接 10K 上拉，ESP-01S 板载已上拉 |
+| SpeedyBee F405 V3 飞控 | 基于 Betaflight / INAV 开源固件，文档 docs.speedybee.cn |
+
+### 4.2 电调 / 电机 / 传感器
+
+- 电调：C620（配 3508）、N630（南邮开源 oshwhub.com/njupt-robomasters/n630）、AM32（含 TWO_PWM 与 DSHOT 两种固件 bin）、BLHeli-S 小蜜蜂 20A / 30A、中北魔改 VESC（发热严重，需要导热硅脂 + 主动散热）。
+- 电机：3508、2006、宇树 M8010（485，ID 0-14）、CubeMars AK10-9 V2.0 / AK70（手册在 cubemars.com）。
+- 编码器：AS5047 高精度磁编码器、AS5600 磁编码器（立创开源均有验证工程）。
+- 定位：正交码盘场地定位系统（oshwhub.com/roboticlib/yi-yan-zheng-zheng-jiao-ma-pan-chang-di-ding-wei-xi-tong）。
+
+### 4.3 工具与平台
+
+- AI 编程：Claude Code、Codex、Trae、Kimi Code、AtomCode、CC-Switch、aicodewith.com
+- 嵌入式 IDE：VS Code + PlatformIO、Keil 5、STM32CubeMX / CubeIDE
+- 串口：VOFA+、SSCON、Putty、ComAssistant（纸飞机）、Entrance、cutecom（Linux：`sudo apt install cutecom`）
+- 调试器：DAPLink 无线调试器
+- 协作：飞书云文档 / 多维表格（培训进度表、任务分配表）、Gitee（darrenpig/new_energy_coder_club）
+- ESP 智能小组方向：ESPHome（esphome.io/guides/getting_started_hassio/）、Tasmota（github.com/arendst/tasmota）、ESPConnect（github.com/thelastoutpostworkshop/ESPConnect）、PlatformIO 单元测试（piolabs.com 博客）
+- 论文 / 科研：PaperPig、CIT-PaperFrom、秘塔回响、阿昆的研究日常全家桶、Auto-Empirical-Research-Skills（github.com/brycewang-stanford/Auto-Empirical-Research-Skills）
+
+### 4.4 文档与教程链接（群内经检验）
+
+- 中科大 RM 电控合集（CAN 通信 + STM32CubeMX）：b23.tv/Z1GiJI4
+- Keil5 / C51 / AC5 / STlink 驱动安装：b23.tv/YGnfZYb
+- 6 分钟解释所有硬件协议：b23.tv/NaIzWOP
+- DAPLink 开源高速无线调试器：b23.tv/6keN6jB
+- 达妙导航：客户帮助中心 gl1po2nscb.feishu.cn/wiki/MZ32w0qnnizTpOkNvAZcJ9SlnXb；Gitee gitee.com/kit-miao/damiao；GitHub github.com/dmBots/DAMIAO-Motor
+- 宇树文档：unitree.com/cn/download
+- CubeMars AK10-9：cubemars.com 产品页与产品 / 使用手册 PDF
+- 嵌赛官网：socchina.net；NXP 技术社区 nxpic.org.cn
+- AIC 智能体大赛：aicomp.cn
+- 2025 / 2026 ROBOCON 硬件开源：oshwhub.com/i-havent-thought-about-it-for-th/
+
+## 5. 常见问题与经验教训
+
+- **VOFA+ 是付费软件**，离线授权码与机器码绑定，只能在授权机器上使用；免费替代可考虑 SSCON、Putty、ComAssistant、Entrance。
+- **AM32 / BLHeli-S 电调良品率不稳定**，一批货里可能有两块不能用；击球瞬间大电流会导致断电，BLHeli-S 在排球发球机构上疑似烧毁过；正式场合建议换 AM32 并预留备份。
+- **ESP-01 与 ESP-01S 差别**：ESP-01 必须外接 10K 上拉电阻，ESP-01S 已板载，性能基本一致。
+- **重邮 A 板玄学故障**：上电后主芯片发烫且无法连串口，可能在使用 / 检测后突然出现，赛场上要带电烙铁和备用芯片应急。
+- **VESC 电调发热**：中北魔改 VESC 长时间测试能把 Type-C 口热化，必须加导热硅脂 + 主动散热。
+- **电磁阀不要用电机驱动板控**：直接继电器 IO 控制即可；越简单越稳定；继电器模块电源用杜邦线接 24V 会不稳，要注意接线可靠性。
+- **校园网连不上**：点首页选「直连」，需要时订 11fg 开头的节点。
+- **IMX93 双核不自动仲裁资源**：A 核 dtb 与 M 核 MCUXpresso 配置冲突会让 Linux crash，外设 / 内存必须在两侧规划中互斥。
+- **电机安全**：3508 转速高，调试时务必用夹子固定，禁止手持。
+- **集训节奏**：备赛强度高，能在 5 月完成装车调车就不要拖到 6 月（凌晨三点室外也闷热）。
+- **API Key / 授权码不要随意发群**：语料中出现过 Kimi Key、VOFA 授权码直接贴群里的情况，属于不良习惯，应避免。
+
+## 6. 新人上手路径建议
+
+1. **第 0 周（入组调查）**：自评 51/32 基础、Vibe Coding 工具、科学上网环境；不适合电控要尽早提出。
+2. **第 1 周**：装齐环境（git、Node.js、VS Code + PlatformIO、Keil、Claude/Codex/Trae/Kimi Code 任选、串口工具）；跑通重邮 A 板 PlatformIO 例程；看完中科大 RM 电控合集 CAN + CubeMX 视频。
+3. **第 2-3 周**：完成 3508 转动 → 串口调速 → 无线串口调速 → 角度控制 四关，每一关找魏卫 / 郭童童 / 王欣怡验收并登记到多维表格。
+4. **第 4 周起**：参与任务认领（CAN 快插线、激光雕刻机、焊电调、修 3D 打印机等）；开始接触 N630 / M8010 / RA8P1 Titan 等进阶平台；尝试用 AI 移植代码。
+5. **持续动作**：
+   - 进嘉立创账号，学会下 PCB 单；
+   - 选修一个方向深入：底盘控制（CAN / 3508）、上位机对接（MicroROS / ROS2）、视觉（去 R2 组）、AI Agent（NEC-Claw / Codex Skill）、竞赛（嵌赛 / 星闪杯 / AIC）；
+   - 把过程文档沉淀到飞书云文档而非本地 Word，重要链接挂到团队 Gitee 仓。
+
+## 附录：语料来源群列表
+
+| 群名 | 原始消息数 | 有效消息数 | 主要内容 |
+| --- | --- | --- | --- |
+| AIC 智能体 | 130 | 33 | AIC 大赛赛程、AI 智能体需求文档、实验室 NAS |
+| AIC 的 AI 小分队 | 21 | 6 | PRD、会议纪要、Wiki 协作 |
+| ESP 智能小组 | 11 | 9 | ESPHome、PlatformIO、Tasmota、ESPConnect 资料 |
+| NEC-26RC-嵌入式 | 862 | 466 | 26 赛季电控组培训、任务认领、调车、采购 |
+| NEC-AI 科研小分队 | 35 | 13 | Codex Skill、CC-Switch、PaperPig、Kimi-Claw |
+| NEC 嵌入式芯片与系统设计大赛 | 122 | 61 | 嵌赛报名、NXP / 海思 / 瑞芯微赛道、队名头脑风暴 |
