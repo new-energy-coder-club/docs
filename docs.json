@@ -76,6 +76,23 @@
             ]
           },
           {
+            "group": "工种培训手册",
+            "icon": "book-open",
+            "pages": [
+              "handbook/index",
+              "handbook/handbook-01-mechanical",
+              "handbook/handbook-02-electrical",
+              "handbook/handbook-03-hardware",
+              "handbook/handbook-04-vision",
+              "handbook/handbook-05-ai-embedded",
+              "handbook/handbook-06-operations",
+              "handbook/handbook-07-field",
+              "handbook/handbook-08-3dprint",
+              "handbook/handbook-09-management",
+              "handbook/handbook-10-projects"
+            ]
+          },
+          {
             "group": "机构 SIG",
             "icon": "gears",
             "pages": [
