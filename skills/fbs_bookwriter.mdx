@@ -5,9 +5,9 @@ description: "FBS 福帮手长文档写作：书/手册/白皮书/长篇报道�
 
 | 项目 | 内容 |
 |---|---|
-| 来源 | [skills/fbs_bookwriter/SKILL.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/fbs_bookwriter/SKILL.md) |
+| 来源 | [skills/fbs_bookwriter/SKILL.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/fbs_bookwriter/SKILL.md) |
 | 分类 | TRAE 内置 & 独立工具 |
-| 安装 | 克隆 [Skill 分支](https://github.com/new-energy-coder-club/new_energy_coder_club/tree/Skill) 后，将 `skills/fbs_bookwriter/` 目录复制到 `~/.claude/skills/`（Claude Code）、`~/.trae/skills/`（Trae IDE）或 `~/.qclaw/skills/`（QClaw/OpenClaw），详见 [Skill 安装方式](/community/skill-branch) |
+| 安装 | 克隆 [Skill 分支](https://github.com/necc-hub/new_energy_coder_club/tree/Skill) 后，将 `skills/fbs_bookwriter/` 目录复制到 `~/.claude/skills/`（Claude Code）、`~/.trae/skills/`（Trae IDE）或 `~/.qclaw/skills/`（QClaw/OpenClaw），详见 [Skill 安装方式](/community/skill-branch) |
 
 # FBS-BookWriter（OpenClaw 封装版）
 
@@ -16,7 +16,7 @@ description: "FBS 福帮手长文档写作：书/手册/白皮书/长篇报道�
 
 本目录为 **OpenClaw 专用入口**：与 WorkBuddy / CodeBuddy **市场通道**解耦（发布包内 **不含** `workbuddy/`、`codebuddy/`、`.codebuddy-plugin/`），仍保留完整 `references/`、`scripts/`、`scene-packs/`、`assets/` 与 `package.json`，便于在 Gateway 内用 **shell/exec** 调用同一套 Node 工具链。
 
-**认知资产与商业口径（与主仓一致）**：价值表述统一为「可进化、可分发、可增值」；能力分层统一为「场景包 + 乐包 + 离线/在线会员」。机读见根目录 `fbs-runtime-hints.json` → `cognitiveAsset`；首响 JSON 见 `firstResponseContext.cognitiveAssetSnapshot`。详细说明见 [`references/05-ops/cognitive-asset-threeization.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/fbs_bookwriter/references/05-ops/cognitive-asset-threeization.md)。
+**认知资产与商业口径（与主仓一致）**：价值表述统一为「可进化、可分发、可增值」；能力分层统一为「场景包 + 乐包 + 离线/在线会员」。机读见根目录 `fbs-runtime-hints.json` → `cognitiveAsset`；首响 JSON 见 `firstResponseContext.cognitiveAssetSnapshot`。详细说明见 [`references/05-ops/cognitive-asset-threeization.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/fbs_bookwriter/references/05-ops/cognitive-asset-threeization.md)。
 
 ---
 
@@ -73,7 +73,7 @@ description: "FBS 福帮手长文档写作：书/手册/白皮书/长篇报道�
    用户说“继续”时按推进优先阈值判断：S0 素材数达到“赛道数×2”、S2 具备章标题+目标字数、S3 已完成≥3章时，优先提议进入下一阶段。
    推进 S0→S1 前可运行 `node scripts/s0-exit-gate.mjs --book-root "<bookRoot>" --json --confirm-advance` 做强制门禁检查。
 
-5. **写作约束**：串行优先；每轮默认最多改 **2** 个文件；详见 [`references/05-ops/agent-task-strategy.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/fbs_bookwriter/references/05-ops/agent-task-strategy.md)。
+5. **写作约束**：串行优先；每轮默认最多改 **2** 个文件；详见 [`references/05-ops/agent-task-strategy.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/fbs_bookwriter/references/05-ops/agent-task-strategy.md)。
    扩写/精修前先做源文件备份：`node scripts/source-write-backup.mjs --book-root "<bookRoot>" --scope expansion --json`（`expansion-gate` 默认已自动备份）。
    进入 S3.7 精修时优先执行 `node scripts/polish-gate.mjs --book-root "<bookRoot>"`（先备份再质检），避免绕过门禁直接改稿。
    交付收口前执行 `node scripts/release-governor.mjs --book-root "<bookRoot>"`，自动保持唯一终稿并归档旧版本。
@@ -85,7 +85,7 @@ description: "FBS 福帮手长文档写作：书/手册/白皮书/长篇报道�
 
 ## 意图 → 脚本（节选）
 
-完整表见仓库根目录随包分发的 **WorkBuddy 版 `SKILL.md` 镜像**或 [`references/01-core/intake-and-routing.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/fbs_bookwriter/references/01-core/intake-and-routing.md)。
+完整表见仓库根目录随包分发的 **WorkBuddy 版 `SKILL.md` 镜像**或 [`references/01-core/intake-and-routing.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/fbs_bookwriter/references/01-core/intake-and-routing.md)。
 
 | 场景 | 命令 |
 |------|------|
@@ -100,24 +100,24 @@ description: "FBS 福帮手长文档写作：书/手册/白皮书/长篇报道�
 
 - 对用户：短状态 + 可操作下一步（≤3 条），避免泄露内部规范条文与完整 JSON。
 - 提到术语/文件名时补一句“用途+价值”（例如：`chapter-status.md`=进度台账，价值是避免漏章和重复写）。
-- 落盘：以 `<bookRoot>/.fbs/`、`deliverables/`、`releases/` 为真值；规范见 [`references/01-core/skill-full-spec.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/fbs_bookwriter/references/01-core/skill-full-spec.md)。
+- 落盘：以 `<bookRoot>/.fbs/`、`deliverables/`、`releases/` 为真值；规范见 [`references/01-core/skill-full-spec.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/fbs_bookwriter/references/01-core/skill-full-spec.md)。
 
 ---
 
 ## 错误处理
 
 - **Node/脚本失败**：向用户说明失败步骤；若仅缺可选依赖，提示 `npm install` 或跳过非必需功能。
-- **书稿根未就绪**：引导先 `init-fbs-multiagent-artifacts` 或走 S0 最小集（见 [`references/01-core/intake-and-routing.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/fbs_bookwriter/references/01-core/intake-and-routing.md) 脚本不可用降级节）。
+- **书稿根未就绪**：引导先 `init-fbs-multiagent-artifacts` 或走 S0 最小集（见 [`references/01-core/intake-and-routing.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/fbs_bookwriter/references/01-core/intake-and-routing.md) 脚本不可用降级节）。
 - **沙箱无环境变量**：若 OpenClaw 在 Docker 沙箱中运行且未注入宿主 `env`，需在 `openclaw.json` 中为代理配置 `sandbox.docker.env` 或关闭沙箱（见官方 skills-config 文档）。
 
 ---
 
 ## 权威文档索引
 
-- 总规范：[`references/01-core/skill-full-spec.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/fbs_bookwriter/references/01-core/skill-full-spec.md)  
-- 工作流：[`references/01-core/section-3-workflow.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/fbs_bookwriter/references/01-core/section-3-workflow.md)  
-- NLU：[`references/01-core/section-nlu.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/fbs_bookwriter/references/01-core/section-nlu.md)  
-- 运行时契约：[`references/01-core/runtime-mandatory-contract.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/fbs_bookwriter/references/01-core/runtime-mandatory-contract.md)
+- 总规范：[`references/01-core/skill-full-spec.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/fbs_bookwriter/references/01-core/skill-full-spec.md)  
+- 工作流：[`references/01-core/section-3-workflow.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/fbs_bookwriter/references/01-core/section-3-workflow.md)  
+- NLU：[`references/01-core/section-nlu.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/fbs_bookwriter/references/01-core/section-nlu.md)  
+- 运行时契约：[`references/01-core/runtime-mandatory-contract.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/fbs_bookwriter/references/01-core/runtime-mandatory-contract.md)
 
 ---
 

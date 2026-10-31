@@ -5,9 +5,9 @@ description: "创建 lark-cli 的自定义 Skill。当用户需要把飞书 API 
 
 | 项目 | 内容 |
 |---|---|
-| 来源 | [skills/lark-skill-maker/SKILL.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-skill-maker/SKILL.md) |
+| 来源 | [skills/lark-skill-maker/SKILL.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-skill-maker/SKILL.md) |
 | 分类 | 飞书/Lark 办公套件 |
-| 安装 | 克隆 [Skill 分支](https://github.com/new-energy-coder-club/new_energy_coder_club/tree/Skill) 后，将 `skills/lark-skill-maker/` 目录复制到 `~/.claude/skills/`（Claude Code）、`~/.trae/skills/`（Trae IDE）或 `~/.qclaw/skills/`（QClaw/OpenClaw），详见 [Skill 安装方式](/community/skill-branch) |
+| 安装 | 克隆 [Skill 分支](https://github.com/necc-hub/new_energy_coder_club/tree/Skill) 后，将 `skills/lark-skill-maker/` 目录复制到 `~/.claude/skills/`（Claude Code）、`~/.trae/skills/`（Trae IDE）或 `~/.qclaw/skills/`（QClaw/OpenClaw），详见 [Skill 安装方式](/community/skill-branch) |
 
 # Skill Maker
 
@@ -38,7 +38,7 @@ lark-cli api GET /open-apis/vc/v1/rooms --params '{"page_size":"50"}'
 lark-cli api POST /open-apis/vc/v1/rooms/search --data '{"query":"5F"}'
 ```
 
-如果以上命令无法覆盖需求（CLI 没有对应的已注册 API 或 Shortcut），使用 [lark-openapi-explorer](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-openapi-explorer/SKILL.md) 从飞书官方文档库逐层挖掘原生 OpenAPI 接口，获取完整的方法、路径、参数和权限信息，再通过 `lark-cli api` 裸调完成任务。
+如果以上命令无法覆盖需求（CLI 没有对应的已注册 API 或 Shortcut），使用 [lark-openapi-explorer](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-openapi-explorer/SKILL.md) 从飞书官方文档库逐层挖掘原生 OpenAPI 接口，获取完整的方法、路径、参数和权限信息，再通过 `lark-cli api` 裸调完成任务。
 
 通过以上流程确定需要哪些 API、参数和 scope。
 

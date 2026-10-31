@@ -5,13 +5,13 @@ description: "飞书任务：管理任务、清单和任务智能体。创建待
 
 | 项目 | 内容 |
 |---|---|
-| 来源 | [skills/lark-task/SKILL.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-task/SKILL.md) |
+| 来源 | [skills/lark-task/SKILL.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-task/SKILL.md) |
 | 分类 | 飞书/Lark 办公套件 |
-| 安装 | 克隆 [Skill 分支](https://github.com/new-energy-coder-club/new_energy_coder_club/tree/Skill) 后，将 `skills/lark-task/` 目录复制到 `~/.claude/skills/`（Claude Code）、`~/.trae/skills/`（Trae IDE）或 `~/.qclaw/skills/`（QClaw/OpenClaw），详见 [Skill 安装方式](/community/skill-branch) |
+| 安装 | 克隆 [Skill 分支](https://github.com/necc-hub/new_energy_coder_club/tree/Skill) 后，将 `skills/lark-task/` 目录复制到 `~/.claude/skills/`（Claude Code）、`~/.trae/skills/`（Trae IDE）或 `~/.qclaw/skills/`（QClaw/OpenClaw），详见 [Skill 安装方式](/community/skill-branch) |
 
 # task (v2)
 
-**CRITICAL — 开始前 MUST 先用 Read 工具读取 [`../lark-shared/SKILL.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-shared/SKILL.md)，其中包含认证、权限处理**
+**CRITICAL — 开始前 MUST 先用 Read 工具读取 [`../lark-shared/SKILL.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-shared/SKILL.md)，其中包含认证、权限处理**
 
 > **任务搜索技巧**：先区分用户是否**特地指定使用搜索 skill**，以及是否真的提供了**查询关键字**（例如任务名称、关键词、片段描述）。如果用户特地指定使用搜索 skill，或明确给出了任务查询关键字，则目标是**任务**时优先使用 `+search`。如果用户没有特地指定使用搜索 skill，且意图里没有查询关键字，只有范围条件（例如“今年以来”“已完成”“由我创建”“我关注的”），并且使用 `+search` 与 `+get-related-tasks` / `+get-my-tasks` 都能达到目的时，应优先使用列表型能力，而不是搜索型能力。其中，“与我相关 / 我关注的 / 由我创建”等优先考虑 `+get-related-tasks`；“我负责的 / 分配给我”的列表优先考虑 `+get-my-tasks`。不要把时间范围词（例如“今年以来”）本身误当成 `query` 去走搜索。
 > **任务清单搜索技巧**：任务清单也遵循同样的判断逻辑。先区分用户是否**特地指定使用搜索 skill**，以及是否真的提供了**清单查询关键字**（例如清单名称、关键词、片段描述）。如果用户特地指定使用搜索 skill，或明确给出了清单查询关键字，则优先使用 `+tasklist-search`。如果用户没有特地指定使用搜索 skill，且意图里没有查询关键字，只有范围条件（例如“由我创建的任务清单”“今年以来创建的清单”），并且使用搜索或原生列取清单都能达到目的时，应优先使用原生 `tasklists.list` 接口列取清单（先 `schema task.tasklists.list`，再 `lark-cli task tasklists list --as user ...`），再按 `creator`、`created_at` 等字段做本地筛选和分页控制。
@@ -36,24 +36,24 @@ description: "飞书任务：管理任务、清单和任务智能体。创建待
 
 ## Shortcuts
 
-- [`+create`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-create.md) — Create a task
-- [`+update`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-update.md) — Update a task
-- [`+comment`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-comment.md) — Add a comment to a task
-- [`+complete`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-complete.md) — Complete a task
-- [`+reopen`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-reopen.md) — Reopen a task
-- [`+assign`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-assign.md) — Assign or remove members from a task
-- [`+followers`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-followers.md) — Manage task followers
-- [`+reminder`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-reminder.md) — Manage task reminders
-- [`+get-my-tasks`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-get-my-tasks.md) — List tasks assigned to me
-- [`+get-related-tasks`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-get-related-tasks.md) — List tasks related to me
-- [`+search`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-search.md) — Search tasks
-- [`+subscribe-event`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-subscribe-event.md) — Subscribe to task events
-- [`+set-ancestor`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-set-ancestor.md) — Set or clear a task ancestor
-- [`+tasklist-create`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-tasklist-create.md) — Create a tasklist and batch add tasks
-- [`+tasklist-search`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-tasklist-search.md) — Search tasklists
-- [`+tasklist-task-add`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-tasklist-task-add.md) — Add existing tasks to a tasklist
-- [`+tasklist-members`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-tasklist-members.md) — Manage tasklist members
-- [`+upload-attachment`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-upload-attachment.md) — Upload a file as a task attachment
+- [`+create`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-create.md) — Create a task
+- [`+update`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-update.md) — Update a task
+- [`+comment`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-comment.md) — Add a comment to a task
+- [`+complete`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-complete.md) — Complete a task
+- [`+reopen`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-reopen.md) — Reopen a task
+- [`+assign`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-assign.md) — Assign or remove members from a task
+- [`+followers`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-followers.md) — Manage task followers
+- [`+reminder`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-reminder.md) — Manage task reminders
+- [`+get-my-tasks`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-get-my-tasks.md) — List tasks assigned to me
+- [`+get-related-tasks`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-get-related-tasks.md) — List tasks related to me
+- [`+search`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-search.md) — Search tasks
+- [`+subscribe-event`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-subscribe-event.md) — Subscribe to task events
+- [`+set-ancestor`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-set-ancestor.md) — Set or clear a task ancestor
+- [`+tasklist-create`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-tasklist-create.md) — Create a tasklist and batch add tasks
+- [`+tasklist-search`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-tasklist-search.md) — Search tasklists
+- [`+tasklist-task-add`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-tasklist-task-add.md) — Add existing tasks to a tasklist
+- [`+tasklist-members`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-tasklist-members.md) — Manage tasklist members
+- [`+upload-attachment`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-task/references/lark-task-upload-attachment.md) — Upload a file as a task attachment
 
 ## API Resources
 

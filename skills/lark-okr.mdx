@@ -5,13 +5,13 @@ description: "飞书 OKR：管理目标与关键结果。查看和编辑 OKR 周
 
 | 项目 | 内容 |
 |---|---|
-| 来源 | [skills/lark-okr/SKILL.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-okr/SKILL.md) |
+| 来源 | [skills/lark-okr/SKILL.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-okr/SKILL.md) |
 | 分类 | 飞书/Lark 办公套件 |
-| 安装 | 克隆 [Skill 分支](https://github.com/new-energy-coder-club/new_energy_coder_club/tree/Skill) 后，将 `skills/lark-okr/` 目录复制到 `~/.claude/skills/`（Claude Code）、`~/.trae/skills/`（Trae IDE）或 `~/.qclaw/skills/`（QClaw/OpenClaw），详见 [Skill 安装方式](/community/skill-branch) |
+| 安装 | 克隆 [Skill 分支](https://github.com/necc-hub/new_energy_coder_club/tree/Skill) 后，将 `skills/lark-okr/` 目录复制到 `~/.claude/skills/`（Claude Code）、`~/.trae/skills/`（Trae IDE）或 `~/.qclaw/skills/`（QClaw/OpenClaw），详见 [Skill 安装方式](/community/skill-branch) |
 
 # okr (v2)
 
-**CRITICAL — 开始前 MUST 先用 Read 工具读取 [`../lark-shared/SKILL.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-shared/SKILL.md)，其中包含认证、权限处理**
+**CRITICAL — 开始前 MUST 先用 Read 工具读取 [`../lark-shared/SKILL.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-shared/SKILL.md)，其中包含认证、权限处理**
 
 ## Shortcuts（推荐优先使用）
 
@@ -19,20 +19,20 @@ Shortcut 是对常用操作的高级封装（`lark-cli okr +<verb> [flags]`）�
 
 | Shortcut                                                     | 说明                       |
 |--------------------------------------------------------------|--------------------------|
-| [`+cycle-list`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-okr/references/lark-okr-cycle-list.md)           | 获取特定用户的 OKR 周期列表，可以按时间筛选 |
-| [`+cycle-detail`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-okr/references/lark-okr-cycle-detail.md)       | 获取特定 OKR 中所有目标和关键结果的内容   |
-| [`+progress-list`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-okr/references/lark-okr-progress-list.md)     | 获取目标或关键结果的所有进展记录列表      |
-| [`+progress-get`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-okr/references/lark-okr-progress-get.md)       | 根据 ID 获取单条 OKR 进展记录      |
-| [`+progress-create`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-okr/references/lark-okr-progress-create.md) | 为目标或关键结果创建进展记录           |
-| [`+progress-update`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-okr/references/lark-okr-progress-update.md) | 更新指定 ID 的进展记录内容          |
-| [`+progress-delete`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-okr/references/lark-okr-progress-delete.md) | 删除指定 ID 的进展记录（不可恢复）      |
-| [`+upload-image`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-okr/references/lark-okr-image-upload.md)       | 上传图片用于 OKR 进展记录的富文本内容    |
+| [`+cycle-list`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-okr/references/lark-okr-cycle-list.md)           | 获取特定用户的 OKR 周期列表，可以按时间筛选 |
+| [`+cycle-detail`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-okr/references/lark-okr-cycle-detail.md)       | 获取特定 OKR 中所有目标和关键结果的内容   |
+| [`+progress-list`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-okr/references/lark-okr-progress-list.md)     | 获取目标或关键结果的所有进展记录列表      |
+| [`+progress-get`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-okr/references/lark-okr-progress-get.md)       | 根据 ID 获取单条 OKR 进展记录      |
+| [`+progress-create`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-okr/references/lark-okr-progress-create.md) | 为目标或关键结果创建进展记录           |
+| [`+progress-update`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-okr/references/lark-okr-progress-update.md) | 更新指定 ID 的进展记录内容          |
+| [`+progress-delete`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-okr/references/lark-okr-progress-delete.md) | 删除指定 ID 的进展记录（不可恢复）      |
+| [`+upload-image`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-okr/references/lark-okr-image-upload.md)       | 上传图片用于 OKR 进展记录的富文本内容    |
 
 ## 格式说明
 
-- [`OKR 业务实体`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-okr/references/lark-okr-entities.md) 获取 OKR 实体结构，定义和关系，帮助你更好的使用 OKR 功能
-- [`ContentBlock 富文本格式`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-okr/references/lark-okr-contentblock.md) — Objective/KeyResult/Progress 中 Content/Note 字段使用的富文本格式说明
-- **强烈建议** 在操作 OKR 前，阅读[`OKR 业务实体`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-okr/references/lark-okr-entities.md)以了解基础概念
+- [`OKR 业务实体`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-okr/references/lark-okr-entities.md) 获取 OKR 实体结构，定义和关系，帮助你更好的使用 OKR 功能
+- [`ContentBlock 富文本格式`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-okr/references/lark-okr-contentblock.md) — Objective/KeyResult/Progress 中 Content/Note 字段使用的富文本格式说明
+- **强烈建议** 在操作 OKR 前，阅读[`OKR 业务实体`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-okr/references/lark-okr-entities.md)以了解基础概念
 
 ## API Resources
 

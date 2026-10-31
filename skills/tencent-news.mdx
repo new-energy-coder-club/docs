@@ -5,9 +5,9 @@ description: "7×24 新闻资讯搜索工具，聚焦中国国内信息和国际
 
 | 项目 | 内容 |
 |---|---|
-| 来源 | [skills/tencent-news/SKILL.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/tencent-news/SKILL.md) |
+| 来源 | [skills/tencent-news/SKILL.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/tencent-news/SKILL.md) |
 | 分类 | 集成 & 平台连接 |
-| 安装 | 克隆 [Skill 分支](https://github.com/new-energy-coder-club/new_energy_coder_club/tree/Skill) 后，将 `skills/tencent-news/` 目录复制到 `~/.claude/skills/`（Claude Code）、`~/.trae/skills/`（Trae IDE）或 `~/.qclaw/skills/`（QClaw/OpenClaw），详见 [Skill 安装方式](/community/skill-branch) |
+| 安装 | 克隆 [Skill 分支](https://github.com/necc-hub/new_energy_coder_club/tree/Skill) 后，将 `skills/tencent-news/` 目录复制到 `~/.claude/skills/`（Claude Code）、`~/.trae/skills/`（Trae IDE）或 `~/.qclaw/skills/`（QClaw/OpenClaw），详见 [Skill 安装方式](/community/skill-branch) |
 
 # 腾讯新闻内容订阅
 
@@ -74,11 +74,11 @@ sh scripts/cli-state.sh
 
 > 仅当 `cliSource` 为 `none` 时才需要安装；`local` 表示命中了旧版本地安装，可继续使用但建议后续迁移到全局安装。
 
-按照 [`references/installation-guide.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/tencent-news/references/installation-guide.md) 中的安装命令执行安装：
+按照 [`references/installation-guide.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/tencent-news/references/installation-guide.md) 中的安装命令执行安装：
 
 安装成功后重新执行 `sh scripts/cli-state.sh`（Windows 用 `bun scripts/cli-state.ts`）刷新状态。
 
-若安装失败，参考 [`references/installation-guide.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/tencent-news/references/installation-guide.md) 中的故障排查部分，引导用户手动处理。
+若安装失败，参考 [`references/installation-guide.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/tencent-news/references/installation-guide.md) 中的故障排查部分，引导用户手动处理。
 
 ### 3. 更新 CLI（`update.needUpdate` 为 `true`，或 CLI 提示版本过旧时）
 
@@ -90,7 +90,7 @@ Windows 使用 `bun scripts/run-cli.ts update`。
 
 若 `update.error` 不为空，先展示错误并让用户处理。
 
-若 `update` 命令失败，或错误信息表明当前 CLI 不支持 `update`（如 `unknown command`、`not found`、`not recognized`），按上述步骤 2 重新安装。仍然失败时，引导用户参考 [`references/update-guide.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/tencent-news/references/update-guide.md) 手动处理。
+若 `update` 命令失败，或错误信息表明当前 CLI 不支持 `update`（如 `unknown command`、`not found`、`not recognized`），按上述步骤 2 重新安装。仍然失败时，引导用户参考 [`references/update-guide.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/tencent-news/references/update-guide.md) 手动处理。
 
 ### 4. 配置 API Key（`apiKey.status` 不为 `configured` 时）
 
@@ -122,7 +122,7 @@ Windows 分别使用 `bun scripts/run-cli.ts apikey-set KEY`、`bun scripts/run-
 验证：`sh scripts/run-cli.sh apikey-get`
 清除（仅用户明确要求时）：`sh scripts/run-cli.sh apikey-clear`
 
-详见 [`references/env-setup-guide.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/tencent-news/references/env-setup-guide.md)。
+详见 [`references/env-setup-guide.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/tencent-news/references/env-setup-guide.md)。
 
 ## Phase 2：获取新闻
 
@@ -222,7 +222,7 @@ Windows 分别使用 `bun scripts/run-cli.ts apikey-set KEY`、`bun scripts/run-
 
 ## References
 
-- Token 自动获取说明：[`SETUP_TOKEN.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/tencent-news/SETUP_TOKEN.md)
-- 用户手动安装指南：[`references/installation-guide.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/tencent-news/references/installation-guide.md)
-- 用户手动更新指南：[`references/update-guide.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/tencent-news/references/update-guide.md)
-- API Key 获取与手动配置：[`references/env-setup-guide.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/tencent-news/references/env-setup-guide.md)
+- Token 自动获取说明：[`SETUP_TOKEN.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/tencent-news/SETUP_TOKEN.md)
+- 用户手动安装指南：[`references/installation-guide.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/tencent-news/references/installation-guide.md)
+- 用户手动更新指南：[`references/update-guide.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/tencent-news/references/update-guide.md)
+- API Key 获取与手动配置：[`references/env-setup-guide.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/tencent-news/references/env-setup-guide.md)

@@ -5,24 +5,24 @@ description: "飞书幻灯片：创建和编辑幻灯片，接口通过 XML 协�
 
 | 项目 | 内容 |
 |---|---|
-| 来源 | [skills/lark-slides/SKILL.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/SKILL.md) |
+| 来源 | [skills/lark-slides/SKILL.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/SKILL.md) |
 | 分类 | 飞书/Lark 办公套件 |
-| 安装 | 克隆 [Skill 分支](https://github.com/new-energy-coder-club/new_energy_coder_club/tree/Skill) 后，将 `skills/lark-slides/` 目录复制到 `~/.claude/skills/`（Claude Code）、`~/.trae/skills/`（Trae IDE）或 `~/.qclaw/skills/`（QClaw/OpenClaw），详见 [Skill 安装方式](/community/skill-branch) |
+| 安装 | 克隆 [Skill 分支](https://github.com/necc-hub/new_energy_coder_club/tree/Skill) 后，将 `skills/lark-slides/` 目录复制到 `~/.claude/skills/`（Claude Code）、`~/.trae/skills/`（Trae IDE）或 `~/.qclaw/skills/`（QClaw/OpenClaw），详见 [Skill 安装方式](/community/skill-branch) |
 
 # slides (v1)
 
-**CRITICAL — 开始前 MUST 先用 Read 工具读取 [`../lark-shared/SKILL.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-shared/SKILL.md)，其中包含认证、权限处理**
+**CRITICAL — 开始前 MUST 先用 Read 工具读取 [`../lark-shared/SKILL.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-shared/SKILL.md)，其中包含认证、权限处理**
 
-**CRITICAL — 生成任何 XML 之前，MUST 先用 Read 工具读取 [xml-schema-quick-ref.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/xml-schema-quick-ref.md)，禁止凭记忆猜测 XML 结构。**
+**CRITICAL — 生成任何 XML 之前，MUST 先用 Read 工具读取 [xml-schema-quick-ref.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/xml-schema-quick-ref.md)，禁止凭记忆猜测 XML 结构。**
 
-**CRITICAL — 如果用户提到“模板”“套用模板”“参考某种主题/风格/版式”，或用户需求明显落在已有场景模板内（如工作汇报、产品介绍、商业计划书、培训、晋升汇报等），MUST 先用 [`scripts/template_tool.py`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/scripts/template_tool.py) 的 `search` 做模板检索；默认给出 2-3 个最匹配模板候选供用户选择。锁定模板后用 `summarize` 获取主题和布局摘要；只有需要布局骨架时才用 `extract` 裁切目标页型 XML。不要直接读取完整模板 XML。**
+**CRITICAL — 如果用户提到“模板”“套用模板”“参考某种主题/风格/版式”，或用户需求明显落在已有场景模板内（如工作汇报、产品介绍、商业计划书、培训、晋升汇报等），MUST 先用 [`scripts/template_tool.py`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/scripts/template_tool.py) 的 `search` 做模板检索；默认给出 2-3 个最匹配模板候选供用户选择。锁定模板后用 `summarize` 获取主题和布局摘要；只有需要布局骨架时才用 `extract` 裁切目标页型 XML。不要直接读取完整模板 XML。**
 
 > [!NOTE]
 > `scripts/template_tool.py` 需要 Python 3。`references/template-index.json` 是脚本缓存/轻量路由索引，不是默认给 agent 阅读的文档；`assets/templates/*.xml` 是机器资源，只应通过脚本摘要或裁切，不要全文读取。
 
-**CRITICAL — 使用模板生成或改写页面时，MUST 先 `summarize` 目标页型；只有需要具体布局骨架时才 `extract`。生成本地 XML 后，如可运行 Python，MUST 先用 [`scripts/layout_lint.py`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/scripts/layout_lint.py) 检查 XML well-formed、重叠/越界/文本高度风险，再创建或追加页面。它不是完整 XSD schema 校验。**
+**CRITICAL — 使用模板生成或改写页面时，MUST 先 `summarize` 目标页型；只有需要具体布局骨架时才 `extract`。生成本地 XML 后，如可运行 Python，MUST 先用 [`scripts/layout_lint.py`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/scripts/layout_lint.py) 检查 XML well-formed、重叠/越界/文本高度风险，再创建或追加页面。它不是完整 XSD schema 校验。**
 
-**编辑已有幻灯片页面**：优先用 [`+replace-slide`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-replace-slide.md)（块级替换/插入，不动页序）；选择 action 和完整读-改-写流程见 [`lark-slides-edit-workflows.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-edit-workflows.md)。
+**编辑已有幻灯片页面**：优先用 [`+replace-slide`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-replace-slide.md)（块级替换/插入，不动页序）；选择 action 和完整读-改-写流程见 [`lark-slides-edit-workflows.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-edit-workflows.md)。
 
 ## 身份选择
 
@@ -52,7 +52,7 @@ lark-cli slides +create --title "演示文稿标题" --slides '[
 ]'
 ```
 
-也可以分两步（先创建空白 PPT，再逐页添加），详见 [+create 参考文档](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-create.md)。
+也可以分两步（先创建空白 PPT，再逐页添加），详见 [+create 参考文档](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-create.md)。
 
 > [!WARNING]
 > `--slides '[...]'` 适合简单页面批量创建，但并不等同于“10 页以内都安全”。如果 slide XML 含中文、大段文本、复杂布局、嵌套引号或较多特殊字符，shell 传参时可能出现转义或截断问题，导致内容丢失、页面空白或布局异常。遇到复杂页面时，优先改用“两步创建法”。
@@ -70,21 +70,21 @@ lark-cli slides +create --title "演示文稿标题" --slides '[
 
 | 文档 | 说明 |
 |------|------|
-| [xml-schema-quick-ref.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/xml-schema-quick-ref.md) | **XML 元素和属性速查，必读** |
+| [xml-schema-quick-ref.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/xml-schema-quick-ref.md) | **XML 元素和属性速查，必读** |
 
 ### 选读（需要时查阅）
 
 | 场景 | 文档 |
 |------|------|
-| 需要了解详细 XML 结构 | [xml-format-guide.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/xml-format-guide.md) |
-| 需要快速筛模板、做低成本路由 | [`scripts/template_tool.py search`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/scripts/template_tool.py) |
-| 需要匹配 PPT 模板/主题风格 | [template-catalog.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/template-catalog.md) |
-| 需要按页型抽摘要或裁切 XML 片段 | [`scripts/template_tool.py`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/scripts/template_tool.py) |
-| 需要做本地布局风险检查 | [`scripts/layout_lint.py`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/scripts/layout_lint.py) |
-| 需要 CLI 调用示例 | [examples.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/examples.md) |
-| 需要参考真实 PPT 的 XML | [slides_demo.xml](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/slides_demo.xml) |
-| 需要用 table/chart 等复杂元素 | [slides_xml_schema_definition.xml](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/slides_xml_schema_definition.xml)（完整 Schema） |
-| 需要编辑已有 PPT 的单个页面 | [lark-slides-edit-workflows.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-edit-workflows.md) |
+| 需要了解详细 XML 结构 | [xml-format-guide.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/xml-format-guide.md) |
+| 需要快速筛模板、做低成本路由 | [`scripts/template_tool.py search`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/scripts/template_tool.py) |
+| 需要匹配 PPT 模板/主题风格 | [template-catalog.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/template-catalog.md) |
+| 需要按页型抽摘要或裁切 XML 片段 | [`scripts/template_tool.py`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/scripts/template_tool.py) |
+| 需要做本地布局风险检查 | [`scripts/layout_lint.py`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/scripts/layout_lint.py) |
+| 需要 CLI 调用示例 | [examples.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/examples.md) |
+| 需要参考真实 PPT 的 XML | [slides_demo.xml](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/slides_demo.xml) |
+| 需要用 table/chart 等复杂元素 | [slides_xml_schema_definition.xml](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/slides_xml_schema_definition.xml)（完整 Schema） |
+| 需要编辑已有 PPT 的单个页面 | [lark-slides-edit-workflows.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-edit-workflows.md) |
 | 需要了解某个命令的详细参数 | 对应命令的 reference 文档（见下方参考文档章节） |
 
 ## Workflow
@@ -322,7 +322,7 @@ N. 结尾页：[结尾文案]
 
 ### 常用 Slide XML 模板
 
-可直接复制使用的模板（封面页、内容页、数据卡片页、结尾页）：[slide-templates.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/slide-templates.md)
+可直接复制使用的模板（封面页、内容页、数据卡片页、结尾页）：[slide-templates.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/slide-templates.md)
 
 ---
 
@@ -400,9 +400,9 @@ Shortcut 是对常用操作的高级封装（`lark-cli slides +<verb> [flags]`�
 
 | Shortcut | 说明 |
 |----------|------|
-| [`+create`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-create.md) | 创建 PPT（可选 `--slides` 一步添加页面，支持 `<img src="@./local.png">` 占位符自动上传），bot 模式自动授权 |
-| [`+media-upload`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-media-upload.md) | 上传本地图片到指定演示文稿，返回 `file_token`（用作 `<img src="...">`），最大 20 MB |
-| [`+replace-slide`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-replace-slide.md) | 对已有幻灯片页面进行块级替换/插入（`block_replace` / `block_insert`），自动注入 id 和 `<content/>`，不改变页序 |
+| [`+create`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-create.md) | 创建 PPT（可选 `--slides` 一步添加页面，支持 `<img src="@./local.png">` 占位符自动上传），bot 模式自动授权 |
+| [`+media-upload`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-media-upload.md) | 上传本地图片到指定演示文稿，返回 `file_token`（用作 `<img src="...">`），最大 20 MB |
+| [`+replace-slide`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-replace-slide.md) | 对已有幻灯片页面进行块级替换/插入（`block_replace` / `block_insert`），自动注入 id 和 `<content/>`，不改变页序 |
 
 ## API Resources
 
@@ -503,24 +503,24 @@ lark-cli slides <resource> <method> [flags] # 调用 API
 
 | 文档 | 说明 |
 |------|------|
-| [lark-slides-create.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-create.md) | **+create Shortcut：创建 PPT（支持 `--slides` 一步添加页面，含 `@` 占位符自动上传图片）** |
-| [lark-slides-media-upload.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-media-upload.md) | **+media-upload Shortcut：上传本地图片，返回 `file_token`** |
-| [lark-slides-replace-slide.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-replace-slide.md) | **+replace-slide Shortcut：块级替换/插入，含合法根元素速查与 3350001 排错** |
-| [lark-slides-edit-workflows.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-edit-workflows.md) | 编辑已有页面的读-改-写流程与 action 决策树 |
-| [template-index.json](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/template-index.json) | **脚本缓存/轻量路由索引：由 `template_tool.py search` 使用，不是默认阅读入口** |
-| [template-catalog.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/template-catalog.md) | **按场景/色调匹配现成 PPT 模板，并定位到页型范围** |
-| [`scripts/template_tool.py`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/scripts/template_tool.py) | **可选 Python 辅助脚本：`search` / `summarize` / `extract`，支持 `--layout-tag` 与 `extract --with-summary`** |
-| [`scripts/layout_lint.py`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/scripts/layout_lint.py) | **本地预检脚本：先检查 XML well-formed，再检测重叠、越界、页脚碰撞、文本高度风险；不是完整 XSD schema 校验** |
-| [xml-schema-quick-ref.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/xml-schema-quick-ref.md) | **XML Schema 精简速查（必读）** |
-| [slide-templates.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/slide-templates.md) | 可复制的 Slide XML 模板 |
-| [xml-format-guide.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/xml-format-guide.md) | XML 详细结构与示例 |
-| [examples.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/examples.md) | CLI 调用示例 |
-| [slides_demo.xml](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/slides_demo.xml) | 真实 PPT 的完整 XML |
-| [slides_xml_schema_definition.xml](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/slides_xml_schema_definition.xml) | **完整 Schema 定义**（唯一协议依据） |
-| [lark-slides-xml-presentations-get.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-xml-presentations-get.md) | 读取 PPT 命令详情 |
-| [lark-slides-xml-presentation-slide-create.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-xml-presentation-slide-create.md) | 添加幻灯片命令详情 |
-| [lark-slides-xml-presentation-slide-delete.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-xml-presentation-slide-delete.md) | 删除幻灯片命令详情 |
-| [lark-slides-xml-presentation-slide-get.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-xml-presentation-slide-get.md) | 读取单个幻灯片命令详情 |
-| [lark-slides-xml-presentation-slide-replace.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-xml-presentation-slide-replace.md) | 原生 slide.replace API 命令详情 |
+| [lark-slides-create.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-create.md) | **+create Shortcut：创建 PPT（支持 `--slides` 一步添加页面，含 `@` 占位符自动上传图片）** |
+| [lark-slides-media-upload.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-media-upload.md) | **+media-upload Shortcut：上传本地图片，返回 `file_token`** |
+| [lark-slides-replace-slide.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-replace-slide.md) | **+replace-slide Shortcut：块级替换/插入，含合法根元素速查与 3350001 排错** |
+| [lark-slides-edit-workflows.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-edit-workflows.md) | 编辑已有页面的读-改-写流程与 action 决策树 |
+| [template-index.json](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/template-index.json) | **脚本缓存/轻量路由索引：由 `template_tool.py search` 使用，不是默认阅读入口** |
+| [template-catalog.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/template-catalog.md) | **按场景/色调匹配现成 PPT 模板，并定位到页型范围** |
+| [`scripts/template_tool.py`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/scripts/template_tool.py) | **可选 Python 辅助脚本：`search` / `summarize` / `extract`，支持 `--layout-tag` 与 `extract --with-summary`** |
+| [`scripts/layout_lint.py`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/scripts/layout_lint.py) | **本地预检脚本：先检查 XML well-formed，再检测重叠、越界、页脚碰撞、文本高度风险；不是完整 XSD schema 校验** |
+| [xml-schema-quick-ref.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/xml-schema-quick-ref.md) | **XML Schema 精简速查（必读）** |
+| [slide-templates.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/slide-templates.md) | 可复制的 Slide XML 模板 |
+| [xml-format-guide.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/xml-format-guide.md) | XML 详细结构与示例 |
+| [examples.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/examples.md) | CLI 调用示例 |
+| [slides_demo.xml](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/slides_demo.xml) | 真实 PPT 的完整 XML |
+| [slides_xml_schema_definition.xml](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/slides_xml_schema_definition.xml) | **完整 Schema 定义**（唯一协议依据） |
+| [lark-slides-xml-presentations-get.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-xml-presentations-get.md) | 读取 PPT 命令详情 |
+| [lark-slides-xml-presentation-slide-create.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-xml-presentation-slide-create.md) | 添加幻灯片命令详情 |
+| [lark-slides-xml-presentation-slide-delete.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-xml-presentation-slide-delete.md) | 删除幻灯片命令详情 |
+| [lark-slides-xml-presentation-slide-get.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-xml-presentation-slide-get.md) | 读取单个幻灯片命令详情 |
+| [lark-slides-xml-presentation-slide-replace.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-slides/references/lark-slides-xml-presentation-slide-replace.md) | 原生 slide.replace API 命令详情 |
 
 > **注意**：如果 md 内容与 `slides_xml_schema_definition.xml` 或 `lark-cli schema slides.<resource>.<method>` 输出不一致，以后两者为准。

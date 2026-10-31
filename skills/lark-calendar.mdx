@@ -5,18 +5,18 @@ description: "飞书日历（calendar）：提供日历与日程（会议）的�
 
 | 项目 | 内容 |
 |---|---|
-| 来源 | [skills/lark-calendar/SKILL.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-calendar/SKILL.md) |
+| 来源 | [skills/lark-calendar/SKILL.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-calendar/SKILL.md) |
 | 分类 | 飞书/Lark 办公套件 |
-| 安装 | 克隆 [Skill 分支](https://github.com/new-energy-coder-club/new_energy_coder_club/tree/Skill) 后，将 `skills/lark-calendar/` 目录复制到 `~/.claude/skills/`（Claude Code）、`~/.trae/skills/`（Trae IDE）或 `~/.qclaw/skills/`（QClaw/OpenClaw），详见 [Skill 安装方式](/community/skill-branch) |
+| 安装 | 克隆 [Skill 分支](https://github.com/necc-hub/new_energy_coder_club/tree/Skill) 后，将 `skills/lark-calendar/` 目录复制到 `~/.claude/skills/`（Claude Code）、`~/.trae/skills/`（Trae IDE）或 `~/.qclaw/skills/`（QClaw/OpenClaw），详见 [Skill 安装方式](/community/skill-branch) |
 
 # calendar (v4)
 
-**CRITICAL — 开始前 MUST 先用 Read 工具读取 [`../lark-shared/SKILL.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-shared/SKILL.md)，其中包含认证、权限处理**
+**CRITICAL — 开始前 MUST 先用 Read 工具读取 [`../lark-shared/SKILL.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-shared/SKILL.md)，其中包含认证、权限处理**
 **CRITICAL — 所有的 Shortcuts 在执行之前，务必先使用 Read 工具读取其对应的说明文档，禁止直接盲目调用命令。**
-**CRITICAL — 凡涉及【预约日程/会议】或【查询/搜索会议室】，第一步 MUST 强制使用 Read 工具读取 [`references/lark-calendar-schedule-meeting.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-calendar/references/lark-calendar-schedule-meeting.md)。禁止跳过此步直接调用 API 或 Shortcut！**
+**CRITICAL — 凡涉及【预约日程/会议】或【查询/搜索会议室】，第一步 MUST 强制使用 Read 工具读取 [`references/lark-calendar-schedule-meeting.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-calendar/references/lark-calendar-schedule-meeting.md)。禁止跳过此步直接调用 API 或 Shortcut！**
 **CRITICAL — 术语约束：用户日常表达中常说的“帮我约个日历”、“查一下今天的日历”等，其实际意图通常是针对 日程（Event） 的创建或查询，而非操作 日历（Calendar） 容器本身。请自动将口语化的“日历”意图映射为“日程”操作（如 `+create`, `+agenda`）。**
 **CRITICAL — 会议与日程的意图路由：**
-- **查询过去时间的会议**：如果用户明确查询过去时间的会议（如“昨天的会议”、“上周的会议”），**优先使用 [`../lark-vc/SKILL.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-vc/SKILL.md) 搜索会议记录**。因为会议数据不仅包含从日程发起的视频会议，还包含即时会议，仅查询日程数据会导致结果不全。
+- **查询过去时间的会议**：如果用户明确查询过去时间的会议（如“昨天的会议”、“上周的会议”），**优先使用 [`../lark-vc/SKILL.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-vc/SKILL.md) 搜索会议记录**。因为会议数据不仅包含从日程发起的视频会议，还包含即时会议，仅查询日程数据会导致结果不全。
 - **查询日历/日程或未来时间的会议**：如果用户明确表达的是“日历”、“日程”，或者涉及**未来时间**的安排，则属于本技能（lark-calendar）的业务域，请继续使用本技能处理。
 **CRITICAL — 任务类型分流：处理“预约/改约日程、添加/移除参会人、添加/更换会议室、调整时间”时，必须先判断用户是在“新建日程”还是“编辑已有日程”。**
 - **编辑已有日程的强信号**：用户明确提到某个已存在的日程锚点（如标题、时间段、`这个日程`、`这场会`）并表达修改动作（如“添加”“移除”“改到”“换会议室”“调整时间”）。这类请求默认走**编辑已有日程**，绝不能直接按新建处理。
@@ -36,11 +36,11 @@ description: "飞书日历（calendar）：提供日历与日程（会议）的�
 ## 核心场景
 
 ### 1. 预约新日程/会议、编辑已有日程、查询/搜索可用会议室
-**BLOCKING REQUIREMENT (阻塞性要求): 只要用户的意图包含“预约日程/会议”或“查询/搜索可用会议室”，你必须立即停止其他思考，优先使用 Read 工具完整读取 [`references/lark-calendar-schedule-meeting.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-calendar/references/lark-calendar-schedule-meeting.md)！未读取该文件前，绝对禁止执行任何日程创建或会议室查询操作。**
+**BLOCKING REQUIREMENT (阻塞性要求): 只要用户的意图包含“预约日程/会议”或“查询/搜索可用会议室”，你必须立即停止其他思考，优先使用 Read 工具完整读取 [`references/lark-calendar-schedule-meeting.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-calendar/references/lark-calendar-schedule-meeting.md)！未读取该文件前，绝对禁止执行任何日程创建或会议室查询操作。**
 **CRITICAL: 必须严格按照上述文档中定义的工作流（Workflow）执行后续操作。处理该场景时，默认做“智能助理”，不要做“表单填写机”。能补全的默认值先补全，只有在时间冲突、结果无法唯一确定、时间语义存在歧义时才主动追问。**
 **CRITICAL: 执行顺序必须固定为：先判断任务类型（新建/编辑）；若为编辑先定位目标日程 `event_id`；再补默认值或继承已定位日程的已知信息；再判断时间是否明确；最后进入“明确时间”或“模糊时间/无时间信息”分支。不要跳步。**
 **CRITICAL: 明确时间且需要会议室时，先基于最终确定的时间块执行 `+room-find`，再按需执行 `+freebusy`；模糊时间或无时间信息时，先 `+suggestion`，如需会议室再批量 `+room-find`。如果是编辑已有日程且不改时间，只新增会议室，则必须基于已定位日程的原始时间执行 `+room-find`，且最终落地时默认保留已存在的会议室；只有用户明确表达“更换会议室”或“移除会议室”时，才删除原会议室。**
-**CRITICAL: 当用户说“查会议室”“找会议室”“搜可用会议室”或“推荐常用会议室”时，默认是查会议室可用性，不是查会议室资源名录，更严禁拉取历史日程做统计分析。完整规则以 [lark-calendar-schedule-meeting.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-calendar/references/lark-calendar-schedule-meeting.md) 为准。**
+**CRITICAL: 当用户说“查会议室”“找会议室”“搜可用会议室”或“推荐常用会议室”时，默认是查会议室可用性，不是查会议室资源名录，更严禁拉取历史日程做统计分析。完整规则以 [lark-calendar-schedule-meeting.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-calendar/references/lark-calendar-schedule-meeting.md) 为准。**
 **BLOCKING REQUIREMENT: 即使用户的核心诉求是“查会议室”，只要【没有提供明确的起止时间】，绝对禁止直接调用 `+room-find`！必须先进入【无时间/模糊时间】分支，调用 `+suggestion` 拿到候选时间块后，再将时间块传给 `+room-find`。**
 **BLOCKING REQUIREMENT: 只要面临时间方案或会议室方案的选择（如模糊时间、无时间或需要会议室），在最终执行创建新日程或更新既有日程之前，必须先向用户展示候选方案并等待用户明确确认。绝对禁止擅自替用户做决定。**
 
@@ -73,13 +73,13 @@ Shortcut 是对常用操作的高级封装（`lark-cli calendar +<verb> [flags]`
 
 | Shortcut | 说明 |
 |----------|------|
-| [`+agenda`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-calendar/references/lark-calendar-agenda.md) | 查看日程安排（默认今天） |
-| [`+create`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-calendar/references/lark-calendar-create.md) | 创建日程并邀请参会人（ISO 8601 时间） |
-| [`+update`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-calendar/references/lark-calendar-update.md) | 更新既有日程字段，或独立增量添加/移除参会人和会议室 |
-| [`+freebusy`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-calendar/references/lark-calendar-freebusy.md) | 查询用户主日历的忙闲信息和rsvp的状态 |
-| [`+room-find`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-calendar/references/lark-calendar-room-find.md) | 针对一个或多个**明确的**时间块查找可用会议室（**无明确时间时禁止直接调用，需先走 +suggestion**） |
-| [`+rsvp`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-calendar/references/lark-calendar-rsvp.md) | 回复日程（接受/拒绝/待定） |
-| [`+suggestion`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-calendar/references/lark-calendar-suggestion.md) | 根据非明确时间或一段时间范围，推荐多个可用时间块方案 |
+| [`+agenda`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-calendar/references/lark-calendar-agenda.md) | 查看日程安排（默认今天） |
+| [`+create`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-calendar/references/lark-calendar-create.md) | 创建日程并邀请参会人（ISO 8601 时间） |
+| [`+update`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-calendar/references/lark-calendar-update.md) | 更新既有日程字段，或独立增量添加/移除参会人和会议室 |
+| [`+freebusy`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-calendar/references/lark-calendar-freebusy.md) | 查询用户主日历的忙闲信息和rsvp的状态 |
+| [`+room-find`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-calendar/references/lark-calendar-room-find.md) | 针对一个或多个**明确的**时间块查找可用会议室（**无明确时间时禁止直接调用，需先走 +suggestion**） |
+| [`+rsvp`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-calendar/references/lark-calendar-rsvp.md) | 回复日程（接受/拒绝/待定） |
+| [`+suggestion`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-calendar/references/lark-calendar-suggestion.md) | 根据非明确时间或一段时间范围，推荐多个可用时间块方案 |
 
 ## 会议室相关规则
 

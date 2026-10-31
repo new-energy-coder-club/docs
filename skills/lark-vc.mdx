@@ -5,13 +5,13 @@ description: "飞书视频会议：查询会议记录、获取会议纪要产物
 
 | 项目 | 内容 |
 |---|---|
-| 来源 | [skills/lark-vc/SKILL.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-vc/SKILL.md) |
+| 来源 | [skills/lark-vc/SKILL.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-vc/SKILL.md) |
 | 分类 | 飞书/Lark 办公套件 |
-| 安装 | 克隆 [Skill 分支](https://github.com/new-energy-coder-club/new_energy_coder_club/tree/Skill) 后，将 `skills/lark-vc/` 目录复制到 `~/.claude/skills/`（Claude Code）、`~/.trae/skills/`（Trae IDE）或 `~/.qclaw/skills/`（QClaw/OpenClaw），详见 [Skill 安装方式](/community/skill-branch) |
+| 安装 | 克隆 [Skill 分支](https://github.com/necc-hub/new_energy_coder_club/tree/Skill) 后，将 `skills/lark-vc/` 目录复制到 `~/.claude/skills/`（Claude Code）、`~/.trae/skills/`（Trae IDE）或 `~/.qclaw/skills/`（QClaw/OpenClaw），详见 [Skill 安装方式](/community/skill-branch) |
 
 # vc (v1)
 
-**CRITICAL — 开始前 MUST 先用 Read 工具读取 [`../lark-shared/SKILL.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-shared/SKILL.md)，其中包含认证、权限处理**
+**CRITICAL — 开始前 MUST 先用 Read 工具读取 [`../lark-shared/SKILL.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-shared/SKILL.md)，其中包含认证、权限处理**
 
 ## 核心概念
 
@@ -50,7 +50,7 @@ lark-cli docs +media-download --type whiteboard --token <whiteboard_token> --out
 > - `verbatim_doc_token` → **逐字稿**（完整的逐句文字记录，含说话人和时间戳）— 用户说"逐字稿""完整记录""谁说了什么"时用这个
 > - 用户说"纪要""总结""纪要内容"时，应同时返回 `note_doc_token` 和 `meeting_notes`（如有）
 > - 用户意图不明确时，应展示所有文档链接让用户选择，而不是替用户决定
-> - 如果用户提供的是**本地音视频文件**并说"转纪要""转逐字稿"，不要直接从 `vc +notes` 开始；应先用 [minutes +upload](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-minutes/references/lark-minutes-upload.md) 生成 `minute_url`，再提取 `minute_token` 调用 `vc +notes --minute-tokens`
+> - 如果用户提供的是**本地音视频文件**并说"转纪要""转逐字稿"，不要直接从 `vc +notes` 开始；应先用 [minutes +upload](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-minutes/references/lark-minutes-upload.md) 生成 `minute_url`，再提取 `minute_token` 调用 `vc +notes --minute-tokens`
 
 ### 3. 纪要文档与逐字稿链接
 1. 纪要文档、逐字稿文档与关联的共享文档默认使用文档 Token 返回。
@@ -84,15 +84,15 @@ Meeting (视频会议)
     └── Chapters (章节)
 ```
 
-> **注意**：`+search` 只能查询已结束的历史会议。查询未来的日程安排请使用 [lark-calendar](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-calendar/SKILL.md)。
+> **注意**：`+search` 只能查询已结束的历史会议。查询未来的日程安排请使用 [lark-calendar](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-calendar/SKILL.md)。
 >
 > **优先级**：当用户搜索历史会议时，应优先使用 `vc +search` 而非 `calendar events search`。calendar 的搜索面向日程，vc 的搜索面向已结束的会议记录，支持按参会人、组织者、会议室等维度过滤。
 >
-> **路由规则**：如果用户在问“开过的会”“今天开了哪些会”“最近参加过什么会”“已结束的会议”“历史会议记录”，优先使用 `vc +search`。只有在查询未来日程、待开的会、agenda 时才优先使用 [lark-calendar](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-calendar/SKILL.md)。
+> **路由规则**：如果用户在问“开过的会”“今天开了哪些会”“最近参加过什么会”“已结束的会议”“历史会议记录”，优先使用 `vc +search`。只有在查询未来日程、待开的会、agenda 时才优先使用 [lark-calendar](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-calendar/SKILL.md)。
 >
-> **妙记边界**：`+notes` 负责纪要内容、逐字稿和 AI 产物；妙记基础信息请优先看 [`+recording`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-vc/references/lark-vc-recording.md) 与 [lark-minutes](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-minutes/SKILL.md)。
+> **妙记边界**：`+notes` 负责纪要内容、逐字稿和 AI 产物；妙记基础信息请优先看 [`+recording`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-vc/references/lark-vc-recording.md) 与 [lark-minutes](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-minutes/SKILL.md)。
 >
-> **文件转纪要边界**：如果用户给的是本地音视频文件，并希望得到纪要、逐字稿、总结、待办或章节，入口应先走 [lark-minutes](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-minutes/SKILL.md) 的上传流程生成 `minute_url` / `minute_token`，再回到 `vc +notes --minute-tokens` 获取内容产物。
+> **文件转纪要边界**：如果用户给的是本地音视频文件，并希望得到纪要、逐字稿、总结、待办或章节，入口应先走 [lark-minutes](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-minutes/SKILL.md) 的上传流程生成 `minute_url` / `minute_token`，再回到 `vc +notes --minute-tokens` 获取内容产物。
 >
 > **特殊情况**: 当用户查询“今天有哪些会议”时，通过 `vc +search` 查询今天开过的会议记录，同时使用 lark-calendar 技能查询今天还未开始的会议，统一整理后展示给用户。
 
@@ -102,13 +102,13 @@ Shortcut 是对常用操作的高级封装（`lark-cli vc +<verb> [flags]`）。
 
 | Shortcut | 说明 |
 |----------|------|
-| [`+search`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-vc/references/lark-vc-search.md) | Search meeting records (requires at least one filter) |
-| [`+notes`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-vc/references/lark-vc-notes.md) | Query meeting notes (via meeting-ids, minute-tokens, or calendar-event-ids) |
-| [`+recording`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-vc/references/lark-vc-recording.md) | Query minute_token from meeting-ids or calendar-event-ids |
+| [`+search`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-vc/references/lark-vc-search.md) | Search meeting records (requires at least one filter) |
+| [`+notes`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-vc/references/lark-vc-notes.md) | Query meeting notes (via meeting-ids, minute-tokens, or calendar-event-ids) |
+| [`+recording`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-vc/references/lark-vc-recording.md) | Query minute_token from meeting-ids or calendar-event-ids |
 
-- 使用 `+search` 命令时，必须阅读 [references/lark-vc-search.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-vc/references/lark-vc-search.md)，了解搜索参数和返回值结构。
-- 使用 `+notes` 命令时，必须阅读 [references/lark-vc-notes.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-vc/references/lark-vc-notes.md)，了解查询参数、产物类型和返回值结构。
-- 使用 `+recording` 命令时，必须阅读 [references/lark-vc-recording.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-vc/references/lark-vc-recording.md)，了解查询参数和返回值结构。
+- 使用 `+search` 命令时，必须阅读 [references/lark-vc-search.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-vc/references/lark-vc-search.md)，了解搜索参数和返回值结构。
+- 使用 `+notes` 命令时，必须阅读 [references/lark-vc-notes.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-vc/references/lark-vc-notes.md)，了解查询参数、产物类型和返回值结构。
+- 使用 `+recording` 命令时，必须阅读 [references/lark-vc-recording.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-vc/references/lark-vc-recording.md)，了解查询参数和返回值结构。
 
 ## API Resources
 
@@ -132,7 +132,7 @@ lark-cli vc meeting get --params '{"meeting_id": "<meeting_id>"}'
 lark-cli vc meeting get --params '{"meeting_id": "<meeting_id>", "with_participants": true}'
 ```
 
-### minutes（跨域，详见 [lark-minutes](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-minutes/SKILL.md)）
+### minutes（跨域，详见 [lark-minutes](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-minutes/SKILL.md)）
 
   - `get` — 获取妙记基础信息（标题、时长、封面）；查询纪要**内容**请用 `+notes --minute-tokens <minute-token>`
 

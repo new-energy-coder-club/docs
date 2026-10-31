@@ -5,15 +5,15 @@ description: "> 飞书画板：查询和编辑飞书云文档中的画板。支�
 
 | 项目 | 内容 |
 |---|---|
-| 来源 | [skills/lark-whiteboard/SKILL.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-whiteboard/SKILL.md) |
+| 来源 | [skills/lark-whiteboard/SKILL.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-whiteboard/SKILL.md) |
 | 分类 | 飞书/Lark 办公套件 |
-| 安装 | 克隆 [Skill 分支](https://github.com/new-energy-coder-club/new_energy_coder_club/tree/Skill) 后，将 `skills/lark-whiteboard/` 目录复制到 `~/.claude/skills/`（Claude Code）、`~/.trae/skills/`（Trae IDE）或 `~/.qclaw/skills/`（QClaw/OpenClaw），详见 [Skill 安装方式](/community/skill-branch) |
+| 安装 | 克隆 [Skill 分支](https://github.com/necc-hub/new_energy_coder_club/tree/Skill) 后，将 `skills/lark-whiteboard/` 目录复制到 `~/.claude/skills/`（Claude Code）、`~/.trae/skills/`（Trae IDE）或 `~/.qclaw/skills/`（QClaw/OpenClaw），详见 [Skill 安装方式](/community/skill-branch) |
 
 > [!IMPORTANT]
 > - 运行 `lark-cli --version`，确认可用，无需询问用户。
 > - 运行 `npx -y @larksuite/whiteboard-cli@^0.2.10 -v`，确认可用，无需询问用户。
 
-**CRITICAL — 开始前 MUST 先用 Read 工具读取 [`../lark-shared/SKILL.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-shared/SKILL.md)，其中包含认证、权限处理**
+**CRITICAL — 开始前 MUST 先用 Read 工具读取 [`../lark-shared/SKILL.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-shared/SKILL.md)，其中包含认证、权限处理**
 
 ---
 
@@ -21,11 +21,11 @@ description: "> 飞书画板：查询和编辑飞书云文档中的画板。支�
 
 | 用户需求 | 行动 |
 |---|---|
-| 查看画板内容 / 导出图片 | [`+query --output_as image`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-whiteboard/references/lark-whiteboard-query.md) |
-| 获取画板的 Mermaid/PlantUML 代码 | [`+query --output_as code`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-whiteboard/references/lark-whiteboard-query.md) |
-| 检查画板是否由代码绘制 | [`+query --output_as code`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-whiteboard/references/lark-whiteboard-query.md) |
+| 查看画板内容 / 导出图片 | [`+query --output_as image`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-whiteboard/references/lark-whiteboard-query.md) |
+| 获取画板的 Mermaid/PlantUML 代码 | [`+query --output_as code`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-whiteboard/references/lark-whiteboard-query.md) |
+| 检查画板是否由代码绘制 | [`+query --output_as code`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-whiteboard/references/lark-whiteboard-query.md) |
 | 修改节点文字/颜色（简单改动）| `+query --output_as raw` → 手动改 JSON → `+update --input_format raw` |
-| 用户**已提供** Mermaid/PlantUML 代码，或明确指定用该格式 | 自己生成/使用代码 → [`+update --input_format mermaid/plantuml`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-whiteboard/references/lark-whiteboard-update.md) |
+| 用户**已提供** Mermaid/PlantUML 代码，或明确指定用该格式 | 自己生成/使用代码 → [`+update --input_format mermaid/plantuml`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-whiteboard/references/lark-whiteboard-update.md) |
 | 绘制复杂图表（架构/流程/组织等）| → **[§ 创作 Workflow](#创作-workflow)** |
 | 修改/重绘已有复杂画板 | → **[§ 修改 Workflow](#修改-workflow)** |
 
@@ -37,8 +37,8 @@ description: "> 飞书画板：查询和编辑飞书云文档中的画板。支�
 
 | Shortcut | 说明 |
 |---|---|
-| [`+query`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-whiteboard/references/lark-whiteboard-query.md) | 查询画板，导出为预览图片、代码或原始节点结构 |
-| [`+update`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-whiteboard/references/lark-whiteboard-update.md) | 更新画板，支持 PlantUML、Mermaid 或 OpenAPI 原生格式 |
+| [`+query`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-whiteboard/references/lark-whiteboard-query.md) | 查询画板，导出为预览图片、代码或原始节点结构 |
+| [`+update`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-whiteboard/references/lark-whiteboard-update.md) | 更新画板，支持 PlantUML、Mermaid 或 OpenAPI 原生格式 |
 
 ---
 
@@ -89,9 +89,9 @@ description: "> 飞书画板：查询和编辑飞书云文档中的画板。支�
 
 | 图表类型 | 身份 | 路径 |
 |---|---|---|
-| 思维导图、时序图、类图、饼图、甘特图 | 任何身份 | [`routes/mermaid.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-whiteboard/routes/mermaid.md) |
-| 其他图表 | `Claude` / `Gemini` / `GPT` / `GLM` | [`routes/svg.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-whiteboard/routes/svg.md) |
-| 其他图表 | `Doubao` / `Seed` / `Other` | [`routes/dsl.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-whiteboard/routes/dsl.md) |
+| 思维导图、时序图、类图、饼图、甘特图 | 任何身份 | [`routes/mermaid.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-whiteboard/routes/mermaid.md) |
+| 其他图表 | `Claude` / `Gemini` / `GPT` / `GLM` | [`routes/svg.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-whiteboard/routes/svg.md) |
+| 其他图表 | `Doubao` / `Seed` / `Other` | [`routes/dsl.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-whiteboard/routes/dsl.md) |
 
 > **⚠️ SVG 路径失败回退**：走 `routes/svg.md` 时，碰到以下情况之一 → **丢弃当前 SVG，改读 `routes/dsl.md` 从零重画，不要逐行修补**：
 > - 渲染命令直接报错（语法级崩溃，不是 `--check` 的 warn/error）

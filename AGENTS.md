@@ -15,7 +15,7 @@ mint dev
 
 ## 部署
 
-推送到 `https://github.com/new-energy-coder-club/docs` 的 `main` 分支后，Mintlify 会自动部署到 https://docs.newenergycoder.club/。
+推送到 `https://github.com/necc-hub/docs` 的 `main` 分支后，Mintlify 会自动部署到 https://docs.newenergycoder.club/。
 
 ## 文件规范
 
@@ -75,7 +75,7 @@ mint dev
 
 | | 文档仓（本仓） | 主代码仓（资料仓） |
 |---|---|---|
-| 地址 | `github.com/new-energy-coder-club/docs` → https://docs.newenergycoder.club | `gitee.com/darrenpig/new_energy_coder_club` |
+| 地址 | `github.com/necc-hub/docs` → https://docs.newenergycoder.club | `gitee.com/darrenpig/new_energy_coder_club` |
 | 定位 | 发布态：面向读者的 Mintlify 文档站 | 工作态：原始资料与项目代码的存档仓 |
 | 内容 | `.mdx` 页面 + frontmatter + `docs.json` 导航 | 历年赛事档案（`competitions/`）、项目代码与模型（`projects/`）、共享素材（`shared/`）、原始文档（`docs/`） |
 | 大二进制 | **不入 git**，统一传 R2 CDN（`cdn.newenergycoder.club/files/...`）后链接 | 直接入库（PDF / STEP / zip / docx / 代码均可） |

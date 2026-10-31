@@ -5,13 +5,13 @@ description: "会议纪要整理工作流：汇总指定时间范围内的会议
 
 | 项目 | 内容 |
 |---|---|
-| 来源 | [skills/lark-workflow-meeting-summary/SKILL.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-workflow-meeting-summary/SKILL.md) |
+| 来源 | [skills/lark-workflow-meeting-summary/SKILL.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-workflow-meeting-summary/SKILL.md) |
 | 分类 | 飞书/Lark 办公套件 |
-| 安装 | 克隆 [Skill 分支](https://github.com/new-energy-coder-club/new_energy_coder_club/tree/Skill) 后，将 `skills/lark-workflow-meeting-summary/` 目录复制到 `~/.claude/skills/`（Claude Code）、`~/.trae/skills/`（Trae IDE）或 `~/.qclaw/skills/`（QClaw/OpenClaw），详见 [Skill 安装方式](/community/skill-branch) |
+| 安装 | 克隆 [Skill 分支](https://github.com/necc-hub/new_energy_coder_club/tree/Skill) 后，将 `skills/lark-workflow-meeting-summary/` 目录复制到 `~/.claude/skills/`（Claude Code）、`~/.trae/skills/`（Trae IDE）或 `~/.qclaw/skills/`（QClaw/OpenClaw），详见 [Skill 安装方式](/community/skill-branch) |
 
 # 会议纪要汇总工作流
 
-**CRITICAL — 开始前 MUST 先用 Read 工具读取 [`../lark-shared/SKILL.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-shared/SKILL.md)，其中包含认证、权限处理**。然后阅读 [`../lark-vc/SKILL.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-vc/SKILL.md)，了解会议纪要相关操作。
+**CRITICAL — 开始前 MUST 先用 Read 工具读取 [`../lark-shared/SKILL.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-shared/SKILL.md)，其中包含认证、权限处理**。然后阅读 [`../lark-vc/SKILL.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-vc/SKILL.md)，了解会议纪要相关操作。
 
 ## 适用场景
 
@@ -91,7 +91,7 @@ lark-cli drive metas batch_query --data '{"request_docs": [{"doc_type": "docx", 
 
 ### Step 5: 生成文档（可选，用户要求时）
 
-阅读 [`../lark-doc/SKILL.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-doc/SKILL.md) 学习云文档技能。
+阅读 [`../lark-doc/SKILL.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-doc/SKILL.md) 学习云文档技能。
 
 ```bash
 lark-cli docs +create --api-version v2 --doc-format markdown --content $'<title>会议纪要汇总 (<start> - <end>)</title>\n<内容>'
@@ -101,6 +101,6 @@ lark-cli docs +update --api-version v2 --doc "<url_or_token>" --command append -
 
 ## 参考
 
-- [lark-shared](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-shared/SKILL.md) — 认证、权限（必读）
-- [lark-vc](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-vc/SKILL.md) — `+search`、`+notes` 详细用法
-- [lark-doc](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-doc/SKILL.md) — `+fetch`、`+create`、`+update` 详细用法
+- [lark-shared](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-shared/SKILL.md) — 认证、权限（必读）
+- [lark-vc](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-vc/SKILL.md) — `+search`、`+notes` 详细用法
+- [lark-doc](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-doc/SKILL.md) — `+fetch`、`+create`、`+update` 详细用法

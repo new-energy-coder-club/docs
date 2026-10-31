@@ -1,6 +1,6 @@
 ---
 name: nec-resource-publisher
-description: 将培训/资料附件（PDF、Excel、工程图、压缩包等）发布到 NEC 文档站（new-energy-coder-club/docs，Mintlify）——原文原图展示。PDF 逐块提取原文并原位插入插图，矢量图页与乱码页整页渲染为高清图片，Excel 全量转 Markdown 表格，所有文件与图片上传 Cloudflare R2 CDN。触发词：发布资料到文档站、PDF 转 MDX 原文、Excel 上传文档站、资料独立页面、原文原图展示。
+description: 将培训/资料附件（PDF、Excel、工程图、压缩包等）发布到 NEC 文档站（necc-hub/docs，Mintlify）——原文原图展示。PDF 逐块提取原文并原位插入插图，矢量图页与乱码页整页渲染为高清图片，Excel 全量转 Markdown 表格，所有文件与图片上传 Cloudflare R2 CDN。触发词：发布资料到文档站、PDF 转 MDX 原文、Excel 上传文档站、资料独立页面、原文原图展示。
 ---
 
 # NEC 资料发布管线（原文原图版）

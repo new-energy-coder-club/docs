@@ -5,13 +5,13 @@ description: "飞书云空间：管理云空间中的文件和文件夹。上传
 
 | 项目 | 内容 |
 |---|---|
-| 来源 | [skills/lark-drive/SKILL.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-drive/SKILL.md) |
+| 来源 | [skills/lark-drive/SKILL.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-drive/SKILL.md) |
 | 分类 | 飞书/Lark 办公套件 |
-| 安装 | 克隆 [Skill 分支](https://github.com/new-energy-coder-club/new_energy_coder_club/tree/Skill) 后，将 `skills/lark-drive/` 目录复制到 `~/.claude/skills/`（Claude Code）、`~/.trae/skills/`（Trae IDE）或 `~/.qclaw/skills/`（QClaw/OpenClaw），详见 [Skill 安装方式](/community/skill-branch) |
+| 安装 | 克隆 [Skill 分支](https://github.com/necc-hub/new_energy_coder_club/tree/Skill) 后，将 `skills/lark-drive/` 目录复制到 `~/.claude/skills/`（Claude Code）、`~/.trae/skills/`（Trae IDE）或 `~/.qclaw/skills/`（QClaw/OpenClaw），详见 [Skill 安装方式](/community/skill-branch) |
 
 # drive (v1)
 
-**CRITICAL — 开始前 MUST 先用 Read 工具读取 [`../lark-shared/SKILL.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-shared/SKILL.md)，其中包含认证、权限处理**
+**CRITICAL — 开始前 MUST 先用 Read 工具读取 [`../lark-shared/SKILL.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-shared/SKILL.md)，其中包含认证、权限处理**
 
 > **导入分流规则：** 如果用户要把本地 Excel / CSV / `.base` 快照导入成 Base / 多维表格 / bitable，必须优先使用 `lark-cli drive +import --type bitable`。不要先切到 `lark-base`；`lark-base` 只负责导入完成后的表内操作。
 
@@ -20,7 +20,7 @@ description: "飞书云空间：管理云空间中的文件和文件夹。上传
 - 用户要**搜文档 / Wiki / 电子表格 / 多维表格 / 云空间对象**，优先使用 `lark-cli drive +search`。自然语言里"最近我编辑过的"、"我创建的"、"最近一周我打开过的 xxx"、"某人创建的 docx" 等直接映射到扁平 flag，避免手写嵌套 JSON。老的 `docs +search` 进入维护期、后续会下线，不要新增对它的依赖。
 - 用户要把本地 `.xlsx` / `.csv` / `.base` 导入成 Base / 多维表格 / bitable，第一步必须使用 `lark-cli drive +import --type bitable`。
 - 用户要把本地 `.md` / `.docx` / `.doc` / `.txt` / `.html` 导入成在线文档，使用 `lark-cli drive +import --type docx`。
-- 用户要在 Drive 里上传、创建、读取、覆盖更新**原生 `.md` 文件**（不是导入成 docx），切到 [`lark-markdown`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-markdown/SKILL.md)。
+- 用户要在 Drive 里上传、创建、读取、覆盖更新**原生 `.md` 文件**（不是导入成 docx），切到 [`lark-markdown`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-markdown/SKILL.md)。
 - 用户要把本地 `.xlsx` / `.xls` / `.csv` 导入成电子表格，使用 `lark-cli drive +import --type sheet`。
 - 用户要在云空间里新建文件夹，优先使用 `lark-cli drive +create-folder`。
 - 用户要把本地文件上传到知识库 / 文档库里的某个 wiki 节点下时，仍然使用 `lark-cli drive +upload --wiki-token <wiki_token>`；不要误切到 `wiki` 域命令。
@@ -191,7 +191,7 @@ lark-cli drive file.comments list --params '{"file_token": "xxx", "file_type": "
 - 使用 `drive file.comments list` 用于分页获取评论列表，适合统计评论总数、遍历所有评论，或获取"最新/最后 N 条评论"等场景。
 
 #### Reaction / 表情场景
-- 遇到评论 / 回复上的 reaction（表情、各表情数量、谁点了什么、添加/删除表情）相关问题时，**先阅读 [lark-drive-reactions.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-reactions.md) 了解如何使用**。
+- 遇到评论 / 回复上的 reaction（表情、各表情数量、谁点了什么、添加/删除表情）相关问题时，**先阅读 [lark-drive-reactions.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-reactions.md) 了解如何使用**。
 
 ### 典型错误与解决方案
 
@@ -226,22 +226,22 @@ Shortcut 是对常用操作的高级封装（`lark-cli drive +<verb> [flags]`）
 
 | Shortcut | 说明 |
 |----------|------|
-| [`+search`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-search.md) | Search Lark docs, Wiki, and spreadsheet files with flat filter flags (preferred over `docs +search`). Natural-language-friendly: `--edited-since`, `--mine`, `--doc-types`, etc. |
-| [`+upload`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-upload.md) | Upload a local file to a Drive folder or wiki node |
-| [`+create-folder`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-create-folder.md) | Create a Drive folder, optionally under a parent folder, with bot auto-grant support |
-| [`+download`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-download.md) | Download a file from Drive to local |
-| [`+status`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-status.md) | Compare a local directory with a Drive folder by SHA-256 content hash; reports `new_local` / `new_remote` / `modified` / `unchanged` (read-only diff primitive for sync workflows). Duplicate remote `rel_path` conflicts fail fast with `error.type=duplicate_remote_path` and list every conflicting entry; do not proceed as if one was chosen. `--local-dir` 必须是 cwd 内的相对路径，越界路径 CLI 会直接拒绝；目标在 cwd 外时引导用户切换 agent 工作目录，不要私自 `cd` 绕过。 |
-| [`+pull`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-pull.md) | One-way **file-level** mirror of a Drive folder onto a local directory (Drive → local). Duplicate remote `rel_path` conflicts fail by default before writing; for duplicate files only, `--on-duplicate-remote rename` downloads all copies with stable hashed suffixes, while `newest` / `oldest` explicitly choose one. Supports `--if-exists` (overwrite/skip) and `--delete-local` for orphan cleanup; the destructive `--delete-local` requires `--yes` and only unlinks regular files — empty local directories left behind by remote folder deletes are NOT pruned. Item-level failures exit non-zero (`error.type=partial_failure`) and skip the `--delete-local` pass to avoid half-synced state. `--local-dir` is bounded to cwd by CLI path validation; tell the user to switch the agent's working directory if the target is outside cwd. |
-| [`+create-shortcut`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-create-shortcut.md) | Create a shortcut to an existing Drive file in another folder |
-| [`+add-comment`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-add-comment.md) | Add a comment to doc/docx/sheet/slides, also supports wiki URL resolving to doc/docx/sheet/slides |
-| [`+export`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-export.md) | Export a doc/docx/sheet/bitable to a local file with limited polling; supports `--file-name` for local naming |
-| [`+export-download`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-export-download.md) | Download an exported file by file_token |
-| [`+import`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-import.md) | Import a local file to Drive as a cloud document (docx, sheet, bitable) |
-| [`+move`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-move.md) | Move a file or folder to another location in Drive |
-| [`+delete`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-delete.md) | Delete a Drive file or folder with limited polling for folder deletes |
-| [`+push`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-push.md) | Mirror a local directory onto a Drive folder (local → Drive). Duplicate remote `rel_path` conflicts fail by default before upload / overwrite / delete; use `--on-duplicate-remote newest\|oldest` only when the conflict is duplicate files and you explicitly want to target one existing remote file. Supports `--if-exists` (overwrite/skip) and `--delete-remote` for one-way mirror sync; the destructive `--delete-remote` requires `--yes`. `--local-dir` is bounded to cwd by CLI path validation; tell the user to switch the agent's working directory if the source is outside cwd. |
-| [`+task_result`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-task-result.md) | Poll async task result for import, export, move, or delete operations |
-| [`+apply-permission`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-apply-permission.md) | Apply to the document owner for view/edit access (user-only; 5/day per document) |
+| [`+search`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-search.md) | Search Lark docs, Wiki, and spreadsheet files with flat filter flags (preferred over `docs +search`). Natural-language-friendly: `--edited-since`, `--mine`, `--doc-types`, etc. |
+| [`+upload`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-upload.md) | Upload a local file to a Drive folder or wiki node |
+| [`+create-folder`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-create-folder.md) | Create a Drive folder, optionally under a parent folder, with bot auto-grant support |
+| [`+download`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-download.md) | Download a file from Drive to local |
+| [`+status`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-status.md) | Compare a local directory with a Drive folder by SHA-256 content hash; reports `new_local` / `new_remote` / `modified` / `unchanged` (read-only diff primitive for sync workflows). Duplicate remote `rel_path` conflicts fail fast with `error.type=duplicate_remote_path` and list every conflicting entry; do not proceed as if one was chosen. `--local-dir` 必须是 cwd 内的相对路径，越界路径 CLI 会直接拒绝；目标在 cwd 外时引导用户切换 agent 工作目录，不要私自 `cd` 绕过。 |
+| [`+pull`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-pull.md) | One-way **file-level** mirror of a Drive folder onto a local directory (Drive → local). Duplicate remote `rel_path` conflicts fail by default before writing; for duplicate files only, `--on-duplicate-remote rename` downloads all copies with stable hashed suffixes, while `newest` / `oldest` explicitly choose one. Supports `--if-exists` (overwrite/skip) and `--delete-local` for orphan cleanup; the destructive `--delete-local` requires `--yes` and only unlinks regular files — empty local directories left behind by remote folder deletes are NOT pruned. Item-level failures exit non-zero (`error.type=partial_failure`) and skip the `--delete-local` pass to avoid half-synced state. `--local-dir` is bounded to cwd by CLI path validation; tell the user to switch the agent's working directory if the target is outside cwd. |
+| [`+create-shortcut`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-create-shortcut.md) | Create a shortcut to an existing Drive file in another folder |
+| [`+add-comment`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-add-comment.md) | Add a comment to doc/docx/sheet/slides, also supports wiki URL resolving to doc/docx/sheet/slides |
+| [`+export`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-export.md) | Export a doc/docx/sheet/bitable to a local file with limited polling; supports `--file-name` for local naming |
+| [`+export-download`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-export-download.md) | Download an exported file by file_token |
+| [`+import`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-import.md) | Import a local file to Drive as a cloud document (docx, sheet, bitable) |
+| [`+move`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-move.md) | Move a file or folder to another location in Drive |
+| [`+delete`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-delete.md) | Delete a Drive file or folder with limited polling for folder deletes |
+| [`+push`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-push.md) | Mirror a local directory onto a Drive folder (local → Drive). Duplicate remote `rel_path` conflicts fail by default before upload / overwrite / delete; use `--on-duplicate-remote newest\|oldest` only when the conflict is duplicate files and you explicitly want to target one existing remote file. Supports `--if-exists` (overwrite/skip) and `--delete-remote` for one-way mirror sync; the destructive `--delete-remote` requires `--yes`. `--local-dir` is bounded to cwd by CLI path validation; tell the user to switch the agent's working directory if the source is outside cwd. |
+| [`+task_result`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-task-result.md) | Poll async task result for import, export, move, or delete operations |
+| [`+apply-permission`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-drive/references/lark-drive-apply-permission.md) | Apply to the document owner for view/edit access (user-only; 5/day per document) |
 
 ## API Resources
 

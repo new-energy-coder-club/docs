@@ -3,7 +3,7 @@
 [![在线文档](https://img.shields.io/badge/docs-docs.newenergycoder.club-blue)](https://docs.newenergycoder.club/)
 [![官网](https://img.shields.io/badge/官网-newenergycoder.club-green)](https://www.newenergycoder.club/)
 [![Gitee](https://img.shields.io/badge/Gitee-new_energy_coder_club-red)](https://gitee.com/darrenpig/new_energy_coder_club)
-[![GitHub](https://img.shields.io/badge/GitHub-new--energy--coder--club-black)](https://github.com/new-energy-coder-club/docs)
+[![GitHub](https://img.shields.io/badge/GitHub-new--energy--coder--club-black)](https://github.com/necc-hub/docs)
 
 > 面向机器人竞赛与真实工程项目的开源工程社区文档站。沉淀 ROBOCON、RoboMaster、智能车等赛事的机械、嵌入式、机器视觉与运营经验。
 
@@ -104,7 +104,7 @@ python tools/ci/check_docs.py
 
 - 官网：https://www.newenergycoder.club/
 - Gitee 主仓库：https://gitee.com/darrenpig/new_energy_coder_club
-- GitHub 文档仓库：https://github.com/new-energy-coder-club/docs
+- GitHub 文档仓库：https://github.com/necc-hub/docs
 - ROBOCON 官网：https://www.cnrobocon.net/
 
 ## 许可证

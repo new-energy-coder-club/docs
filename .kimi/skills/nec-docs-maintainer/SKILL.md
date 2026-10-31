@@ -7,7 +7,7 @@ description: 维护 NEC 新能源开发者社区 Mintlify 文档站点。用于�
 
 ## 项目概览
 
-- **仓库**: `https://github.com/new-energy-coder-club/docs.git`
+- **仓库**: `https://github.com/necc-hub/docs.git`
 - **站点**: `https://docs.newenergycoder.club/`
 - **框架**: Mintlify v3，配置在 `docs.json`
 - **入口**: `index.mdx`

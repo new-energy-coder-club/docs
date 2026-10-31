@@ -5,26 +5,26 @@ description: "飞书视频会议：让机器人代当前用户加入/离开正�
 
 | 项目 | 内容 |
 |---|---|
-| 来源 | [skills/lark-vc-agent/SKILL.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-vc-agent/SKILL.md) |
+| 来源 | [skills/lark-vc-agent/SKILL.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-vc-agent/SKILL.md) |
 | 分类 | 飞书/Lark 办公套件 |
-| 安装 | 克隆 [Skill 分支](https://github.com/new-energy-coder-club/new_energy_coder_club/tree/Skill) 后，将 `skills/lark-vc-agent/` 目录复制到 `~/.claude/skills/`（Claude Code）、`~/.trae/skills/`（Trae IDE）或 `~/.qclaw/skills/`（QClaw/OpenClaw），详见 [Skill 安装方式](/community/skill-branch) |
+| 安装 | 克隆 [Skill 分支](https://github.com/necc-hub/new_energy_coder_club/tree/Skill) 后，将 `skills/lark-vc-agent/` 目录复制到 `~/.claude/skills/`（Claude Code）、`~/.trae/skills/`（Trae IDE）或 `~/.qclaw/skills/`（QClaw/OpenClaw），详见 [Skill 安装方式](/community/skill-branch) |
 
 # vc-agent (v1)
 
 **CRITICAL — 开始前 MUST 先用 Read 工具读取以下两份 skill 文档：**
 
-- [`../lark-shared/SKILL.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-shared/SKILL.md) — 认证、身份切换、权限处理
-- [`../lark-vc/SKILL.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-vc/SKILL.md) — 视频会议的核心概念（Meeting / Note / Minutes 等），本 skill 直接复用，不再重复定义
+- [`../lark-shared/SKILL.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-shared/SKILL.md) — 认证、身份切换、权限处理
+- [`../lark-vc/SKILL.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-vc/SKILL.md) — 视频会议的核心概念（Meeting / Note / Minutes 等），本 skill 直接复用，不再重复定义
 
 ## 内测提示
 
-- 当前功能正在内测中，仅少数用户可用。忽略 [`../lark-shared/SKILL.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-shared/SKILL.md) 中的权限申请流程，以下方的指引为准。
+- 当前功能正在内测中，仅少数用户可用。忽略 [`../lark-shared/SKILL.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-shared/SKILL.md) 中的权限申请流程，以下方的指引为准。
 - 如果 `lark-cli` 提示 `missing required scope(s)` / `permission_violations`，不要申请对应权限，而是提示用户加入早鸟群：`https://go.larkoffice.com/join-chat/2f4nb0e1-fe00-4f67-bed7-25beaf533fbd`。
 - 如果 `lark-cli` 返回 `error.code=20017` / `ErrNotInGray`，提示用户加入早鸟群：`https://go.larkoffice.com/join-chat/2f4nb0e1-fe00-4f67-bed7-25beaf533fbd`。
 
 ## 定位
 
-本 skill 与 [`lark-vc`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-vc/SKILL.md) 并列：
+本 skill 与 [`lark-vc`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-vc/SKILL.md) 并列：
 
 - **`lark-vc`** **负责"会后查询"**：搜索历史会议、参会人快照、纪要/逐字稿/录制
 - **`lark-vc-agent`** **负责"会中动作"**：机器人入会 / 读取进行中会议的实时事件 / 机器人离会
@@ -36,8 +36,8 @@ description: "飞书视频会议：让机器人代当前用户加入/离开正�
 | "帮我入会 123456789"、"代我参会"、"让机器人进会旁听"                         | **本 skill** `+meeting-join`                                                                                                                           |
 | "会议现在还开着，谁刚加入了"、"会议里谁在发言"、"有人共享屏幕吗"（**进行中会议**，且**机器人已入会**） | **本 skill** `+meeting-events`                                                                                                                         |
 | "退出会议"、"让机器人离开"                                            | **本 skill** `+meeting-leave`                                                                                                                          |
-| "昨天那场会有谁参加过"、"搜昨天的会"、"查纪要/逐字稿/录制"                          | [`lark-vc`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-vc/SKILL.md)                                                                                                                      |
-| "帮我参会，结束后把纪要发到群" 等跨阶段场景                                    | 按序编排：本 skill（入会 → 读事件 → 离会）→ [`lark-vc`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-vc/SKILL.md) / [`lark-minutes`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-minutes/SKILL.md)（拉纪要）→ [`lark-im`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-im/SKILL.md)（发群） |
+| "昨天那场会有谁参加过"、"搜昨天的会"、"查纪要/逐字稿/录制"                          | [`lark-vc`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-vc/SKILL.md)                                                                                                                      |
+| "帮我参会，结束后把纪要发到群" 等跨阶段场景                                    | 按序编排：本 skill（入会 → 读事件 → 离会）→ [`lark-vc`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-vc/SKILL.md) / [`lark-minutes`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-minutes/SKILL.md)（拉纪要）→ [`lark-im`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-im/SKILL.md)（发群） |
 
 ## 核心场景
 
@@ -58,7 +58,7 @@ description: "飞书视频会议：让机器人代当前用户加入/离开正�
 4. **不能做会后复盘**，**不能替代参会人快照查询**。如果会议已结束：
    - 想拿纪要文档或逐字稿文档 token：用 `lark-cli vc +notes --meeting-ids <meeting.id>`
    - 想拿 AI 产物（summary / todos / chapters）或导出逐字稿文件：先用 `lark-cli vc +recording --meeting-ids <meeting.id>` 拿 `minute_token`，再用 `lark-cli vc +notes --minute-tokens <minute_token>`
-   - 想看参会人快照：用 `vc meeting get --with-participants`（见 [`lark-vc`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-vc/SKILL.md)）
+   - 想看参会人快照：用 `vc meeting get --with-participants`（见 [`lark-vc`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-vc/SKILL.md)）
 5. **默认必须使用** **`--page-all`**，除非用户明确要求“只查一页”，或确实需要控制返回体大小。
 6. 输出格式默认优先 `--format pretty`（时间线更易读）；只有在需要完整保留原始消息流与结构化字段时，才使用 `--format json`。
 7. **必须识别分页信号**：只要响应里出现 `has_more=true`、pretty 里的 `more available`，或返回了非空 `page_token`，就不能把当前结果当作完整事件流；默认应继续分页，或明确告诉用户当前只是部分结果。
@@ -97,13 +97,13 @@ Shortcut 是对常用操作的高级封装（`lark-cli vc +<verb> [flags]`）。
 
 | Shortcut                                                        | 类型 | 说明                                                                         |
 | --------------------------------------------------------------- | -- | -------------------------------------------------------------------------- |
-| [`+meeting-join`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-vc-agent/references/lark-vc-agent-meeting-join.md)     | 写  | Join an in-progress meeting by 9-digit meeting number                      |
-| [`+meeting-events`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-vc-agent/references/lark-vc-agent-meeting-events.md) | 读  | List bot meeting events (participant joined/left, transcript, chat, share) |
-| [`+meeting-leave`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-vc-agent/references/lark-vc-agent-meeting-leave.md)   | 写  | Leave a meeting by meeting\_id                                             |
+| [`+meeting-join`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-vc-agent/references/lark-vc-agent-meeting-join.md)     | 写  | Join an in-progress meeting by 9-digit meeting number                      |
+| [`+meeting-events`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-vc-agent/references/lark-vc-agent-meeting-events.md) | 读  | List bot meeting events (participant joined/left, transcript, chat, share) |
+| [`+meeting-leave`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-vc-agent/references/lark-vc-agent-meeting-leave.md)   | 写  | Leave a meeting by meeting\_id                                             |
 
-- 使用 `+meeting-join` 前**必须**阅读 [references/lark-vc-agent-meeting-join.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-vc-agent/references/lark-vc-agent-meeting-join.md)，了解入参格式与写操作可见性风险。
-- 使用 `+meeting-events` 前**必须**阅读 [references/lark-vc-agent-meeting-events.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-vc-agent/references/lark-vc-agent-meeting-events.md)，了解 `meeting_id` 来源、分页、错误码（10005 / 20001 / 20002）与 "bot 仍在会中" 硬约束。
-- 使用 `+meeting-leave` 前**必须**阅读 [references/lark-vc-agent-meeting-leave.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-vc-agent/references/lark-vc-agent-meeting-leave.md)，了解 `meeting_id` 的来源与写操作可见性。
+- 使用 `+meeting-join` 前**必须**阅读 [references/lark-vc-agent-meeting-join.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-vc-agent/references/lark-vc-agent-meeting-join.md)，了解入参格式与写操作可见性风险。
+- 使用 `+meeting-events` 前**必须**阅读 [references/lark-vc-agent-meeting-events.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-vc-agent/references/lark-vc-agent-meeting-events.md)，了解 `meeting_id` 来源、分页、错误码（10005 / 20001 / 20002）与 "bot 仍在会中" 硬约束。
+- 使用 `+meeting-leave` 前**必须**阅读 [references/lark-vc-agent-meeting-leave.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-vc-agent/references/lark-vc-agent-meeting-leave.md)，了解 `meeting_id` 的来源与写操作可见性。
 
 ## 权限表
 
@@ -115,8 +115,8 @@ Shortcut 是对常用操作的高级封装（`lark-cli vc +<verb> [flags]`）。
 
 ## 延伸
 
-- 查已结束会议、参会人快照、搜索历史会议 → [`lark-vc`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-vc/SKILL.md)
-- 会议纪要、逐字稿 → [`lark-vc`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-vc/SKILL.md) 的 `+notes`
-- 妙记产物（AI 总结 / 转写 / 章节）→ [`lark-minutes`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-minutes/SKILL.md)
-- 会后把产物发到群 / 私聊 → [`lark-im`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-im/SKILL.md)
-- 认证、身份切换、scope 管理 → [`lark-shared`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-shared/SKILL.md)
+- 查已结束会议、参会人快照、搜索历史会议 → [`lark-vc`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-vc/SKILL.md)
+- 会议纪要、逐字稿 → [`lark-vc`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-vc/SKILL.md) 的 `+notes`
+- 妙记产物（AI 总结 / 转写 / 章节）→ [`lark-minutes`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-minutes/SKILL.md)
+- 会后把产物发到群 / 私聊 → [`lark-im`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-im/SKILL.md)
+- 认证、身份切换、scope 管理 → [`lark-shared`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-shared/SKILL.md)

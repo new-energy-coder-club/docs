@@ -5,13 +5,13 @@ description: "飞书电子表格：创建和操作电子表格。支持创建表
 
 | 项目 | 内容 |
 |---|---|
-| 来源 | [skills/lark-sheets/SKILL.md](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/SKILL.md) |
+| 来源 | [skills/lark-sheets/SKILL.md](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/SKILL.md) |
 | 分类 | 飞书/Lark 办公套件 |
-| 安装 | 克隆 [Skill 分支](https://github.com/new-energy-coder-club/new_energy_coder_club/tree/Skill) 后，将 `skills/lark-sheets/` 目录复制到 `~/.claude/skills/`（Claude Code）、`~/.trae/skills/`（Trae IDE）或 `~/.qclaw/skills/`（QClaw/OpenClaw），详见 [Skill 安装方式](/community/skill-branch) |
+| 安装 | 克隆 [Skill 分支](https://github.com/necc-hub/new_energy_coder_club/tree/Skill) 后，将 `skills/lark-sheets/` 目录复制到 `~/.claude/skills/`（Claude Code）、`~/.trae/skills/`（Trae IDE）或 `~/.qclaw/skills/`（QClaw/OpenClaw），详见 [Skill 安装方式](/community/skill-branch) |
 
 # sheets (v3)
 
-**CRITICAL — 开始前 MUST 先用 Read 工具读取 [`../lark-shared/SKILL.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-shared/SKILL.md)，其中包含认证、权限处理**
+**CRITICAL — 开始前 MUST 先用 Read 工具读取 [`../lark-shared/SKILL.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-shared/SKILL.md)，其中包含认证、权限处理**
 
 ## 快速决策
 - 按标题或关键词找云空间里的表格文件，先用 `lark-cli docs +search`。
@@ -171,12 +171,12 @@ lark-cli sheets +write --url "URL" --sheet-id "sheetId" --range "C6" \
   --values '[["=SUM(C2:C5)"]]'
 ```
 
-> **公式语法参考**：涉及 ARRAYFORMULA、原生数组函数、MAP/LAMBDA、日期差、Excel 公式改写等飞书特有规则时，先阅读 [`references/lark-sheets-formula.md`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-formula.md)。
+> **公式语法参考**：涉及 ARRAYFORMULA、原生数组函数、MAP/LAMBDA、日期差、Excel 公式改写等飞书特有规则时，先阅读 [`references/lark-sheets-formula.md`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-formula.md)。
 
 **限制**：
 - 公式支持 IMPORTRANGE 跨表引用（最多 5 层嵌套、每个工作表最多 100 个引用）
 - @人仅支持同租户用户，单次最多 50 人
-- 下拉列表需**先配置下拉选项**，否则 `multipleValue` 写入会变成纯文本。配置方法见 [`references/lark-sheets-dropdown.md#set-dropdown`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-dropdown.md#set-dropdown)。值中的字符串不能包含逗号
+- 下拉列表需**先配置下拉选项**，否则 `multipleValue` 写入会变成纯文本。配置方法见 [`references/lark-sheets-dropdown.md#set-dropdown`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-dropdown.md#set-dropdown)。值中的字符串不能包含逗号
 
 ## Shortcuts（推荐优先使用）
 
@@ -184,112 +184,112 @@ Shortcut 是对常用操作的高级封装（`lark-cli sheets +<verb> [flags]`�
 
 ### Spreadsheet Management
 
-对应参考文档：[spreadsheet-management](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-spreadsheet-management.md)
+对应参考文档：[spreadsheet-management](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-spreadsheet-management.md)
 
 | Shortcut | 说明 |
 |----------|------|
-| [`+create`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-spreadsheet-management.md#create) | Create a spreadsheet (optional header row and initial data) |
-| [`+info`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-spreadsheet-management.md#info) | View spreadsheet and sheet information |
-| [`+export`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-spreadsheet-management.md#export) | Export a spreadsheet (async task polling + optional download) |
+| [`+create`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-spreadsheet-management.md#create) | Create a spreadsheet (optional header row and initial data) |
+| [`+info`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-spreadsheet-management.md#info) | View spreadsheet and sheet information |
+| [`+export`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-spreadsheet-management.md#export) | Export a spreadsheet (async task polling + optional download) |
 
 ### Sheet Management
 
-对应参考文档：[sheet-management](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-sheet-management.md)
+对应参考文档：[sheet-management](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-sheet-management.md)
 
 | Shortcut | 说明 |
 |----------|------|
-| [`+create-sheet`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-sheet-management.md#create-sheet) | Create a sheet in an existing spreadsheet |
-| [`+copy-sheet`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-sheet-management.md#copy-sheet) | Copy a sheet within a spreadsheet |
-| [`+delete-sheet`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-sheet-management.md#delete-sheet) | Delete a sheet from a spreadsheet |
-| [`+update-sheet`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-sheet-management.md#update-sheet) | Update sheet title, position, visibility, freeze, or protection |
+| [`+create-sheet`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-sheet-management.md#create-sheet) | Create a sheet in an existing spreadsheet |
+| [`+copy-sheet`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-sheet-management.md#copy-sheet) | Copy a sheet within a spreadsheet |
+| [`+delete-sheet`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-sheet-management.md#delete-sheet) | Delete a sheet from a spreadsheet |
+| [`+update-sheet`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-sheet-management.md#update-sheet) | Update sheet title, position, visibility, freeze, or protection |
 
 ### Cell Data
 
-对应参考文档：[cell-data](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-cell-data.md)
+对应参考文档：[cell-data](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-cell-data.md)
 
 | Shortcut | 说明 |
 |----------|------|
-| [`+read`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-cell-data.md#read) | Read spreadsheet cell values |
-| [`+write`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-cell-data.md#write) | Write to spreadsheet cells (overwrite mode) |
-| [`+append`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-cell-data.md#append) | Append rows to a spreadsheet |
-| [`+find`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-cell-data.md#find) | Find cells in a spreadsheet |
-| [`+replace`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-cell-data.md#replace) | Find and replace cell values |
+| [`+read`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-cell-data.md#read) | Read spreadsheet cell values |
+| [`+write`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-cell-data.md#write) | Write to spreadsheet cells (overwrite mode) |
+| [`+append`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-cell-data.md#append) | Append rows to a spreadsheet |
+| [`+find`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-cell-data.md#find) | Find cells in a spreadsheet |
+| [`+replace`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-cell-data.md#replace) | Find and replace cell values |
 
 ### Cell Style And Merge
 
-对应参考文档：[cell-style-and-merge](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-cell-style-and-merge.md)
+对应参考文档：[cell-style-and-merge](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-cell-style-and-merge.md)
 
 | Shortcut | 说明 |
 |----------|------|
-| [`+set-style`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-cell-style-and-merge.md#set-style) | Set cell style for a range |
-| [`+batch-set-style`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-cell-style-and-merge.md#batch-set-style) | Batch set cell styles for multiple ranges |
-| [`+merge-cells`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-cell-style-and-merge.md#merge-cells) | Merge cells in a spreadsheet |
-| [`+unmerge-cells`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-cell-style-and-merge.md#unmerge-cells) | Unmerge (split) cells in a spreadsheet |
+| [`+set-style`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-cell-style-and-merge.md#set-style) | Set cell style for a range |
+| [`+batch-set-style`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-cell-style-and-merge.md#batch-set-style) | Batch set cell styles for multiple ranges |
+| [`+merge-cells`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-cell-style-and-merge.md#merge-cells) | Merge cells in a spreadsheet |
+| [`+unmerge-cells`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-cell-style-and-merge.md#unmerge-cells) | Unmerge (split) cells in a spreadsheet |
 
 ### Cell Images
 
-对应参考文档：[cell-images](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-cell-images.md)
+对应参考文档：[cell-images](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-cell-images.md)
 
 | Shortcut | 说明 |
 |----------|------|
-| [`+write-image`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-cell-images.md#write-image) | Write an image into a spreadsheet cell |
+| [`+write-image`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-cell-images.md#write-image) | Write an image into a spreadsheet cell |
 
 ### Row Column Management
 
-对应参考文档：[row-column-management](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-row-column-management.md)
+对应参考文档：[row-column-management](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-row-column-management.md)
 
 | Shortcut | 说明 |
 |----------|------|
-| [`+add-dimension`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-row-column-management.md#add-dimension) | Add rows or columns at the end of a sheet |
-| [`+insert-dimension`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-row-column-management.md#insert-dimension) | Insert rows or columns at a specified position |
-| [`+update-dimension`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-row-column-management.md#update-dimension) | Update row or column properties (visibility, size) |
-| [`+move-dimension`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-row-column-management.md#move-dimension) | Move rows or columns to a new position |
-| [`+delete-dimension`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-row-column-management.md#delete-dimension) | Delete rows or columns |
+| [`+add-dimension`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-row-column-management.md#add-dimension) | Add rows or columns at the end of a sheet |
+| [`+insert-dimension`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-row-column-management.md#insert-dimension) | Insert rows or columns at a specified position |
+| [`+update-dimension`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-row-column-management.md#update-dimension) | Update row or column properties (visibility, size) |
+| [`+move-dimension`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-row-column-management.md#move-dimension) | Move rows or columns to a new position |
+| [`+delete-dimension`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-row-column-management.md#delete-dimension) | Delete rows or columns |
 
 ### Filter Views
 
-对应参考文档：[filter-views](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-filter-views.md)
+对应参考文档：[filter-views](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-filter-views.md)
 
 | Shortcut | 说明 |
 |----------|------|
-| [`+create-filter-view`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-filter-views.md#create-filter-view) | Create a filter view |
-| [`+update-filter-view`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-filter-views.md#update-filter-view) | Update a filter view |
-| [`+list-filter-views`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-filter-views.md#list-filter-views) | List all filter views in a sheet |
-| [`+get-filter-view`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-filter-views.md#get-filter-view) | Get a filter view by ID |
-| [`+delete-filter-view`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-filter-views.md#delete-filter-view) | Delete a filter view |
-| [`+create-filter-view-condition`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-filter-views.md#create-filter-view-condition) | Create a filter condition on a filter view |
-| [`+update-filter-view-condition`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-filter-views.md#update-filter-view-condition) | Update a filter condition |
-| [`+list-filter-view-conditions`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-filter-views.md#list-filter-view-conditions) | List all filter conditions of a filter view |
-| [`+get-filter-view-condition`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-filter-views.md#get-filter-view-condition) | Get a filter condition by column |
-| [`+delete-filter-view-condition`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-filter-views.md#delete-filter-view-condition) | Delete a filter condition |
+| [`+create-filter-view`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-filter-views.md#create-filter-view) | Create a filter view |
+| [`+update-filter-view`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-filter-views.md#update-filter-view) | Update a filter view |
+| [`+list-filter-views`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-filter-views.md#list-filter-views) | List all filter views in a sheet |
+| [`+get-filter-view`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-filter-views.md#get-filter-view) | Get a filter view by ID |
+| [`+delete-filter-view`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-filter-views.md#delete-filter-view) | Delete a filter view |
+| [`+create-filter-view-condition`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-filter-views.md#create-filter-view-condition) | Create a filter condition on a filter view |
+| [`+update-filter-view-condition`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-filter-views.md#update-filter-view-condition) | Update a filter condition |
+| [`+list-filter-view-conditions`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-filter-views.md#list-filter-view-conditions) | List all filter conditions of a filter view |
+| [`+get-filter-view-condition`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-filter-views.md#get-filter-view-condition) | Get a filter condition by column |
+| [`+delete-filter-view-condition`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-filter-views.md#delete-filter-view-condition) | Delete a filter condition |
 
 ### Dropdown
 
-对应参考文档：[dropdown](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-dropdown.md)
+对应参考文档：[dropdown](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-dropdown.md)
 
 | Shortcut | 说明 |
 |----------|------|
-| [`+set-dropdown`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-dropdown.md#set-dropdown) | 设置下拉列表（`multipleValue` 写入的前置步骤） |
-| [`+update-dropdown`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-dropdown.md#update-dropdown) | 更新下拉列表选项 |
-| [`+get-dropdown`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-dropdown.md#get-dropdown) | 查询下拉列表配置 |
-| [`+delete-dropdown`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-dropdown.md#delete-dropdown) | 删除下拉列表 |
+| [`+set-dropdown`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-dropdown.md#set-dropdown) | 设置下拉列表（`multipleValue` 写入的前置步骤） |
+| [`+update-dropdown`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-dropdown.md#update-dropdown) | 更新下拉列表选项 |
+| [`+get-dropdown`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-dropdown.md#get-dropdown) | 查询下拉列表配置 |
+| [`+delete-dropdown`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-dropdown.md#delete-dropdown) | 删除下拉列表 |
 
 ### Float Images
 
-对应参考文档：[float-images](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-float-images.md)
+对应参考文档：[float-images](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-float-images.md)
 
 | Shortcut | 说明 |
 |----------|------|
-| [`+media-upload`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-float-images.md#media-upload) | 上传本地图片素材，返回 `file_token`（供 `+create-float-image` 使用；>20MB 自动分片） |
-| [`+create-float-image`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-float-images.md#create-float-image) | 创建浮动图片 |
-| [`+update-float-image`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-float-images.md#update-float-image) | 更新浮动图片属性 |
-| [`+get-float-image`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-float-images.md#get-float-image) | 获取浮动图片 |
-| [`+list-float-images`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-float-images.md#list-float-images) | 查询所有浮动图片 |
-| [`+delete-float-image`](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-float-images.md#delete-float-image) | 删除浮动图片 |
+| [`+media-upload`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-float-images.md#media-upload) | 上传本地图片素材，返回 `file_token`（供 `+create-float-image` 使用；>20MB 自动分片） |
+| [`+create-float-image`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-float-images.md#create-float-image) | 创建浮动图片 |
+| [`+update-float-image`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-float-images.md#update-float-image) | 更新浮动图片属性 |
+| [`+get-float-image`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-float-images.md#get-float-image) | 获取浮动图片 |
+| [`+list-float-images`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-float-images.md#list-float-images) | 查询所有浮动图片 |
+| [`+delete-float-image`](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-float-images.md#delete-float-image) | 删除浮动图片 |
 
 ### Formula
 
-对应参考文档：[formula](https://github.com/new-energy-coder-club/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-formula.md)
+对应参考文档：[formula](https://github.com/necc-hub/new_energy_coder_club/blob/Skill/skills/lark-sheets/references/lark-sheets-formula.md)
 
 > 浮动图片相关的读接口只返回元数据（含 `float_image_token`），**不包含图片字节**。要读取图片内容，用 token 调 `lark-cli docs +media-preview --token "<float_image_token>" --output ./image.png`。
 
