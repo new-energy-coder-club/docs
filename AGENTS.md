@@ -119,3 +119,18 @@ mint dev
 - 不要再引入 Sphinx / Read the Docs 配置
 - 不要创建仅包含 toctree 的 `.rst` 索引文件
 - 空菜单不要上线：新增导航项时必须确认目标页面存在且有实质内容
+
+
+## 仓库分工约定（2026-11-01 起生效）
+
+工作内容归属哪个仓库就推哪个仓库，**禁止把工作分支混推到无关仓库**：
+
+| 仓库 (github.com/necc-hub/) | 归属内容 |
+|---|---|
+| new_energy_coder_club（主仓） | 竞赛资料、开源工程项目、赛事资产 |
+| docs | 文档站全部内容：MDX、PageInsights、培训手册、skills 文档 |
+| 主仓 SKill 分支 | 技能工作区 |
+| newenergycoder.club | 官网代码 |
+| nec-hub | AI 中台 |
+
+> 背景：2026-11 曾发生 docs 工作被复刻推送到主仓 feat/page-insights 分支的事件（孤儿历史污染）。动手前先确认当前仓库与内容归属。
