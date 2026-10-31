@@ -199,6 +199,18 @@ def check_robots_txt() -> list[str]:
     return warnings
 
 
+def check_page_insights_artifacts(root: Path) -> list[str]:
+    errors: list[str] = []
+    for rel_path in (
+        "generated/page-insights.json",
+        "generated/page-insights-report.md",
+        "generated/page-insights.overrides.json",
+    ):
+        if not (root / rel_path).is_file():
+            errors.append(f"缺少生成文件: {rel_path}")
+    return errors
+
+
 def check_navbar(data: dict) -> list[str]:
     """navbar 链接：内部链接必须可解析到页面，外部链接必须使用 https。"""
     errors: list[str] = []
@@ -444,6 +456,7 @@ def main() -> int:
     errors.extend(check_forbidden_paths())
     warnings.extend(check_docs_json_fields(data))
     warnings.extend(check_robots_txt())
+    errors.extend(check_page_insights_artifacts(ROOT))
 
     # 1. 导航页面存在性
     for page in sorted(nav_pages):

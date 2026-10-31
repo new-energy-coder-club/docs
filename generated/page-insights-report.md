@@ -1,0 +1,175 @@
+# 页面洞察报告
+
+## 超长页
+
+- `ai-tools/ai-feasibility-study`
+- `ai-tools/isaac-gym-rl-tutorial`
+- `community/finance-overview-2026-07-25`
+- `community/registration-process`
+- `community/skill-branch`
+- `competition/robocon-materials`
+- `curc26/finflow`
+- `curc26/proposal`
+- `embedded-software/hxc-motor-control`
+- `mechanical/ek-team-25-mechanical-training`
+- `mechanical/falcon2-user-manual`
+- `mechanical/lumenpnp/doc-10`
+- `mechanical/lumenpnp/doc-11`
+- `mechanical/lumenpnp/doc-13`
+- `mechanical/lumenpnp/doc-14`
+- `mechanical/lumenpnp/doc-15`
+- `mechanical/lumenpnp/doc-4`
+- `mechanical/lumenpnp/doc-5`
+- `mechanical/lumenpnp/doc-9`
+- `mechanical/lumenpnp/lumenpnp-v4`
+- `mechanical/training-structure-design-methodology`
+- `mechanical/training-weight-reduction-guide`
+- `skills/acad-paper-prompter`
+- `skills/agent-browser`
+- `skills/ai-data-analysis`
+- `skills/ai-promotion-query`
+- `skills/algorithmic-art`
+- `skills/bdpan-storage`
+- `skills/brainstorming`
+- `skills/canvas-design`
+- `skills/data-analysis`
+- `skills/doc-coauthoring`
+- `skills/docx`
+- `skills/dogfood`
+- `skills/fbs_bookwriter`
+- `skills/file-skill`
+- `skills/flyai`
+- `skills/frontend-design`
+- `skills/frontend-skill`
+- `skills/gh-cli`
+- `skills/github-skill`
+- `skills/gradpilot`
+- `skills/harness`
+- `skills/ima`
+- `skills/imap-smtp-email`
+- `skills/index`
+- `skills/kc-gui`
+- `skills/kdocs`
+- `skills/kimi-webbridge`
+- `skills/lark-base`
+- `skills/lark-calendar`
+- `skills/lark-doc`
+- `skills/lark-drive`
+- `skills/lark-im`
+- `skills/lark-mail`
+- `skills/lark-minutes`
+- `skills/lark-sheets`
+- `skills/lark-slides`
+- `skills/lark-task`
+- `skills/lark-vc-agent`
+- `skills/lark-vc`
+- `skills/lark-wiki`
+- `skills/latex-win`
+- `skills/mcp-builder`
+- `skills/mintlify`
+- `skills/notion`
+- `skills/online-search`
+- `skills/paper-scaffold`
+- `skills/pdf`
+- `skills/planning-with-files`
+- `skills/pptx`
+- `skills/pv-storage-bom`
+- `skills/qclaw-cron-skill`
+- `skills/qclaw-env`
+- `skills/qclaw-rules`
+- `skills/qclaw-skill-creator`
+- `skills/qclaw-text-file`
+- `skills/react-best-practices`
+- `skills/react-native-skills`
+- `skills/redis-development`
+- `skills/resume-builder`
+- `skills/resume-optimizer`
+- `skills/screenshot`
+- `skills/security-best-practices`
+- `skills/self-improving-agent`
+- `skills/self-improving`
+- `skills/shadcn`
+- `skills/slack-gif-creator`
+- `skills/spec-to-implementation`
+- `skills/study-habits`
+- `skills/tencent-docs`
+- `skills/tencent-meeting-mcp`
+- `skills/tencent-news`
+- `skills/tencent-survey`
+- `skills/test-driven-development`
+- `skills/tme-openapi`
+- `skills/TRAE-code-review`
+- `skills/TRAE-debugger`
+- `skills/wecomcli-setup`
+- `skills/weiyun`
+- `skills/writing-plans`
+- `skills/wx-cli-wechat-local-data`
+- `skills/xbrowser`
+- `skills/xiaohongshu-images`
+- `skills/xlsx`
+- `skills/youdaonote`
+- `solutions/feishu/index`
+- `start-here/build-html-with-ai`
+- `wiki/team-training-videos`
+- `wiki/tech-resources`
+
+## 超短页
+
+- `community/maintainers`
+- `community/mentors`
+- `community/nec-plus`
+- `mechanical/dm-s3519-motor`
+- `mechanical/lumenpnp/doc-19`
+- `mechanical/lumenpnp/doc-6`
+- `mechanical/rm-rc-supplier-directory`
+- `mechanical/robocon-open-source-docs`
+- `skills/baidu-search`
+- `skills/lark-event`
+- `skills/qclaw-openclaw`
+- `snippets/snippet-intro`
+- `solutions/liblibai-2-0`
+- `wiki/nec-plus-membership`
+
+## 非正文页
+
+- `ai-tools/ai-feasibility-study`: index
+- `community/join-collection`: index
+- `community/maintainers`: stub
+- `community/mentors`: index
+- `community/nec-plus`: index
+- `community/projects`: index
+- `community/recommended-groups`: index
+- `competition/curc-resources`: index
+- `competition/introduction`: index
+- `curc26/finflow`: index
+- `curc27/index`: index
+- `embedded-software/introduction`: index
+- `index`: landing
+- `mechanical/dm-s3519-motor`: stub
+- `mechanical/falcon2-user-manual`: index
+- `mechanical/introduction`: index
+- `mechanical/lumenpnp/doc-12`: index
+- `mechanical/lumenpnp/doc-17`: index
+- `mechanical/lumenpnp/doc-19`: index
+- `mechanical/lumenpnp/doc-6`: stub
+- `mechanical/lumenpnp/pos2pnp-pos`: index
+- `mechanical/m2006-motor-guide`: index
+- `mechanical/m3508-motor-guide`: index
+- `mechanical/training-aluminum-tube-pneumatics`: index
+- `mechanical/training-how-to-ask`: index
+- `mechanical/training-how-to-debug`: index
+- `mechanical/training-structure-design-methodology`: index
+- `mechanical/training-threaded-fasteners`: index
+- `mechanical/training-weight-reduction-guide`: index
+- `skills/lark-event`: stub
+- `skills/mcporter`: index
+- `skills/qclaw-openclaw`: index
+- `snippets/snippet-intro`: landing
+- `solutions/liblibai-2-0`: stub
+- `start-here/2027-summer-camp`: index
+- `start-here/index`: index
+- `training/index`: index
+- `wiki/community`: index
+- `wiki/gitee-contribution`: index
+- `wiki/important-docs`: index
+- `wiki/nec-plus-membership`: index

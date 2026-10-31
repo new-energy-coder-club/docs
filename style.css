@@ -215,6 +215,33 @@ span){
   border-left-color: var(--mck-primary) !important;
   font-weight: 400 !important;
 }
+
+.page-insights {
+  margin: 0.75rem 0 1.25rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.page-insights-meta {
+  margin-bottom: 0.45rem;
+  color: var(--text-tertiary);
+  font-size: 0.85rem;
+  letter-spacing: 0.01em;
+}
+
+.page-insights-summary,
+.page-insights-hint {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.page-insights-hint {
+  margin-top: 0.45rem;
+  color: var(--text-tertiary);
+  font-size: 0.92rem;
+}
 /* Cards (Mintlify uses lowercase .card class) */
 .mint-card,
 [class*="Card"],

@@ -18,5 +18,11 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Generate page insights
+        run: python tools/ci/generate_page_insights.py
+
+      - name: Sync page insights mounts
+        run: python tools/ci/inject_page_insights.py
+
       - name: Run docs health check
         run: python tools/ci/check_docs.py
